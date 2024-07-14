@@ -7,7 +7,7 @@ public class MonsterManager : MonoBehaviour
     public GameObject warningPrefab; // 警告图案的预制件
     public int boardSize = 5;
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小
-    public Vector3 cellGap = new Vector3(0.5f, 0.5f, 0); // Cell Gap
+    public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
 
     private List<Slime> slimes = new List<Slime>();
     private List<GameObject> warnings = new List<GameObject>();
@@ -62,8 +62,8 @@ public class MonsterManager : MonoBehaviour
     public Vector3 CalculateWorldPosition(Vector2Int gridPosition)
     {
         // 计算世界坐标，考虑每个Tile的大小和Cell Gap，并加上偏移量使其居中
-        float x = gridPosition.x * (cellSize.x + cellGap.x) + (cellSize.x / 2);
-        float y = gridPosition.y * (cellSize.y + cellGap.y) + (cellSize.y / 2);
+        float x = gridPosition.x * (cellSize.x) + (cellSize.x / 2);
+        float y = gridPosition.y * (cellSize.y) + (cellSize.y / 2);
         return new Vector3(x, y, -1); // 确保 Z 轴位置在相机视野内
     }
 

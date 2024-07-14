@@ -173,3 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c9e747ef04ce54bb3d7fffffa0d94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pawnSprite: {fileID: -3171948276931754324, guid: 3dc205a8beb8b6346890598b1661976c, type: 3}
+  knightSprite: {fileID: 7754955960526056612, guid: a7461aa63716f4e40ac01077b5905720, type: 3}
+  attackSprite: {fileID: 6166826846123220988, guid: 322eeec7a3002e54da75fa6f0662bd2b, type: 3}

@@ -254,7 +254,9 @@ MonoBehaviour:
   hand: []
   discardPile: []
   handSize: 3
-  cardButtonPrefab: {fileID: 7865966843562598253, guid: bf1583da12794104eb3829ff438a5528, type: 3}
+  pawnCardPrefab: {fileID: 7865966843562598253, guid: 97de68834fe247b44947a067c18ec9b8, type: 3}
+  knightCardPrefab: {fileID: 7865966843562598253, guid: c70e519335519e641a51aae12fd3dc9a, type: 3}
+  attackCardPrefab: {fileID: 7865966843562598253, guid: 3dd8fb625d8e8d946b8b549ba44352d5, type: 3}
   cardPanel: {fileID: 513411014}
   deckCountText: {fileID: 972152938}
   discardPileCountText: {fileID: 1281658820}
@@ -633,7 +635,7 @@ Transform:
   m_GameObject: {fileID: 559963831}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 2.5, z: -10}
+  m_LocalPosition: {x: 3.5, y: 2.48, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -797,7 +799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -442.1, y: 0}
+  m_AnchoredPosition: {x: -316, y: 1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144206850

@@ -1,2 +1,18 @@
 fileFormatVersion: 2
 guid: 34034c55da44e8b498570bd32505f945
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pawnCardPrefab: {fileID: 7865966843562598253, guid: 97de68834fe247b44947a067c18ec9b8, type: 3}
+  - knightCardPrefab: {fileID: 7865966843562598253, guid: c70e519335519e641a51aae12fd3dc9a, type: 3}
+  - attackCardPrefab: {fileID: 7865966843562598253, guid: 3dd8fb625d8e8d946b8b549ba44352d5, type: 3}
+  - cardPanel: {instanceID: 0}
+  - deckCountText: {instanceID: 0}
+  - discardPileCountText: {instanceID: 0}
+  - turnManager: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

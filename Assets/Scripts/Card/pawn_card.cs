@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardButton : MonoBehaviour
+public class pawn_card : MonoBehaviour, CardButton
 {
     private Card card;
     private DeckManager deckManager;
@@ -21,14 +21,7 @@ public class CardButton : MonoBehaviour
 
         if (buttonText != null)
         {
-            if (card.cardType == CardType.Move)
-            {
-                buttonText.text = card.moveType.ToString();
-            }
-            else
-            {
-                buttonText.text = card.cardType.ToString();
-            }
+            //buttonText.text = "Pawn";
         }
 
         if (button != null)
@@ -45,7 +38,7 @@ public class CardButton : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Card is null in CardButton.OnClick");
+            Debug.LogError("Card is null in pawn_card.OnClick");
         }
     }
 

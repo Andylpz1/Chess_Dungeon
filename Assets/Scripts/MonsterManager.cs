@@ -56,7 +56,21 @@ public class MonsterManager : MonoBehaviour
 
     Vector2Int GetRandomPosition()
     {
-        return new Vector2Int(Random.Range(0, boardSize), Random.Range(0, boardSize));
+        Vector2Int playerPosition = FindObjectOfType<Player>().position;
+        HashSet<Vector2Int> occupiedPositions = new HashSet<Vector2Int> { playerPosition };
+
+        foreach (Slime slime in slimes)
+        {
+            occupiedPositions.Add(slime.position);
+        }
+
+        Vector2Int randomPosition;
+        do
+        {
+            randomPosition = new Vector2Int(Random.Range(0, boardSize), Random.Range(0, boardSize));
+        } while (occupiedPositions.Contains(randomPosition));
+
+        return randomPosition;
     }
 
     public Vector3 CalculateWorldPosition(Vector2Int gridPosition)

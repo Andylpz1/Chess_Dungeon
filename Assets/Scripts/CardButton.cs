@@ -12,16 +12,6 @@ public class CardButton : MonoBehaviour
     {
         button = GetComponent<Button>();
         buttonText = GetComponentInChildren<Text>();
-
-        if (button == null)
-        {
-            Debug.LogError("Button component not found on CardButton prefab.");
-        }
-
-        if (buttonText == null)
-        {
-            Debug.LogError("Text component not found on CardButton prefab.");
-        }
     }
 
     public void Initialize(Card card, DeckManager deckManager)

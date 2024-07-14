@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,21 +9,39 @@ public class Player : MonoBehaviour
     public GameObject attackHighlightPrefab; // 用于显示可攻击位置的预制件
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
+    public int gold = 0; // 金币数量
 
     private GameObject[] moveHighlights;
     private Card currentCard;
     private DeckManager deckManager; // 引入DeckManager以更新卡牌状态
+    public Text goldText;
 
     void Start()
     {
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
         UpdatePosition();
+        UpdateGoldText(); // 初始化金币显示
+
     }
 
     void UpdatePosition()
     {
         transform.position = CalculateWorldPosition(position); // 更新棋子在场景中的位置
+    }
+
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        UpdateGoldText();
+    }
+
+    void UpdateGoldText()
+    {
+        if (goldText != null)
+        {
+            goldText.text = "Gold: " + gold.ToString();
+        }
     }
 
     public void ShowMoveOptions(Card card)

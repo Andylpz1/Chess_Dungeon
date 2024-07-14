@@ -24,14 +24,21 @@ public class Slime : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log("Slime took damage, remaining health: " + health);
         if (health <= 0)
         {
-            Debug.Log("Slime destroyed.");
-            Destroy(gameObject);
+            Die();
         }
     }
+    public void Die()
+    {
+        Player player = FindObjectOfType<Player>();
+        if (player != null)
+        {
+            player.AddGold(10);
+        }
+        Destroy(gameObject);
 
+    }
     public void MoveTowardsPlayer()
     {
         if (player == null) return;

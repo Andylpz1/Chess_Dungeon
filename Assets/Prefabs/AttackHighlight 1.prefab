@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3668300170762363890}
   - component: {fileID: 555000372987731176}
   m_Layer: 0
-  m_Name: MoveHighlight
+  m_Name: AttackHighlight 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

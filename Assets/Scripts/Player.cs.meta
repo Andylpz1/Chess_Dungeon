@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - moveHighlightPrefab: {fileID: 3397057089140146364, guid: 18409b79bdfaa14429abafd3d62a0d2b, type: 3}
+  - attackHighlightPrefab: {fileID: 3397057089140146364, guid: 58370eb99afcef943ba770fd811ddfbb, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

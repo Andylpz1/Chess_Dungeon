@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; // 添加此行
 using System.Collections.Generic;
 
 public class DeckManager : MonoBehaviour
@@ -13,6 +13,7 @@ public class DeckManager : MonoBehaviour
     public Transform cardPanel; // 卡牌面板
     public Text deckCountText; // 显示牌库剩余牌数的文本组件
     public Text discardPileCountText; // 显示弃牌堆剩余牌数的文本组件
+    public TurnManager turnManager; // 回合管理器
 
     private List<GameObject> cardButtons; // 用于追踪卡牌按钮
 
@@ -31,15 +32,15 @@ public class DeckManager : MonoBehaviour
         // 初始化牌库
         deck = new List<Card>
         {
-            new Card(CardType.Move),
-            new Card(CardType.Move),
-            new Card(CardType.Move),
-            new Card(CardType.Attack),
-            new Card(CardType.Attack)
+            new PawnCard(),
+            new PawnCard(),
+            new PawnCard(),
+            new PawnCard(),
+            new KnightCard(),
+            new AttackCard()
         };
 
         ShuffleDeck();
-        Debug.Log("Deck initialized. Count: " + deck.Count); // 添加调试日志
     }
 
     void ShuffleDeck()
@@ -52,7 +53,6 @@ public class DeckManager : MonoBehaviour
             deck[i] = deck[randomIndex];
             deck[randomIndex] = temp;
         }
-        Debug.Log("Deck shuffled. Count: " + deck.Count); // 添加调试日志
     }
 
     void DrawCards(int number)
@@ -69,7 +69,6 @@ public class DeckManager : MonoBehaviour
                 Card card = deck[0];
                 deck.RemoveAt(0);
                 hand.Add(card);
-                Debug.Log("Drawn card: " + card.cardType + " Deck Count: " + deck.Count); // 添加调试日志
 
                 // 创建卡牌按钮并添加到CardPanel中
                 GameObject cardButton = Instantiate(cardButtonPrefab, cardPanel);
@@ -88,18 +87,23 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    public void UseCard(Card card, GameObject cardButton)
+    public void UseCard(Card card)
     {
         hand.Remove(card);
         discardPile.Add(card);
-        card.Use(FindObjectOfType<Player>());
-        int index = cardButtons.IndexOf(cardButton);
-        if (index != -1)
+        UpdateDiscardPileCountText(); // 更新弃牌堆数量显示
+
+        // 找到并销毁已使用的卡牌按钮
+        for (int i = cardButtons.Count - 1; i >= 0; i--)
         {
-            Destroy(cardButton);
-            cardButtons.RemoveAt(index);
-            DrawNewCardAt(index);
-            UpdateDiscardPileCountText(); // 更新弃牌堆数量显示
+            CardButton cardButtonScript = cardButtons[i].GetComponent<CardButton>();
+            if (cardButtonScript != null && cardButtonScript.GetCard() == card)
+            {
+                Destroy(cardButtons[i]);
+                cardButtons.RemoveAt(i);
+                DrawNewCardAt(i);
+                break;
+            }
         }
     }
 
@@ -115,7 +119,6 @@ public class DeckManager : MonoBehaviour
             Card card = deck[0];
             deck.RemoveAt(0);
             hand.Add(card);
-            Debug.Log("Drawn new card at index: " + index + " Deck Count: " + deck.Count); // 添加调试日志
 
             // 创建卡牌按钮并添加到CardPanel中
             GameObject cardButton = Instantiate(cardButtonPrefab, cardPanel);
@@ -129,8 +132,8 @@ public class DeckManager : MonoBehaviour
             {
                 Debug.LogError("CardButton script not found on instantiated CardButton.");
             }
+            UpdateDeckCountText(); // 更新牌库剩余数量显示
         }
-        UpdateDeckCountText(); // 更新牌库数量显示
     }
 
     void ReshuffleDeck()
@@ -140,9 +143,9 @@ public class DeckManager : MonoBehaviour
             deck.AddRange(discardPile);
             discardPile.Clear();
             ShuffleDeck();
-            Debug.Log("Deck reshuffled. Count: " + deck.Count); // 添加调试日志
+            UpdateDeckCountText(); // 更新牌库数量显示
+            UpdateDiscardPileCountText(); // 更新弃牌堆数量显示
         }
-        UpdateDeckCountText(); // 重洗后更新牌库数量显示
     }
 
     void UpdateDeckCountText()
@@ -150,7 +153,6 @@ public class DeckManager : MonoBehaviour
         if (deckCountText != null)
         {
             deckCountText.text = "Deck Count: " + deck.Count.ToString();
-            Debug.Log("Deck Count Updated: " + deck.Count); // 添加调试日志
         }
     }
 
@@ -159,7 +161,6 @@ public class DeckManager : MonoBehaviour
         if (discardPileCountText != null)
         {
             discardPileCountText.text = "Discard Pile Count: " + discardPile.Count.ToString();
-            Debug.Log("Discard Pile Count Updated: " + discardPile.Count); // 添加调试日志
         }
     }
 }

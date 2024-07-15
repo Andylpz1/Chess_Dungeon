@@ -76,7 +76,7 @@ public class MonsterManager : MonoBehaviour
     public Vector3 CalculateWorldPosition(Vector2Int gridPosition)
     {
         // 计算世界坐标，考虑每个Tile的大小和Cell Gap，并加上偏移量使其居中
-        float x = gridPosition.x * (cellSize.x) + (cellSize.x / 2);
+        float x = (gridPosition.x + 1) * (cellSize.x) + (cellSize.x / 2);
         float y = gridPosition.y * (cellSize.y) + (cellSize.y / 2);
         return new Vector3(x, y, -1); // 确保 Z 轴位置在相机视野内
     }

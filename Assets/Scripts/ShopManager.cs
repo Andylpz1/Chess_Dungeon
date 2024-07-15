@@ -4,48 +4,77 @@ using System.Collections.Generic;
 
 public class ShopManager : MonoBehaviour
 {
-    public GameObject cardButtonPrefab; // 卡牌按钮预制件
-    public Transform shopPanel; // 商店面板
-    public DeckManager deckManager; // 牌库管理器
-    public Player player; // 玩家
-    public List<Card> availableCards; // 可购买的卡牌列表
+    public GameObject shopPanel; // 商店面板
+    public List<Card> availableCards; // 可购买的卡牌
 
-    void Start()
+    // 预先设置好的卡牌UI和购买按钮
+    public Image cardImage1;
+    public Image cardImage2;
+    public Image cardImage3;
+    public Button buyButton1;
+    public Button buyButton2;
+    public Button buyButton3;
+
+    public Player player; // 玩家对象
+
+    private void Start()
     {
-        PopulateShop();
+        Debug.Log("ShopManager script has started."); // 调试日志
+        InitializeAvailableCards(); // 初始化可购买的卡牌
+        DisplayAvailableCards();
     }
 
-    void PopulateShop()
+    void InitializeAvailableCards()
     {
-        foreach (Card card in availableCards)
+        availableCards = new List<Card>
         {
-            GameObject cardButton = Instantiate(cardButtonPrefab, shopPanel);
-            CardButton cardButtonScript = cardButton.GetComponent<CardButton>();
-            if (cardButtonScript != null)
-            {
-                cardButtonScript.Initialize(card, null);
-                cardButton.GetComponent<Button>().onClick.AddListener(() => BuyCard(card));
-            }
+            new PawnCard(),
+            new KnightCard(),
+            new AttackCard()
+        };
+        Debug.Log("Available cards initialized: " + availableCards.Count); // 打印卡牌数量
+    }
+
+    void DisplayAvailableCards()
+    {
+        Debug.Log("DisplayAvailableCards called"); // 调试日志
+
+        if (availableCards.Count >= 3)
+        {
+            // 设置第一张卡牌
+            cardImage1.sprite = availableCards[0].GetSprite();
+            buyButton1.GetComponentInChildren<Text>().text = "Buy (" + availableCards[0].cost + " gold)";
+            buyButton1.onClick.AddListener(() => BuyCard(availableCards[0]));
+
+            // 设置第二张卡牌
+            cardImage2.sprite = availableCards[1].GetSprite();
+            buyButton2.GetComponentInChildren<Text>().text = "Buy (" + availableCards[1].cost + " gold)";
+            buyButton2.onClick.AddListener(() => BuyCard(availableCards[1]));
+
+            // 设置第三张卡牌
+            cardImage3.sprite = availableCards[2].GetSprite();
+            buyButton3.GetComponentInChildren<Text>().text = "Buy (" + availableCards[2].cost + " gold)";
+            buyButton3.onClick.AddListener(() => BuyCard(availableCards[2]));
+        }
+        else
+        {
+            Debug.LogError("Not enough available cards to display in the shop.");
         }
     }
 
-    public void BuyCard(Card card)
+    void BuyCard(Card card)
     {
-        int cardCost = 10; // 设置卡牌的购买价格
-        if (player.gold >= cardCost)
+        if (player.gold >= card.cost)
         {
-            player.AddGold(-cardCost);
-            //deckManager.AddCardToDeck(card);
+            player.gold -= card.cost;
+            player.UpdateGoldText();
+            player.deckManager.deck.Add(card); // 将购买的卡牌添加到玩家的牌库
+            player.deckManager.UpdateDeckCountText();
+            Debug.Log("Bought card: " + card.Id);
         }
-    }
-
-    public void RemoveCard(Card card)
-    {
-        int cardCost = 10; // 设置删除卡牌的价格
-        if (player.gold >= cardCost)
+        else
         {
-            player.AddGold(-cardCost);
-            //deckManager.RemoveCardFromDeck(card);
+            Debug.Log("Not enough gold to buy this card.");
         }
     }
 }

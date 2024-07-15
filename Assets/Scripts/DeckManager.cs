@@ -153,7 +153,7 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    void UpdateDeckCountText()
+    public void UpdateDeckCountText()
     {
         if (deckCountText != null)
         {
@@ -161,7 +161,7 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    void UpdateDiscardPileCountText()
+    public void UpdateDiscardPileCountText()
     {
         if (discardPileCountText != null)
         {

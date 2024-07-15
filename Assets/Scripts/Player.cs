@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private GameObject[] moveHighlights;
     private Card currentCard;
-    private DeckManager deckManager; // 引入DeckManager以更新卡牌状态
+    public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
     public Text goldText;
 
     void Start()
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         UpdateGoldText();
     }
 
-    void UpdateGoldText()
+    public void UpdateGoldText()
     {
         if (goldText != null)
         {
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    Vector3 CalculateWorldPosition(Vector2Int gridPosition)
+    public Vector3 CalculateWorldPosition(Vector2Int gridPosition)
     {
         // 计算世界坐标，仅考虑每个Tile的大小
         float x = gridPosition.x * cellSize.x + (cellSize.x / 2);

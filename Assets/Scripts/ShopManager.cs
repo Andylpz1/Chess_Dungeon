@@ -70,6 +70,7 @@ public class ShopManager : MonoBehaviour
             player.UpdateGoldText();
             player.deckManager.deck.Add(card); // 将购买的卡牌添加到玩家的牌库
             player.deckManager.UpdateDeckCountText();
+            player.deckManager.UpdateDeckPanel();
             Debug.Log("Bought card: " + card.Id);
         }
         else

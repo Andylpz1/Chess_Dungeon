@@ -10,6 +10,8 @@ public class DeckManager : MonoBehaviour
     public int handSize = 3; // 手牌大小
 
     public Transform cardPanel; // 卡牌面板
+    public Transform deckPanel; // 卡组面板，用于显示卡组中卡牌的图片
+
     public Text deckCountText; // 显示牌库剩余牌数的文本组件
     public Text discardPileCountText; // 显示弃牌堆剩余牌数的文本组件
     public TurnManager turnManager; // 回合管理器
@@ -24,6 +26,7 @@ public class DeckManager : MonoBehaviour
         DrawCards(handSize);
         UpdateDeckCountText(); // 初始化时更新牌堆数量显示
         UpdateDiscardPileCountText(); // 初始化时更新弃牌堆数量显示
+        UpdateDeckPanel(); // 初始化时更新卡组显示
     }
 
     void InitializeDeck()
@@ -138,6 +141,7 @@ public class DeckManager : MonoBehaviour
                 Debug.LogError("CardButton script not found on instantiated CardButton.");
             }
             UpdateDeckCountText(); // 更新牌库剩余数量显示
+            UpdateDeckPanel(); // 每次抽牌后更新卡组显示
         }
     }
 
@@ -168,4 +172,26 @@ public class DeckManager : MonoBehaviour
             discardPileCountText.text = "Discard Pile Count: " + discardPile.Count.ToString();
         }
     }
+
+    public void UpdateDeckPanel()
+    {
+        // 清空当前显示的卡牌
+        foreach (Transform child in deckPanel)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 显示牌库中的所有卡牌
+        foreach (Card card in deck)
+        {
+            GameObject cardUI = new GameObject("Card");
+            Image cardImage = cardUI.AddComponent<Image>();
+            cardImage.sprite = card.GetSprite();
+
+            RectTransform rectTransform = cardUI.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(40, 50); // 调整尺寸
+            cardUI.transform.SetParent(deckPanel, false); // 保持相对布局
+        }
+    }
+
 }

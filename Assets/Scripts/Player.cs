@@ -21,8 +21,6 @@ public class Player : MonoBehaviour
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
         UpdatePosition();
-        UpdateGoldText(); // 初始化金币显示
-
     }
 
     void UpdatePosition()
@@ -44,36 +42,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ShowMoveOptions(Card card)
+    public void ShowMoveOptions(Vector2Int[] directions, Card card)
     {
         ClearMoveHighlights();
         currentCard = card;
 
-        moveHighlights = new GameObject[4];
-        Vector2Int[] directions = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
-        for (int i = 0; i < directions.Length; i++)
-        {
-            Vector2Int newPosition = position + directions[i];
-            if (IsValidPosition(newPosition))
-            {
-                HighlightPosition(newPosition, i, true);
-            }
-        }
-    }
-
-    public void ShowKnightMoveOptions(Card card)
-    {
-        ClearMoveHighlights();
-        currentCard = card;
-
-        moveHighlights = new GameObject[8];
-        Vector2Int[] directions = 
-        {
-            new Vector2Int(2, 1), new Vector2Int(2, -1),
-            new Vector2Int(-2, 1), new Vector2Int(-2, -1),
-            new Vector2Int(1, 2), new Vector2Int(1, -2),
-            new Vector2Int(-1, 2), new Vector2Int(-1, -2)
-        };
+        moveHighlights = new GameObject[directions.Length];
         for (int i = 0; i < directions.Length; i++)
         {
             Vector2Int newPosition = position + directions[i];
@@ -101,7 +75,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void HighlightPosition(Vector2Int newPosition, int index, bool isMove)
+    public void HighlightPosition(Vector2Int newPosition, int index, bool isMove)
     {
         Vector3 highlightPosition = CalculateWorldPosition(newPosition);
         GameObject highlightPrefab = isMove ? moveHighlightPrefab : attackHighlightPrefab;
@@ -110,7 +84,7 @@ public class Player : MonoBehaviour
         moveHighlights[index] = highlight;
     }
 
-    bool IsValidPosition(Vector2Int position)
+    public bool IsValidPosition(Vector2Int position)
     {
         return position.x >= 0 && position.x < boardSize && position.y >= 0 && position.y < boardSize;
     }
@@ -139,7 +113,7 @@ public class Player : MonoBehaviour
         ExecuteCurrentCard();
     }
 
-    void ClearMoveHighlights()
+    public void ClearMoveHighlights()
     {
         if (moveHighlights != null)
         {
@@ -158,7 +132,7 @@ public class Player : MonoBehaviour
         return new Vector3(x, y, 0);
     }
 
-    void ExecuteCurrentCard()
+    public void ExecuteCurrentCard()
     {
         if (currentCard != null)
         {

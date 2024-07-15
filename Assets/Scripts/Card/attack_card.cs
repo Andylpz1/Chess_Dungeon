@@ -6,6 +6,7 @@ public class attack_card : MonoBehaviour, CardButton
     private Card card;
     private DeckManager deckManager;
     private Button button;
+    public Player player;
     private Text buttonText;
 
     void Awake()
@@ -18,6 +19,7 @@ public class attack_card : MonoBehaviour, CardButton
     {
         this.card = card;
         this.deckManager = deckManager;
+        player = FindObjectOfType<Player>();
 
         if (buttonText != null)
         {
@@ -34,7 +36,7 @@ public class attack_card : MonoBehaviour, CardButton
     {
         if (card != null)
         {
-            card.ShowOptions(FindObjectOfType<Player>());
+            player.ShowAttackOptions(card);
         }
         else
         {

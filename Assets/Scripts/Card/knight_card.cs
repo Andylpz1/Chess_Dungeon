@@ -7,6 +7,14 @@ public class knight_card : MonoBehaviour, CardButton
     private DeckManager deckManager;
     private Button button;
     private Text buttonText;
+    public Player player;
+    private Vector2Int[] knightDirections = 
+    {
+        new Vector2Int(2, 1), new Vector2Int(2, -1),
+        new Vector2Int(-2, 1), new Vector2Int(-2, -1),
+        new Vector2Int(1, 2), new Vector2Int(1, -2),
+        new Vector2Int(-1, 2), new Vector2Int(-1, -2)
+    };
 
     void Awake()
     {
@@ -18,6 +26,7 @@ public class knight_card : MonoBehaviour, CardButton
     {
         this.card = card;
         this.deckManager = deckManager;
+        player = FindObjectOfType<Player>();
 
         if (buttonText != null)
         {
@@ -34,7 +43,7 @@ public class knight_card : MonoBehaviour, CardButton
     {
         if (card != null)
         {
-            card.ShowOptions(FindObjectOfType<Player>());
+            player.ShowMoveOptions(knightDirections, card);
         }
         else
         {

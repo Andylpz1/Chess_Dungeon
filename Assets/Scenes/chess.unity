@@ -254,9 +254,6 @@ MonoBehaviour:
   hand: []
   discardPile: []
   handSize: 3
-  pawnCardPrefab: {fileID: 7865966843562598253, guid: 97de68834fe247b44947a067c18ec9b8, type: 3}
-  knightCardPrefab: {fileID: 7865966843562598253, guid: c70e519335519e641a51aae12fd3dc9a, type: 3}
-  attackCardPrefab: {fileID: 7865966843562598253, guid: 3dd8fb625d8e8d946b8b549ba44352d5, type: 3}
   cardPanel: {fileID: 513411014}
   deckCountText: {fileID: 972152938}
   discardPileCountText: {fileID: 1281658820}

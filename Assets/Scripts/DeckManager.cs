@@ -9,9 +9,6 @@ public class DeckManager : MonoBehaviour
     public List<Card> discardPile; // 弃牌堆
     public int handSize = 3; // 手牌大小
 
-    public GameObject pawnCardPrefab; // Pawn卡牌按钮预制件
-    public GameObject knightCardPrefab; // Knight卡牌按钮预制件
-    public GameObject attackCardPrefab; // Attack卡牌按钮预制件
     public Transform cardPanel; // 卡牌面板
     public Text deckCountText; // 显示牌库剩余牌数的文本组件
     public Text discardPileCountText; // 显示弃牌堆剩余牌数的文本组件
@@ -72,12 +69,10 @@ public class DeckManager : MonoBehaviour
                 deck.RemoveAt(0);
                 hand.Add(card);
 
-                // 根据卡牌类型选择相应的预制件
-                GameObject cardPrefab = GetCardPrefab(card);
-
                 // 创建卡牌按钮并添加到CardPanel中
-                GameObject cardButton = Instantiate(cardPrefab, cardPanel);
+                GameObject cardButton = Instantiate(card.GetPrefab(), cardPanel);
                 CardButton cardButtonScript = cardButton.GetComponent<CardButton>();
+
                 if (cardButtonScript != null)
                 {
                     cardButtonScript.Initialize(card, this);
@@ -90,26 +85,6 @@ public class DeckManager : MonoBehaviour
             }
             UpdateDeckCountText(); // 每次抽牌后更新牌库剩余数量显示
         }
-    }
-
-    GameObject GetCardPrefab(Card card)
-    {
-        switch (card.cardType)
-        {
-            case CardType.Move:
-                if (card.moveType == MoveType.Pawn)
-                {
-                    return pawnCardPrefab;
-                }
-                else if (card.moveType == MoveType.Knight)
-                {
-                    return knightCardPrefab;
-                }
-                break;
-            case CardType.Attack:
-                return attackCardPrefab;
-        }
-        return null;
     }
 
     public void UseCard(Card card)
@@ -126,13 +101,15 @@ public class DeckManager : MonoBehaviour
             {
                 Destroy(cardButtons[i]);
                 cardButtons.RemoveAt(i);
-                DrawNewCardAt(i);
                 break;
             }
         }
+
+        // 抽取一张新卡牌补充到手牌中
+        DrawNewCard();
     }
 
-    void DrawNewCardAt(int index)
+    void DrawNewCard()
     {
         if (deck.Count == 0)
         {
@@ -146,7 +123,7 @@ public class DeckManager : MonoBehaviour
             hand.Add(card);
 
             // 根据卡牌类型选择相应的预制件
-            GameObject cardPrefab = GetCardPrefab(card);
+            GameObject cardPrefab = card.GetPrefab();
 
             // 创建卡牌按钮并添加到CardPanel中
             GameObject cardButton = Instantiate(cardPrefab, cardPanel);
@@ -154,7 +131,7 @@ public class DeckManager : MonoBehaviour
             if (cardButtonScript != null)
             {
                 cardButtonScript.Initialize(card, this);
-                cardButtons.Insert(index, cardButton); // 在原位置插入新卡牌按钮
+                cardButtons.Add(cardButton); // 追踪卡牌按钮
             }
             else
             {

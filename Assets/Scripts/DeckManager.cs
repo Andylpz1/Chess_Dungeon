@@ -11,6 +11,7 @@ public class DeckManager : MonoBehaviour
 
     public Transform cardPanel; // 卡牌面板
     public Transform deckPanel; // 卡组面板，用于显示卡组中卡牌的图片
+    
 
     public Text deckCountText; // 显示牌库剩余牌数的文本组件
     public Text discardPileCountText; // 显示弃牌堆剩余牌数的文本组件

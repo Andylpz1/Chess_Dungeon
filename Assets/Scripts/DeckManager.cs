@@ -11,13 +11,18 @@ public class DeckManager : MonoBehaviour
 
     public Transform cardPanel; // 卡牌面板
     public Transform deckPanel; // 卡组面板，用于显示卡组中卡牌的图片
-    
 
     public Text deckCountText; // 显示牌库剩余牌数的文本组件
     public Text discardPileCountText; // 显示弃牌堆剩余牌数的文本组件
     public TurnManager turnManager; // 回合管理器
 
+    public Text deletePopupMessage; // 弹窗中的提示信息
+    public Button confirmDeleteButton; // 弹窗中的确认按钮
+    public Button cancelDeleteButton; // 弹窗中的取消按钮
+    public GameObject deletePopup; // 删除卡牌的弹窗
     private List<GameObject> cardButtons; // 用于追踪卡牌按钮
+    private Card cardToDelete; // 要删除的卡牌
+    public Player player; // 玩家对象
 
     void Start()
     {
@@ -28,6 +33,28 @@ public class DeckManager : MonoBehaviour
         UpdateDeckCountText(); // 初始化时更新牌堆数量显示
         UpdateDiscardPileCountText(); // 初始化时更新弃牌堆数量显示
         UpdateDeckPanel(); // 初始化时更新卡组显示
+
+        if (deletePopup != null)
+        {
+            deletePopup.SetActive(false); // 初始时隐藏删除弹窗
+            confirmDeleteButton.onClick.AddListener(ConfirmDeleteCard);
+            cancelDeleteButton.onClick.AddListener(CancelDeleteCard);
+        }
+        else
+        {
+            Debug.LogError("Delete popup is not assigned in the Inspector.");
+        }
+
+        // Ensure player is assigned
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+        }
+
+        if (player == null)
+        {
+            Debug.LogError("Player is not assigned and could not be found in the scene.");
+        }
     }
 
     void InitializeDeck()
@@ -201,7 +228,64 @@ public class DeckManager : MonoBehaviour
             RectTransform rectTransform = cardUI.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(40, 50); // 调整尺寸
             cardUI.transform.SetParent(deckPanel, false); // 保持相对布局
+
+            Button cardButton = cardUI.AddComponent<Button>();
+            cardButton.onClick.AddListener(() => OnCardClicked(card));
         }
     }
 
+    void OnCardClicked(Card card)
+    {
+        Debug.Log("OnCardClicked called");
+
+        if (player == null)
+        {
+            Debug.LogError("Player is not assigned.");
+            return;
+        }
+
+        if (deletePopup == null)
+        {
+            Debug.LogError("Delete popup is not assigned.");
+            return;
+        }
+
+        if (deletePopupMessage == null)
+        {
+            Debug.LogError("Delete popup message is not assigned.");
+            return;
+        }
+
+        if (player.gold >= 20)
+        {
+            cardToDelete = card;
+            deletePopupMessage.text = "Do you want to delete this card for 20 gold?";
+            deletePopup.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Not enough gold to delete this card.");
+        }
+    }
+
+    void ConfirmDeleteCard()
+    {
+        if (cardToDelete != null)
+        {
+            player.gold -= 20;
+            player.UpdateGoldText();
+            deck.Remove(cardToDelete);
+            UpdateDeckCountText();
+            UpdateDiscardPileCountText();
+            UpdateDeckPanel();
+            deletePopup.SetActive(false);
+            cardToDelete = null;
+        }
+    }
+
+    void CancelDeleteCard()
+    {
+        deletePopup.SetActive(false);
+        cardToDelete = null;
+    }
 }

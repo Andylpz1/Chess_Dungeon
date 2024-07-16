@@ -14,14 +14,27 @@ public class ShopManager : MonoBehaviour
     public Button buyButton1;
     public Button buyButton2;
     public Button buyButton3;
+    public Button refreshButton; // 刷新按钮
 
     public Player player; // 玩家对象
 
     private void Start()
     {
         Debug.Log("ShopManager script has started."); // 调试日志
+
+        if (shopPanel == null) Debug.LogError("shopPanel is not assigned.");
+        if (cardImage1 == null) Debug.LogError("cardImage1 is not assigned.");
+        if (cardImage2 == null) Debug.LogError("cardImage2 is not assigned.");
+        if (cardImage3 == null) Debug.LogError("cardImage3 is not assigned.");
+        if (buyButton1 == null) Debug.LogError("buyButton1 is not assigned.");
+        if (buyButton2 == null) Debug.LogError("buyButton2 is not assigned.");
+        if (buyButton3 == null) Debug.LogError("buyButton3 is not assigned.");
+        if (refreshButton == null) Debug.LogError("refreshButton is not assigned.");
+        if (player == null) Debug.LogError("player is not assigned.");
+
         InitializeAvailableCards(); // 初始化可购买的卡牌
         DisplayAvailableCards();
+        refreshButton.onClick.AddListener(() => RefreshShop()); // 绑定刷新按钮
     }
 
     void InitializeAvailableCards()
@@ -54,7 +67,7 @@ public class ShopManager : MonoBehaviour
 
             // 设置第三张卡牌
             cardImage3.sprite = availableCards[3].GetSprite();
-            buyButton3.GetComponentInChildren<Text>().text = "Buy (" + availableCards[2].cost + " gold)";
+            buyButton3.GetComponentInChildren<Text>().text = "Buy (" + availableCards[3].cost + " gold)";
             buyButton3.onClick.AddListener(() => BuyCard(availableCards[3], cardImage3, buyButton3));
         }
         else
@@ -98,5 +111,40 @@ public class ShopManager : MonoBehaviour
             return availableCards[randomIndex];
         }
         return null;
+    }
+
+    void RefreshShop()
+    {
+        if (player.gold >= 10)
+        {
+            player.gold -= 10;
+            player.UpdateGoldText();
+
+            // 获取新的随机卡牌并更新显示
+            List<(Image cardImage, Button buyButton)> slots = new List<(Image, Button)>
+            {
+                (cardImage1, buyButton1),
+                (cardImage2, buyButton2),
+                (cardImage3, buyButton3)
+            };
+
+            foreach (var slot in slots)
+            {
+                Card newCard = GetRandomCard();
+                if (newCard != null)
+                {
+                    slot.cardImage.sprite = newCard.GetSprite();
+                    slot.buyButton.GetComponentInChildren<Text>().text = "Buy (" + newCard.cost + " gold)";
+                    slot.buyButton.onClick.RemoveAllListeners(); // 移除旧的监听器
+                    slot.buyButton.onClick.AddListener(() => BuyCard(newCard, slot.cardImage, slot.buyButton));
+                }
+            }
+
+            Debug.Log("Shop refreshed.");
+        }
+        else
+        {
+            Debug.Log("Not enough gold to refresh the shop.");
+        }
     }
 }

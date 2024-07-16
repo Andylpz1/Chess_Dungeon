@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class TurnManager : MonoBehaviour
 {
     public MonsterManager monsterManager;
+    public DeckManager deckManager; // 引用DeckManager
+
     public int turnCount = 0;
     public GameObject turnSlotPrefab;
     public Transform turnPanel;
@@ -16,6 +18,8 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         InitializeTurnPanel();
+        deckManager = FindObjectOfType<DeckManager>();
+
         if (monsterManager == null)
         {
             monsterManager = FindObjectOfType<MonsterManager>();
@@ -42,6 +46,13 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Turn end");
 
         monsterManager.SpawnSlime();
+        //回合结束弃牌
+        deckManager.DiscardHand();
+        //回合结束抓新的手牌
+        for (int i = 0; i < deckManager.handSize; i++)
+        {
+            deckManager.DrawNewCard();
+        }
 
         ResetCursor();
     }

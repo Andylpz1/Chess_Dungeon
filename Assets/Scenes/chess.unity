@@ -290,9 +290,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 972152940}
+  - {fileID: 1281658822}
+  - {fileID: 1144206849}
   - {fileID: 513411014}
   - {fileID: 656423283}
-  - {fileID: 1144206849}
   - {fileID: 47765511}
   - {fileID: 385267122}
   m_Father: {fileID: 0}
@@ -415,7 +417,7 @@ MonoBehaviour:
   deck: []
   hand: []
   discardPile: []
-  handSize: 3
+  handSize: 5
   cardPanel: {fileID: 513411014}
   deckPanel: {fileID: 385267122}
   deckCountText: {fileID: 972152938}
@@ -729,9 +731,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 972152940}
-  - {fileID: 1281658822}
+  m_Children: []
   m_Father: {fileID: 98812311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -848,9 +848,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterManager: {fileID: 0}
+  deckManager: {fileID: 0}
   turnCount: 0
   turnSlotPrefab: {fileID: 115147043063479922, guid: 862daa1e974a6a64885aa68c01eab32e, type: 3}
-  cursorPrefab: {fileID: 2876149592987866072, guid: d8d1db1ff216f1c4bb5b6cb49bdb39cf, type: 3}
   turnPanel: {fileID: 656423283}
   actions: 3
 --- !u!1 &559963831
@@ -1364,16 +1364,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972152937}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 513411014}
+  m_Father: {fileID: 98812311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 68, y: -193}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1144206848
@@ -1410,7 +1410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -29, y: 164.96}
+  m_AnchoredPosition: {x: -332, y: 174.99998}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144206850
@@ -1598,16 +1598,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281658819}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 513411014}
+  m_Father: {fileID: 98812311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 68, y: -321}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1307867631

@@ -53,7 +53,7 @@ public class ShopManager : MonoBehaviour
             buyButton2.onClick.AddListener(() => BuyCard(availableCards[1], cardImage2, buyButton2));
 
             // 设置第三张卡牌
-            cardImage3.sprite = availableCards[2].GetSprite();
+            cardImage3.sprite = availableCards[3].GetSprite();
             buyButton3.GetComponentInChildren<Text>().text = "Buy (" + availableCards[2].cost + " gold)";
             buyButton3.onClick.AddListener(() => BuyCard(availableCards[3], cardImage3, buyButton3));
         }

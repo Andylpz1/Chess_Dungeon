@@ -7,7 +7,7 @@ public class DeckManager : MonoBehaviour
     public List<Card> deck; // 牌库
     public List<Card> hand; // 手牌
     public List<Card> discardPile; // 弃牌堆
-    public int handSize = 3; // 手牌大小
+    public int handSize = 5; // 手牌大小
 
     public Transform cardPanel; // 卡牌面板
     public Transform deckPanel; // 卡组面板，用于显示卡组中卡牌的图片
@@ -38,7 +38,11 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new PawnCard(),
-            new KnightCard(),
+            new PawnCard(),
+            new PawnCard(),
+            new PawnCard(),
+            new PawnCard(),
+            new AttackCard(),
             new AttackCard()
         };
 
@@ -107,12 +111,17 @@ public class DeckManager : MonoBehaviour
                 break;
             }
         }
-
-        // 抽取一张新卡牌补充到手牌中
-        DrawNewCard();
     }
 
-    void DrawNewCard()
+    public void DiscardHand()
+    {
+        foreach (Card card in new List<Card>(hand))
+        {
+            UseCard(card);
+        }
+    }
+
+    public void DrawNewCard()
     {
         if (deck.Count == 0)
         {

@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
         UpdatePosition();
+        UpdateGoldText();
     }
 
     void UpdatePosition()

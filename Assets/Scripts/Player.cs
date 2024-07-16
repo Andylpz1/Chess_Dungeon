@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     public GameObject attackHighlightPrefab; // 用于显示可攻击位置的预制件
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
-    public int gold = 0; // 金币数量
+    public int gold = 1000; // 金币数量
+    public int actions = 3; //行动点
 
     private GameObject[] moveHighlights;
     private Card currentCard;
@@ -137,9 +138,16 @@ public class Player : MonoBehaviour
         if (currentCard != null)
         {
             deckManager.UseCard(currentCard);
+            actions -= 1;
             currentCard = null;
+            FindObjectOfType<TurnManager>().MoveCursor();
+
             // 推进回合
-            FindObjectOfType<TurnManager>().AdvanceTurn();
+            if (actions == 0) 
+            {
+                FindObjectOfType<TurnManager>().AdvanceTurn();
+                actions = 3;
+            }
         }
     }
 }

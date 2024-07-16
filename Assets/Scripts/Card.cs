@@ -55,6 +55,20 @@ public class KnightCard : Card
     }
 }
 
+public class BishopCard : Card
+{
+    public BishopCard() : base(CardType.Move, "M03", 60) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/bishop_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/bishop_card");
+    }
+}
+
 public class AttackCard : Card
 {
     public AttackCard() : base(CardType.Attack, "A01", 20) { }

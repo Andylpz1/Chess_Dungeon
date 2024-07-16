@@ -47,9 +47,10 @@ public class MonsterManager : MonoBehaviour
 
         foreach (Slime slime in new List<Slime>(slimes))
         {
-            if (slime != null && turnCount % slime.moveInterval == 0)
+            if (slime != null)
             {
                 slime.MoveTowardsPlayer();
+                Debug.Log("Slimes move.");
             }
         }
     }

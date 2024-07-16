@@ -5,7 +5,7 @@ public class Slime : MonoBehaviour
     public int health = 1;
     public Vector2Int position;
     public Player player;
-    public int moveInterval = 3; // 每隔三个回合移动一次
+    public int moveInterval = 1; // 每隔一个回合移动一次
 
     public void Initialize(Vector2Int startPos)
     {

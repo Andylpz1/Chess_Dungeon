@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -12,14 +13,15 @@ public class Player : MonoBehaviour
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
 
-    private GameObject[] moveHighlights;
-    private Card currentCard;
+    private List<GameObject> moveHighlights = new List<GameObject>(); // 初始化 moveHighlights 列表
+    public Card currentCard;
     public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
     public Text goldText;
 
     void Start()
     {
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
+        Debug.Log($"Current Location: {position}");
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
         UpdatePosition();
         UpdateGoldText();
@@ -49,13 +51,13 @@ public class Player : MonoBehaviour
         ClearMoveHighlights();
         currentCard = card;
 
-        moveHighlights = new GameObject[directions.Length];
-        for (int i = 0; i < directions.Length; i++)
+        foreach (var direction in directions)
         {
-            Vector2Int newPosition = position + directions[i];
+            Vector2Int newPosition = position + direction;
             if (IsValidPosition(newPosition))
             {
-                HighlightPosition(newPosition, i, true);
+                Debug.Log($"player valid Position: {newPosition}");
+                HighlightPosition(newPosition, true);
             }
         }
     }
@@ -65,25 +67,24 @@ public class Player : MonoBehaviour
         ClearMoveHighlights();
         currentCard = card;
 
-        moveHighlights = new GameObject[4];
         Vector2Int[] directions = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
-        for (int i = 0; i < directions.Length; i++)
+        foreach (var direction in directions)
         {
-            Vector2Int newPosition = position + directions[i];
+            Vector2Int newPosition = position + direction;
             if (IsValidPosition(newPosition))
             {
-                HighlightPosition(newPosition, i, false);
+                HighlightPosition(newPosition, false);
             }
         }
     }
 
-    public void HighlightPosition(Vector2Int newPosition, int index, bool isMove)
+    public void HighlightPosition(Vector2Int newPosition, bool isMove)
     {
         Vector3 highlightPosition = CalculateWorldPosition(newPosition);
         GameObject highlightPrefab = isMove ? moveHighlightPrefab : attackHighlightPrefab;
         GameObject highlight = Instantiate(highlightPrefab, highlightPosition, Quaternion.identity);
         highlight.GetComponent<MoveHighlight>().Initialize(this, newPosition, isMove);
-        moveHighlights[index] = highlight;
+        moveHighlights.Add(highlight);  // 使用 List 而不是数组
     }
 
     public bool IsValidPosition(Vector2Int position)
@@ -123,6 +124,7 @@ public class Player : MonoBehaviour
             {
                 Destroy(highlight);
             }
+            moveHighlights.Clear();  // 清空列表
         }
     }
 

@@ -66,10 +66,9 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new PawnCard(),
-            new PawnCard(),
-            new PawnCard(),
-            new PawnCard(),
-            new PawnCard(),
+            new BishopCard(),
+            new BishopCard(),
+            new BishopCard(),
             new AttackCard(),
             new AttackCard()
         };

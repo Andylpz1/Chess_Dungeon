@@ -64,6 +64,7 @@ public class MonsterManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // 在所有史莱姆移动后延迟0.5秒
         //生成一只新的史莱姆
         SpawnSlime();
+        SpawnSlime();
     }
 
     public void OnTurnEnd(int turnCount)

@@ -37,7 +37,14 @@ public class pawn_card : MonoBehaviour, CardButton
     {
         if (card != null)
         {
-            player.ShowMoveOptions(pawnDirections, card);
+            if (player.currentCard == card)
+            {
+                player.DeselectCurrentCard();
+            }
+            else
+            {
+                player.ShowMoveOptions(pawnDirections, card);
+            }
         }
         else
         {

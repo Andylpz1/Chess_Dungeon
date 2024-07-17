@@ -36,7 +36,14 @@ public class attack_card : MonoBehaviour, CardButton
     {
         if (card != null)
         {
-            player.ShowAttackOptions(card);
+            if (player.currentCard == card)
+            {
+                player.DeselectCurrentCard();
+            }
+            else
+            {
+                player.ShowAttackOptions(card);
+            }
         }
         else
         {

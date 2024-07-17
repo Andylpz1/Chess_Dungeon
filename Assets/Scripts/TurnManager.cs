@@ -56,7 +56,7 @@ public class TurnManager : MonoBehaviour
 
         // 等待所有史莱姆移动完成
         int slimeCount = monsterManager.GetSlimeCount();
-        float delay = slimeCount * 0.5f + 1.0f; // 每个史莱姆移动0.5秒，再额外等待0.5秒
+        float delay = slimeCount * 0.5f + 1.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
         yield return new WaitForSeconds(delay);
 
         // 回合结束抓新的手牌

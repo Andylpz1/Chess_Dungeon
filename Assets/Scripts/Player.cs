@@ -157,4 +157,10 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void DeselectCurrentCard()
+    {
+        currentCard = null;
+        ClearMoveHighlights();
+    }
 }

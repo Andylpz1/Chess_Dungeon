@@ -43,7 +43,14 @@ public class knight_card : MonoBehaviour, CardButton
     {
         if (card != null)
         {
-            player.ShowMoveOptions(knightDirections, card);
+            if (player.currentCard == card)
+            {
+                player.DeselectCurrentCard();
+            }
+            else
+            {
+                player.ShowMoveOptions(knightDirections, card);
+            }
         }
         else
         {

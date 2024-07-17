@@ -37,7 +37,14 @@ public class bishop_card : MonoBehaviour, CardButton
     {
         if (card != null)
         {
-            ShowBishopMoveOptions();
+            if (player.currentCard == card)
+            {
+                player.DeselectCurrentCard();
+            }
+            else
+            {
+                ShowBishopMoveOptions();
+            }
         }
         else
         {

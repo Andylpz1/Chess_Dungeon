@@ -37,7 +37,14 @@ public class rook_card : MonoBehaviour, CardButton
     {
         if (card != null)
         {
-            ShowRookMoveOptions();
+            if (player.currentCard == card)
+            {
+                player.DeselectCurrentCard();
+            }
+            else
+            {
+                ShowRookMoveOptions();
+            }
         }
         else
         {

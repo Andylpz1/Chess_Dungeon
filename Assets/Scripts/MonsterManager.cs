@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class MonsterManager : MonoBehaviour
@@ -40,18 +41,36 @@ public class MonsterManager : MonoBehaviour
         Debug.Log("Slime spawned at position: " + spawnPosition);
     }
 
+    public void MoveSlimes()
+    {
+        StartCoroutine(MoveSlimesSequentially());
+    }
+
+    private IEnumerator MoveSlimesSequentially()
+    {
+        List<Slime> slimesCopy = new List<Slime>(slimes);
+        foreach (Slime slime in slimesCopy)
+        {
+            if (slime != null)
+            {
+                slime.MoveTowardsPlayer();
+                yield return new WaitForSeconds(0.5f); // 延迟0.5秒
+            }
+        }
+        yield return new WaitForSeconds(0.5f); // 在所有史莱姆移动后延迟0.5秒
+        //生成一只新的史莱姆
+        SpawnSlime();
+    }
+
     public void OnTurnEnd(int turnCount)
     {
         // 移除已被销毁的Slime对象
         slimes.RemoveAll(slime => slime == null);
 
-        foreach (Slime slime in new List<Slime>(slimes))
+        if (turnCount % 1 == 0)
         {
-            if (slime != null)
-            {
-                slime.MoveTowardsPlayer();
-                Debug.Log("Slimes move.");
-            }
+            MoveSlimes();
+            Debug.Log("Slimes move.");
         }
     }
 

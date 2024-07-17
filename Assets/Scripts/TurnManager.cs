@@ -45,7 +45,6 @@ public class TurnManager : MonoBehaviour
         monsterManager.OnTurnEnd(turnCount);
         Debug.Log("Turn end");
 
-        monsterManager.SpawnSlime();
         //回合结束弃牌
         deckManager.DiscardHand();
         //回合结束抓新的手牌

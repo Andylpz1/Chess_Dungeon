@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class attack_card : MonoBehaviour, CardButton
+public class sword_card : MonoBehaviour, CardButton
 {
     private Card card;
     private DeckManager deckManager;
     private Button button;
     public Player player;
     private Text buttonText;
+    Vector2Int[] swordDirections = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
 
     void Awake()
     {
@@ -42,7 +43,7 @@ public class attack_card : MonoBehaviour, CardButton
             }
             else
             {
-                player.ShowAttackOptions(card);
+                player.ShowAttackOptions(swordDirections,card);
             }
         }
         else

@@ -66,12 +66,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ShowAttackOptions(Card card)
+    public void ShowAttackOptions(Vector2Int[] directions, Card card)
     {
         ClearMoveHighlights();
         currentCard = card;
 
-        Vector2Int[] directions = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
         foreach (var direction in directions)
         {
             Vector2Int newPosition = position + direction;

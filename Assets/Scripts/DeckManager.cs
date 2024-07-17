@@ -68,9 +68,9 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new PawnCard(),
-            new AttackCard(),
-            new AttackCard(),
-            new AttackCard()
+            new SwordCard(),
+            new SwordCard(),
+            new SwordCard()
         };
 
         ShuffleDeck();

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum CardType { Move, Attack }
+public enum CardType { Move, Attack, Special}
 
 [System.Serializable]
 public class Card
@@ -83,16 +83,16 @@ public class RookCard : Card
     }
 }
 
-public class AttackCard : Card
+public class SwordCard : Card
 {
-    public AttackCard() : base(CardType.Attack, "A01", 20) { }
+    public SwordCard() : base(CardType.Attack, "A01", 20) { }
 
     public override GameObject GetPrefab()
     {
-        return Resources.Load<GameObject>("Prefabs/Card/attack_card");
+        return Resources.Load<GameObject>("Prefabs/Card/sword_card");
     }
     public override Sprite GetSprite()
     {
-        return Resources.Load<Sprite>("Sprites/Card/attack_card");
+        return Resources.Load<Sprite>("Sprites/Card/sword_card");
     }
 }

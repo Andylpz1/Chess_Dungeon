@@ -89,7 +89,7 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    void DrawCards(int number)
+    public void DrawCards(int number)
     {
         for (int i = 0; i < number; i++)
         {
@@ -100,6 +100,9 @@ public class DeckManager : MonoBehaviour
 
             if (deck.Count > 0)
             {
+                //随即抓牌
+                ReshuffleDeck();
+                UpdateDeckPanel();
                 Card card = deck[0];
                 deck.RemoveAt(0);
                 hand.Add(card);
@@ -119,6 +122,7 @@ public class DeckManager : MonoBehaviour
                 }
             }
             UpdateDeckCountText(); // 每次抽牌后更新牌库剩余数量显示
+            UpdateDeckPanel(); // 每次抽牌后更新卡组显示
         }
     }
 
@@ -146,39 +150,6 @@ public class DeckManager : MonoBehaviour
         foreach (Card card in new List<Card>(hand))
         {
             UseCard(card);
-        }
-    }
-
-    public void DrawNewCard()
-    {
-        if (deck.Count == 0)
-        {
-            ReshuffleDeck();
-        }
-
-        if (deck.Count > 0)
-        {
-            Card card = deck[0];
-            deck.RemoveAt(0);
-            hand.Add(card);
-
-            // 根据卡牌类型选择相应的预制件
-            GameObject cardPrefab = card.GetPrefab();
-
-            // 创建卡牌按钮并添加到CardPanel中
-            GameObject cardButton = Instantiate(cardPrefab, cardPanel);
-            CardButton cardButtonScript = cardButton.GetComponent<CardButton>();
-            if (cardButtonScript != null)
-            {
-                cardButtonScript.Initialize(card, this);
-                cardButtons.Add(cardButton); // 追踪卡牌按钮
-            }
-            else
-            {
-                Debug.LogError("CardButton script not found on instantiated CardButton.");
-            }
-            UpdateDeckCountText(); // 更新牌库剩余数量显示
-            UpdateDeckPanel(); // 每次抽牌后更新卡组显示
         }
     }
 

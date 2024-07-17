@@ -49,10 +49,8 @@ public class TurnManager : MonoBehaviour
         //回合结束弃牌
         deckManager.DiscardHand();
         //回合结束抓新的手牌
-        for (int i = 0; i < deckManager.handSize; i++)
-        {
-            deckManager.DrawNewCard();
-        }
+        deckManager.DrawCards(deckManager.handSize);
+
 
         ResetCursor();
     }

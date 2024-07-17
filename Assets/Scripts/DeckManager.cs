@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class DeckManager : MonoBehaviour
@@ -91,6 +92,11 @@ public class DeckManager : MonoBehaviour
 
     public void DrawCards(int number)
     {
+        StartCoroutine(DrawCardsCoroutine(number));
+    }
+
+    private IEnumerator DrawCardsCoroutine(int number)
+    {
         for (int i = 0; i < number; i++)
         {
             if (deck.Count == 0)
@@ -100,7 +106,7 @@ public class DeckManager : MonoBehaviour
 
             if (deck.Count > 0)
             {
-                //随即抓牌
+                // 随机抓牌
                 ReshuffleDeck();
                 UpdateDeckPanel();
                 Card card = deck[0];
@@ -123,6 +129,8 @@ public class DeckManager : MonoBehaviour
             }
             UpdateDeckCountText(); // 每次抽牌后更新牌库剩余数量显示
             UpdateDeckPanel(); // 每次抽牌后更新卡组显示
+
+            yield return new WaitForSeconds(0.1f); // 每次抽牌后等待0.1秒
         }
     }
 

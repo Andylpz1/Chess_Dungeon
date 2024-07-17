@@ -45,6 +45,7 @@ public class ShopManager : MonoBehaviour
             new KnightCard(),
             new BishopCard(),
             new AttackCard(),
+            new RookCard(),
         };
         Debug.Log("Available cards initialized: " + availableCards.Count); // 打印卡牌数量
     }

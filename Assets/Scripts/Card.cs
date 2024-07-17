@@ -69,6 +69,20 @@ public class BishopCard : Card
     }
 }
 
+public class RookCard : Card
+{
+    public RookCard() : base(CardType.Move, "M04", 60) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/rook_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/rook_card");
+    }
+}
+
 public class AttackCard : Card
 {
     public AttackCard() : base(CardType.Attack, "A01", 20) { }

@@ -19,8 +19,7 @@ public class Slime : MonoBehaviour
     void UpdatePosition()
     {
         // 使用MonsterManager的计算方法确保位置正确
-        MonsterManager manager = FindObjectOfType<MonsterManager>();
-        transform.position = manager.CalculateWorldPosition(position);
+        transform.position = player.CalculateWorldPosition(position);
     }
 
     public void TakeDamage(int damage)

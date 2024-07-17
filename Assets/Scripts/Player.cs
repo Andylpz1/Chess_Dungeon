@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
 
+    //棋盘偏移量
+    public int xshift = 0;
+    public float yshift = -0.5f;
+
     private List<GameObject> moveHighlights = new List<GameObject>(); // 初始化 moveHighlights 列表
     public Card currentCard;
     public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
@@ -131,8 +135,8 @@ public class Player : MonoBehaviour
     public Vector3 CalculateWorldPosition(Vector2Int gridPosition)
     {
         // 计算世界坐标，仅考虑每个Tile的大小
-        float x = (gridPosition.x+1) * cellSize.x + (cellSize.x / 2);
-        float y = gridPosition.y * cellSize.y + (cellSize.y / 2);
+        float x = (gridPosition.x + xshift) * cellSize.x + (cellSize.x / 2);
+        float y = (gridPosition.y + yshift) * cellSize.y + (cellSize.y / 2);
         return new Vector3(x, y, 0);
     }
 

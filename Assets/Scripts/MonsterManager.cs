@@ -13,6 +13,8 @@ public class MonsterManager : MonoBehaviour
     private List<Slime> slimes = new List<Slime>();
     private List<GameObject> warnings = new List<GameObject>();
 
+    public Player player; // 玩家对象
+
     void Start()
     {
         SpawnWarning();
@@ -30,7 +32,7 @@ public class MonsterManager : MonoBehaviour
     public void SpawnSlime()
     {
         Vector2Int spawnPosition = GetRandomPosition();
-        Vector3 worldPosition = CalculateWorldPosition(spawnPosition);
+        Vector3 worldPosition = player.CalculateWorldPosition(spawnPosition);
         GameObject slimeObject = Instantiate(slimePrefab, worldPosition, Quaternion.identity);
         Slime slime = slimeObject.GetComponent<Slime>();
         if (slime != null)
@@ -93,13 +95,6 @@ public class MonsterManager : MonoBehaviour
         return randomPosition;
     }
 
-    public Vector3 CalculateWorldPosition(Vector2Int gridPosition)
-    {
-        // 计算世界坐标，考虑每个Tile的大小和Cell Gap，并加上偏移量使其居中
-        float x = (gridPosition.x + 1) * (cellSize.x) + (cellSize.x / 2);
-        float y = gridPosition.y * (cellSize.y) + (cellSize.y / 2);
-        return new Vector3(x, y, -1); // 确保 Z 轴位置在相机视野内
-    }
 
     public int GetSlimeCount()
     {

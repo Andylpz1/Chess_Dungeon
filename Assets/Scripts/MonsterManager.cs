@@ -6,7 +6,7 @@ public class MonsterManager : MonoBehaviour
 {
     public GameObject slimePrefab; // 史莱姆怪物的预制件
     public GameObject warningPrefab; // 警告图案的预制件
-    public int boardSize = 5;
+    public int boardSize = 6;
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
 
@@ -28,6 +28,8 @@ public class MonsterManager : MonoBehaviour
         //warnings.Add(warningObject);
         //Debug.Log("Warning spawned at position: " + warningPosition);
     }
+
+    
 
     public void SpawnSlime()
     {
@@ -86,11 +88,13 @@ public class MonsterManager : MonoBehaviour
             occupiedPositions.Add(slime.position);
         }
 
+        Vector2Int restrictedPosition = new Vector2Int(3, 3); // 永远不会生成的位置
+
         Vector2Int randomPosition;
         do
         {
             randomPosition = new Vector2Int(Random.Range(0, boardSize), Random.Range(0, boardSize));
-        } while (occupiedPositions.Contains(randomPosition));
+        } while (occupiedPositions.Contains(randomPosition) || randomPosition == restrictedPosition);
 
         return randomPosition;
     }

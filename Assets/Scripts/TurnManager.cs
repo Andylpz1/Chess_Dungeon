@@ -25,7 +25,7 @@ public class TurnManager : MonoBehaviour
         {
             monsterManager = FindObjectOfType<MonsterManager>();
         }
-
+        
         monsterManager.SpawnSlime();
     }
 
@@ -47,8 +47,8 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator HandleTurnEnd()
     {
-        // 回合结束弃牌
-        deckManager.DiscardHand();
+        // 回合结束弃牌 (暂时废弃)
+        //deckManager.DiscardHand();
 
         turnCount++;
         monsterManager.OnTurnEnd(turnCount);
@@ -60,7 +60,7 @@ public class TurnManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         // 回合结束抓新的手牌
-        deckManager.DrawCards(deckManager.handSize);
+        deckManager.DrawCards(deckManager.handSize-deckManager.hand.Count);
 
         ResetCursor();
     }

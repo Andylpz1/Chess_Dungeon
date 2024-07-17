@@ -68,9 +68,7 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new PawnCard(),
-            new PawnCard(),
-            new PawnCard(),
-            new PawnCard(),
+            new AttackCard(),
             new AttackCard(),
             new AttackCard()
         };
@@ -107,7 +105,7 @@ public class DeckManager : MonoBehaviour
             if (deck.Count > 0)
             {
                 // 随机抓牌
-                ReshuffleDeck();
+                ShuffleDeck();
                 UpdateDeckPanel();
                 Card card = deck[0];
                 deck.RemoveAt(0);

@@ -101,6 +101,11 @@ public class MonsterManager : MonoBehaviour
         return new Vector3(x, y, -1); // 确保 Z 轴位置在相机视野内
     }
 
+    public int GetSlimeCount()
+    {
+        return slimes.Count;
+    }
+
     void ClearWarnings()
     {
         //foreach (GameObject warning in warnings)

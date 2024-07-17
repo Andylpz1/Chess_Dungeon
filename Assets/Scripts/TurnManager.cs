@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class TurnManager : MonoBehaviour
@@ -41,15 +42,25 @@ public class TurnManager : MonoBehaviour
 
     public void AdvanceTurn()
     {
+        StartCoroutine(HandleTurnEnd());
+    }
+
+    private IEnumerator HandleTurnEnd()
+    {
+        // 回合结束弃牌
+        deckManager.DiscardHand();
+
         turnCount++;
         monsterManager.OnTurnEnd(turnCount);
         Debug.Log("Turn end");
 
-        //回合结束弃牌
-        deckManager.DiscardHand();
-        //回合结束抓新的手牌
-        deckManager.DrawCards(deckManager.handSize);
+        // 等待所有史莱姆移动完成
+        int slimeCount = monsterManager.GetSlimeCount();
+        float delay = slimeCount * 0.5f + 1.0f; // 每个史莱姆移动0.5秒，再额外等待0.5秒
+        yield return new WaitForSeconds(delay);
 
+        // 回合结束抓新的手牌
+        deckManager.DrawCards(deckManager.handSize);
 
         ResetCursor();
     }

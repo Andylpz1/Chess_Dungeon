@@ -110,3 +110,18 @@ public class BladeCard : Card
         return Resources.Load<Sprite>("Sprites/Card/Attack/blade_card");
     }
 }
+
+public class SpearCard : Card
+{
+    public SpearCard() : base(CardType.Attack, "A03", 40) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/spear_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Attack/spear_card");
+    }
+}
+

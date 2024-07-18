@@ -125,3 +125,17 @@ public class SpearCard : Card
     }
 }
 
+public class BowCard : Card
+{
+    public BowCard() : base(CardType.Attack, "A04", 80) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/bow_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Attack/bow_card");
+    }
+}
+

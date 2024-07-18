@@ -47,7 +47,8 @@ public class ShopManager : MonoBehaviour
             new SwordCard(),
             new RookCard(),
             new BladeCard(),
-            new SpearCard()
+            new SpearCard(),
+            new BowCard()
         };
         Debug.Log("Available cards initialized: " + availableCards.Count); // 打印卡牌数量
     }

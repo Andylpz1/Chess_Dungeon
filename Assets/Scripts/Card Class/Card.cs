@@ -142,3 +142,17 @@ public class BowCard : Card
 
 //FlailCard在独立文件里
 
+public class PotionCard : Card
+{
+    public PotionCard() : base(CardType.Special, "S01", 50) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Special/potion_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Special/potion_card");
+    }
+}
+

@@ -40,6 +40,13 @@ public class TurnManager : MonoBehaviour
         UpdateCursor();
     }
 
+    public void AddAction()
+    {
+        GameObject turnSlot = Instantiate(turnSlotPrefab, turnPanel);
+        turnSlots.Add(turnSlot);
+        UpdateCursor();
+    }
+
     public void AdvanceTurn()
     {
         StartCoroutine(HandleTurnEnd());

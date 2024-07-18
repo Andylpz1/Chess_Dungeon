@@ -50,6 +50,7 @@ public class ShopManager : MonoBehaviour
             new SpearCard(),
             new BowCard(),
             new FlailCard(),
+            new PotionCard()
         };
         Debug.Log("Available cards initialized: " + availableCards.Count); // 打印卡牌数量
     }

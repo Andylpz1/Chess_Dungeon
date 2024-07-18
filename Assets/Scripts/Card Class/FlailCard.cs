@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class FlailCard : Card
 {
-    public FlailCard() : base(CardType.Attack, "A05", 100) { }
+    public FlailCard() : base(CardType.Attack, "A05", 60) { }
 
     public override GameObject GetPrefab()
     {

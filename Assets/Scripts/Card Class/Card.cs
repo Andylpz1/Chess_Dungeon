@@ -30,7 +30,7 @@ public class Card
 
 public class PawnCard : Card
 {
-    public PawnCard() : base(CardType.Move, "M01", 10) { }
+    public PawnCard() : base(CardType.Move, "M01", 5) { }
 
     public override GameObject GetPrefab()
     {
@@ -44,7 +44,7 @@ public class PawnCard : Card
 
 public class KnightCard : Card
 {
-    public KnightCard() : base(CardType.Move, "M02", 40) { }
+    public KnightCard() : base(CardType.Move, "M02", 20) { }
 
     public override GameObject GetPrefab()
     {
@@ -58,7 +58,7 @@ public class KnightCard : Card
 
 public class BishopCard : Card
 {
-    public BishopCard() : base(CardType.Move, "M03", 60) { }
+    public BishopCard() : base(CardType.Move, "M03", 30) { }
 
     public override GameObject GetPrefab()
     {
@@ -72,7 +72,7 @@ public class BishopCard : Card
 
 public class RookCard : Card
 {
-    public RookCard() : base(CardType.Move, "M04", 60) { }
+    public RookCard() : base(CardType.Move, "M04", 50) { }
 
     public override GameObject GetPrefab()
     {
@@ -86,7 +86,7 @@ public class RookCard : Card
 
 public class SwordCard : Card
 {
-    public SwordCard() : base(CardType.Attack, "A01", 20) { }
+    public SwordCard() : base(CardType.Attack, "A01", 10) { }
 
     public override GameObject GetPrefab()
     {
@@ -100,7 +100,7 @@ public class SwordCard : Card
 
 public class BladeCard : Card
 {
-    public BladeCard() : base(CardType.Attack, "A02", 20) { }
+    public BladeCard() : base(CardType.Attack, "A02", 10) { }
 
     public override GameObject GetPrefab()
     {
@@ -114,7 +114,7 @@ public class BladeCard : Card
 
 public class SpearCard : Card
 {
-    public SpearCard() : base(CardType.Attack, "A03", 40) { }
+    public SpearCard() : base(CardType.Attack, "A03", 20) { }
 
     public override GameObject GetPrefab()
     {
@@ -128,7 +128,7 @@ public class SpearCard : Card
 
 public class BowCard : Card
 {
-    public BowCard() : base(CardType.Attack, "A04", 80) { }
+    public BowCard() : base(CardType.Attack, "A04", 50) { }
 
     public override GameObject GetPrefab()
     {
@@ -144,7 +144,7 @@ public class BowCard : Card
 
 public class PotionCard : Card
 {
-    public PotionCard() : base(CardType.Special, "S01", 50) { }
+    public PotionCard() : base(CardType.Special, "S01", 40) { }
 
     public override GameObject GetPrefab()
     {

@@ -75,13 +75,30 @@ public class bow_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointe
             }
             else
             {
-                player.ShowAttackOptions(bowDirections.ToArray(), card);
+                List<Vector2Int> validBowDirections = GetMonsterPositions();
+                player.ShowAttackOptions(validBowDirections.ToArray(), card);
             }
         }
         else
         {
             Debug.LogError("Card is null in bow_card.OnClick");
         }
+    }
+
+    private List<Vector2Int> GetMonsterPositions()
+    {
+        List<Vector2Int> monsterPositions = new List<Vector2Int>();
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        foreach (GameObject monster in monsters)
+        {
+            Slime slime = monster.GetComponent<Slime>();
+            if (slime != null)
+            {
+                Vector2Int relativePosition = slime.position - player.position;
+                monsterPositions.Add(relativePosition);
+            }
+        }
+        return monsterPositions;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

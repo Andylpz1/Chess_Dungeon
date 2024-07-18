@@ -139,3 +139,17 @@ public class BowCard : Card
     }
 }
 
+public class FlailCard : Card
+{
+    public FlailCard() : base(CardType.Attack, "A05", 100) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/flail_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Attack/flail_card");
+    }
+}
+

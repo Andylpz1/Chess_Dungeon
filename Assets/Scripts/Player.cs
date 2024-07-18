@@ -119,6 +119,26 @@ public class Player : MonoBehaviour
         ExecuteCurrentCard();
     }
 
+    public void MultipleAttack(Vector2Int[] attackPositions)
+    {
+        // 基于坐标检测 Monster 的存在
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        foreach (Vector2Int attackPosition in attackPositions)
+        {
+            foreach (GameObject monsterObject in monsters)
+            {
+                Slime slime = monsterObject.GetComponent<Slime>();
+                if (slime != null && slime.position == attackPosition)
+                {
+                    slime.TakeDamage(1);
+                }
+            }
+        }
+        ClearMoveHighlights();
+        ExecuteCurrentCard();
+    }
+
+
     public void ClearMoveHighlights()
     {
         if (moveHighlights != null)

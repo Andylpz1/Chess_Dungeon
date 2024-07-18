@@ -48,8 +48,11 @@ TagManager:
   - name: player
     uniqueID: 382257533
     locked: 0
-  - name: hitghlight
+  - name: highlight
     uniqueID: 2795084005
+    locked: 0
+  - name: UI
+    uniqueID: 1400045073
     locked: 0
   m_RenderingLayers:
   - Default

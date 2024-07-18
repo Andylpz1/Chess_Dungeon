@@ -41,7 +41,7 @@ public class HintManager : MonoBehaviour
             Text effectText = effectTextObject.AddComponent<Text>();
             effectText.text = text;
             effectText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            effectText.fontSize = 34;
+            effectText.fontSize = 24;
             effectText.color = Color.white;
         }
     }

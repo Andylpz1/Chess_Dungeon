@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
-public class bishop_card : MonoBehaviour, CardButton
+
+public class bishop_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
 {
     private Card card;
     private DeckManager deckManager;
@@ -10,10 +12,21 @@ public class bishop_card : MonoBehaviour, CardButton
     private Text buttonText;
     public Player player;
 
+    public HintManager hintManager; // 引用HintManager
+
     void Awake()
     {
         button = GetComponent<Button>();
         buttonText = GetComponentInChildren<Text>();
+    }
+
+    void Start()
+    {
+        hintManager = FindObjectOfType<HintManager>();
+        if (hintManager == null)
+        {
+            Debug.LogError("HintManager not found in the scene.");
+        }
     }
 
     public void Initialize(Card card, DeckManager deckManager)
@@ -49,6 +62,22 @@ public class bishop_card : MonoBehaviour, CardButton
         else
         {
             Debug.LogError("Card is null in bishop_card.OnClick");
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (hintManager != null)
+        {
+            hintManager.ShowHint("B移动", transform.position);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (hintManager != null)
+        {
+            hintManager.HideHint();
         }
     }
 

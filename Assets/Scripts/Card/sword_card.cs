@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class sword_card : MonoBehaviour, CardButton
+public class sword_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
 {
     private Card card;
     private DeckManager deckManager;
@@ -10,10 +11,21 @@ public class sword_card : MonoBehaviour, CardButton
     private Text buttonText;
     Vector2Int[] swordDirections = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
 
+    public HintManager hintManager; // 引用HintManager
+
     void Awake()
     {
         button = GetComponent<Button>();
         buttonText = GetComponentInChildren<Text>();
+    }
+
+    void Start()
+    {
+        hintManager = FindObjectOfType<HintManager>();
+        if (hintManager == null)
+        {
+            Debug.LogError("HintManager not found in the scene.");
+        }
     }
 
     public void Initialize(Card card, DeckManager deckManager)
@@ -49,6 +61,22 @@ public class sword_card : MonoBehaviour, CardButton
         else
         {
             Debug.LogError("Card is null in attack_card.OnClick");
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (hintManager != null)
+        {
+            hintManager.ShowHint("上下左右攻击", transform.position);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (hintManager != null)
+        {
+            hintManager.HideHint();
         }
     }
 

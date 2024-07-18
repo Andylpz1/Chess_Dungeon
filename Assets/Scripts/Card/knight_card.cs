@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class knight_card : MonoBehaviour, CardButton
+public class knight_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
 {
     private Card card;
     private DeckManager deckManager;
@@ -16,10 +17,21 @@ public class knight_card : MonoBehaviour, CardButton
         new Vector2Int(-1, 2), new Vector2Int(-1, -2)
     };
 
+    public HintManager hintManager; // 引用HintManager
+
     void Awake()
     {
         button = GetComponent<Button>();
         buttonText = GetComponentInChildren<Text>();
+    }
+
+    void Start()
+    {
+        hintManager = FindObjectOfType<HintManager>();
+        if (hintManager == null)
+        {
+            Debug.LogError("HintManager not found in the scene.");
+        }
     }
 
     public void Initialize(Card card, DeckManager deckManager)
@@ -55,6 +67,22 @@ public class knight_card : MonoBehaviour, CardButton
         else
         {
             Debug.LogError("Card is null in knight_card.OnClick");
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (hintManager != null)
+        {
+            hintManager.ShowHint("K移动", transform.position);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (hintManager != null)
+        {
+            hintManager.HideHint();
         }
     }
 

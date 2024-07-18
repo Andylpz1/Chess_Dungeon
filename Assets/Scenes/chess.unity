@@ -300,6 +300,7 @@ RectTransform:
   - {fileID: 385267122}
   - {fileID: 826981490}
   - {fileID: 1324913494}
+  - {fileID: 1376524357}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1018,6 +1019,7 @@ MonoBehaviour:
   monsterManager: {fileID: 0}
   deckManager: {fileID: 0}
   endTurnButton: {fileID: 1324913495}
+  allButtons: []
   turnCount: 0
   turnSlotPrefab: {fileID: 115147043063479922, guid: 862daa1e974a6a64885aa68c01eab32e, type: 3}
   turnPanel: {fileID: 656423283}
@@ -2821,13 +2823,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376524356}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5105023, y: 1.1551993, z: 0.78269815}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -41.20985, y: -55.174297, z: -3715.6545}
+  m_LocalScale: {x: 41.647243, y: 41.647243, z: 41.647243}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 556612167}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 98812311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1376524358
 MonoBehaviour:
@@ -3530,7 +3532,6 @@ SceneRoots:
   - {fileID: 1399918233}
   - {fileID: 713584240}
   - {fileID: 98812311}
-  - {fileID: 1376524357}
   - {fileID: 1307867633}
   - {fileID: 332257073}
   - {fileID: 253580136}

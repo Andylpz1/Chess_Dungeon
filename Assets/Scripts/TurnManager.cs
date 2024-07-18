@@ -8,7 +8,7 @@ public class TurnManager : MonoBehaviour
     public MonsterManager monsterManager;
     public DeckManager deckManager; // 引用DeckManager
     public Button endTurnButton; // 引用EndTurn按钮
-
+    public List<Button> allButtons; // 引用所有的按钮
 
     public int turnCount = 0;
     public GameObject turnSlotPrefab;
@@ -29,7 +29,7 @@ public class TurnManager : MonoBehaviour
         {
             monsterManager = FindObjectOfType<MonsterManager>();
         }
-        
+
         monsterManager.SpawnSlime();
 
         // 添加EndTurn按钮点击事件监听
@@ -37,6 +37,9 @@ public class TurnManager : MonoBehaviour
         {
             endTurnButton.onClick.AddListener(AdvanceTurn);
         }
+
+        // 初始化所有按钮列表
+        allButtons = new List<Button>(FindObjectsOfType<Button>());
     }
 
     void InitializeTurnPanel()
@@ -64,6 +67,8 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator HandleTurnEnd()
     {
+        DisableAllButtons(); // 禁用所有按钮
+
         // 回合结束弃牌 (暂时废弃)
         //deckManager.DiscardHand();
         player.actions = 3;
@@ -77,7 +82,9 @@ public class TurnManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         // 回合结束抓新的手牌
-        deckManager.DrawCards(deckManager.handSize-deckManager.hand.Count);
+        deckManager.DrawCards(deckManager.handSize - deckManager.hand.Count);
+
+        EnableAllButtons(); // 启用所有按钮
 
         ResetCursor();
     }
@@ -98,7 +105,7 @@ public class TurnManager : MonoBehaviour
     void ResetCursor()
     {
         currentActionIndex = 0;
-        //如果现在turnpanel里的格子数大于3个，重新设置回3
+        // 如果现在turnpanel里的格子数大于3个，重新设置回3
         while (turnSlots.Count > 3)
         {
             GameObject excessSlot = turnSlots[turnSlots.Count - 1];
@@ -122,6 +129,48 @@ public class TurnManager : MonoBehaviour
                     RectTransform cursorRect = cursorTransform.GetComponent<RectTransform>();
                     cursorRect.sizeDelta = new Vector2(40, 40); // Ensure the cursor is 40x40
                 }
+            }
+        }
+    }
+
+    void DisableAllButtons()
+    {
+        foreach (Button button in allButtons)
+        {
+            if (button != null)
+            {
+                button.interactable = false;
+            }
+        }
+
+        // Disable buttons in the cardPanel
+        foreach (Transform card in deckManager.cardPanel)
+        {
+            Button cardButton = card.GetComponent<Button>();
+            if (cardButton != null)
+            {
+                cardButton.interactable = false;
+            }
+        }
+    }
+
+    void EnableAllButtons()
+    {
+        foreach (Button button in allButtons)
+        {
+            if (button != null)
+            {
+                button.interactable = true;
+            }
+        }
+
+        // Enable buttons in the cardPanel
+        foreach (Transform card in deckManager.cardPanel)
+        {
+            Button cardButton = card.GetComponent<Button>();
+            if (cardButton != null)
+            {
+                cardButton.interactable = true;
             }
         }
     }

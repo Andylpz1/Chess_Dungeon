@@ -33,11 +33,11 @@ public class PawnCard : Card
 
     public override GameObject GetPrefab()
     {
-        return Resources.Load<GameObject>("Prefabs/Card/pawn_card");
+        return Resources.Load<GameObject>("Prefabs/Card/Move/pawn_card");
     }
     public override Sprite GetSprite()
     {
-        return Resources.Load<Sprite>("Sprites/Card/pawn_card");
+        return Resources.Load<Sprite>("Sprites/Card/Move/pawn_card");
     }
 }
 
@@ -47,11 +47,11 @@ public class KnightCard : Card
 
     public override GameObject GetPrefab()
     {
-        return Resources.Load<GameObject>("Prefabs/Card/knight_card");
+        return Resources.Load<GameObject>("Prefabs/Card/Move/knight_card");
     }
     public override Sprite GetSprite()
     {
-        return Resources.Load<Sprite>("Sprites/Card/knight_card");
+        return Resources.Load<Sprite>("Sprites/Card/Move/knight_card");
     }
 }
 
@@ -61,11 +61,11 @@ public class BishopCard : Card
 
     public override GameObject GetPrefab()
     {
-        return Resources.Load<GameObject>("Prefabs/Card/bishop_card");
+        return Resources.Load<GameObject>("Prefabs/Card/Move/bishop_card");
     }
     public override Sprite GetSprite()
     {
-        return Resources.Load<Sprite>("Sprites/Card/bishop_card");
+        return Resources.Load<Sprite>("Sprites/Card/Move/bishop_card");
     }
 }
 
@@ -75,11 +75,11 @@ public class RookCard : Card
 
     public override GameObject GetPrefab()
     {
-        return Resources.Load<GameObject>("Prefabs/Card/rook_card");
+        return Resources.Load<GameObject>("Prefabs/Card/Move/rook_card");
     }
     public override Sprite GetSprite()
     {
-        return Resources.Load<Sprite>("Sprites/Card/rook_card");
+        return Resources.Load<Sprite>("Sprites/Card/Move/rook_card");
     }
 }
 
@@ -89,10 +89,24 @@ public class SwordCard : Card
 
     public override GameObject GetPrefab()
     {
-        return Resources.Load<GameObject>("Prefabs/Card/sword_card");
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/sword_card");
     }
     public override Sprite GetSprite()
     {
-        return Resources.Load<Sprite>("Sprites/Card/sword_card");
+        return Resources.Load<Sprite>("Sprites/Card/Attack/sword_card");
+    }
+}
+
+public class BladeCard : Card
+{
+    public BladeCard() : base(CardType.Attack, "A02", 20) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/blade_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Attack/blade_card");
     }
 }

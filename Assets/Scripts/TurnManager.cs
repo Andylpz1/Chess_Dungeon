@@ -7,17 +7,21 @@ public class TurnManager : MonoBehaviour
 {
     public MonsterManager monsterManager;
     public DeckManager deckManager; // 引用DeckManager
+    public Button endTurnButton; // 引用EndTurn按钮
+
 
     public int turnCount = 0;
     public GameObject turnSlotPrefab;
     public Transform turnPanel;
     public int actions = 3;
 
+    public Player player;
     private List<GameObject> turnSlots = new List<GameObject>();
     private int currentActionIndex = 0;
 
     void Start()
     {
+        player = FindObjectOfType<Player>();
         InitializeTurnPanel();
         deckManager = FindObjectOfType<DeckManager>();
 
@@ -27,6 +31,12 @@ public class TurnManager : MonoBehaviour
         }
         
         monsterManager.SpawnSlime();
+
+        // 添加EndTurn按钮点击事件监听
+        if (endTurnButton != null)
+        {
+            endTurnButton.onClick.AddListener(AdvanceTurn);
+        }
     }
 
     void InitializeTurnPanel()
@@ -56,7 +66,7 @@ public class TurnManager : MonoBehaviour
     {
         // 回合结束弃牌 (暂时废弃)
         //deckManager.DiscardHand();
-
+        player.actions = 3;
         turnCount++;
         monsterManager.OnTurnEnd(turnCount);
         Debug.Log("Turn end");
@@ -88,6 +98,13 @@ public class TurnManager : MonoBehaviour
     void ResetCursor()
     {
         currentActionIndex = 0;
+        //如果现在turnpanel里的格子数大于3个，重新设置回3
+        while (turnSlots.Count > 3)
+        {
+            GameObject excessSlot = turnSlots[turnSlots.Count - 1];
+            turnSlots.RemoveAt(turnSlots.Count - 1);
+            Destroy(excessSlot);
+        }
         UpdateCursor();
     }
 

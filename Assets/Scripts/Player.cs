@@ -172,7 +172,6 @@ public class Player : MonoBehaviour
             if (actions == 0) 
             {
                 FindObjectOfType<TurnManager>().AdvanceTurn();
-                actions = 3;
             }
         }
     }

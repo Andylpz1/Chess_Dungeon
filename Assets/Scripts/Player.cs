@@ -172,14 +172,17 @@ public class Player : MonoBehaviour
             if (!currentCard.isQuick)
             {
                 actions -= 1;
-                FindObjectOfType<TurnManager>().MoveCursor();
             }
             currentCard = null;
-
+            if (actions > 0)
+            {
+                FindObjectOfType<TurnManager>().MoveCursor();
+            }
             // 推进回合
             if (actions == 0) 
             {
                 DisableNonQuickCardButtons();
+                //添加回合条变成红色特效
             }
         }
     }
@@ -208,6 +211,8 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    
 
     public void DeselectCurrentCard()
     {

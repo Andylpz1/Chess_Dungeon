@@ -55,9 +55,11 @@ public class TurnManager : MonoBehaviour
 
     public void AddAction()
     {
+        player.actions += 1;
         GameObject turnSlot = Instantiate(turnSlotPrefab, turnPanel);
         turnSlots.Add(turnSlot);
         UpdateCursor();
+        EnableAllButtons();
     }
 
     public void AdvanceTurn()
@@ -71,6 +73,7 @@ public class TurnManager : MonoBehaviour
 
         // 回合结束弃牌 (暂时废弃)
         //deckManager.DiscardHand();
+        player.ClearMoveHighlights();
         player.actions = 3;
         turnCount++;
         monsterManager.OnTurnEnd(turnCount);

@@ -152,7 +152,10 @@ public class BowCard : Card
 
 public class PotionCard : Card
 {
-    public PotionCard() : base(CardType.Special, "S01", 40) { }
+    public PotionCard() : base(CardType.Special, "S01", 40)
+    {
+        isQuick = true;
+    }
 
     public override GameObject GetPrefab()
     {

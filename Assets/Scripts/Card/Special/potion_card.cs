@@ -56,9 +56,9 @@ public class potion_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoi
             }
             else
             {
-                player.actions += 1;
+                player.currentCard = card;
                 turnManager.AddAction();
-                deckManager.UseCard(card);
+                player.ExecuteCurrentCard();
             }
         }
         else

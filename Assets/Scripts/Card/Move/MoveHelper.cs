@@ -3,20 +3,41 @@ using System.Collections.Generic;
 
 public static class MoveHelper
 {
+    public static void ShowKnightMoveOptions(Player player, Card card)
+    {
+        player.ClearMoveHighlights();
+        List<Vector2Int> validPositions = new List<Vector2Int>();
+        Vector2Int[] directions = 
+        {
+            new Vector2Int(2, 1), new Vector2Int(2, -1),
+            new Vector2Int(-2, 1), new Vector2Int(-2, -1),
+            new Vector2Int(1, 2), new Vector2Int(1, -2),
+            new Vector2Int(-1, 2), new Vector2Int(-1, -2)
+        };
+
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int newPosition = player.position + direction;
+            if (player.IsValidPosition(newPosition) && !IsBlockedByMonster(newPosition))
+            {
+                validPositions.Add(newPosition);
+                
+            }
+        }
+
+        List<Vector2Int> knightDirections = new List<Vector2Int>();
+        foreach (var pos in validPositions)
+        {
+            // 计算每个有效位置相对于玩家位置的偏移量
+            Vector2Int relativeDirection = new Vector2Int(pos.x - player.position.x, pos.y - player.position.y);
+            knightDirections.Add(relativeDirection);
+        }
+        
+        player.ShowMoveOptions(knightDirections.ToArray(), card);
+    }
+
     public static void ShowRookMoveOptions(Player player, Card card)
     {
-        if (player == null)
-        {
-            Debug.LogError("Player is null in ShowRookMoveOptions.");
-            return;
-        }
-
-        if (card == null)
-        {
-            Debug.LogError("Card is null in ShowRookMoveOptions.");
-            return;
-        }
-
         player.ClearMoveHighlights();
         List<Vector2Int> validPositions = new List<Vector2Int>();
 

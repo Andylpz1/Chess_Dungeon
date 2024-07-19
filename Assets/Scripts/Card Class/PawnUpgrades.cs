@@ -72,3 +72,21 @@ public class MercenaryCard : Card
     }
 }
 
+public class GentlemanCard : Card
+{
+    public GentlemanCard() : base(CardType.Move, "M01E", 30, "M01")
+    {
+
+    }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Move/Pawn_upgrade/gentleman_card");
+    }
+
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Move/Pawn_upgrade/gentleman_card");
+    }
+}
+

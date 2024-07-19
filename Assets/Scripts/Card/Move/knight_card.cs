@@ -9,13 +9,6 @@ public class knight_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoi
     private Button button;
     private Text buttonText;
     public Player player;
-    private Vector2Int[] knightDirections = 
-    {
-        new Vector2Int(2, 1), new Vector2Int(2, -1),
-        new Vector2Int(-2, 1), new Vector2Int(-2, -1),
-        new Vector2Int(1, 2), new Vector2Int(1, -2),
-        new Vector2Int(-1, 2), new Vector2Int(-1, -2)
-    };
 
     public HintManager hintManager; // 引用HintManager
 
@@ -61,7 +54,7 @@ public class knight_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoi
             }
             else
             {
-                player.ShowMoveOptions(knightDirections, card);
+                MoveHelper.ShowKnightMoveOptions(player, card);
             }
         }
         else

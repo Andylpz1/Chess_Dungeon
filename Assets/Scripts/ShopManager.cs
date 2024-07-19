@@ -74,7 +74,8 @@ public class ShopManager : MonoBehaviour
             new SquireCard(),
             new LegionCard(),
             new MercenaryCard(),
-            new GentlemanCard()
+            new GentlemanCard(),
+            new TwoBladeCard()
         };
 
 

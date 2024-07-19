@@ -134,6 +134,24 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    // 从特定位置抽卡
+    public void DrawCardAt(int index)
+    {
+        if (index >= 0 && index < deck.Count)
+        {
+            Card drawnCard = deck[index];
+            deck.RemoveAt(index);
+            hand.Add(drawnCard);
+            UpdateHandDisplay();
+            UpdateDeckCountText(); // 每次抽牌后更新牌库剩余数量显示
+            UpdateDeckPanel(); // 每次抽牌后更新卡组显示
+        }
+        else
+        {
+            Debug.LogError("Index out of range in DrawCardAt.");
+        }
+    }
+
     public void UseCard(Card card)
     {
         hand.Remove(card);

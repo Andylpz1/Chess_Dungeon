@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
     public Text goldText;
 
+    public event System.Action OnMoveComplete;
+
     void Start()
     {
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
@@ -101,6 +103,8 @@ public class Player : MonoBehaviour
         UpdatePosition();
         ClearMoveHighlights();
         ExecuteCurrentCard();
+        // 移动完成后触发事件
+        OnMoveComplete?.Invoke();
     }
 
     public void Attack(Vector2Int attackPosition)
@@ -175,7 +179,32 @@ public class Player : MonoBehaviour
             // 推进回合
             if (actions == 0) 
             {
-                FindObjectOfType<TurnManager>().AdvanceTurn();
+                DisableNonQuickCardButtons();
+            }
+        }
+    }
+
+    private void DisableNonQuickCardButtons()
+    {
+        // 获取所有 MonoBehaviour 并筛选出实现了 CardButton 接口的对象
+        MonoBehaviour[] monoBehaviours = FindObjectsOfType<MonoBehaviour>();
+    
+        foreach (MonoBehaviour monoBehaviour in monoBehaviours)
+        {
+            CardButton cardButton = monoBehaviour as CardButton;
+            if (cardButton != null)
+            {
+                // 获取按钮对应的卡牌
+                Card card = cardButton.GetCard();
+                if (card != null && !card.isQuick)
+                {
+                    // 禁用按钮
+                    Button button = monoBehaviour.GetComponent<Button>();
+                    if (button != null)
+                    {
+                        button.interactable = false;
+                    }
+                }
             }
         }
     }

@@ -72,7 +72,8 @@ public class ShopManager : MonoBehaviour
         {
             new BanditCard(),
             new SquireCard(),
-            new LegionCard()
+            new LegionCard(),
+            new MercenaryCard()
         };
 
 

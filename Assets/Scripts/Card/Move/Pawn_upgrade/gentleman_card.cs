@@ -21,7 +21,7 @@ public class gentleman_card : pawn_card
             {
                 if (player.gold >= 100)
                 {
-                    MoveHelper.ShowRookMoveOptions(player, card);
+                    MoveHelper.ShowKnightMoveOptions(player, card);
                 }
                 else 
                 {

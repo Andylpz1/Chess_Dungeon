@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BanditCard : Card
 {
-    public BanditCard() : base(CardType.Move, "M01A", 20, "M01")
+    public BanditCard() : base(CardType.Move, "M01A", 30, "M01")
     {
         isQuick = true;
     }
@@ -73,7 +73,7 @@ public class MercenaryCard : Card
 
 public class GentlemanCard : Card
 {
-    public GentlemanCard() : base(CardType.Move, "M01E", 30, "M01")
+    public GentlemanCard() : base(CardType.Move, "M01E", 10, "M01")
     {
 
     }

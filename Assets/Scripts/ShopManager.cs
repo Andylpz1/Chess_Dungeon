@@ -73,7 +73,8 @@ public class ShopManager : MonoBehaviour
             new BanditCard(),
             new SquireCard(),
             new LegionCard(),
-            new MercenaryCard()
+            new MercenaryCard(),
+            new GentlemanCard()
         };
 
 
@@ -107,20 +108,23 @@ public class ShopManager : MonoBehaviour
 
         if (availableCardUpgrades.Count != 0)
         {
+            Card newCard1 = GetRandomUpgradeCard();
+            Card newCard2 = GetRandomUpgradeCard();
+            Card newCard3 = GetRandomUpgradeCard();
             // 设置第一张卡牌
-            cardImage4.sprite = availableCardUpgrades[0].GetSprite();
-            buyButton4.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[0].cost + " gold)";
-            buyButton4.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[0], cardImage4, buyButton4));
+            cardImage4.sprite = newCard1.GetSprite();
+            buyButton4.GetComponentInChildren<Text>().text = "Buy (" + newCard1.cost + " gold)";
+            buyButton4.onClick.AddListener(() => BuyCardUpgrade(newCard1, cardImage4, buyButton4));
 
             // 设置第二张卡牌
-            cardImage5.sprite = availableCardUpgrades[1].GetSprite();
-            buyButton5.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[1].cost + " gold)";
-            buyButton5.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[1], cardImage5, buyButton5));
+            cardImage5.sprite = newCard2.GetSprite();
+            buyButton5.GetComponentInChildren<Text>().text = "Buy (" + newCard2.cost + " gold)";
+            buyButton5.onClick.AddListener(() => BuyCardUpgrade(newCard2, cardImage5, buyButton5));
 
             // 设置第三张卡牌
-            cardImage6.sprite = availableCardUpgrades[2].GetSprite();
-            buyButton6.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[2].cost + " gold)";
-            buyButton6.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[2], cardImage6, buyButton6));
+            cardImage6.sprite = newCard3.GetSprite();
+            buyButton6.GetComponentInChildren<Text>().text = "Buy (" + newCard3.cost + " gold)";
+            buyButton6.onClick.AddListener(() => BuyCardUpgrade(newCard3, cardImage6, buyButton6));
         }
     }
 

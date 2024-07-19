@@ -113,15 +113,16 @@ public class Player : MonoBehaviour
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
         foreach (GameObject monsterObject in monsters)
         {
-            Slime slime = monsterObject.GetComponent<Slime>();
-            if (slime != null && slime.position == attackPosition)
+            Monster monster = monsterObject.GetComponent<Monster>();
+            if (monster != null && monster.position == attackPosition)
             {
-                slime.TakeDamage(1);
+                monster.TakeDamage(1);
             }
         }
         ClearMoveHighlights();
         ExecuteCurrentCard();
     }
+
 
     public void MultipleAttack(Vector2Int[] attackPositions)
     {

@@ -30,7 +30,7 @@ public class TurnManager : MonoBehaviour
             monsterManager = FindObjectOfType<MonsterManager>();
         }
 
-        monsterManager.SpawnSlime();
+        monsterManager.SpawnMonster(new Slime());
 
         // 添加EndTurn按钮点击事件监听
         if (endTurnButton != null)
@@ -80,7 +80,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Turn end");
 
         // 等待所有史莱姆移动完成
-        int slimeCount = monsterManager.GetSlimeCount();
+        int slimeCount = monsterManager.GetMonsterCount();
         float delay = slimeCount * 0.5f + 1.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
         yield return new WaitForSeconds(delay);
 

@@ -10,7 +10,7 @@ public class MonsterManager : MonoBehaviour
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
 
-    private List<Slime> slimes = new List<Slime>();
+    private List<Monster> monsters = new List<Monster>();
     private List<GameObject> warnings = new List<GameObject>();
 
     public Player player; // 玩家对象
@@ -29,53 +29,51 @@ public class MonsterManager : MonoBehaviour
         //Debug.Log("Warning spawned at position: " + warningPosition);
     }
 
-    
-
-    public void SpawnSlime()
+    public void SpawnMonster(Monster monsterType)
     {
         Vector2Int spawnPosition = GetRandomPosition();
         Vector3 worldPosition = player.CalculateWorldPosition(spawnPosition);
-        GameObject slimeObject = Instantiate(slimePrefab, worldPosition, Quaternion.identity);
-        Slime slime = slimeObject.GetComponent<Slime>();
-        if (slime != null)
+        GameObject monsterObject = Instantiate(monsterType.GetPrefab(), worldPosition, Quaternion.identity);
+        Monster monster = monsterObject.GetComponent<Monster>();
+        if (monster != null)
         {
-            slime.Initialize(spawnPosition);
-            slimes.Add(slime);
+            monster.Initialize(spawnPosition);
+            monsters.Add(monster);
         }
-        Debug.Log("Slime spawned at position: " + spawnPosition);
+        Debug.Log($"{monsterType.GetType().Name} spawned at position: " + spawnPosition);
     }
 
-    public void MoveSlimes()
+    public void MoveMonsters()
     {
-        StartCoroutine(MoveSlimesSequentially());
+        StartCoroutine(MoveMonstersSequentially());
     }
 
-    private IEnumerator MoveSlimesSequentially()
+    private IEnumerator MoveMonstersSequentially()
     {
-        List<Slime> slimesCopy = new List<Slime>(slimes);
-        foreach (Slime slime in slimesCopy)
+        List<Monster> monstersCopy = new List<Monster>(monsters);
+        foreach (Monster monster in monstersCopy)
         {
-            if (slime != null)
+            if (monster != null)
             {
-                slime.MoveTowardsPlayer();
+                monster.MoveTowardsPlayer();
                 yield return new WaitForSeconds(0.5f); // 延迟0.5秒
             }
         }
-        yield return new WaitForSeconds(0.5f); // 在所有史莱姆移动后延迟0.5秒
-        //生成一只新的史莱姆
-        SpawnSlime();
-        SpawnSlime();
+        yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
+        //生成新的怪物
+        SpawnMonster(new Slime());
+        SpawnMonster(new Slime());
     }
 
     public void OnTurnEnd(int turnCount)
     {
-        // 移除已被销毁的Slime对象
-        slimes.RemoveAll(slime => slime == null);
+        // 移除已被销毁的Monster对象
+        monsters.RemoveAll(monster => monster == null);
 
         if (turnCount % 1 == 0)
         {
-            MoveSlimes();
-            Debug.Log("Slimes move.");
+            MoveMonsters();
+            Debug.Log("Monsters move.");
         }
     }
 
@@ -84,9 +82,9 @@ public class MonsterManager : MonoBehaviour
         Vector2Int playerPosition = FindObjectOfType<Player>().position;
         HashSet<Vector2Int> occupiedPositions = new HashSet<Vector2Int> { playerPosition };
 
-        foreach (Slime slime in slimes)
+        foreach (Monster monster in monsters)
         {
-            occupiedPositions.Add(slime.position);
+            occupiedPositions.Add(monster.position);
         }
 
         Vector2Int restrictedPosition = new Vector2Int(3, 3); // 永远不会生成的位置
@@ -100,10 +98,9 @@ public class MonsterManager : MonoBehaviour
         return randomPosition;
     }
 
-
-    public int GetSlimeCount()
+    public int GetMonsterCount()
     {
-        return slimes.Count;
+        return monsters.Count;
     }
 
     void ClearWarnings()
@@ -115,4 +112,3 @@ public class MonsterManager : MonoBehaviour
         //warnings.Clear();
     }
 }
-

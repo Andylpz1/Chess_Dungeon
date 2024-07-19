@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BanditCard : Card
 {
-    public BanditCard() : base(CardType.Move, "M01A", 30, "M01")
+    public BanditCard() : base(CardType.Move, "M01A", 20, "M01")
     {
         isQuick = true;
     }
@@ -55,8 +55,9 @@ public class LegionCard : Card
 
 public class MercenaryCard : Card
 {
-    public MercenaryCard() : base(CardType.Move, "M01D", 20, "M01")
+    public MercenaryCard() : base(CardType.Move, "M01D", 40, "M01")
     {
+        isQuick = true;
         isPartner = true;
     }
 

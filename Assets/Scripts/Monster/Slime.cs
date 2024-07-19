@@ -1,46 +1,25 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class Slime : MonoBehaviour
+
+public class Slime : Monster
 {
-    public int health = 1;
-    public Vector2Int position;
-    public Player player;
-    public int moveInterval = 1; // 每隔一个回合移动一次
-
-    public void Initialize(Vector2Int startPos)
+    public override void Initialize(Vector2Int startPos)
     {
-        position = startPos;
-        player = FindObjectOfType<Player>();
-        UpdatePosition();
+        base.Initialize(startPos);
     }
 
-    void UpdatePosition()
+    public override void TakeDamage(int damage)
     {
-        // 使用MonsterManager的计算方法确保位置正确
-        transform.position = player.CalculateWorldPosition(position);
+        base.TakeDamage(damage);
     }
 
-    public void TakeDamage(int damage)
+    public override void Die()
     {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
+        base.Die();
     }
-    public void Die()
-    {
-        Player player = FindObjectOfType<Player>();
-        if (player != null)
-        {
-            player.AddGold(10);
-        }
-        Destroy(gameObject);
 
-    }
-    public void MoveTowardsPlayer()
+    public override void MoveTowardsPlayer()
     {
         if (player == null) return;
 
@@ -76,30 +55,12 @@ public class Slime : MonoBehaviour
         if (position == player.position)
         {
             Debug.Log("Player touched by Slime. Game Over.");
-        // 在此处添加游戏结束逻辑
+            // 在此处添加游戏结束逻辑
         }
     }
 
-    // 检查位置是否被其他怪物占据
-    private bool IsPositionOccupied(Vector2Int checkPosition)
-    {   
-        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
-        foreach (GameObject monster in monsters)
-        {
-            Slime slime = monster.GetComponent<Slime>();
-            if (slime != null && slime.position == checkPosition)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // 检查位置是否有效
-    private bool IsValidPosition(Vector2Int position)
+    public override GameObject GetPrefab()
     {
-        return position.x >= 0 && position.x < player.boardSize && position.y >= 0 && position.y < player.boardSize;
+        return Resources.Load<GameObject>("Prefabs/Slime");
     }
-
-
 }

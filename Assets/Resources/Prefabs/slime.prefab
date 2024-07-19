@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6773963571949814308}
   - component: {fileID: 1996623300823824852}
   m_Layer: 0
-  m_Name: slimePrefab
+  m_Name: slime
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

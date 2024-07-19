@@ -11,8 +11,6 @@ public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
     public Player player;
     public HintManager hintManager; // 引用HintManager
 
-    protected Vector2Int[] pawnDirections = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
-
     protected void Awake()
     {
         button = GetComponent<Button>();

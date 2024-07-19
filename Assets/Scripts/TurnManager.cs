@@ -103,7 +103,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            currentActionIndex = 0;
+            //currentActionIndex = 0;
         }
         UpdateCursor();
     }

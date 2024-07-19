@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class mercenary_card: pawn_card
 {
+    private bool hasDrawnPartnerCard = false; // 确保只抓一次牌
     public override void Initialize(Card card, DeckManager deckManager)
     {
         base.Initialize(card, deckManager);
@@ -14,9 +15,7 @@ public class mercenary_card: pawn_card
     {
         base.OnClick();
         // 你可以在这里添加其他点击事件处理代码
-        player.ShowMoveOptions(pawnDirections, card);
-        player.OnMoveComplete += DrawPartnerCard;
-
+        MoveHelper.ShowPawnMoveOptions(player, card);
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
@@ -32,20 +31,5 @@ public class mercenary_card: pawn_card
         base.OnPointerExit(eventData);
     }
 
-    //抽一张拍档卡
-    private void DrawPartnerCard()
-    {
-        for (int i = 0; i < deckManager.deck.Count; i++)
-        {
-            Card c = deckManager.deck[i];
-            if (c.isPartner)
-            {
-                deckManager.DrawCardAt(i); // 直接调用 DrawCardAt 方法来抽取特定位置的牌
-                break;
-            }
-        }
 
-        // 取消订阅事件，以防止重复调用
-        player.OnMoveComplete -= DrawPartnerCard;
-    }
 }

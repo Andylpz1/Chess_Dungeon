@@ -58,7 +58,6 @@ public class MercenaryCard : Card
     public MercenaryCard() : base(CardType.Move, "M01D", 20, "M01")
     {
         isPartner = true;
-        isQuick = false;
     }
 
     public override GameObject GetPrefab()

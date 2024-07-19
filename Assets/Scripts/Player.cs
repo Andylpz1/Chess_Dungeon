@@ -172,15 +172,28 @@ public class Player : MonoBehaviour
             if (!currentCard.isQuick)
             {
                 actions -= 1;
+                if (actions > 0)
+                {
+                    FindObjectOfType<TurnManager>().MoveCursor();
+                }
+            }
+            if (currentCard.isPartner)
+            {
+                for (int i = 0; i < deckManager.deck.Count; i++)
+                {
+                    Card c = deckManager.deck[i];
+                    if (c.isPartner)
+                    {
+                        deckManager.DrawCardAt(i); // 直接调用 DrawCardAt 方法来抽取特定位置的牌
+                        break;
+                    }
+                }
             }
             currentCard = null;
-            if (actions > 0)
-            {
-                FindObjectOfType<TurnManager>().MoveCursor();
-            }
             // 推进回合
             if (actions == 0) 
             {
+                
                 DisableNonQuickCardButtons();
                 //添加回合条变成红色特效
             }

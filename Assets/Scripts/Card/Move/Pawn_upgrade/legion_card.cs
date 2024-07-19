@@ -25,7 +25,7 @@ public class legion_card : pawn_card
                 }
                 else 
                 {
-                    player.ShowMoveOptions(pawnDirections, card);
+                    MoveHelper.ShowPawnMoveOptions(player, card);
                 }
             }
         }

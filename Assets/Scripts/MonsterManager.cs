@@ -63,6 +63,7 @@ public class MonsterManager : MonoBehaviour
         //生成新的怪物
         SpawnMonster(new Slime());
         SpawnMonster(new Bat());
+        SpawnMonster(new Hound());
     }
 
     public void OnTurnEnd(int turnCount)

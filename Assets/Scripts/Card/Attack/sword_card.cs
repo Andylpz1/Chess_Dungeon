@@ -13,13 +13,13 @@ public class sword_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoin
 
     public HintManager hintManager; // 引用HintManager
 
-    void Awake()
+    protected void Awake()
     {
         button = GetComponent<Button>();
         buttonText = GetComponentInChildren<Text>();
     }
 
-    void Start()
+    protected void Start()
     {
         hintManager = FindObjectOfType<HintManager>();
         if (hintManager == null)
@@ -28,7 +28,7 @@ public class sword_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoin
         }
     }
 
-    public void Initialize(Card card, DeckManager deckManager)
+    public virtual void Initialize(Card card, DeckManager deckManager)
     {
         this.card = card;
         this.deckManager = deckManager;
@@ -45,7 +45,7 @@ public class sword_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoin
         }
     }
 
-    private void OnClick()
+    protected virtual void OnClick()
     {
         if (card != null)
         {
@@ -64,7 +64,7 @@ public class sword_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoin
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (hintManager != null)
         {
@@ -72,7 +72,7 @@ public class sword_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoin
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         if (hintManager != null)
         {

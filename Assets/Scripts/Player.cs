@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DisableNonQuickCardButtons()
+    public void DisableNonQuickCardButtons()
     {
         // 获取所有 MonoBehaviour 并筛选出实现了 CardButton 接口的对象
         MonoBehaviour[] monoBehaviours = FindObjectsOfType<MonoBehaviour>();

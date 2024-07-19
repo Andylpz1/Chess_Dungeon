@@ -310,6 +310,13 @@ public class DeckManager : MonoBehaviour
                 Debug.LogError("CardButton script not found on instantiated CardButton.");
             }
         }
+        //确保没有步数的时候不会因为刷新手牌而给予额外行动机会
+        if (player.actions == 0) 
+        {
+                
+            player.DisableNonQuickCardButtons();
+                
+        }
     }
 
     public void HandleEndOfTurnEffects()

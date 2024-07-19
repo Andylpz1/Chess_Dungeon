@@ -55,7 +55,7 @@ public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
             }
             else
             {
-                player.ShowMoveOptions(pawnDirections, card);
+                MoveHelper.ShowPawnMoveOptions(player, card);
             }
         }
         else

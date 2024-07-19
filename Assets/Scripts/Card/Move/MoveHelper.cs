@@ -3,6 +3,36 @@ using System.Collections.Generic;
 
 public static class MoveHelper
 {
+    public static void ShowPawnMoveOptions(Player player, Card card)
+    {
+        player.ClearMoveHighlights();
+        List<Vector2Int> validPositions = new List<Vector2Int>();
+        Vector2Int[] directions = 
+        {
+            Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right 
+        };
+
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int newPosition = player.position + direction;
+            if (player.IsValidPosition(newPosition) && !IsBlockedByMonster(newPosition))
+            {
+                validPositions.Add(newPosition);
+                
+            }
+        }
+
+        List<Vector2Int> pawnDirections = new List<Vector2Int>();
+        foreach (var pos in validPositions)
+        {
+            // 计算每个有效位置相对于玩家位置的偏移量
+            Vector2Int relativeDirection = new Vector2Int(pos.x - player.position.x, pos.y - player.position.y);
+            pawnDirections.Add(relativeDirection);
+        }
+        
+        player.ShowMoveOptions(pawnDirections.ToArray(), card);
+    }
+
     public static void ShowKnightMoveOptions(Player player, Card card)
     {
         player.ClearMoveHighlights();

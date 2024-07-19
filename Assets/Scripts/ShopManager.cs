@@ -24,7 +24,7 @@ public class ShopManager : MonoBehaviour
     public Button buyButton4;
     public Button buyButton5;
     public Button buyButton6;
-    public Button refreshButton2; // 刷新按钮
+    public Button refreshUpgradeButton; // 刷新按钮
 
     public Player player; // 玩家对象
     public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
@@ -48,6 +48,7 @@ public class ShopManager : MonoBehaviour
         InitializeAvailableCards(); // 初始化可购买的卡牌
         DisplayAvailableCards();
         refreshButton.onClick.AddListener(() => RefreshShop()); // 绑定刷新按钮
+        refreshUpgradeButton.onClick.AddListener(() => RefreshUpgradeShop()); // 绑定刷新按钮
     }
 
     void InitializeAvailableCards()
@@ -70,7 +71,8 @@ public class ShopManager : MonoBehaviour
         availableCardUpgrades = new List<Card>
         {
             new BanditCard(),
-            new SquireCard()
+            new SquireCard(),
+            new LegionCard()
         };
 
 
@@ -115,9 +117,9 @@ public class ShopManager : MonoBehaviour
             buyButton5.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[1], cardImage5, buyButton5));
 
             // 设置第三张卡牌
-            cardImage6.sprite = availableCardUpgrades[0].GetSprite();
-            buyButton6.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[0].cost + " gold)";
-            buyButton6.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[0], cardImage6, buyButton6));
+            cardImage6.sprite = availableCardUpgrades[2].GetSprite();
+            buyButton6.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[2].cost + " gold)";
+            buyButton6.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[2], cardImage6, buyButton6));
         }
     }
 
@@ -156,6 +158,7 @@ public class ShopManager : MonoBehaviour
             Card baseCard = deckManager.hand.Find(c => c.Id == upgradeCard.upgradeFrom);
             if (baseCard != null)
             {
+                Debug.Log("Ready to buy" + upgradeCard.Id);
                 // 移除基础卡牌
                 deckManager.hand.Remove(baseCard);
                 deckManager.UpdateHandDisplay();
@@ -166,11 +169,15 @@ public class ShopManager : MonoBehaviour
                 deckManager.hand.Add(upgradeCard);
                 deckManager.UpdateHandDisplay();
 
-                // 更新显示
-                cardImage.sprite = upgradeCard.GetSprite();
-                buyButton.GetComponentInChildren<Text>().text = "Sold";
-                buyButton.onClick.RemoveAllListeners();
-                buyButton.interactable = false;
+                // 获取一张新的随机卡牌并更新显示
+                Card newCard = GetRandomUpgradeCard();
+                if (newCard != null)
+                {
+                    cardImage.sprite = newCard.GetSprite();
+                    buyButton.GetComponentInChildren<Text>().text = "Buy (" + newCard.cost + " gold)";
+                    buyButton.onClick.RemoveAllListeners(); // 移除旧的监听器
+                    buyButton.onClick.AddListener(() => BuyCardUpgrade(newCard, cardImage, buyButton));
+                }
 
                 Debug.Log("Bought card upgrade: " + upgradeCard.Id);
             }
@@ -229,4 +236,51 @@ public class ShopManager : MonoBehaviour
             Debug.Log("Not enough gold to refresh the shop.");
         }
     }
+
+    Card GetRandomUpgradeCard()
+    {
+        if (availableCardUpgrades.Count > 0)
+        {
+            int randomIndex = Random.Range(0, availableCardUpgrades.Count);
+            return availableCardUpgrades[randomIndex];
+        }
+        return null;
+    }
+
+    void RefreshUpgradeShop()
+    {
+        if (player.gold >= 10)
+        {
+            player.gold -= 10;
+            player.UpdateGoldText();
+
+            // 获取新的随机卡牌并更新显示
+            List<(Image cardImage, Button buyButton)> slots = new List<(Image, Button)>
+            {
+                (cardImage4, buyButton4),
+                (cardImage5, buyButton5),
+                (cardImage6, buyButton6)
+            };
+
+            foreach (var slot in slots)
+            {
+                Card newCard = GetRandomUpgradeCard();
+                if (newCard != null)
+                {
+                    slot.cardImage.sprite = newCard.GetSprite();
+                    slot.buyButton.GetComponentInChildren<Text>().text = "Buy (" + newCard.cost + " gold)";
+                    slot.buyButton.onClick.RemoveAllListeners(); // 移除旧的监听器
+                    slot.buyButton.onClick.AddListener(() => BuyCardUpgrade(newCard, slot.cardImage, slot.buyButton));
+                }
+            }
+
+            Debug.Log("Shop refreshed.");
+        }
+        else
+        {
+            Debug.Log("Not enough gold to refresh the shop.");
+        }
+    }
+    
+    
 }

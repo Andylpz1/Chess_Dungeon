@@ -2860,8 +2860,9 @@ MonoBehaviour:
   buyButton4: {fileID: 60129742}
   buyButton5: {fileID: 1417468205}
   buyButton6: {fileID: 311992907}
-  refreshButton2: {fileID: 1454437755}
+  refreshUpgradeButton: {fileID: 1454437755}
   player: {fileID: 1399918234}
+  deckManager: {fileID: 0}
 --- !u!4 &1307867633
 Transform:
   m_ObjectHideFlags: 0
@@ -3679,6 +3680,9 @@ MonoBehaviour:
     cardType: 0
     Id: 
     cost: 0
+    isQuick: 0
+    upgradeFrom: 
+    hoardingValue: 0
   deckManager: {fileID: 0}
   goldText: {fileID: 1144206850}
 --- !u!61 &1399918235

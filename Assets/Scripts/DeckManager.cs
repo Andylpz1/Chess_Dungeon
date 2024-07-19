@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 
 public class DeckManager : MonoBehaviour
 {
@@ -301,7 +303,14 @@ public class DeckManager : MonoBehaviour
                 player.AddGold(card.hoardingValue);
                 Debug.Log($"{card.Id} card's hoarding effect: +{card.hoardingValue} gold");
             }
-    }
+        }
     }
     
+    public int GetAffinityCount(string Id)
+    {
+        return deck.Count(c => c.Id == Id) +
+            hand.Count(c => c.Id == Id) +
+            discardPile.Count(c => c.Id == Id);
+    }
+
 }

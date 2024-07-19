@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
         {
             deckManager.UseCard(currentCard);
 
-            if (!currentCard.quick)
+            if (!currentCard.isQuick)
             {
                 actions -= 1;
                 FindObjectOfType<TurnManager>().MoveCursor();

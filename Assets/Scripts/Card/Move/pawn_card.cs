@@ -4,22 +4,22 @@ using UnityEngine.EventSystems;
 
 public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
 {
-    private Card card;
-    private DeckManager deckManager;
-    private Button button;
-    private Text buttonText;
+    protected Card card;
+    protected DeckManager deckManager;
+    protected Button button;
+    protected Text buttonText;
     public Player player;
     public HintManager hintManager; // 引用HintManager
 
-    private Vector2Int[] pawnDirections = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+    protected Vector2Int[] pawnDirections = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
 
-    void Awake()
+    protected void Awake()
     {
         button = GetComponent<Button>();
         buttonText = GetComponentInChildren<Text>();
     }
 
-    void Start()
+    protected void Start()
     {
         hintManager = FindObjectOfType<HintManager>();
         if (hintManager == null)
@@ -28,7 +28,7 @@ public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
         }
     }
 
-    public void Initialize(Card card, DeckManager deckManager)
+    public virtual void Initialize(Card card, DeckManager deckManager)
     {
         this.card = card;
         this.deckManager = deckManager;
@@ -45,7 +45,7 @@ public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
         }
     }
 
-    private void OnClick()
+    protected virtual void OnClick()
     {
         if (card != null)
         {
@@ -64,7 +64,7 @@ public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (hintManager != null)
         {
@@ -72,7 +72,7 @@ public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         if (hintManager != null)
         {

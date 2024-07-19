@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class bandit_card : pawn_card
+public class squire_card : pawn_card
 {
     public override void Initialize(Card card, DeckManager deckManager)
     {
@@ -20,7 +20,7 @@ public class bandit_card : pawn_card
     {
         if (hintManager != null)
         {
-            hintManager.ShowHint("快速, P移动", transform.position);
+            hintManager.ShowHint("囤积:10, P移动", transform.position);
         }
     }
 

@@ -9,16 +9,18 @@ public class Card
     public CardType cardType;
     public string Id;
     public int cost; // 添加花费属性
-    public bool quick; // 新增 quick 变量
+    public bool isQuick; // 新增 quick 变量
     public string upgradeFrom; // 升级来源
+    public int hoardingValue; // 囤积值
 
-    public Card(CardType type, string Id = "M01", int cost = 10, bool quick = false, string upgradeFrom = null)
+    public Card(CardType type, string Id = "M01", int cost = 10, string upgradeFrom = null, bool isQuick = false, int hoardingValue = 0)
     {
         cardType = type;
         this.Id = Id;
         this.cost = cost;
-        this.quick = quick;
         this.upgradeFrom = upgradeFrom;
+        this.isQuick = isQuick;
+        this.hoardingValue = hoardingValue;
     }
 
     public virtual GameObject GetPrefab()

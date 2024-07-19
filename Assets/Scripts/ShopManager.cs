@@ -69,7 +69,8 @@ public class ShopManager : MonoBehaviour
 
         availableCardUpgrades = new List<Card>
         {
-            new BanditCard()
+            new BanditCard(),
+            new SquireCard()
         };
 
 
@@ -109,9 +110,9 @@ public class ShopManager : MonoBehaviour
             buyButton4.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[0], cardImage4, buyButton4));
 
             // 设置第二张卡牌
-            cardImage5.sprite = availableCardUpgrades[0].GetSprite();
-            buyButton5.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[0].cost + " gold)";
-            buyButton5.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[0], cardImage5, buyButton5));
+            cardImage5.sprite = availableCardUpgrades[1].GetSprite();
+            buyButton5.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[1].cost + " gold)";
+            buyButton5.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[1], cardImage5, buyButton5));
 
             // 设置第三张卡牌
             cardImage6.sprite = availableCardUpgrades[0].GetSprite();

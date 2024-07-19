@@ -291,4 +291,17 @@ public class DeckManager : MonoBehaviour
             }
         }
     }
+
+    public void HandleEndOfTurnEffects()
+    {
+        foreach (Card card in new List<Card>(hand))
+        {
+            if (card.hoardingValue > 0) // 检查囤积值
+            {
+                player.AddGold(card.hoardingValue);
+                Debug.Log($"{card.Id} card's hoarding effect: +{card.hoardingValue} gold");
+            }
+    }
+    }
+    
 }

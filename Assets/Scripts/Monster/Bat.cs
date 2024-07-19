@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
-public class Slime : Monster
+public class Bat : Monster
 {
+    public Bat()
+    {
+        health = 1;
+    }
+
     public override void Initialize(Vector2Int startPos)
     {
         base.Initialize(startPos);
@@ -27,16 +31,18 @@ public class Slime : Monster
         Vector2Int direction = player.position - position;
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
 
-        // 优先沿着 x 方向移动
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        // 优先沿着斜方向移动
+        if (Mathf.Abs(direction.x) == Mathf.Abs(direction.y))
         {
-            possibleMoves.Add(new Vector2Int(position.x + (int)Mathf.Sign(direction.x), position.y));
-            possibleMoves.Add(new Vector2Int(position.x, position.y + (int)Mathf.Sign(direction.y)));
+            possibleMoves.Add(new Vector2Int(position.x + (int)Mathf.Sign(direction.x), position.y + (int)Mathf.Sign(direction.y)));
         }
-        else // 优先沿着 y 方向移动
+        else if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            possibleMoves.Add(new Vector2Int(position.x, position.y + (int)Mathf.Sign(direction.y)));
-            possibleMoves.Add(new Vector2Int(position.x + (int)Mathf.Sign(direction.x), position.y));
+            possibleMoves.Add(new Vector2Int(position.x + (int)Mathf.Sign(direction.x), position.y + (int)Mathf.Sign(direction.y)));
+        }
+        else
+        {
+            possibleMoves.Add(new Vector2Int(position.x + (int)Mathf.Sign(direction.x), position.y + (int)Mathf.Sign(direction.y)));
         }
 
         // 尝试每一个可能的移动方向，直到找到一个未被占据的位置
@@ -54,13 +60,13 @@ public class Slime : Monster
         // 检测是否接触到玩家
         if (position == player.position)
         {
-            Debug.Log("Player touched by Slime. Game Over.");
+            Debug.Log("Player touched by Bat. Game Over.");
             // 在此处添加游戏结束逻辑
         }
     }
 
     public override GameObject GetPrefab()
     {
-        return Resources.Load<GameObject>("Prefabs/Monster/Slime");
+        return Resources.Load<GameObject>("Prefabs/Monster/Bat");
     }
 }

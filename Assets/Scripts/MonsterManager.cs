@@ -62,7 +62,7 @@ public class MonsterManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
         //生成新的怪物
         SpawnMonster(new Slime());
-        SpawnMonster(new Slime());
+        SpawnMonster(new Bat());
     }
 
     public void OnTurnEnd(int turnCount)

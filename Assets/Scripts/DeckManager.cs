@@ -265,4 +265,30 @@ public class DeckManager : MonoBehaviour
         deletePopup.SetActive(false);
         cardToDelete = null;
     }
+
+    public void UpdateHandDisplay()
+    {
+        // 清空当前显示的手牌
+        foreach (Transform child in cardPanel)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 显示手牌中的所有卡牌
+        foreach (Card card in hand)
+        {
+            GameObject cardButton = Instantiate(card.GetPrefab(), cardPanel);
+            CardButton cardButtonScript = cardButton.GetComponent<CardButton>();
+
+            if (cardButtonScript != null)
+            {
+                cardButtonScript.Initialize(card, this);
+                cardButtons.Add(cardButton); // 追踪卡牌按钮
+            }
+            else
+            {
+                Debug.LogError("CardButton script not found on instantiated CardButton.");
+            }
+        }
+    }
 }

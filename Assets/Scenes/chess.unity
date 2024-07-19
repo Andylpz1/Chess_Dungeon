@@ -2846,6 +2846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopPanel: {fileID: 47765510}
   availableCards: []
+  availableCardUpgrades: []
   cardImage1: {fileID: 1571937195}
   cardImage2: {fileID: 1762905187}
   cardImage3: {fileID: 1172797931}
@@ -2853,6 +2854,13 @@ MonoBehaviour:
   buyButton2: {fileID: 835149854}
   buyButton3: {fileID: 236513560}
   refreshButton: {fileID: 380419996}
+  cardImage4: {fileID: 831698198}
+  cardImage5: {fileID: 60928777}
+  cardImage6: {fileID: 1275627955}
+  buyButton4: {fileID: 60129742}
+  buyButton5: {fileID: 1417468205}
+  buyButton6: {fileID: 311992907}
+  refreshButton2: {fileID: 1454437755}
   player: {fileID: 1399918234}
 --- !u!4 &1307867633
 Transform:

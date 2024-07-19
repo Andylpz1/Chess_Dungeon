@@ -164,9 +164,13 @@ public class Player : MonoBehaviour
         if (currentCard != null)
         {
             deckManager.UseCard(currentCard);
-            actions -= 1;
+
+            if (!currentCard.quick)
+            {
+                actions -= 1;
+                FindObjectOfType<TurnManager>().MoveCursor();
+            }
             currentCard = null;
-            FindObjectOfType<TurnManager>().MoveCursor();
 
             // 推进回合
             if (actions == 0) 

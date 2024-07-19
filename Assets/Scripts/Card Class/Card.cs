@@ -9,12 +9,16 @@ public class Card
     public CardType cardType;
     public string Id;
     public int cost; // 添加花费属性
+    public bool quick; // 新增 quick 变量
+    public string upgradeFrom; // 升级来源
 
-    public Card(CardType type, string Id = "M01", int cost = 10)
+    public Card(CardType type, string Id = "M01", int cost = 10, bool quick = false, string upgradeFrom = null)
     {
         cardType = type;
         this.Id = Id;
         this.cost = cost;
+        this.quick = quick;
+        this.upgradeFrom = upgradeFrom;
     }
 
     public virtual GameObject GetPrefab()

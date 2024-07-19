@@ -6,6 +6,7 @@ public class ShopManager : MonoBehaviour
 {
     public GameObject shopPanel; // 商店面板
     public List<Card> availableCards; // 可购买的卡牌
+    public List<Card> availableCardUpgrades; // 可购买的卡牌升级
 
     // 预先设置好的卡牌UI和购买按钮
     public Image cardImage1;
@@ -16,7 +17,17 @@ public class ShopManager : MonoBehaviour
     public Button buyButton3;
     public Button refreshButton; // 刷新按钮
 
+    // 预先设置好的卡牌UI和购买按钮
+    public Image cardImage4;
+    public Image cardImage5;
+    public Image cardImage6;
+    public Button buyButton4;
+    public Button buyButton5;
+    public Button buyButton6;
+    public Button refreshButton2; // 刷新按钮
+
     public Player player; // 玩家对象
+    public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
 
     private void Start()
     {
@@ -31,6 +42,8 @@ public class ShopManager : MonoBehaviour
         if (buyButton3 == null) Debug.LogError("buyButton3 is not assigned.");
         if (refreshButton == null) Debug.LogError("refreshButton is not assigned.");
         if (player == null) Debug.LogError("player is not assigned.");
+
+        deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
 
         InitializeAvailableCards(); // 初始化可购买的卡牌
         DisplayAvailableCards();
@@ -52,7 +65,14 @@ public class ShopManager : MonoBehaviour
             new FlailCard(),
             new PotionCard()
         };
-        Debug.Log("Available cards initialized: " + availableCards.Count); // 打印卡牌数量
+        //Debug.Log("Available cards initialized: " + availableCards.Count); // 打印卡牌数量
+
+        availableCardUpgrades = new List<Card>
+        {
+            new BanditCard()
+        };
+
+
     }
 
     void DisplayAvailableCards()
@@ -80,6 +100,24 @@ public class ShopManager : MonoBehaviour
         {
             Debug.LogError("Not enough available cards to display in the shop.");
         }
+
+        if (availableCardUpgrades.Count != 0)
+        {
+            // 设置第一张卡牌
+            cardImage4.sprite = availableCardUpgrades[0].GetSprite();
+            buyButton4.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[0].cost + " gold)";
+            buyButton4.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[0], cardImage4, buyButton4));
+
+            // 设置第二张卡牌
+            cardImage5.sprite = availableCardUpgrades[0].GetSprite();
+            buyButton5.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[0].cost + " gold)";
+            buyButton5.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[0], cardImage5, buyButton5));
+
+            // 设置第三张卡牌
+            cardImage6.sprite = availableCardUpgrades[0].GetSprite();
+            buyButton6.GetComponentInChildren<Text>().text = "Buy (" + availableCardUpgrades[0].cost + " gold)";
+            buyButton6.onClick.AddListener(() => BuyCardUpgrade(availableCardUpgrades[0], cardImage6, buyButton6));
+        }
     }
 
     void BuyCard(Card card, Image cardImage, Button buyButton)
@@ -101,6 +139,43 @@ public class ShopManager : MonoBehaviour
                 buyButton.GetComponentInChildren<Text>().text = "Buy (" + newCard.cost + " gold)";
                 buyButton.onClick.RemoveAllListeners(); // 移除旧的监听器
                 buyButton.onClick.AddListener(() => BuyCard(newCard, cardImage, buyButton));
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough gold to buy this card.");
+        }
+    }
+
+    private void BuyCardUpgrade(Card upgradeCard, Image cardImage, Button buyButton)
+    {
+        if (player.gold >= upgradeCard.cost)
+        {
+            // 检查手牌中是否有对应的基础卡牌
+            Card baseCard = deckManager.hand.Find(c => c.Id == upgradeCard.upgradeFrom);
+            if (baseCard != null)
+            {
+                // 移除基础卡牌
+                deckManager.hand.Remove(baseCard);
+                deckManager.UpdateHandDisplay();
+
+                // 添加升级卡牌
+                player.gold -= upgradeCard.cost;
+                player.UpdateGoldText();
+                deckManager.hand.Add(upgradeCard);
+                deckManager.UpdateHandDisplay();
+
+                // 更新显示
+                cardImage.sprite = upgradeCard.GetSprite();
+                buyButton.GetComponentInChildren<Text>().text = "Sold";
+                buyButton.onClick.RemoveAllListeners();
+                buyButton.interactable = false;
+
+                Debug.Log("Bought card upgrade: " + upgradeCard.Id);
+            }
+            else
+            {
+                Debug.Log("No corresponding base card in hand to upgrade.");
             }
         }
         else

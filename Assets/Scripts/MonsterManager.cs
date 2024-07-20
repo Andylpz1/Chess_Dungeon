@@ -15,8 +15,19 @@ public class MonsterManager : MonoBehaviour
 
     public Player player; // 玩家对象
 
+    void Awake()
+    {
+        // Initialize the player in Awake to ensure it is set before Start
+        player = FindObjectOfType<Player>();
+        if (player == null)
+        {
+            Debug.LogError("Player object not found!");
+        }
+    }
+
     void Start()
     {
+        
         SpawnWarning();
     }
 
@@ -62,8 +73,8 @@ public class MonsterManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
         //生成新的怪物
         SpawnMonster(new Slime());
-        //SpawnMonster(new Bat());
-        //SpawnMonster(new Hound());
+        SpawnMonster(new Bat());
+        SpawnMonster(new Hound());
     }
 
     public void OnTurnEnd(int turnCount)
@@ -81,6 +92,7 @@ public class MonsterManager : MonoBehaviour
     Vector2Int GetRandomPosition(Monster monsterType)
     {
         Vector2Int playerPosition = player.position;
+        Debug.Log("yaleyale" + playerPosition);
         HashSet<Vector2Int> occupiedPositions = new HashSet<Vector2Int> { playerPosition };
         // Add all occupied positions
         foreach (Monster monster in monsters)

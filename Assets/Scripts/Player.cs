@@ -24,13 +24,18 @@ public class Player : MonoBehaviour
 
     public event System.Action OnMoveComplete;
 
-    void Start()
+    void Awake()
     {
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
         Debug.Log($"Current Location: {position}");
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
         UpdatePosition();
         UpdateGoldText();
+    }
+
+    void Start()
+    {
+        
     }
 
     void UpdatePosition()
@@ -62,7 +67,7 @@ public class Player : MonoBehaviour
             Vector2Int newPosition = position + direction;
             if (IsValidPosition(newPosition))
             {
-                Debug.Log($"player valid Position: {newPosition}");
+                //Debug.Log($"player valid Position: {newPosition}");
                 HighlightPosition(newPosition, true);
             }
         }

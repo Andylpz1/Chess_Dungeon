@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
         foreach (GameObject monsterObject in monsters)
         {
             Monster monster = monsterObject.GetComponent<Monster>();
-            if (monster != null && monster.position == attackPosition)
+            if (monster != null && monster.IsPartOfMonster(attackPosition))
             {
                 monster.TakeDamage(1);
             }
@@ -132,10 +132,10 @@ public class Player : MonoBehaviour
         {
             foreach (GameObject monsterObject in monsters)
             {
-                Slime slime = monsterObject.GetComponent<Slime>();
-                if (slime != null && slime.position == attackPosition)
+                Monster monster = monsterObject.GetComponent<Monster>();
+                if (monster != null && monster.IsPartOfMonster(attackPosition))
                 {
-                    slime.TakeDamage(1);
+                    monster.TakeDamage(1);
                 }
             }
         }

@@ -31,7 +31,7 @@ public class MonsterManager : MonoBehaviour
 
     public void SpawnMonster(Monster monsterType)
     {
-        Vector2Int spawnPosition = GetRandomPosition();
+        Vector2Int spawnPosition = GetRandomPosition(monsterType);
         Vector3 worldPosition = player.CalculateWorldPosition(spawnPosition);
         GameObject monsterObject = Instantiate(monsterType.GetPrefab(), worldPosition, Quaternion.identity);
         Monster monster = monsterObject.GetComponent<Monster>();
@@ -62,8 +62,8 @@ public class MonsterManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
         //生成新的怪物
         SpawnMonster(new Slime());
-        SpawnMonster(new Bat());
-        SpawnMonster(new Hound());
+        //SpawnMonster(new Bat());
+        //SpawnMonster(new Hound());
     }
 
     public void OnTurnEnd(int turnCount)
@@ -78,25 +78,41 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
-    Vector2Int GetRandomPosition()
+    Vector2Int GetRandomPosition(Monster monsterType)
     {
-        Vector2Int playerPosition = FindObjectOfType<Player>().position;
+        Vector2Int playerPosition = player.position;
         HashSet<Vector2Int> occupiedPositions = new HashSet<Vector2Int> { playerPosition };
-
+        // Add all occupied positions
         foreach (Monster monster in monsters)
         {
-            occupiedPositions.Add(monster.position);
+            occupiedPositions.UnionWith(monster.GetOccupiedPositions(monster.position));
         }
 
         Vector2Int restrictedPosition = new Vector2Int(3, 3); // 永远不会生成的位置
 
         Vector2Int randomPosition;
+        List<Vector2Int> monsterParts;
+
         do
         {
             randomPosition = new Vector2Int(Random.Range(0, boardSize), Random.Range(0, boardSize));
-        } while (occupiedPositions.Contains(randomPosition) || randomPosition == restrictedPosition);
+            monsterParts = monsterType.GetOccupiedPositions(randomPosition);
+        } while (occupiedPositions.Overlaps(monsterParts) || randomPosition == restrictedPosition || !AreAllPositionsValid(monsterParts) || monsterParts.Contains(playerPosition));
 
         return randomPosition;
+    }
+
+
+    bool AreAllPositionsValid(List<Vector2Int> positions)
+    {
+        foreach (Vector2Int pos in positions)
+        {
+            if (pos.x < 0 || pos.x >= boardSize || pos.y < 0 || pos.y >= boardSize)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public int GetMonsterCount()

@@ -43,6 +43,12 @@ public class MonsterManager : MonoBehaviour
     public void SpawnMonster(Monster monsterType)
     {
         Vector2Int spawnPosition = GetRandomPosition(monsterType);
+        if (spawnPosition == new Vector2Int(-1, -1))
+        {
+            Debug.LogWarning("Failed to spawn monster: No valid position found.");
+            return;
+        }
+
         Vector3 worldPosition = player.CalculateWorldPosition(spawnPosition);
         GameObject monsterObject = Instantiate(monsterType.GetPrefab(), worldPosition, Quaternion.identity);
         Monster monster = monsterObject.GetComponent<Monster>();
@@ -72,9 +78,10 @@ public class MonsterManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
         //生成新的怪物
-        SpawnMonster(new Slime());
-        SpawnMonster(new Bat());
-        SpawnMonster(new Hound());
+        //SpawnMonster(new Slime());
+        //SpawnMonster(new Bat());
+        //SpawnMonster(new Hound());
+        SpawnMonster(new SlimeKing());
     }
 
     public void OnTurnEnd(int turnCount)
@@ -92,7 +99,7 @@ public class MonsterManager : MonoBehaviour
     Vector2Int GetRandomPosition(Monster monsterType)
     {
         Vector2Int playerPosition = player.position;
-        Debug.Log("yaleyale" + playerPosition);
+        Debug.Log("Player position: " + playerPosition);
         HashSet<Vector2Int> occupiedPositions = new HashSet<Vector2Int> { playerPosition };
         // Add all occupied positions
         foreach (Monster monster in monsters)
@@ -104,11 +111,20 @@ public class MonsterManager : MonoBehaviour
 
         Vector2Int randomPosition;
         List<Vector2Int> monsterParts;
+        int attempts = 0;
+        const int maxAttempts = 50;
 
         do
         {
             randomPosition = new Vector2Int(Random.Range(0, boardSize), Random.Range(0, boardSize));
             monsterParts = monsterType.GetOccupiedPositions(randomPosition);
+            attempts++;
+        
+            if (attempts >= maxAttempts)
+            {
+                Debug.LogWarning("Failed to find a valid spawn position after 50 attempts.");
+                return new Vector2Int(-1, -1); // Return an invalid position to indicate failure
+            }
         } while (occupiedPositions.Overlaps(monsterParts) || randomPosition == restrictedPosition || !AreAllPositionsValid(monsterParts) || monsterParts.Contains(playerPosition));
 
         return randomPosition;

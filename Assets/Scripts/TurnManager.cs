@@ -30,6 +30,7 @@ public class TurnManager : MonoBehaviour
             monsterManager = FindObjectOfType<MonsterManager>();
         }
 
+        monsterManager.SpawnMonster(new Slime());
         monsterManager.SpawnMonster(new SlimeKing());
 
         // 添加EndTurn按钮点击事件监听

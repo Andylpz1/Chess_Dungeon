@@ -169,14 +169,15 @@ public static class MoveHelper
     private static bool IsBlockedByMonster(Vector2Int position)
     {
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
-        foreach (GameObject monster in monsters)
+        foreach (GameObject monsterObject in monsters)
         {
-            Slime slime = monster.GetComponent<Slime>();
-            if (slime != null && slime.position == position)
+            Monster monster = monsterObject.GetComponent<Monster>();
+            if (monster != null && monster.IsPartOfMonster(position))
             {
                 return true;
             }
         }
+
         return false;
     }
 }

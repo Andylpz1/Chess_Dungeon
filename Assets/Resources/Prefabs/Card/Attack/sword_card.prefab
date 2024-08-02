@@ -213,3 +213,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8cc36cf5d55187488cba2a0fcff9347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  hintManager: {fileID: 0}

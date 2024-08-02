@@ -89,12 +89,12 @@ public class bow_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointe
     {
         List<Vector2Int> monsterPositions = new List<Vector2Int>();
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
-        foreach (GameObject monster in monsters)
+        foreach (GameObject monsterObject in monsters)
         {
-            Slime slime = monster.GetComponent<Slime>();
-            if (slime != null)
+            Monster monster = monsterObject.GetComponent<Monster>();
+            if (monster != null)
             {
-                Vector2Int relativePosition = slime.position - player.position;
+                Vector2Int relativePosition = monster.position - player.position;
                 monsterPositions.Add(relativePosition);
             }
         }

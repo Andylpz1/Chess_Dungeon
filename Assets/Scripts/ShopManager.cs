@@ -90,17 +90,17 @@ public class ShopManager : MonoBehaviour
         {
             // 设置第一张卡牌
             cardImage1.sprite = availableCards[0].GetSprite();
-            buyButton1.GetComponentInChildren<Text>().text = "Buy (" + availableCards[0].cost + " gold)";
+            buyButton1.GetComponentInChildren<Text>().text = "(" + availableCards[0].cost + " gold)";
             buyButton1.onClick.AddListener(() => BuyCard(availableCards[0], cardImage1, buyButton1));
 
             // 设置第二张卡牌
             cardImage2.sprite = availableCards[1].GetSprite();
-            buyButton2.GetComponentInChildren<Text>().text = "Buy (" + availableCards[1].cost + " gold)";
+            buyButton2.GetComponentInChildren<Text>().text = "(" + availableCards[1].cost + " gold)";
             buyButton2.onClick.AddListener(() => BuyCard(availableCards[1], cardImage2, buyButton2));
 
             // 设置第三张卡牌
             cardImage3.sprite = availableCards[3].GetSprite();
-            buyButton3.GetComponentInChildren<Text>().text = "Buy (" + availableCards[3].cost + " gold)";
+            buyButton3.GetComponentInChildren<Text>().text = "(" + availableCards[3].cost + " gold)";
             buyButton3.onClick.AddListener(() => BuyCard(availableCards[3], cardImage3, buyButton3));
         }
         else
@@ -115,17 +115,17 @@ public class ShopManager : MonoBehaviour
             Card newCard3 = GetRandomUpgradeCard();
             // 设置第一张卡牌
             cardImage4.sprite = newCard1.GetSprite();
-            buyButton4.GetComponentInChildren<Text>().text = "Buy (" + newCard1.cost + " gold)";
+            buyButton4.GetComponentInChildren<Text>().text = "(" + newCard1.cost + " gold)";
             buyButton4.onClick.AddListener(() => BuyCardUpgrade(newCard1, cardImage4, buyButton4));
 
             // 设置第二张卡牌
             cardImage5.sprite = newCard2.GetSprite();
-            buyButton5.GetComponentInChildren<Text>().text = "Buy (" + newCard2.cost + " gold)";
+            buyButton5.GetComponentInChildren<Text>().text = "(" + newCard2.cost + " gold)";
             buyButton5.onClick.AddListener(() => BuyCardUpgrade(newCard2, cardImage5, buyButton5));
 
             // 设置第三张卡牌
             cardImage6.sprite = newCard3.GetSprite();
-            buyButton6.GetComponentInChildren<Text>().text = "Buy (" + newCard3.cost + " gold)";
+            buyButton6.GetComponentInChildren<Text>().text = "(" + newCard3.cost + " gold)";
             buyButton6.onClick.AddListener(() => BuyCardUpgrade(newCard3, cardImage6, buyButton6));
         }
     }
@@ -146,7 +146,7 @@ public class ShopManager : MonoBehaviour
             if (newCard != null)
             {
                 cardImage.sprite = newCard.GetSprite();
-                buyButton.GetComponentInChildren<Text>().text = "Buy (" + newCard.cost + " gold)";
+                buyButton.GetComponentInChildren<Text>().text = "(" + newCard.cost + " gold)";
                 buyButton.onClick.RemoveAllListeners(); // 移除旧的监听器
                 buyButton.onClick.AddListener(() => BuyCard(newCard, cardImage, buyButton));
             }
@@ -181,7 +181,7 @@ public class ShopManager : MonoBehaviour
                 if (newCard != null)
                 {
                     cardImage.sprite = newCard.GetSprite();
-                    buyButton.GetComponentInChildren<Text>().text = "Buy (" + newCard.cost + " gold)";
+                    buyButton.GetComponentInChildren<Text>().text = "(" + newCard.cost + " gold)";
                     buyButton.onClick.RemoveAllListeners(); // 移除旧的监听器
                     buyButton.onClick.AddListener(() => BuyCardUpgrade(newCard, cardImage, buyButton));
                 }

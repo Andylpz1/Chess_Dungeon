@@ -1,19 +1,23 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class MonsterManager : MonoBehaviour
 {
-    public GameObject slimePrefab; // 史莱姆怪物的预制件
-    public GameObject warningPrefab; // 警告图案的预制件
     public int boardSize = 6;
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
 
     private List<Monster> monsters = new List<Monster>();
     private List<GameObject> warnings = new List<GameObject>();
+    private int currentLevel = 1;
+    private int totalMonstersToSpawn;
+    private int totalMonstersKilled;
 
     public Player player; // 玩家对象
+    private List<LevelConfig> levelConfigs; // 关卡配置列表
+    private Dictionary<string, GameObject> monsterPrefabs = new Dictionary<string, GameObject>();
 
     void Awake()
     {
@@ -23,41 +27,99 @@ public class MonsterManager : MonoBehaviour
         {
             Debug.LogError("Player object not found!");
         }
+        
+        // Load all monster prefabs
+        monsterPrefabs["Slime"] = Resources.Load<GameObject>("Prefabs/Monster/Slime");
+        monsterPrefabs["Bat"] = Resources.Load<GameObject>("Prefabs/Monster/Bat");
+        monsterPrefabs["Hound"] = Resources.Load<GameObject>("Prefabs/Monster/Hound");
+        monsterPrefabs["SlimeKing"] = Resources.Load<GameObject>("Prefabs/Monster/Slime_King");
+
+        LoadLevelConfigs();
     }
 
     void Start()
     {
-        
         SpawnWarning();
+        StartLevel(currentLevel);
+    }
+
+    void LoadLevelConfigs()
+    {
+        string filePath = Path.Combine(Application.streamingAssetsPath, "Configs", "levelConfig.json");
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            GameConfig gameConfig = JsonUtility.FromJson<GameConfig>(json);
+            levelConfigs = gameConfig.levels;
+        }
+        else
+        {
+            Debug.LogError("Level configuration file not found: " + filePath);
+        }
+    }
+
+    void StartLevel(int level)
+    {
+        LevelConfig levelConfig = levelConfigs.Find(l => l.levelNumber == level);
+        if (levelConfig == null)
+        {
+            Debug.LogError("Level configuration not found for level: " + level);
+            return;
+        }
+
+        totalMonstersToSpawn = levelConfig.monsterTypes.Count;
+        totalMonstersKilled = 0;
+        SpawnMonstersForLevel(levelConfig);
+    }
+
+    void SpawnMonstersForLevel(LevelConfig levelConfig)
+    {
+        foreach (string monsterType in levelConfig.monsterTypes)
+        {
+            Monster monster = CreateMonsterByType(monsterType);
+            if (monster != null)
+            {
+                SpawnMonster(monster);
+            }
+        }
+    }
+
+    Monster CreateMonsterByType(string type)
+    {
+        if (monsterPrefabs.TryGetValue(type, out GameObject prefab))
+        {
+            GameObject monsterObject = Instantiate(prefab);
+            return monsterObject.GetComponent<Monster>();
+        }
+
+        Debug.LogError($"Unknown or missing monster type: {type}");
+        return null;
     }
 
     public void SpawnWarning()
     {
-        //Vector2Int warningPosition = GetRandomPosition();
-        //Vector3 worldPosition = CalculateWorldPosition(warningPosition);
-        //GameObject warningObject = Instantiate(warningPrefab, worldPosition, Quaternion.identity);
-        //warnings.Add(warningObject);
-        //Debug.Log("Warning spawned at position: " + warningPosition);
+        // Vector2Int warningPosition = GetRandomPosition();
+        // Vector3 worldPosition = CalculateWorldPosition(warningPosition);
+        // GameObject warningObject = Instantiate(warningPrefab, worldPosition, Quaternion.identity);
+        // warnings.Add(warningObject);
+        // Debug.Log("Warning spawned at position: " + warningPosition);
     }
 
-    public void SpawnMonster(Monster monsterType)
+    public void SpawnMonster(Monster monster)
     {
-        Vector2Int spawnPosition = GetRandomPosition(monsterType);
+        Vector2Int spawnPosition = GetRandomPosition(monster);
         if (spawnPosition == new Vector2Int(-1, -1))
         {
             Debug.LogWarning("Failed to spawn monster: No valid position found.");
+            Destroy(monster.gameObject);
             return;
         }
 
         Vector3 worldPosition = player.CalculateWorldPosition(spawnPosition);
-        GameObject monsterObject = Instantiate(monsterType.GetPrefab(), worldPosition, Quaternion.identity);
-        Monster monster = monsterObject.GetComponent<Monster>();
-        if (monster != null)
-        {
-            monster.Initialize(spawnPosition);
-            monsters.Add(monster);
-        }
-        Debug.Log($"{monsterType.GetType().Name} spawned at position: " + spawnPosition);
+        monster.transform.position = worldPosition;
+        monster.Initialize(spawnPosition);
+        monsters.Add(monster);
+        Debug.Log($"{monster.GetType().Name} spawned at position: " + spawnPosition);
     }
 
     public void MoveMonsters()
@@ -78,11 +140,19 @@ public class MonsterManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
         //生成新的怪物
-        SpawnMonster(new Slime());
-        //SpawnMonster(new Slime());
-        SpawnMonster(new Bat());
-        //SpawnMonster(new Hound());
-        //SpawnMonster(new SlimeKing());
+        if (monsters.Count == 0)
+        {
+            StartLevel(++currentLevel);
+        }
+    }
+
+    public void OnMonsterKilled()
+    {
+        totalMonstersKilled++;
+        if (totalMonstersKilled >= totalMonstersToSpawn)
+        {
+            StartLevel(++currentLevel);
+        }
     }
 
     public void OnTurnEnd(int turnCount)
@@ -131,7 +201,6 @@ public class MonsterManager : MonoBehaviour
         return randomPosition;
     }
 
-
     bool AreAllPositionsValid(List<Vector2Int> positions)
     {
         foreach (Vector2Int pos in positions)
@@ -151,10 +220,10 @@ public class MonsterManager : MonoBehaviour
 
     void ClearWarnings()
     {
-        //foreach (GameObject warning in warnings)
-        //{
-            //Destroy(warning);
-        //}
-        //warnings.Clear();
+        // foreach (GameObject warning in warnings)
+        // {
+        //     Destroy(warning);
+        // }
+        // warnings.Clear();
     }
 }

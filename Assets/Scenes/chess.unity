@@ -1381,8 +1381,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -185}
-  m_SizeDelta: {x: 540, y: 110}
+  m_AnchoredPosition: {x: -1.51, y: -172.45}
+  m_SizeDelta: {x: 540, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513411015
 MonoBehaviour:
@@ -1797,8 +1797,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 185}
-  m_SizeDelta: {x: 540, y: 110}
+  m_AnchoredPosition: {x: -1.51, y: 175}
+  m_SizeDelta: {x: 540, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &656423284
 MonoBehaviour:
@@ -3429,7 +3429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 339.28, y: -185}
+  m_AnchoredPosition: {x: 339.28, y: -172.45}
   m_SizeDelta: {x: 89.45, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324913495
@@ -3559,12 +3559,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030fc6d7832d27149ac4fc8487bcaa2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slimePrefab: {fileID: 3381790849320777569, guid: 6f0d3008de3dae94e8063bacb34460e1, type: 3}
-  warningPrefab: {fileID: 3997750118827899976, guid: 513ca9c3997f95b4d911378e675797c6, type: 3}
   boardSize: 5
   cellSize: {x: 1, y: 1, z: 0}
   cellGap: {x: 0.5, y: 0.5, z: 0}
   player: {fileID: 1399918234}
+  levelConfigs:
+  - levelNumber: 0
+    monsterTypes:
+    - 
+  - levelNumber: 0
+    monsterTypes:
+    - 
 --- !u!1 &1399918231
 GameObject:
   m_ObjectHideFlags: 0

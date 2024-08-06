@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public int actions = 3; //行动点
 
     //棋盘偏移量
-    public int xshift = 0;
+    public float xshift = 0;
     public float yshift = -0.5f;
 
     private List<GameObject> moveHighlights = new List<GameObject>(); // 初始化 moveHighlights 列表

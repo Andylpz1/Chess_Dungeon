@@ -2,49 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class knight_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
+public class knight_card : CardButtonBase
 {
-    private Card card;
-    private DeckManager deckManager;
-    private Button button;
-    private Text buttonText;
-    public Player player;
-
-    public HintManager hintManager; // 引用HintManager
-
-    void Awake()
+    public override void Initialize(Card card, DeckManager deckManager)
     {
-        button = GetComponent<Button>();
-        buttonText = GetComponentInChildren<Text>();
+        base.Initialize(card, deckManager);
+        Debug.Log("pawn_card Initialize with card: " + (card != null ? card.ToString() : "null"));
     }
 
-    void Start()
-    {
-        hintManager = FindObjectOfType<HintManager>();
-        if (hintManager == null)
-        {
-            Debug.LogError("HintManager not found in the scene.");
-        }
-    }
-
-    public void Initialize(Card card, DeckManager deckManager)
-    {
-        this.card = card;
-        this.deckManager = deckManager;
-        player = FindObjectOfType<Player>();
-
-        if (buttonText != null)
-        {
-            //buttonText.text = "Knight";
-        }
-
-        if (button != null)
-        {
-            button.onClick.AddListener(() => OnClick());
-        }
-    }
-
-    private void OnClick()
+    protected override void OnClick()
     {
         if (card != null)
         {
@@ -61,26 +27,5 @@ public class knight_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoi
         {
             Debug.LogError("Card is null in knight_card.OnClick");
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("K移动", transform.position);
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.HideHint();
-        }
-    }
-
-    public Card GetCard()
-    {
-        return card;
     }
 }

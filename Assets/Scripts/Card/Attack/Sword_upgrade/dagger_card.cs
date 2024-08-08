@@ -15,18 +15,5 @@ public class Dagger_card : sword_card
         base.OnClick();
         // 你可以在这里添加其他点击事件处理代码
     }
-
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("快速，sword攻击", transform.position);
-        }
-    }
-
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-    }
     
 }

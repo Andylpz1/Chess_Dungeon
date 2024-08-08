@@ -2,107 +2,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class pawn_card : CardButtonBase
 {
-    protected Card card;
-    protected DeckManager deckManager;
-    protected Button button;
-    protected Text buttonText;
-    public Player player;
-    public HintManager hintManager; // 引用HintManager
-
-    protected void Awake()
+    public override void Initialize(Card card, DeckManager deckManager)
     {
-        button = GetComponent<Button>();
-        buttonText = GetComponentInChildren<Text>();
+        base.Initialize(card, deckManager);
+        Debug.Log("pawn_card Initialize with card: " + (card != null ? card.ToString() : "null"));
     }
 
-    protected void Start()
+    protected override void OnClick()
     {
-        hintManager = FindObjectOfType<HintManager>();
-        if (hintManager == null)
-        {
-            Debug.LogError("HintManager not found in the scene.");
-        }
-    }
-
-    public virtual void Initialize(Card card, DeckManager deckManager)
-    {
-        this.card = card;
-        this.deckManager = deckManager;
-        player = FindObjectOfType<Player>();
-
-        if (buttonText != null)
-        {
-            //buttonText.text = "Pawn";
-        }
-
-        if (button != null)
-        {
-            button.onClick.AddListener(() => OnClick());
-        }
-    }
-
-    protected virtual void OnClick()
-    {
+        Debug.Log("pawn_card OnClick with card: " + (card != null ? card.ToString() : "null"));
         if (card != null)
         {
             if (player.currentCard == card)
             {
                 player.DeselectCurrentCard();
+                Debug.Log("Card deselected.");
             }
             else
             {
                 MoveHelper.ShowPawnMoveOptions(player, card);
+                Debug.Log("Showing pawn move options.");
             }
         }
         else
         {
             Debug.LogError("Card is null in pawn_card.OnClick");
         }
-    }
-
-    public virtual void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            //hintManager.ShowHint("P移动", transform.position, card.GetSprite());
-        }
-    }
-
-    public virtual void OnPointerExit(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            //hintManager.HideHint();
-        }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            ShowCardDescription();
-        }
-    }
-
-    protected void ShowCardDescription()
-    {
-        if (hintManager != null && card != null)
-        {
-            if (hintManager.IsHintVisible())
-            {
-                hintManager.HideHint();
-            }
-            else
-            {
-                hintManager.ShowHint(card.GetDescription(), transform.position, card.GetSprite());
-            }
-        }
-    }
-
-    public Card GetCard()
-    {
-        return card;
     }
 }

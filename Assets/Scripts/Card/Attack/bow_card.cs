@@ -3,49 +3,16 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class bow_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
+public class bow_card : CardButtonBase
 {
-    private Card card;
-    private DeckManager deckManager;
-    private Button button;
-    public Player player;
-    private Text buttonText;
+
     private List<Vector2Int> bowDirections = new List<Vector2Int>();
 
-    public HintManager hintManager; // 引用HintManager
 
-    void Awake()
+    public override void Initialize(Card card, DeckManager deckManager)
     {
-        button = GetComponent<Button>();
-        buttonText = GetComponentInChildren<Text>();
-    }
-
-    void Start()
-    {
-        hintManager = FindObjectOfType<HintManager>();
-        if (hintManager == null)
-        {
-            Debug.LogError("HintManager not found in the scene.");
-        }
-
-        InitializeBowDirections();
-    }
-
-    public void Initialize(Card card, DeckManager deckManager)
-    {
-        this.card = card;
-        this.deckManager = deckManager;
-        player = FindObjectOfType<Player>();
-
-        if (buttonText != null)
-        {
-            //buttonText.text = "Bow";
-        }
-
-        if (button != null)
-        {
-            button.onClick.AddListener(() => OnClick());
-        }
+        base.Initialize(card, deckManager);
+        Debug.Log("pawn_card Initialize with card: " + (card != null ? card.ToString() : "null"));
     }
 
     private void InitializeBowDirections()
@@ -65,7 +32,7 @@ public class bow_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointe
         }
     }
 
-    private void OnClick()
+    protected override void OnClick()
     {
         if (card != null)
         {
@@ -99,26 +66,5 @@ public class bow_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointe
             }
         }
         return monsterPositions;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("攻击地图上的任意位置", transform.position);
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.HideHint();
-        }
-    }
-
-    public Card GetCard()
-    {
-        return card;
     }
 }

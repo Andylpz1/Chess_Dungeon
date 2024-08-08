@@ -15,4 +15,8 @@ public class TwoBladeCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Attack/Blade_upgrade/twoblade_card");
     }
+    public override string GetDescription()
+    {
+        return "拍档，斜向攻击";
+    }
 }

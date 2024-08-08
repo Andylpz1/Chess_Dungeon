@@ -15,6 +15,10 @@ public class BanditCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/Pawn_upgrade/bandit_card");
     }
+    public override string GetDescription()
+    {
+        return "快速，P移动";
+    }
 }
 
 public class SquireCard : Card
@@ -33,6 +37,10 @@ public class SquireCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/Pawn_upgrade/squire_card");
     }
+    public override string GetDescription()
+    {
+        return "囤积：10，P移动";
+    }
 }
 
 public class LegionCard : Card
@@ -50,6 +58,10 @@ public class LegionCard : Card
     public override Sprite GetSprite()
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/Pawn_upgrade/legion_card");
+    }
+    public override string GetDescription()
+    {
+        return "P移动，共鸣(3): R移动";
     }
 }
 
@@ -70,6 +82,10 @@ public class MercenaryCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/Pawn_upgrade/mercenary_card");
     }
+    public override string GetDescription()
+    {
+        return "快速，拍档，P移动";
+    }
 }
 
 public class GentlemanCard : Card
@@ -87,6 +103,10 @@ public class GentlemanCard : Card
     public override Sprite GetSprite()
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/Pawn_upgrade/gentleman_card");
+    }
+    public override string GetDescription()
+    {
+        return "P移动，富裕(100): K移动";
     }
 }
 

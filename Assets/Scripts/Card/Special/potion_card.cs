@@ -2,90 +2,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class potion_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
+public class potion_card : CardButtonBase
 {
-    private Card card;
-    private DeckManager deckManager;
-    private Button button;
-    public Player player;
-    private Text buttonText;
-    private TurnManager turnManager;
-
-    public HintManager hintManager; // 引用HintManager
-
-    void Awake()
+    public override void Initialize(Card card, DeckManager deckManager)
     {
-        button = GetComponent<Button>();
-        buttonText = GetComponentInChildren<Text>();
+        base.Initialize(card, deckManager);
+        Debug.Log("potion_card Initialize with card: " + (card != null ? card.ToString() : "null"));
     }
 
-    void Start()
+    protected override void OnClick()
     {
-        hintManager = FindObjectOfType<HintManager>();
-        turnManager = FindObjectOfType<TurnManager>();
-        if (hintManager == null)
-        {
-            Debug.LogError("HintManager not found in the scene.");
-        }
-    }
-
-    public void Initialize(Card card, DeckManager deckManager)
-    {
-        this.card = card;
-        this.deckManager = deckManager;
-        player = FindObjectOfType<Player>();
-
-        if (buttonText != null)
-        {
-            //buttonText.text = "potion";
-        }
-
-        if (button != null)
-        {
-            button.onClick.AddListener(() => OnClick());
-        }
-    }
-
-    private void OnClick()
-    {
+        Debug.Log("potion_card OnClick with card: " + (card != null ? card.ToString() : "null"));
         if (card != null)
         {
             if (player.currentCard == card)
             {
                 player.DeselectCurrentCard();
+                Debug.Log("Card deselected.");
             }
             else
             {
                 player.currentCard = card;
                 turnManager.AddAction();
                 player.ExecuteCurrentCard();
+                Debug.Log("Potion card used: action added and current card executed.");
             }
         }
         else
         {
-            Debug.LogError("Card is null in attack_card.OnClick");
+            Debug.LogError("Card is null in potion_card.OnClick");
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("上下左右攻击", transform.position);
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.HideHint();
-        }
-    }
-
-    public Card GetCard()
-    {
-        return card;
     }
 }
-

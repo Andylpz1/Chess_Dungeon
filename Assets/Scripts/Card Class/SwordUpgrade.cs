@@ -15,4 +15,8 @@ public class DaggerCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Attack/Sword_upgrade/dagger_card");
     }
+    public override string GetDescription()
+    {
+        return "快速，上下左右攻击";
+    }
 }

@@ -3,49 +3,15 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
-public class rook_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
+public class rook_card : CardButtonBase
 {
-    private Card card;
-    private DeckManager deckManager;
-    private Button button;
-    private Text buttonText;
-    public Player player;
-
-    public HintManager hintManager; // 引用HintManager
-
-    void Awake()
+    public override void Initialize(Card card, DeckManager deckManager)
     {
-        button = GetComponent<Button>();
-        buttonText = GetComponentInChildren<Text>();
+        base.Initialize(card, deckManager);
+        Debug.Log("pawn_card Initialize with card: " + (card != null ? card.ToString() : "null"));
     }
 
-    void Start()
-    {
-        hintManager = FindObjectOfType<HintManager>();
-        if (hintManager == null)
-        {
-            Debug.LogError("HintManager not found in the scene.");
-        }
-    }
-
-    public void Initialize(Card card, DeckManager deckManager)
-    {
-        this.card = card;
-        this.deckManager = deckManager;
-        player = FindObjectOfType<Player>();
-
-        if (buttonText != null)
-        {
-            //buttonText.text = "Rook";
-        }
-
-        if (button != null)
-        {
-            button.onClick.AddListener(() => OnClick());
-        }
-    }
-
-    private void OnClick()
+     protected override void OnClick()
     {
         if (card != null)
         {
@@ -62,26 +28,5 @@ public class rook_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
         {
             Debug.LogError("Card is null in rook_card.OnClick");
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("R移动", transform.position);
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.HideHint();
-        }
-    }
-
-    public Card GetCard()
-    {
-        return card;
     }
 }

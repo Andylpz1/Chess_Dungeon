@@ -70,6 +70,10 @@ public class KnightCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/knight_card");
     }
+    public override string GetDescription()
+    {
+        return "K移动";
+    }
 }
 
 public class BishopCard : Card
@@ -83,6 +87,10 @@ public class BishopCard : Card
     public override Sprite GetSprite()
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/bishop_card");
+    }
+    public override string GetDescription()
+    {
+        return "B移动";
     }
 }
 
@@ -98,6 +106,10 @@ public class RookCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/rook_card");
     }
+    public override string GetDescription()
+    {
+        return "R移动";
+    }
 }
 
 public class SwordCard : Card
@@ -111,6 +123,10 @@ public class SwordCard : Card
     public override Sprite GetSprite()
     {
         return Resources.Load<Sprite>("Sprites/Card/Attack/sword_card");
+    }
+    public override string GetDescription()
+    {
+        return "上下左右攻击";
     }
 }
 
@@ -126,6 +142,10 @@ public class BladeCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Attack/blade_card");
     }
+    public override string GetDescription()
+    {
+        return "斜向攻击";
+    }
 }
 
 public class SpearCard : Card
@@ -140,6 +160,10 @@ public class SpearCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Attack/spear_card");
     }
+    public override string GetDescription()
+    {
+        return "上下左右两格攻击";
+    }
 }
 
 public class BowCard : Card
@@ -153,6 +177,10 @@ public class BowCard : Card
     public override Sprite GetSprite()
     {
         return Resources.Load<Sprite>("Sprites/Card/Attack/bow_card");
+    }
+    public override string GetDescription()
+    {
+        return "任意位置攻击";
     }
 }
 
@@ -172,6 +200,10 @@ public class PotionCard : Card
     public override Sprite GetSprite()
     {
         return Resources.Load<Sprite>("Sprites/Card/Special/potion_card");
+    }
+    public override string GetDescription()
+    {
+        return "增加一点行动点";
     }
 }
 

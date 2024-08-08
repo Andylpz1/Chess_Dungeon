@@ -14,6 +14,10 @@ public class FlailCard : Card
     {
         return Resources.Load<Sprite>("Sprites/Card/Attack/flail_card");
     }
+    public override string GetDescription()
+    {
+        return "上下左右三格攻击";
+    }
 
     public List<Vector2Int> GetAttackPositions(Vector2Int playerPosition, Vector2Int targetPosition, int boardSize)
     {

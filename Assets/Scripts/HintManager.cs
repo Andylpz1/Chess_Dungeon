@@ -1,48 +1,54 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class HintManager : MonoBehaviour
 {
-    private GameObject effectTextObject;
-    private Coroutine showEffectTextCoroutine;
+    public GameObject hintPanel;
+    public Text hintText;
+    public Image hintImage; // 用于显示卡片图片的Image组件
+    public Button fullScreenButton; // 全屏按钮
 
-    public void ShowHint(string text, Vector3 position)
+    void Start()
     {
-        if (showEffectTextCoroutine == null)
+        if (hintPanel == null || hintText == null || hintImage == null || fullScreenButton == null)
         {
-            showEffectTextCoroutine = StartCoroutine(ShowEffectTextAfterDelay(1f, text, position)); // 悬停1秒后显示
+            Debug.LogError("HintPanel, HintText, HintImage, or FullScreenButton is not assigned in the Inspector.");
+        }
+        else
+        {
+            hintPanel.SetActive(false); // 默认隐藏提示面板
+            fullScreenButton.gameObject.SetActive(false); // 默认隐藏全屏按钮
+            fullScreenButton.onClick.AddListener(OnFullScreenButtonClick); // 添加点击事件监听器
+        }
+    }
+
+    public void ShowHint(string message, Vector3 position, Sprite cardSprite=null)
+    {
+        if (hintPanel != null && hintText != null && hintImage != null)
+        {
+            hintPanel.SetActive(true);
+            hintText.text = message;
+            hintImage.sprite = cardSprite; // 设置hintImage的sprite
+            fullScreenButton.gameObject.SetActive(true); // 显示全屏按钮
         }
     }
 
     public void HideHint()
     {
-        if (showEffectTextCoroutine != null)
+        if (hintPanel != null)
         {
-            StopCoroutine(showEffectTextCoroutine);
-            showEffectTextCoroutine = null;
-        }
-
-        if (effectTextObject != null)
-        {
-            Destroy(effectTextObject);
+            hintPanel.SetActive(false);
+            fullScreenButton.gameObject.SetActive(false); // 隐藏全屏按钮
         }
     }
 
-    private IEnumerator ShowEffectTextAfterDelay(float delay, string text, Vector3 position)
+    public bool IsHintVisible()
     {
-        yield return new WaitForSeconds(delay);
+        return hintPanel != null && hintPanel.activeSelf;
+    }
 
-        if (effectTextObject == null)
-        {
-            effectTextObject = new GameObject("EffectText");
-            effectTextObject.transform.SetParent(GameObject.Find("Canvas").transform, false); // 将effectTextObject设置为Canvas的子对象
-
-            Text effectText = effectTextObject.AddComponent<Text>();
-            effectText.text = text;
-            effectText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            effectText.fontSize = 24;
-            effectText.color = Color.white;
-        }
+    private void OnFullScreenButtonClick()
+    {
+        HideHint();
     }
 }

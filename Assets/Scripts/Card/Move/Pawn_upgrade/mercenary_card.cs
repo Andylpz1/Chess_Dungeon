@@ -18,18 +18,7 @@ public class mercenary_card: pawn_card
         MoveHelper.ShowPawnMoveOptions(player, card);
     }
 
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("拍档, P移动", transform.position);
-        }
-    }
 
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-    }
 
 
 }

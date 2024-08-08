@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler
+public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     protected Card card;
     protected DeckManager deckManager;
@@ -66,7 +66,7 @@ public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
     {
         if (hintManager != null)
         {
-            hintManager.ShowHint("P移动", transform.position);
+            //hintManager.ShowHint("P移动", transform.position, card.GetSprite());
         }
     }
 
@@ -74,7 +74,30 @@ public class pawn_card : MonoBehaviour, CardButton, IPointerEnterHandler, IPoint
     {
         if (hintManager != null)
         {
-            hintManager.HideHint();
+            //hintManager.HideHint();
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            ShowCardDescription();
+        }
+    }
+
+    protected void ShowCardDescription()
+    {
+        if (hintManager != null && card != null)
+        {
+            if (hintManager.IsHintVisible())
+            {
+                hintManager.HideHint();
+            }
+            else
+            {
+                hintManager.ShowHint(card.GetDescription(), transform.position, card.GetSprite());
+            }
         }
     }
 

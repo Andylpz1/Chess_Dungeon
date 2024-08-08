@@ -35,16 +35,4 @@ public class legion_card : pawn_card
         }
     }
 
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("P移动，共鸣(3)：R移动", transform.position);
-        }
-    }
-
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-    }
 }

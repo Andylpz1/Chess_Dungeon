@@ -16,16 +16,4 @@ public class bandit_card : pawn_card
         // 你可以在这里添加其他点击事件处理代码
     }
 
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("快速, P移动", transform.position);
-        }
-    }
-
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-    }
 }

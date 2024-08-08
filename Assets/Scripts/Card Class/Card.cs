@@ -34,6 +34,10 @@ public class Card
     {
         return null;
     }
+    public virtual string GetDescription()
+    {
+        return null;
+    }
 }
 
 public class PawnCard : Card
@@ -47,6 +51,10 @@ public class PawnCard : Card
     public override Sprite GetSprite()
     {
         return Resources.Load<Sprite>("Sprites/Card/Move/pawn_card");
+    }
+    public override string GetDescription()
+    {
+        return "P移动";
     }
 }
 

@@ -35,16 +35,5 @@ public class gentleman_card : pawn_card
         }
     }
 
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        if (hintManager != null)
-        {
-            hintManager.ShowHint("P移动，富裕(100)：R移动", transform.position);
-        }
-    }
 
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-    }
 }

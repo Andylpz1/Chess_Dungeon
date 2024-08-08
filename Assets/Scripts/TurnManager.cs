@@ -10,6 +10,8 @@ public class TurnManager : MonoBehaviour
     public Button endTurnButton; // 引用EndTurn按钮
     public List<Button> allButtons; // 引用所有的按钮
 
+    public Text actionText;
+
     public int turnCount = 0;
     public GameObject turnSlotPrefab;
     public Transform turnPanel;
@@ -24,6 +26,8 @@ public class TurnManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         InitializeTurnPanel();
         deckManager = FindObjectOfType<DeckManager>();
+
+        UpdateActionText();
 
         if (monsterManager == null)
         {
@@ -60,6 +64,7 @@ public class TurnManager : MonoBehaviour
         GameObject turnSlot = Instantiate(turnSlotPrefab, turnPanel);
         turnSlots.Add(turnSlot);
         UpdateCursor();
+        UpdateActionText();
         EnableAllButtons();
     }
 
@@ -92,6 +97,7 @@ public class TurnManager : MonoBehaviour
         deckManager.DrawCards(deckManager.handSize - deckManager.hand.Count);
 
         EnableAllButtons(); // 启用所有按钮
+        UpdateActionText();
 
         ResetCursor();
     }
@@ -179,6 +185,14 @@ public class TurnManager : MonoBehaviour
             {
                 cardButton.interactable = true;
             }
+        }
+    }
+
+    public void UpdateActionText()
+    {
+        if (actionText != null)
+        {
+            actionText.text = "3/" + player.actions.ToString();
         }
     }
 }

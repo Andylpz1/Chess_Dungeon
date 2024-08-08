@@ -181,6 +181,7 @@ public class Player : MonoBehaviour
                 if (actions > 0)
                 {
                     FindObjectOfType<TurnManager>().MoveCursor();
+                    FindObjectOfType<TurnManager>().UpdateActionText();
                 }
             }
             if (currentCard.isPartner)
@@ -199,7 +200,7 @@ public class Player : MonoBehaviour
             // 推进回合
             if (actions == 0) 
             {
-                
+                FindObjectOfType<TurnManager>().UpdateActionText();   
                 DisableNonQuickCardButtons();
                 //添加回合条变成红色特效
             }

@@ -14,6 +14,7 @@ public class DeckManager : MonoBehaviour
 
     public Transform cardPanel; // 卡牌面板
     public Transform deckPanel; // 卡组面板，用于显示卡组中卡牌的图片
+    public Transform discardPanel; // 弃牌堆面板，用于显示弃牌堆中的卡牌图片
 
     public Text deckCountText; // 显示牌库剩余牌数的文本组件
     public Text discardPileCountText; // 显示弃牌堆剩余牌数的文本组件
@@ -28,6 +29,7 @@ public class DeckManager : MonoBehaviour
     public Player player; // 玩家对象
 
     public Button deckDisplayButton; // DeckDisplayButton 引用
+    public Button discardDisplayButton; // DiscardDisplayButton 引用
 
     void Start()
     {
@@ -70,15 +72,33 @@ public class DeckManager : MonoBehaviour
         {
             Debug.LogError("DeckDisplayButton is not assigned in the Inspector.");
         }
+        //读取discarddisplayButton
+        if (discardDisplayButton != null)
+        {
+            discardDisplayButton.onClick.AddListener(ToggleDiscardDisplay);
+        }
+        else
+        {
+            Debug.LogError("DiscardDisplayButton is not assigned in the Inspector.");
+        }
 
-        // 确保 deckPanel 初始时隐藏
+        // 确保 deckPanel 初始时显示和 discardPanel 初始时隐藏
         if (deckPanel != null)
         {
-            deckPanel.gameObject.SetActive(false);
+            deckPanel.gameObject.SetActive(true);
         }
         else
         {
             Debug.LogError("DeckPanel is not assigned in the Inspector.");
+        }
+
+        if (discardPanel != null)
+        {
+            discardPanel.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("DiscardPanel is not assigned in the Inspector.");
         }
     }
 
@@ -131,6 +151,7 @@ public class DeckManager : MonoBehaviour
                 // 随机抓牌
                 ShuffleDeck();
                 UpdateDeckPanel();
+                UpdateDiscardPanel();
                 Card card = deck[0];
                 deck.RemoveAt(0);
                 hand.Add(card);
@@ -151,6 +172,7 @@ public class DeckManager : MonoBehaviour
             }
             UpdateDeckCountText(); // 每次抽牌后更新牌库剩余数量显示
             UpdateDeckPanel(); // 每次抽牌后更新卡组显示
+            UpdateDiscardPanel();
 
             yield return new WaitForSeconds(0.1f); // 每次抽牌后等待0.1秒
         }
@@ -167,6 +189,7 @@ public class DeckManager : MonoBehaviour
             UpdateHandDisplay();
             UpdateDeckCountText(); // 每次抽牌后更新牌库剩余数量显示
             UpdateDeckPanel(); // 每次抽牌后更新卡组显示
+            UpdateDiscardPanel();
         }
         else
         {
@@ -247,6 +270,30 @@ public class DeckManager : MonoBehaviour
             RectTransform rectTransform = cardUI.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(40, 50); // 调整尺寸
             cardUI.transform.SetParent(deckPanel, false); // 保持相对布局
+
+            Button cardButton = cardUI.AddComponent<Button>();
+            cardButton.onClick.AddListener(() => OnCardClicked(card));
+        }
+    }
+
+    public void UpdateDiscardPanel()
+    {
+        // 清空当前显示的卡牌
+        foreach (Transform child in discardPanel)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 显示弃牌堆中的所有卡牌
+        foreach (Card card in discardPile)
+        {
+            GameObject cardUI = new GameObject("Card");
+            Image cardImage = cardUI.AddComponent<Image>();
+            cardImage.sprite = card.GetSprite();
+
+            RectTransform rectTransform = cardUI.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(40, 50); // 调整尺寸
+            cardUI.transform.SetParent(discardPanel, false); // 保持相对布局
 
             Button cardButton = cardUI.AddComponent<Button>();
             cardButton.onClick.AddListener(() => OnCardClicked(card));
@@ -365,7 +412,38 @@ public class DeckManager : MonoBehaviour
         if (deckPanel != null)
         {
             bool isActive = deckPanel.gameObject.activeSelf;
-            deckPanel.gameObject.SetActive(!isActive); // 切换显示状态
+
+            // 切换显示状态
+            deckPanel.gameObject.SetActive(!isActive);
+
+            // 如果deckPanel被激活，确保discardPanel被关闭
+            if (deckPanel.gameObject.activeSelf && discardPanel != null)
+            {
+                discardPanel.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void ToggleDiscardDisplay()
+    {
+        if (discardPanel != null)
+        {
+            bool isActive = discardPanel.gameObject.activeSelf;
+
+            // 切换显示状态
+            discardPanel.gameObject.SetActive(!isActive);
+
+            // 当展示弃牌堆时，更新显示内容并关闭deckPanel
+            if (discardPanel.gameObject.activeSelf)
+            {
+                UpdateDiscardPanel();
+
+                // 确保deckPanel被关闭
+                if (deckPanel != null)
+                {
+                    deckPanel.gameObject.SetActive(false);
+                }
+            }
         }
     }
 

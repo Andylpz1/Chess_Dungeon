@@ -27,6 +27,8 @@ public class DeckManager : MonoBehaviour
     private Card cardToDelete; // 要删除的卡牌
     public Player player; // 玩家对象
 
+    public Button deckDisplayButton; // DeckDisplayButton 引用
+
     void Start()
     {
         cardButtons = new List<GameObject>();
@@ -57,6 +59,26 @@ public class DeckManager : MonoBehaviour
         if (player == null)
         {
             Debug.LogError("Player is not assigned and could not be found in the scene.");
+        }
+
+        //读取deckdisplayButton
+        if (deckDisplayButton != null)
+        {
+            deckDisplayButton.onClick.AddListener(ToggleDeckDisplay);
+        }
+        else
+        {
+            Debug.LogError("DeckDisplayButton is not assigned in the Inspector.");
+        }
+
+        // 确保 deckPanel 初始时隐藏
+        if (deckPanel != null)
+        {
+            deckPanel.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("DeckPanel is not assigned in the Inspector.");
         }
     }
 
@@ -336,6 +358,15 @@ public class DeckManager : MonoBehaviour
         return deck.Count(c => c.Id == Id) +
             hand.Count(c => c.Id == Id) +
             discardPile.Count(c => c.Id == Id);
+    }
+
+    public void ToggleDeckDisplay()
+    {
+        if (deckPanel != null)
+        {
+            bool isActive = deckPanel.gameObject.activeSelf;
+            deckPanel.gameObject.SetActive(!isActive); // 切换显示状态
+        }
     }
 
 }

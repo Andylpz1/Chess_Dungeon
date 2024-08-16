@@ -16,19 +16,28 @@ public class MoveHighlight : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (player == null)
+        {
+            Debug.LogError("Player reference is null in MoveHighlight. Ensure Initialize is called before interaction.");
+            return;
+        }
+
         if (isMove)
         {
+            Debug.Log($"Moving player to position {position}");
             player.Move(position);
         }
         else
         {
             if (player.currentCard is FlailCard flailCard)
             {
+                Debug.Log($"Performing flail attack at position {position}");
                 List<Vector2Int> attackPositions = flailCard.GetAttackPositions(player.position, position, player.boardSize);
                 player.MultipleAttack(attackPositions.ToArray());
             }
             else
             {
+                Debug.Log($"Attacking position {position}");
                 player.Attack(position);
             }
         }

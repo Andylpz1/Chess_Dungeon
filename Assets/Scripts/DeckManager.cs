@@ -107,14 +107,14 @@ public class DeckManager : MonoBehaviour
         // 初始化牌库
         deck = new List<Card>
         {
-            //new PawnCard(),
-            //new PawnCard(),
-            //new PawnCard(),
-            //new PawnCard(),
-            //new PawnCard(),
-            //new SwordCard(),
-            //new SwordCard(),
-            //new SwordCard()
+            new PawnCard(),
+            new PawnCard(),
+            new PawnCard(),
+            new PawnCard(),
+            new PawnCard(),
+            new SwordCard(),
+            new SwordCard(),
+            new SwordCard()
         };
 
         ShuffleDeck();

@@ -43,8 +43,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        HandleMouseMovement(); // 处理鼠标移动
-        HandleMouseClick(); // 处理鼠标点击
+        //HandleMouseMovement(); // 处理鼠标移动
+        //HandleMouseClick(); // 处理鼠标点击
     }
 
     void HandleMouseMovement()

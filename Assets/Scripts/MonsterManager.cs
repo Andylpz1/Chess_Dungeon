@@ -19,6 +19,7 @@ public class MonsterManager : MonoBehaviour
     private int totalMonstersKilled;
 
     public Player player; // 玩家对象
+    public RewardManager rewardManager;
     private List<LevelConfig> levelConfigs; // 关卡配置列表
     private Dictionary<string, GameObject> monsterPrefabs = new Dictionary<string, GameObject>();
 
@@ -26,6 +27,7 @@ public class MonsterManager : MonoBehaviour
     {
         // Initialize the player in Awake to ensure it is set before Start
         player = FindObjectOfType<Player>();
+        rewardManager = FindObjectOfType<RewardManager>();
         if (player == null)
         {
             Debug.LogError("Player object not found!");
@@ -83,6 +85,10 @@ public class MonsterManager : MonoBehaviour
         totalMonstersKilled = 0;
         SpawnMonstersForLevel(levelConfig);
         SpawnActivatepointsForLevel();
+        if (level > 1)
+        {
+            rewardManager.OpenRewardPanel();
+        }
 
     }
 

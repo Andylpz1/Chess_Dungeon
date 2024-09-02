@@ -40,6 +40,11 @@ public class Card
     {
         return null;
     }
+
+    public virtual void ExhaustEffect()
+    {
+        // 这里可以加入每张卡牌独特的 Exhaust 效果
+    }
 }
 
 public class PawnCard : Card

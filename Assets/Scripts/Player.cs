@@ -13,6 +13,11 @@ public class Player : MonoBehaviour
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
 
+    public bool isCharged = false; // 是否处于充能状态
+    // 存储 ActivatePoint 和 DeactivatePoint 的位置信息
+    public List<Vector2Int> activatePointPositions = new List<Vector2Int>();
+    public List<Vector2Int> deactivatePointPositions = new List<Vector2Int>();
+
     //棋盘偏移量
     public float xshift = -1;
     public float yshift = -1;
@@ -220,10 +225,39 @@ public class Player : MonoBehaviour
         position = newPosition;
         UpdatePosition();
         ClearMoveHighlights();
+
+        // 调用新方法来检查并处理 ActivatePoint 和 DeactivatePoint
+        CheckAndHandlePoints(newPosition);
+
         ExecuteCurrentCard();
         // 移动完成后触发事件
         OnMoveComplete?.Invoke();
     }
+
+    void CheckAndHandlePoints(Vector2Int newPosition)
+    {
+
+        // 检查玩家是否移动到了ActivatePoint
+        if (activatePointPositions.Contains(newPosition))
+        {
+            isCharged = true;
+            Debug.Log("Player is now charged.");
+        }
+
+        // 检查玩家是否移动到了DeactivatePoint
+        if (deactivatePointPositions.Contains(newPosition))
+        {
+            if (isCharged)
+            {
+                Debug.Log("Player is at DeactivatePoint, triggering Exhaust.");
+                deckManager.Exhaust();
+                isCharged = false;
+            }
+        }
+    }
+
+
+
 
     public void Attack(Vector2Int attackPosition)
     {

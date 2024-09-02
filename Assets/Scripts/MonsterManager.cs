@@ -63,6 +63,11 @@ public class MonsterManager : MonoBehaviour
 
     void StartLevel(int level)
     {
+        // 清空之前存储的位置数据
+        player.activatePointPositions.Clear();
+        player.deactivatePointPositions.Clear();
+        
+
         LevelConfig levelConfig = levelConfigs.Find(l => l.levelNumber == level);
         if (levelConfig == null)
         {
@@ -133,8 +138,10 @@ public class MonsterManager : MonoBehaviour
                     ActivatePoint activatePoint = activatePointInstance.GetComponent<ActivatePoint>();
                     if (activatePoint != null)
                     {
-                        activatePoint.Initialize(position);
+                        //activatePoint.Initialize(position);
+                        
                     }
+                    player.activatePointPositions.Add(position);
                     pointObjects.Add(activatePointInstance); // 添加到列表
                 }
                 else
@@ -159,8 +166,10 @@ public class MonsterManager : MonoBehaviour
                     DeactivatePoint deactivatePoint = deactivatePointInstance.GetComponent<DeactivatePoint>();
                     if (deactivatePoint != null)
                     {
-                        deactivatePoint.Initialize(position);
+                        //deactivatePoint.Initialize(position);
+                        
                     }
+                    player.deactivatePointPositions.Add(position); // 添加位置信息到列表中
                     pointObjects.Add(deactivatePointInstance); // 添加到列表
                 }
                 else

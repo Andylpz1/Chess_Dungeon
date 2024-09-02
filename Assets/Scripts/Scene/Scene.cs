@@ -49,6 +49,11 @@ public class Scene : MonoBehaviour
         return null; // Return null or a default prefab if you have one
     }
 
+    public Vector2Int GetPosition()
+    {
+        return position;
+    }
+
 
     public virtual List<Vector2Int> GetOccupiedPositions(Vector2Int position)
     {

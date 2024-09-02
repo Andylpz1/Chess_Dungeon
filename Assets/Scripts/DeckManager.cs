@@ -448,4 +448,18 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    public void Exhaust()
+    {
+        Debug.Log("Exhaust triggered. All cards with exhaust effects will be triggered.");
+        
+        // 对所有手牌进行 Exhaust 操作
+        foreach (Card card in hand)
+        {
+            card.ExhaustEffect(); // 调用每张卡牌的Exhaust效果
+        }
+
+        // 将 isCharged 设置为 false
+        player.isCharged = false;
+    }
+
 }

@@ -1627,8 +1627,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.51, y: -172.45}
-  m_SizeDelta: {x: 540, y: 100}
+  m_AnchoredPosition: {x: -1.51, y: -178.22}
+  m_SizeDelta: {x: 540, y: 93.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513411015
 MonoBehaviour:
@@ -4292,7 +4292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030fc6d7832d27149ac4fc8487bcaa2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardSize: 5
+  boardSize: 8
   cellSize: {x: 1, y: 1, z: 0}
   cellGap: {x: 0.5, y: 0.5, z: 0}
   player: {fileID: 1399918234}
@@ -4412,6 +4412,7 @@ MonoBehaviour:
     Id: 
     cost: 0
     isQuick: 0
+    isEnergy: 0
     upgradeFrom: 
     hoardingValue: 0
     isPartner: 0

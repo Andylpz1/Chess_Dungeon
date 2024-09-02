@@ -367,6 +367,7 @@ public class DeckManager : MonoBehaviour
         foreach (Card card in hand)
         {
             GameObject cardButton = Instantiate(card.GetPrefab(), cardPanel);
+
             CardButton cardButtonScript = cardButton.GetComponent<CardButton>();
 
             if (cardButtonScript != null)

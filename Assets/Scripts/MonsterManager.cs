@@ -5,13 +5,15 @@ using System.IO;
 
 public class MonsterManager : MonoBehaviour
 {
-    public int boardSize = 6;
+    public int boardSize = 8;
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
 
     private List<Monster> monsters = new List<Monster>();
     private List<Scene> scenes = new List<Scene>();
     private List<GameObject> warnings = new List<GameObject>();
+    private List<GameObject> pointObjects = new List<GameObject>();
+
     private int currentLevel = 1;
     private int totalMonstersToSpawn;
     private int totalMonstersKilled;
@@ -68,12 +70,39 @@ public class MonsterManager : MonoBehaviour
             return;
         }
 
+        // 清除所有场景对象
+        ClearAllScenes();
+        ClearAllPoints();
+
         totalMonstersToSpawn = levelConfig.monsterTypes.Count;
         totalMonstersKilled = 0;
         SpawnMonstersForLevel(levelConfig);
         SpawnActivatepointsForLevel();
 
     }
+
+    void ClearAllScenes()
+    {
+        foreach (Scene scene in scenes)
+        {
+            if (scene != null)
+            {
+                Destroy(scene.gameObject);
+            }
+        }
+        scenes.Clear(); // 清空列表
+    }
+
+    void ClearAllPoints()
+    {
+        foreach (GameObject point in pointObjects)
+        {
+            Destroy(point);
+        }
+        pointObjects.Clear(); // 清空列表
+    }
+
+
 
     void SpawnMonstersForLevel(LevelConfig levelConfig)
     {
@@ -106,6 +135,7 @@ public class MonsterManager : MonoBehaviour
                     {
                         activatePoint.Initialize(position);
                     }
+                    pointObjects.Add(activatePointInstance); // 添加到列表
                 }
                 else
                 {
@@ -131,6 +161,7 @@ public class MonsterManager : MonoBehaviour
                     {
                         deactivatePoint.Initialize(position);
                     }
+                    pointObjects.Add(deactivatePointInstance); // 添加到列表
                 }
                 else
                 {

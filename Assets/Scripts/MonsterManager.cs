@@ -10,6 +10,7 @@ public class MonsterManager : MonoBehaviour
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
 
     private List<Monster> monsters = new List<Monster>();
+    private List<Scene> scenes = new List<Scene>();
     private List<GameObject> warnings = new List<GameObject>();
     private int currentLevel = 1;
     private int totalMonstersToSpawn;
@@ -70,6 +71,8 @@ public class MonsterManager : MonoBehaviour
         totalMonstersToSpawn = levelConfig.monsterTypes.Count;
         totalMonstersKilled = 0;
         SpawnMonstersForLevel(levelConfig);
+        SpawnActivatepointsForLevel();
+
     }
 
     void SpawnMonstersForLevel(LevelConfig levelConfig)
@@ -83,6 +86,60 @@ public class MonsterManager : MonoBehaviour
             }
         }
     }
+
+    void SpawnActivatepointsForLevel()
+    {
+        // 生成 6 个 ActivatePoint
+        for (int i = 0; i < 6; i++)
+        {
+            Vector2Int position = GetEmptyPosition();
+            Vector3 worldPosition = player.CalculateWorldPosition(position);
+            if (position != new Vector2Int(-1, -1))
+            {
+                // 实例化 ActivatePoint 的预制体
+                GameObject activatePointPrefab = Resources.Load<GameObject>("Prefabs/UI/ActivatePoint");
+                if (activatePointPrefab != null)
+                {
+                    GameObject activatePointInstance = Instantiate(activatePointPrefab, new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+                    ActivatePoint activatePoint = activatePointInstance.GetComponent<ActivatePoint>();
+                    if (activatePoint != null)
+                    {
+                        activatePoint.Initialize(position);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("ActivatePoint prefab not found.");
+                }
+            }   
+        }
+
+        // 生成 12 个 DeactivatePoint
+        for (int i = 0; i < 12; i++)
+        {
+            Vector2Int position = GetEmptyPosition();
+            Vector3 worldPosition = player.CalculateWorldPosition(position);
+            if (position != new Vector2Int(-1, -1))
+            {
+                // 实例化 DeactivatePoint 的预制体
+                GameObject deactivatePointPrefab = Resources.Load<GameObject>("Prefabs/UI/DeactivatePoint");
+                if (deactivatePointPrefab != null)
+                {
+                    GameObject deactivatePointInstance = Instantiate(deactivatePointPrefab, new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
+                    DeactivatePoint deactivatePoint = deactivatePointInstance.GetComponent<DeactivatePoint>();
+                    if (deactivatePoint != null)
+                    {
+                        deactivatePoint.Initialize(position);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("DeactivatePoint prefab not found.");
+                }
+            }
+        }
+    }
+
 
     Monster CreateMonsterByType(string type)
     {
@@ -200,6 +257,46 @@ public class MonsterManager : MonoBehaviour
 
         return randomPosition;
     }
+
+    Vector2Int GetEmptyPosition()
+    {
+        Vector2Int playerPosition = player.position;
+        Debug.Log("Player position: " + playerPosition);
+    
+        // 获取所有被占据的位置（包括怪物和场景物体）
+        HashSet<Vector2Int> occupiedPositions = new HashSet<Vector2Int> { playerPosition };
+    
+        // 添加所有怪物占据的位置
+        foreach (Monster monster in monsters)
+        {
+            occupiedPositions.UnionWith(monster.GetOccupiedPositions(monster.position));
+        }
+
+        // 添加场景物体占据的位置
+        foreach (Scene scene in scenes)
+        {
+            occupiedPositions.UnionWith(scene.GetOccupiedPositions(scene.position));
+        }
+
+        Vector2Int randomPosition;
+        int attempts = 0;
+        const int maxAttempts = 50;
+
+        do
+        {
+            randomPosition = new Vector2Int(Random.Range(0, boardSize), Random.Range(0, boardSize));
+            attempts++;
+        
+            if (attempts >= maxAttempts)
+            {
+                Debug.LogWarning("Failed to find a valid empty position after 50 attempts.");
+                return new Vector2Int(-1, -1); // Return an invalid position to indicate failure
+            }
+        } while (occupiedPositions.Contains(randomPosition));
+
+        return randomPosition;
+    }
+
 
     bool AreAllPositionsValid(List<Vector2Int> positions)
     {

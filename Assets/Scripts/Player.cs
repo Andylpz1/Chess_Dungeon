@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
     public Vector2Int position; // 棋子在棋盘上的位置
-    public int boardSize = 5;   // 棋盘大小
+    public int boardSize = 8;   // 棋盘大小
     public GameObject moveHighlightPrefab; // 用于显示可移动位置的预制件
     public GameObject attackHighlightPrefab; // 用于显示可攻击位置的预制件
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小

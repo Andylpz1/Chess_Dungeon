@@ -10,17 +10,19 @@ public class Card
     public string Id;
     public int cost; // 添加花费属性
     public bool isQuick; // 新增 quick 变量
+    public bool isEnergy; // 新增 energy 变量
     public string upgradeFrom; // 升级来源
     public int hoardingValue; // 囤积值
     public bool isPartner;
 
-    public Card(CardType type, string Id = "M01", int cost = 10, string upgradeFrom = null, bool isQuick = false, int hoardingValue = 0, bool isPartner = false)
+    public Card(CardType type, string Id = "M01", int cost = 10, string upgradeFrom = null, bool isQuick = false, int hoardingValue = 0, bool isPartner = false, bool isEnergy = false)
     {
         cardType = type;
         this.Id = Id;
         this.cost = cost;
         this.upgradeFrom = upgradeFrom;
         this.isQuick = isQuick;
+        this.isQuick = isEnergy;
         this.hoardingValue = hoardingValue;
         this.isPartner = isPartner;
     }

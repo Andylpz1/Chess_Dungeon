@@ -20,6 +20,8 @@ public class RewardManager : MonoBehaviour
     private List<Card> rewardCards; // List of cards to choose from
     private Dictionary<string, List<Card>> rarityPools = new Dictionary<string, List<Card>>();
 
+    public event System.Action OnRewardSelectionComplete;
+
     void Start()
     {
         rewardPanel.SetActive(false); // Hide the panel at the start
@@ -148,6 +150,7 @@ public class RewardManager : MonoBehaviour
         deckManager.UpdateDeckPanel();
 
         CloseRewardPanel();
+        OnRewardSelectionComplete?.Invoke();
     }
 
     private void OnRefreshButtonClicked()

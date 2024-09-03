@@ -39,6 +39,9 @@ public class MonsterManager : MonoBehaviour
         monsterPrefabs["Hound"] = Resources.Load<GameObject>("Prefabs/Monster/Hound");
         monsterPrefabs["SlimeKing"] = Resources.Load<GameObject>("Prefabs/Monster/Slime_King");
 
+        rewardManager.OnRewardSelectionComplete += OnRewardSelectionComplete;
+
+
         LoadLevelConfigs();
     }
 
@@ -84,12 +87,28 @@ public class MonsterManager : MonoBehaviour
         totalMonstersToSpawn = levelConfig.monsterTypes.Count;
         totalMonstersKilled = 0;
         SpawnMonstersForLevel(levelConfig);
-        SpawnActivatepointsForLevel();
+
         if (level > 1)
         {
             rewardManager.OpenRewardPanel();
         }
+        
+    }
 
+    private void OnRewardSelectionComplete()
+    {
+    // Actions to perform after reward selection is complete
+    // For example, shuffle the deck, check for energy cards, draw cards, etc.
+
+    // Check if there are any energy cards in the deck after the reward is added
+        player.deckManager.RestartHand();
+        bool hasEnergyCard = player.deckManager.deck.Exists(card => card.isEnergy);
+
+        // If there are energy cards, spawn ActivatePoints
+        if (hasEnergyCard)
+        {
+            SpawnActivatepointsForLevel();
+        }
     }
 
     void ClearAllScenes()

@@ -113,10 +113,10 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new SwordCard(),
-            //new SwordCard(),
-            //new SwordCard()
-            new DarkEnergy(),
-            new FloatSword()
+            new SwordCard(),
+            new SwordCard()
+            //new DarkEnergy(),
+            //new FloatSword()
         };
 
         ShuffleDeck();
@@ -242,6 +242,28 @@ public class DeckManager : MonoBehaviour
             UpdateDeckCountText(); // 更新牌库数量显示
             UpdateDiscardPileCountText(); // 更新弃牌堆数量显示
         }
+    }
+
+    public void RestartHand()
+    {
+        // Combine discard pile and hand into the deck
+        deck.AddRange(discardPile);
+        deck.AddRange(hand);
+
+        // Clear the hand and discard pile
+        hand.Clear();
+        discardPile.Clear();
+
+        UpdateHandDisplay();
+        // Shuffle the deck
+        ShuffleDeck();
+
+        // Draw cards into hand
+        DrawCards(handSize);
+
+        // Update the deck and discard pile UI (if you have any)
+        UpdateDeckCountText();
+        UpdateDiscardPileCountText();
     }
 
     public void UpdateDeckCountText()

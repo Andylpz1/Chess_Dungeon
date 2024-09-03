@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8484975547698550979}
   - component: {fileID: 2410612194767273398}
   - component: {fileID: 3668300170762363890}
-  m_Layer: 0
+  - component: {fileID: -8052008539497263689}
+  m_Layer: 8
   m_Name: ActivatePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1499883291
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 3256425569499737106, guid: 85c81847bab347c4e8f2310a63e25357, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134,3 +135,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.375, y: 0.375}
   m_EdgeRadius: 0
+--- !u!210 &-8052008539497263689
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3397057089140146364}
+  m_Enabled: 1
+  m_SortingLayerID: 382257533
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0

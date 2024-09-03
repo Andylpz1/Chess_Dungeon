@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class sword_card : CardButtonBase
+public class sickle: CardButtonBase
 {
 
     Vector2Int[] swordDirections = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
@@ -23,6 +23,9 @@ public class sword_card : CardButtonBase
             }
             else
             {
+                if (player.isCharged) {
+                    player.damage = 3;
+                }
                 player.ShowAttackOptions(swordDirections,card);
             }
         }

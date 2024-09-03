@@ -91,9 +91,9 @@ GameObject:
   - component: {fileID: 5280022575110587628}
   - component: {fileID: 6513719207245129944}
   - component: {fileID: 4531463353146810934}
-  - component: {fileID: 5092327644583313841}
+  - component: {fileID: -6167455716767196466}
   m_Layer: 5
-  m_Name: sickle_card
+  m_Name: energy_core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 9047594194963741466, guid: 39896c5b2895d264f95158cfaed125dc, type: 3}
+  m_Sprite: {fileID: -1665194504541978683, guid: da41bd1b1f3f5eb4e87e7eae1739e305, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5092327644583313841
+--- !u!114 &-6167455716767196466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,6 +210,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7865966843562598253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ae2eac67151dfb429d3f41fa20ec065, type: 3}
+  m_Script: {fileID: 11500000, guid: e90807262d43e4d42a1957f2eccae571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

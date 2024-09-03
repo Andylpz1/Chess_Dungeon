@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
+    public int damage = 1; //默认伤害
 
     public bool isCharged = false; // 是否处于充能状态
     // 存储 ActivatePoint 和 DeactivatePoint 的位置信息
@@ -268,9 +269,10 @@ public class Player : MonoBehaviour
             Monster monster = monsterObject.GetComponent<Monster>();
             if (monster != null && monster.IsPartOfMonster(attackPosition))
             {
-                monster.TakeDamage(1);
+                monster.TakeDamage(damage);
             }
         }
+        damage = 1;
         ClearMoveHighlights();
         ExecuteCurrentCard();
     }

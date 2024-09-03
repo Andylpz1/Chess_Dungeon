@@ -15,7 +15,7 @@ public class Card
     public int hoardingValue; // 囤积值
     public bool isPartner;
 
-    public Card(CardType type, string Id = "M01", int cost = 10, string upgradeFrom = null, bool isQuick = false, int hoardingValue = 0, bool isPartner = false, bool isEnergy = false)
+    public Card(CardType type, string Id = "tbd", int cost = 10, string upgradeFrom = null, bool isQuick = false, int hoardingValue = 0, bool isPartner = false, bool isEnergy = false)
     {
         cardType = type;
         this.Id = Id;

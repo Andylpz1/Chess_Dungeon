@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public int damage = 1; //默认伤害
 
     public bool isCharged = false; // 是否处于充能状态
+    public Text energyStatusText;
+
     // 存储 ActivatePoint 和 DeactivatePoint 的位置信息
     public List<Vector2Int> activatePointPositions = new List<Vector2Int>();
     public List<Vector2Int> deactivatePointPositions = new List<Vector2Int>();
@@ -235,13 +237,26 @@ public class Player : MonoBehaviour
         OnMoveComplete?.Invoke();
     }
 
-    void CheckAndHandlePoints(Vector2Int newPosition)
+    public void UpdateEnergyStatus()
+    {
+        if (energyStatusText != null)
+        {
+            // Update the text based on the isCharged status
+            energyStatusText.text = isCharged ? "ON" : "OFF";
+        }
+        else
+        {
+            Debug.LogError("Energy status text component is not assigned.");
+        }
+    }
+
+    public void CheckAndHandlePoints(Vector2Int newPosition)
     {
 
         // 检查玩家是否移动到了ActivatePoint
         if (activatePointPositions.Contains(newPosition))
         {
-            isCharged = true;
+            Charge();
             Debug.Log("Player is now charged.");
         }
 
@@ -251,10 +266,20 @@ public class Player : MonoBehaviour
             if (isCharged)
             {
                 Debug.Log("Player is at DeactivatePoint, triggering Exhaust.");
-                deckManager.Exhaust();
-                isCharged = false;
+                Decharge();
             }
         }
+    }
+
+    public void Charge() {
+        isCharged = true;
+        UpdateEnergyStatus();
+    }
+
+    public void Decharge() {
+        deckManager.Exhaust();
+        isCharged = false;
+        UpdateEnergyStatus();
     }
 
 

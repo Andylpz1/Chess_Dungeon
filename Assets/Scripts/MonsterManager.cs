@@ -108,6 +108,7 @@ public class MonsterManager : MonoBehaviour
         if (hasEnergyCard)
         {
             SpawnActivatepointsForLevel();
+            player.deckManager.DrawCards(player.deckManager.handSize);
         }
     }
 

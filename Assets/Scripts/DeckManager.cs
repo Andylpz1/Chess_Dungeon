@@ -259,7 +259,7 @@ public class DeckManager : MonoBehaviour
         ShuffleDeck();
 
         // Draw cards into hand
-        DrawCards(handSize);
+        //DrawCards(handSize);
 
         // Update the deck and discard pile UI (if you have any)
         UpdateDeckCountText();

@@ -23,7 +23,7 @@ public class energy_core : CardButtonBase
                 player.currentCard = card;
                 if (!player.isCharged) {
                     player.deckManager.DrawCards(2);
-                    player.isCharged = true;
+                    player.Charge();
                 }
                 else {
                     player.deckManager.DrawCards(4);

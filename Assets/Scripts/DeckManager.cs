@@ -173,6 +173,12 @@ public class DeckManager : MonoBehaviour
             UpdateDeckCountText(); // 每次抽牌后更新牌库剩余数量显示
             UpdateDeckPanel(); // 每次抽牌后更新卡组显示
             UpdateDiscardPanel();
+            if (player.actions == 0) 
+            {
+                
+                player.DisableNonQuickCardButtons();
+                
+            }
 
             yield return new WaitForSeconds(0.1f); // 每次抽牌后等待0.1秒
         }

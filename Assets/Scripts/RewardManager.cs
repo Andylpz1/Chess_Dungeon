@@ -53,7 +53,8 @@ public class RewardManager : MonoBehaviour
         rarityPools["Epic"] = new List<Card>
         {
             new FlailCard(),
-            new FloatSword()
+            new FloatSword(),
+            new DarkEnergy()
             // Add more epic cards here
         };
 

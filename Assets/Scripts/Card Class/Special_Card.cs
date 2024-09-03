@@ -20,3 +20,38 @@ public class EnergyCore : Card
         return "抓两张牌，充能；已充能：抓四张牌";
     }
 }
+
+public class DarkEnergy : Card
+{
+    public DarkEnergy() : base(CardType.Special)
+    {
+        isQuick = true;
+        isEnergy = true;
+    }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Special/dark_energy_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Special/dark_energy_card");
+    }
+    public override string GetDescription()
+    {
+        return "快速，增加一点行动点，耗竭：抓一张牌";
+    }
+    public override void ExhaustEffect()
+    {
+
+        if (player != null)
+        {
+            player.deckManager.DrawCards(1);
+        }
+        else
+        {
+            Debug.LogError("Player is not assigned.");
+        }
+    }
+
+}

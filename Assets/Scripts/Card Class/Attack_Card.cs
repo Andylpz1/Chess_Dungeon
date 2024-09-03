@@ -22,8 +22,6 @@ public class SickleCard : Card
 
 public class FloatSword : Card
 {
-    private MonsterManager monsterManager;
-    private Player player;
 
     public FloatSword() : base(CardType.Attack) 
     { 
@@ -47,7 +45,6 @@ public class FloatSword : Card
 
     public override void ExhaustEffect()
     {
-        EnsureReferencesInitialized();
 
         if (monsterManager != null && player != null)
         {
@@ -69,24 +66,4 @@ public class FloatSword : Card
         }
     }
 
-    private void EnsureReferencesInitialized()
-    {
-        if (monsterManager == null)
-        {
-            monsterManager = GameObject.FindObjectOfType<MonsterManager>();
-            if (monsterManager == null)
-            {
-                Debug.LogError("MonsterManager not found in the scene.");
-            }
-        }
-
-        if (player == null)
-        {
-            player = GameObject.FindObjectOfType<Player>();
-            if (player == null)
-            {
-                Debug.LogError("Player not found in the scene.");
-            }
-        }
-    }
 }

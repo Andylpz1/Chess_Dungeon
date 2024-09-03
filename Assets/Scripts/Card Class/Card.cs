@@ -6,6 +6,9 @@ public enum CardType { Move, Attack, Special}
 [System.Serializable]
 public class Card
 {
+    public Player player;
+    public MonsterManager monsterManager;
+    
     public CardType cardType;
     public string Id;
     public int cost; // 添加花费属性
@@ -25,6 +28,9 @@ public class Card
         this.isQuick = isEnergy;
         this.hoardingValue = hoardingValue;
         this.isPartner = isPartner;
+
+        player = GameObject.FindObjectOfType<Player>();
+        monsterManager = GameObject.FindObjectOfType<MonsterManager>();
     }
 
     public virtual GameObject GetPrefab()
@@ -210,7 +216,7 @@ public class PotionCard : Card
     }
     public override string GetDescription()
     {
-        return "增加一点行动点";
+        return "快速，增加一点行动点";
     }
 }
 

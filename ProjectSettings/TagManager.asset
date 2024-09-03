@@ -13,9 +13,9 @@ TagManager:
   - Water
   - UI
   - aboveui
-  - 
-  - 
-  - 
+  - monster
+  - chessboard
+  - player
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 382257533
+    locked: 0
+  - name: monster
+    uniqueID: 158606717
     locked: 0
   - name: highlight
     uniqueID: 2795084005

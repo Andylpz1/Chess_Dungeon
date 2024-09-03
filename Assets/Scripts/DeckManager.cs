@@ -113,8 +113,10 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new SwordCard(),
-            new SwordCard(),
-            new SwordCard()
+            //new SwordCard(),
+            //new SwordCard()
+            new DarkEnergy(),
+            new FloatSword()
         };
 
         ShuffleDeck();
@@ -458,10 +460,12 @@ public class DeckManager : MonoBehaviour
     {
         Debug.Log("Exhaust triggered. All cards with exhaust effects will be triggered.");
         
-        // 对所有手牌进行 Exhaust 操作
-        foreach (Card card in hand)
+        List<Card> cardsToExhaust = new List<Card>(hand);
+
+        // Iterate over the separate list and trigger the exhaust effects
+        foreach (Card card in cardsToExhaust)
         {
-            card.ExhaustEffect(); // 调用每张卡牌的Exhaust效果
+            card.ExhaustEffect(); // Invoke the exhaust effect on each card
         }
 
         // 将 isCharged 设置为 false

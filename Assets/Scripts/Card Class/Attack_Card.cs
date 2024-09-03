@@ -19,3 +19,74 @@ public class SickleCard : Card
         return "1点伤害，已充能：3点伤害";
     }
 }
+
+public class FloatSword : Card
+{
+    private MonsterManager monsterManager;
+    private Player player;
+
+    public FloatSword() : base(CardType.Attack) 
+    { 
+        isEnergy = true;
+    }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/float_sword_card");
+    }
+
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Attack/float_sword_card");
+    }
+
+    public override string GetDescription()
+    {
+        return "造成2点伤害，耗竭：对一个最近的敌人造成1点伤害";
+    }
+
+    public override void ExhaustEffect()
+    {
+        EnsureReferencesInitialized();
+
+        if (monsterManager != null && player != null)
+        {
+            // Find and damage the nearest monster
+            Monster nearestMonster = monsterManager.FindNearestMonster(player.position);
+            if (nearestMonster != null)
+            {
+                nearestMonster.TakeDamage(1);
+                Debug.Log($"FloatSword card exhausted: Dealt 1 damage to {nearestMonster.name}");
+            }
+            else
+            {
+                Debug.Log("No monsters found nearby to damage.");
+            }
+        }
+        else
+        {
+            Debug.LogError("MonsterManager or Player is not assigned.");
+        }
+    }
+
+    private void EnsureReferencesInitialized()
+    {
+        if (monsterManager == null)
+        {
+            monsterManager = GameObject.FindObjectOfType<MonsterManager>();
+            if (monsterManager == null)
+            {
+                Debug.LogError("MonsterManager not found in the scene.");
+            }
+        }
+
+        if (player == null)
+        {
+            player = GameObject.FindObjectOfType<Player>();
+            if (player == null)
+            {
+                Debug.LogError("Player not found in the scene.");
+            }
+        }
+    }
+}

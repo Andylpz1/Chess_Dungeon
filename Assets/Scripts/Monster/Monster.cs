@@ -6,11 +6,13 @@ public class Monster : MonoBehaviour
     public int health;
     public Vector2Int position;
     public Player player;
+    private MonsterManager monsterManager;
 
     public virtual void Initialize(Vector2Int startPos)
     {
         position = startPos;
         player = FindObjectOfType<Player>();
+        monsterManager = FindObjectOfType<MonsterManager>();
         UpdatePosition();
     }
 
@@ -33,6 +35,10 @@ public class Monster : MonoBehaviour
         if (player != null)
         {
             player.AddGold(10);
+        }
+         if (monsterManager != null)
+        {
+            monsterManager.RemoveMonster(this);
         }
         Destroy(gameObject);
     }

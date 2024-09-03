@@ -369,4 +369,30 @@ public class MonsterManager : MonoBehaviour
         // }
         // warnings.Clear();
     }
+
+    public Monster FindNearestMonster(Vector2Int playerPosition)
+    {
+        Monster nearestMonster = null;
+        float nearestDistance = float.MaxValue;
+
+        foreach (Monster monster in monsters)
+        {
+            float distance = Vector2Int.Distance(playerPosition, monster.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestMonster = monster;
+            }
+        }
+
+        return nearestMonster;
+    }
+
+    public void RemoveMonster(Monster monster)
+    {
+        if (monsters.Contains(monster))
+        {
+            monsters.Remove(monster);
+        }
+    }
 }

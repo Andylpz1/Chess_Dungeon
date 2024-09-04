@@ -110,6 +110,10 @@ public class MonsterManager : MonoBehaviour
             SpawnActivatepointsForLevel();
             player.deckManager.DrawCards(player.deckManager.handSize);
         }
+        else 
+        {
+            player.deckManager.DrawCards(player.deckManager.handSize);
+        }
     }
 
     void ClearAllScenes()

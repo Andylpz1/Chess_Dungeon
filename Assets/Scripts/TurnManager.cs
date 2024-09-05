@@ -89,13 +89,16 @@ public class TurnManager : MonoBehaviour
         int slimeCount = monsterManager.GetMonsterCount();
         float delay = slimeCount * 0.5f + 1.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
         yield return new WaitForSeconds(delay);
+        if (monsterManager.nextlevel == true)  {
+            // 处理卡牌的回合结束效果
+            deckManager.HandleEndOfTurnEffects();
 
-        // 处理卡牌的回合结束效果
-        deckManager.HandleEndOfTurnEffects();
-
-        // 回合结束抓新的手牌
-        deckManager.DrawCards(deckManager.handSize - deckManager.hand.Count);
-
+            // 回合结束抓新的手牌
+            deckManager.DrawCards(deckManager.handSize - deckManager.hand.Count);
+        }
+        else {
+            monsterManager.nextlevel = true;
+        }
         EnableAllButtons(); // 启用所有按钮
         UpdateActionText();
 

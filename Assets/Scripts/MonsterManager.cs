@@ -8,6 +8,7 @@ public class MonsterManager : MonoBehaviour
     public int boardSize = 8;
     public Vector3 cellSize = new Vector3(1, 1, 0); // 每个Tile的大小
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
+    public bool nextlevel = false;
 
     private List<Monster> monsters = new List<Monster>();
     private List<Scene> scenes = new List<Scene>();
@@ -267,10 +268,7 @@ public class MonsterManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
         //生成新的怪物
-        if (monsters.Count == 0)
-        {
-            StartLevel(++currentLevel);
-        }
+        
     }
 
     public void OnMonsterKilled()
@@ -286,11 +284,15 @@ public class MonsterManager : MonoBehaviour
     {
         // 移除已被销毁的Monster对象
         monsters.RemoveAll(monster => monster == null);
-
+        nextlevel = true;
         if (turnCount % 1 == 0)
         {
             MoveMonsters();
             Debug.Log("Monsters move.");
+        }
+        if (monsters.Count == 0)
+        {
+            StartLevel(++currentLevel);
         }
     }
 

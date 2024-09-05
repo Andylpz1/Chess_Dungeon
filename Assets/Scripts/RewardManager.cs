@@ -56,7 +56,8 @@ public class RewardManager : MonoBehaviour
         {
             new FlailCard(),
             new FloatSword(),
-            new DarkEnergy()
+            new DarkEnergy(),
+            new MadnessEcho()
             // Add more epic cards here
         };
 

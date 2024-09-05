@@ -224,11 +224,49 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    public void DiscardCard(int i)
+    {
+        // Ensure the index is valid before proceeding
+        if (i < 0 || i >= hand.Count)
+        {
+            Debug.LogError("Invalid card index to discard: " + i);
+            return;
+        }
+
+        // Get the card to be discarded
+        Card card = hand[i];
+
+        // Remove the card from hand and add it to the discard pile
+        hand.RemoveAt(i);
+        discardPile.Add(card);
+
+        // Update the discard pile count UI
+        UpdateDiscardPileCountText();
+
+        // Trigger the discard effect of the card
+        card.DiscardEffect();
+
+        // Find the corresponding card button and destroy it
+        // Check the card button by matching the card
+        for (int j = cardButtons.Count - 1; j >= 0; j--)
+        {
+            CardButton cardButtonScript = cardButtons[j].GetComponent<CardButton>();
+            if (cardButtonScript != null && cardButtonScript.GetCard() == card)
+            {
+                Destroy(cardButtons[j]); // Destroy the card's button
+                cardButtons.RemoveAt(j); // Remove from the cardButtons list
+                break;
+            }
+        }
+    }
+
+
+
     public void DiscardHand()
     {
-        foreach (Card card in new List<Card>(hand))
+        for (int i = hand.Count - 1; i >= 0; i--)
         {
-            UseCard(card);
+            DiscardCard(i); // Use DiscardCard method to discard each card
         }
     }
 

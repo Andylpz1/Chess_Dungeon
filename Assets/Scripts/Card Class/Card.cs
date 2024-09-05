@@ -51,6 +51,11 @@ public class Card
     {
         // 这里可以加入每张卡牌独特的 Exhaust 效果
     }
+
+    public virtual void DiscardEffect()
+    {
+        // 这里可以加入每张卡牌独特的 Discard 效果
+    }
 }
 
 public class PawnCard : Card

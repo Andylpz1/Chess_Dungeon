@@ -110,13 +110,18 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new PawnCard(),
-            new PawnCard(),
+           // new PawnCard(),
+            new Assassin(),
             new PawnCard(),
             new SwordCard(),
             new SwordCard(),
-            new SwordCard()
+            new Vine()
+            //new SwordCard()
             //new DarkEnergy(),
-            //new FloatSword()
+            //new FloatSword(),
+            //new FloatSword(),
+            //new FloatSword(),
+            //new EnergyCore()
         };
 
         ShuffleDeck();

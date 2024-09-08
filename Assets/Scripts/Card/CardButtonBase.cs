@@ -11,6 +11,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     protected Player player;
     protected HintManager hintManager; // 引用HintManager
     protected TurnManager turnManager; // 引用TurnManager
+    public MonsterManager monsterManager;
 
     protected virtual void Awake()
     {
@@ -23,7 +24,8 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     {
         hintManager = FindObjectOfType<HintManager>();
         turnManager = FindObjectOfType<TurnManager>();
-        player = FindObjectOfType<Player>();
+        monsterManager = GameObject.FindObjectOfType<MonsterManager>();
+        player = GameObject.FindObjectOfType<Player>();
 
         if (hintManager == null)
         {

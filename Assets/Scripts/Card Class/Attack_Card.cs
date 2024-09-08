@@ -65,7 +65,6 @@ public class FloatSword : Card
             Debug.LogError("MonsterManager or Player is not assigned.");
         }
     }
-
 }
 
 public class RitualSpear : Card

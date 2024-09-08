@@ -49,7 +49,9 @@ public class RewardManager : MonoBehaviour
             new PotionCard(),
             new EnergyCore(),
             new SickleCard(),
-            new RitualSpear()
+            new RitualSpear(),
+            new Vine(),
+            new Assassin()
             // Add more uncommon cards here
         };
 

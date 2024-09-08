@@ -25,7 +25,7 @@ public class Card
         this.cost = cost;
         this.upgradeFrom = upgradeFrom;
         this.isQuick = isQuick;
-        this.isQuick = isEnergy;
+        this.isEnergy = isEnergy;
         this.hoardingValue = hoardingValue;
         this.isPartner = isPartner;
 

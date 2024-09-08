@@ -76,3 +76,25 @@ public class MadnessEcho : Card
         return "快速，弃除所有手牌，抓等量的手牌";
     }
 }
+
+public class Vine : Card
+{
+    public Vine() : base(CardType.Special)
+    {
+        
+    }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Special/vine_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Special/vine_card");
+    }
+    public override string GetDescription()
+    {
+        return "本回合中，每当你使用移动牌，尖棘都会对你相邻的一个敌人打1";
+    }
+
+}

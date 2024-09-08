@@ -396,7 +396,7 @@ public class MonsterManager : MonoBehaviour
         // warnings.Clear();
     }
 
-    public Monster FindNearestMonster(Vector2Int playerPosition)
+    public Monster FindNearestMonster(Vector2Int playerPosition, bool isAdjacent = false)
     {
         Monster nearestMonster = null;
         float nearestDistance = float.MaxValue;
@@ -404,15 +404,33 @@ public class MonsterManager : MonoBehaviour
         foreach (Monster monster in monsters)
         {
             float distance = Vector2Int.Distance(playerPosition, monster.position);
-            if (distance < nearestDistance)
+
+            if (isAdjacent)
             {
-                nearestDistance = distance;
-                nearestMonster = monster;
+                // If isAdjacent is true, we only care about monsters that are adjacent to the player
+                if (Mathf.Abs(playerPosition.x - monster.position.x) <= 1 && Mathf.Abs(playerPosition.y - monster.position.y) <= 1)
+                {
+                    if (distance < nearestDistance)
+                    {
+                        nearestDistance = distance;
+                        nearestMonster = monster;
+                    }
+                }
+            }
+            else
+            {
+                // If isAdjacent is false, find the nearest monster regardless of adjacency
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestMonster = monster;
+                }
             }
         }
 
         return nearestMonster;
     }
+
 
     public void RemoveMonster(Monster monster)
     {

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
     public int damage = 1; //默认伤害
+    public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
 
     public bool isCharged = false; // 是否处于充能状态
     public Text energyStatusText;
@@ -28,17 +29,24 @@ public class Player : MonoBehaviour
     private List<GameObject> moveHighlights = new List<GameObject>(); // 初始化 moveHighlights 列表
     public Card currentCard;
     public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
+    public MonsterManager monsterManager;
     public Text goldText;
 
     public event System.Action OnMoveComplete;
 
     private GameObject currentHighlight; // 用于存储当前的高亮对象
 
+    public delegate void CardPlayed();
+    public event CardPlayed OnCardPlayed;
+
+    public bool vineEffectActive = false; 
+
     void Awake()
     {
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
         Debug.Log($"Current Location: {position}");
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
+        monsterManager = FindObjectOfType<MonsterManager>(); // 初始化deckManager引用
         UpdatePosition();
         UpdateGoldText();
         currentCard = null;
@@ -388,6 +396,15 @@ public class Player : MonoBehaviour
         {
             deckManager.UseCard(currentCard);
 
+            if (currentCard.cardType == CardType.Move) // Assuming MovementCard is a class for movement cards
+            {
+                if (vineEffectActive)
+                {
+                    TriggerVineEffect();
+                }
+            }
+            
+
             if (!currentCard.isQuick)
             {
                 actions -= 1;
@@ -409,16 +426,50 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+
+            // Notify listeners that a card has been played
+            OnCardPlayed?.Invoke();
+
             currentCard = null;
+            OnCardUsed(currentCard);
             // 推进回合
             if (actions == 0) 
             {
+                ResetEffectsAtEndOfTurn();
                 FindObjectOfType<TurnManager>().UpdateActionText();   
                 DisableNonQuickCardButtons();
                 //添加回合条变成红色特效
             }
         }
     }
+
+    public void ResetEffectsAtEndOfTurn()
+    {
+        vineEffectActive = false; // Reset the vine effect after the turn
+        cardsUsedThisTurn = 0;
+    }
+
+    public void OnCardUsed(Card playedCard)
+    {
+        cardsUsedThisTurn++;
+        OnCardPlayed?.Invoke(); // Trigger the global event when a card is used
+    }
+
+    private void TriggerVineEffect()
+    {
+        Monster nearestMonster = monsterManager.FindNearestMonster(position, true);
+
+        if (nearestMonster != null)
+        {
+            nearestMonster.TakeDamage(1);
+            Debug.Log("Vine effect triggered: Dealt 1 damage to " + nearestMonster.name);
+        }
+        else
+        {
+            Debug.Log("No adjacent monsters to damage.");
+        }
+    }
+
 
     public void DisableNonQuickCardButtons()
     {

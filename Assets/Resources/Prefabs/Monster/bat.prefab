@@ -100,6 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7a780e630eed741862bb0e726af40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 1
   position: {x: 0, y: 0}
   player: {fileID: 0}

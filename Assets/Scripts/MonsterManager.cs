@@ -24,6 +24,8 @@ public class MonsterManager : MonoBehaviour
     private List<LevelConfig> levelConfigs; // 关卡配置列表
     private Dictionary<string, GameObject> monsterPrefabs = new Dictionary<string, GameObject>();
 
+    
+
     void Awake()
     {
         // Initialize the player in Awake to ensure it is set before Start
@@ -72,6 +74,9 @@ public class MonsterManager : MonoBehaviour
         // 清空之前存储的位置数据
         player.activatePointPositions.Clear();
         player.deactivatePointPositions.Clear();
+
+        player.isCharged = false;
+        player.UpdateEnergyStatus();
         
 
         LevelConfig levelConfig = levelConfigs.Find(l => l.levelNumber == level);

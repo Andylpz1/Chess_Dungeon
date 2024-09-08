@@ -5,6 +5,7 @@ public class TwoBladeCard : Card
     public TwoBladeCard() : base(CardType.Attack, "A02A", 30, "A02")
     {
         isPartner = true;
+        isQuick = true;
     }
 
     public override GameObject GetPrefab()
@@ -17,6 +18,6 @@ public class TwoBladeCard : Card
     }
     public override string GetDescription()
     {
-        return "拍档，斜向攻击";
+        return "快速，拍档，斜向攻击";
     }
 }

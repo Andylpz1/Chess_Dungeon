@@ -107,16 +107,30 @@ public class DeckManager : MonoBehaviour
         // 初始化牌库
         deck = new List<Card>
         {
-            new PawnCard(),
-            new PawnCard(),
-            new PawnCard(),
-           // new PawnCard(),
-            new Assassin(),
-            new PawnCard(),
-            new SwordCard(),
-            new SwordCard(),
-            new Vine()
+            //default deck
+            //new PawnCard(),
+            //new PawnCard(),
+            //new PawnCard(),
+            //new PawnCard(),
+            //new PawnCard(),
+            //new SwordCard(),
+            //new SwordCard(),
             //new SwordCard()
+            
+            //step build
+            new Vine(),
+            new Vine(),
+            new PotionCard(),
+            new PotionCard(),
+            new EnergyCore(),
+            new EnergyCore(),
+            new Assassin(),
+            new Assassin(),
+            new Assassin(),
+            new TwoBladeCard(),
+            new TwoBladeCard(),
+            new TwoBladeCard(),
+            new TwoBladeCard()
             //new DarkEnergy(),
             //new FloatSword(),
             //new FloatSword(),

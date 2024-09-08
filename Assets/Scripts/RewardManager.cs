@@ -51,7 +51,8 @@ public class RewardManager : MonoBehaviour
             new SickleCard(),
             new RitualSpear(),
             new Vine(),
-            new Assassin()
+            new Assassin(),
+            new TwoBladeCard()
             // Add more uncommon cards here
         };
 

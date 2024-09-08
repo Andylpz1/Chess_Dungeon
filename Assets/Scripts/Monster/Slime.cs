@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Slime : Monster
 {
+    
     public override void Initialize(Vector2Int startPos)
     {
         base.Initialize(startPos);

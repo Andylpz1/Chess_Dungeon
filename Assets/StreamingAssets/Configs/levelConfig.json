@@ -2,7 +2,7 @@
     "levels": [
         {
             "levelNumber": 1,
-            "monsterTypes": ["Slime", "Slime"]
+            "monsterTypes": ["Slime", "Slime", "Slime", "Slime", "Slime", "Slime", "Bat", "Bat","Bat", "Bat","Hound","Hound"]
         },
         {
             "levelNumber": 2,

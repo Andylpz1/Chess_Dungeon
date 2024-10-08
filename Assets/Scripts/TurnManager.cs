@@ -18,6 +18,7 @@ public class TurnManager : MonoBehaviour
     public int actions = 3;
 
     public Player player;
+    public RewardManager rewardManager;
     private List<GameObject> turnSlots = new List<GameObject>();
     private int currentActionIndex = 0;
 
@@ -26,7 +27,7 @@ public class TurnManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         InitializeTurnPanel();
         deckManager = FindObjectOfType<DeckManager>();
-
+        rewardManager = FindObjectOfType<RewardManager>();
         UpdateActionText();
 
         if (monsterManager == null)
@@ -89,6 +90,13 @@ public class TurnManager : MonoBehaviour
         int slimeCount = monsterManager.GetMonsterCount();
         float delay = slimeCount * 0.5f + 1.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
         yield return new WaitForSeconds(delay);
+
+        // 检查是否打开了RewardPanel，如果打开了则暂停执行，直到RewardPanel关闭
+        while (rewardManager.isRewardPanelOpen)
+        {
+            yield return null; // 每帧检查一次，直到RewardPanel关闭
+        }
+
         if (monsterManager.nextlevel == true)  {
             // 处理卡牌的回合结束效果
             deckManager.HandleEndOfTurnEffects();

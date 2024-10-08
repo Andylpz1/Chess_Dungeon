@@ -23,6 +23,7 @@ public class MonsterManager : MonoBehaviour
     public RewardManager rewardManager;
     private List<LevelConfig> levelConfigs; // 关卡配置列表
     private Dictionary<string, GameObject> monsterPrefabs = new Dictionary<string, GameObject>();
+    public bool isLevelCompleted = false;
 
     
 
@@ -107,18 +108,26 @@ public class MonsterManager : MonoBehaviour
     // For example, shuffle the deck, check for energy cards, draw cards, etc.
 
     // Check if there are any energy cards in the deck after the reward is added
+        rewardManager.isRewardPanelOpen = false;
         player.deckManager.RestartHand();
         bool hasEnergyCard = player.deckManager.deck.Exists(card => card.isEnergy);
 
         // If there are energy cards, spawn ActivatePoints
-        if (hasEnergyCard)
+        if (isLevelCompleted)
         {
-            SpawnActivatepointsForLevel();
-            player.deckManager.DrawCards(player.deckManager.handSize);
-        }
-        else 
-        {
-            player.deckManager.DrawCards(player.deckManager.handSize);
+            // 如果关卡完成，则重置手牌
+            player.deckManager.RestartHand();
+            // 如果有能量卡，则生成激活点
+            if (hasEnergyCard)
+            {
+                SpawnActivatepointsForLevel();
+            }
+
+            // 抓新手牌
+            //player.deckManager.DrawCards(player.deckManager.handSize);
+
+            // 重置关卡完成标记
+            isLevelCompleted = false;
         }
     }
 
@@ -290,7 +299,8 @@ public class MonsterManager : MonoBehaviour
         // 移除已被销毁的Monster对象
         monsters.RemoveAll(monster => monster == null);
         nextlevel = true;
-        if (turnCount % 1 == 0)
+        isLevelCompleted = true; // 标记关卡完成
+        if (turnCount % 1 == 0 && monsters.Count != 0)
         {
             MoveMonsters();
             Debug.Log("Monsters move.");

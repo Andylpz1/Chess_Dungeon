@@ -17,6 +17,7 @@ public class RewardManager : MonoBehaviour
     public Button skipButton;
 
     private DeckManager deckManager; // Reference to the DeckManager
+    public bool isRewardPanelOpen = false;
     private List<Card> rewardCards; // List of cards to choose from
     private Dictionary<string, List<Card>> rarityPools = new Dictionary<string, List<Card>>();
 
@@ -97,6 +98,7 @@ public class RewardManager : MonoBehaviour
     // Method to open the reward panel with three cards
     public void OpenRewardPanel()
     {
+        isRewardPanelOpen = true;
         rewardPanel.SetActive(true);
         rewardCards = GenerateRewardCards(); // Generate three random cards
 

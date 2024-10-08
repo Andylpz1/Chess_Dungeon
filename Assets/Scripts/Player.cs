@@ -435,7 +435,7 @@ public class Player : MonoBehaviour
             // 推进回合
             if (actions == 0) 
             {
-                ResetEffectsAtEndOfTurn();
+                //ResetEffectsAtEndOfTurn();
                 FindObjectOfType<TurnManager>().UpdateActionText();   
                 DisableNonQuickCardButtons();
                 //添加回合条变成红色特效

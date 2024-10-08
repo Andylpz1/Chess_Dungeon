@@ -77,7 +77,7 @@ public class TurnManager : MonoBehaviour
     private IEnumerator HandleTurnEnd()
     {
         DisableAllButtons(); // 禁用所有按钮
-
+        player.ResetEffectsAtEndOfTurn();
         // 回合结束弃牌 (暂时废弃)
         //deckManager.DiscardHand();
         player.ClearMoveHighlights();

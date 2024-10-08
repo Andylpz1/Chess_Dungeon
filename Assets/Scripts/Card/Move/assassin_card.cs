@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+//existing bug: assassin card don't lose quick now
 public class assassin_card : CardButtonBase
 {
     public override void Initialize(Card card, DeckManager deckManager)
@@ -27,6 +27,8 @@ public class assassin_card : CardButtonBase
             card.isQuick = true; // Make the assassin card quick after 3 cards are used
             Debug.Log("Assassin card is now quick due to combo.");
         }
+
+        
     }
 
     protected override void OnClick()

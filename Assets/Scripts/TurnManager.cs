@@ -87,9 +87,12 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Turn end");
 
         // 等待所有史莱姆移动完成
-        int slimeCount = monsterManager.GetMonsterCount();
-        float delay = slimeCount * 0.5f + 1.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
-        yield return new WaitForSeconds(delay);
+        if (monsterManager.isLevelCompleted != true)
+        {
+            int slimeCount = monsterManager.GetMonsterCount();
+            float delay = slimeCount * 0.5f + 1.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
+            yield return new WaitForSeconds(delay);
+        }
 
         // 检查是否打开了RewardPanel，如果打开了则暂停执行，直到RewardPanel关闭
         while (rewardManager.isRewardPanelOpen)
@@ -107,6 +110,7 @@ public class TurnManager : MonoBehaviour
         else {
             monsterManager.nextlevel = true;
         }
+        monsterManager.isLevelCompleted = false; // 标记关卡完成
         EnableAllButtons(); // 启用所有按钮
         UpdateActionText();
 

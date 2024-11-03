@@ -308,9 +308,9 @@ public class MonsterManager : MonoBehaviour
         // 移除已被销毁的Monster对象
         monsters.RemoveAll(monster => monster == null);
         nextlevel = true;
-        isLevelCompleted = true; // 标记关卡完成
         if (monsters.Count == 0)
         {
+            isLevelCompleted = true; // 标记关卡完成
             StartLevel(++currentLevel);
         }
         else if (turnCount % 1 == 0 && monsters.Count != 0)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -25,7 +26,7 @@ public class MonsterManager : MonoBehaviour
     private Dictionary<string, GameObject> monsterPrefabs = new Dictionary<string, GameObject>();
     public bool isLevelCompleted = false;
 
-    
+    public Text levelCountText;
 
     void Awake()
     {
@@ -70,6 +71,11 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
+    private void UpdateLevelCountText()
+    {
+        levelCountText.text = "Level: " + currentLevel.ToString();
+    }
+
     void StartLevel(int level)
     {
         // 清空之前存储的位置数据
@@ -86,6 +92,9 @@ public class MonsterManager : MonoBehaviour
             Debug.LogError("Level configuration not found for level: " + level);
             return;
         }
+
+        // 更新 UI 上的 LevelCount 文本
+        UpdateLevelCountText();
 
         // 清除所有场景对象
         ClearAllScenes();
@@ -293,21 +302,21 @@ public class MonsterManager : MonoBehaviour
             StartLevel(++currentLevel);
         }
     }
-
+    //回合结束检查是否进入下一个回合/开始新关卡
     public void OnTurnEnd(int turnCount)
     {
         // 移除已被销毁的Monster对象
         monsters.RemoveAll(monster => monster == null);
         nextlevel = true;
         isLevelCompleted = true; // 标记关卡完成
-        if (turnCount % 1 == 0 && monsters.Count != 0)
-        {
-            MoveMonsters();
-            Debug.Log("Monsters move.");
-        }
         if (monsters.Count == 0)
         {
             StartLevel(++currentLevel);
+        }
+        else if (turnCount % 1 == 0 && monsters.Count != 0)
+        {
+            MoveMonsters();
+            Debug.Log("Monsters move.");
         }
     }
 

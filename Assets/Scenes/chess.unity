@@ -754,6 +754,7 @@ RectTransform:
   - {fileID: 1281658822}
   - {fileID: 84296092}
   - {fileID: 1144206849}
+  - {fileID: 1355986257}
   - {fileID: 513411014}
   - {fileID: 656423283}
   - {fileID: 47765511}
@@ -2434,6 +2435,7 @@ MonoBehaviour:
   turnPanel: {fileID: 656423283}
   actions: 3
   player: {fileID: 0}
+  rewardManager: {fileID: 0}
 --- !u!1 &559963831
 GameObject:
   m_ObjectHideFlags: 0
@@ -5448,6 +5450,85 @@ RectTransform:
   m_AnchoredPosition: {x: 3.5, y: 2.48}
   m_SizeDelta: {x: 800, y: 450.14926}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1355986256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1355986257}
+  - component: {fileID: 1355986259}
+  - component: {fileID: 1355986258}
+  m_Layer: 5
+  m_Name: LevelCount
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1355986257
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355986256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 98812311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -23.35, y: 201.74}
+  m_SizeDelta: {x: 191.11, y: 46.48}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1355986258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355986256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 34
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Level:'
+--- !u!222 &1355986259
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355986256}
+  m_CullTransparentMesh: 1
 --- !u!1 &1376524356
 GameObject:
   m_ObjectHideFlags: 0
@@ -5495,9 +5576,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardSize: 8
   cellSize: {x: 1, y: 1, z: 0}
-  cellGap: {x: 0.5, y: 0.5, z: 0}
-  player: {fileID: 1399918234}
+  cellGap: {x: 0, y: 0, z: 0}
+  nextlevel: 0
+  player: {fileID: 0}
   rewardManager: {fileID: 0}
+  isLevelCompleted: 0
+  levelCountText: {fileID: 1355986258}
 --- !u!1 &1399918231
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,6 +5692,7 @@ MonoBehaviour:
   gold: 1000
   actions: 3
   damage: 1
+  cardsUsedThisTurn: 0
   isCharged: 0
   energyStatusText: {fileID: 142634559}
   activatePointPositions: []
@@ -5626,7 +5711,9 @@ MonoBehaviour:
     hoardingValue: 0
     isPartner: 0
   deckManager: {fileID: 0}
+  monsterManager: {fileID: 0}
   goldText: {fileID: 1144206850}
+  vineEffectActive: 0
 --- !u!61 &1399918235
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6887,6 +6974,7 @@ MonoBehaviour:
   text3: {fileID: 2035745223}
   refreshButton: {fileID: 660714314}
   skipButton: {fileID: 364658871}
+  isRewardPanelOpen: 0
 --- !u!4 &2128539586
 Transform:
   m_ObjectHideFlags: 0

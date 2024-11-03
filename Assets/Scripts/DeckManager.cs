@@ -128,8 +128,8 @@ public class DeckManager : MonoBehaviour
             new Assassin(),
             new Assassin(),
             new TwoBladeCard(),
-            new TwoBladeCard(),
-            new TwoBladeCard(),
+            //new TwoBladeCard(),
+            //new TwoBladeCard(),
             new TwoBladeCard()
             //new DarkEnergy(),
             //new FloatSword(),

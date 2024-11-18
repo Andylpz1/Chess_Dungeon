@@ -11,6 +11,7 @@ public class Hound : Monster
     public override void Initialize(Vector2Int startPos)
     {
         base.Initialize(startPos);
+        monsterName = "Hound";
     }
 
     public override void TakeDamage(int damage)

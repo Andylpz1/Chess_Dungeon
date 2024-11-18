@@ -8,6 +8,7 @@ public class Slime : Monster
     public override void Initialize(Vector2Int startPos)
     {
         base.Initialize(startPos);
+        monsterName = "Slime";
     }
 
     public override void TakeDamage(int damage)

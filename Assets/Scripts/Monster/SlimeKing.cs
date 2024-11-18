@@ -13,6 +13,7 @@ public class SlimeKing : Monster
     public override void Initialize(Vector2Int startPos)
     {
         base.Initialize(startPos);
+        monsterName = "SlimeKing";
         UpdateOccupiedPositions();
     }
 

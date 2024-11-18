@@ -1,18 +1,24 @@
 using UnityEngine;
+using UnityEngine.EventSystems; 
 using System.Collections.Generic;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public string monsterName = "default";
     public int health;
     public Vector2Int position;
     public Player player;
     private MonsterManager monsterManager;
+
+    public MonsterInfoManager infoManager;
 
     public virtual void Initialize(Vector2Int startPos)
     {
         position = startPos;
         player = FindObjectOfType<Player>();
         monsterManager = FindObjectOfType<MonsterManager>();
+        infoManager = FindObjectOfType<MonsterInfoManager>();
+
         UpdatePosition();
     }
 
@@ -87,5 +93,26 @@ public class Monster : MonoBehaviour
     {
         return new List<Vector2Int> { position }; // Default to single-tile monster
     }
-    
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log($"Pointer entered monster: {monsterName}"); // 调试用日志
+        if (infoManager != null)
+        {
+            // 调用 MonsterInfoManager 更新信息面板
+            infoManager.UpdateMonsterInfo(monsterName, health, position);
+        }
+    }
+
+    // 鼠标移出事件
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log($"Pointer exited monster: {monsterName}"); // 调试用日志
+        if (infoManager != null)
+        {
+            // 调用 MonsterInfoManager 隐藏信息面板
+            infoManager.HideMonsterInfo();
+        }
+    }
+
 }

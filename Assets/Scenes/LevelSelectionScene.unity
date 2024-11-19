@@ -468,9 +468,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodePrefab: {fileID: 8887308591828139650, guid: 75354aafe74a70e4e8943894c6ebe6c4, type: 3}
   parent: {fileID: 953212823}
-  horizontalSpacing: 200
   verticalSpacing: 150
-  depth: 5
+  totalLevels: 7
+  minNodesPerLevel: 3
+  maxNodesPerLevel: 5
+  minHorizontalSpacing: 150
 --- !u!1 &1318395760
 GameObject:
   m_ObjectHideFlags: 0

@@ -174,6 +174,7 @@ public class RewardManager : MonoBehaviour
     private void OnSkipButtonClicked()
     {
         CloseRewardPanel();
+        OnRewardSelectionComplete?.Invoke();
     }
 
     // Method to close the reward panel

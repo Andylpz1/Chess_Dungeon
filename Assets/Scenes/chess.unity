@@ -5935,6 +5935,9 @@ MonoBehaviour:
   monsterManager: {fileID: 0}
   goldText: {fileID: 1144206850}
   vineEffectActive: 0
+  attackHighlightLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!61 &1399918235
 BoxCollider2D:
   m_ObjectHideFlags: 0

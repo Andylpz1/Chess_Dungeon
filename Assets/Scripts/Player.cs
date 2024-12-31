@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     public event CardPlayed OnCardPlayed;
 
     public bool vineEffectActive = false; 
+    public LayerMask attackHighlightLayer;
 
     void Awake()
     {
@@ -61,6 +62,27 @@ public class Player : MonoBehaviour
     {
         //HandleMouseMovement(); // 处理鼠标移动
         //HandleMouseClick(); // 处理鼠标点击
+        HandleAttackHighlightClick(); 
+    }
+
+    public void HandleAttackHighlightClick()
+    {
+        if (Input.GetMouseButtonDown(0)) // 左键点击
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePosition2D = new Vector2(mousePosition.x, mousePosition.y);
+
+            // 使用 Raycast 仅检测 AttackHighlight Layer
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition2D, Vector2.zero, Mathf.Infinity, attackHighlightLayer);
+            if (hit.collider != null)
+            {
+                MoveHighlight highlight = hit.collider.GetComponent<MoveHighlight>();
+                if (highlight != null && !highlight.isMove)
+                {
+                    Attack(highlight.position); // 触发攻击逻辑
+                }
+            }
+        }
     }
 
     void HandleMouseMovement()
@@ -206,9 +228,15 @@ public class Player : MonoBehaviour
         Vector3 highlightPosition = CalculateWorldPosition(newPosition);
         GameObject highlightPrefab = isMove ? moveHighlightPrefab : attackHighlightPrefab;
         GameObject highlight = Instantiate(highlightPrefab, highlightPosition, Quaternion.identity);
+
+        if (!isMove)
+        {
+            highlight.layer = LayerMask.NameToLayer("AttackHighlight"); // 设置专属 Layer
+        }
+
         highlight.GetComponent<MoveHighlight>().Initialize(this, newPosition, isMove);
-        moveHighlights.Add(highlight);  // 使用 List 而不是数组
-        return highlight;  // 返回新创建的高亮对象
+        moveHighlights.Add(highlight);
+        return highlight;
     }
 
     public bool IsValidPosition(Vector2Int position)

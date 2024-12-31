@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2410612194767273398}
   - component: {fileID: 3668300170762363890}
   - component: {fileID: 555000372987731176}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MoveHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1499883291
-  m_SortingLayer: 3
+  m_SortingLayerID: 1400045073
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -5250657687756452233, guid: 3798f586fa06a1a44b4a830b9fe50db9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,7 +119,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -133,7 +133,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.375, y: 0.375}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &555000372987731176
 MonoBehaviour:

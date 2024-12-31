@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class MoveHighlight : MonoBehaviour
 {
     private Player player;
-    private Vector2Int position;
-    private bool isMove;
+    public Vector2Int position;
+    public bool isMove;
 
     public void Initialize(Player player, Vector2Int position, bool isMove)
     {

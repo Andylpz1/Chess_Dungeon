@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 382257533
-  m_SortingLayer: 2
+  m_SortingLayerID: 158606717
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -794710388649364581, guid: a30f49ba36186674b981b68493596665, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2799ca1a764de47b7bba5c99963815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterName: default
   health: 1
   position: {x: 0, y: 0}
   player: {fileID: 0}

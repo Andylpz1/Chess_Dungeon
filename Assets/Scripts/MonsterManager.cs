@@ -320,7 +320,7 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
-    Vector2Int GetRandomPosition(Monster monsterType)
+    public Vector2Int GetRandomPosition(Monster monsterType)
     {
         Vector2Int playerPosition = player.position;
         Debug.Log("Player position: " + playerPosition);
@@ -354,7 +354,7 @@ public class MonsterManager : MonoBehaviour
         return randomPosition;
     }
 
-    Vector2Int GetEmptyPosition()
+    public Vector2Int GetEmptyPosition()
     {
         Vector2Int playerPosition = player.position;
         Debug.Log("Player position: " + playerPosition);

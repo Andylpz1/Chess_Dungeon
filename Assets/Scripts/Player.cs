@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
     public Vector3 cellGap = new Vector3(0, 0, 0); // Cell Gap
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
+    public int health = 3; // 玩家初始血量
+
     public int damage = 1; //默认伤害
     public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
-
+    public Text healthText; 
     public bool isCharged = false; // 是否处于充能状态
     public Text energyStatusText;
 
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+        UpdateHealthText();
     }
 
     void Update()
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour
         //HandleMouseMovement(); // 处理鼠标移动
         //HandleMouseClick(); // 处理鼠标点击
         HandleAttackHighlightClick(); 
+        CheckForMonsterCollision();
     }
 
     public void HandleAttackHighlightClick()
@@ -82,6 +85,45 @@ public class Player : MonoBehaviour
                     Attack(highlight.position); // 触发攻击逻辑
                 }
             }
+        }
+    }
+    
+    private void CheckForMonsterCollision()
+    {
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        foreach (GameObject monsterObject in monsters)
+        {
+            Monster monster = monsterObject.GetComponent<Monster>();
+            if (monster != null && monster.IsPartOfMonster(position))
+            {
+                TakeDamage(1); // 玩家受到伤害
+                Vector2Int newPosition = monsterManager.GetEmptyPosition(); // 获取新位置
+                if (newPosition != new Vector2Int(-1, -1))
+                {
+                    position = newPosition;
+                    UpdatePosition(); // 更新玩家位置
+                }
+                break;
+            }
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        UpdateHealthText();
+        if (health <= 0)
+        {
+            Debug.Log("Player has died.");
+            // 可在此实现游戏结束逻辑
+        }
+    }
+
+    public void UpdateHealthText()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "Health: " + health.ToString();
         }
     }
 

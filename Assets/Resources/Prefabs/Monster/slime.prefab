@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6773963571949814308}
   - component: {fileID: 1996623300823824852}
   - component: {fileID: 3569285770981315116}
+  - component: {fileID: 1587207104737587215}
   m_Layer: 7
   m_Name: slime
   m_TagString: Monster
@@ -152,3 +153,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.9375}
   m_EdgeRadius: 0
+--- !u!95 &1587207104737587215
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3381790849320777569}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

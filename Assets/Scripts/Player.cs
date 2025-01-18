@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 
     public bool vineEffectActive = false; 
     public LayerMask attackHighlightLayer;
+    public LayerMask moveHighlightLayer;
 
     void Awake()
     {
@@ -87,6 +88,27 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void HandleMoveHighlightClick()
+    {
+        if (Input.GetMouseButtonDown(0)) // 左键点击
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePosition2D = new Vector2(mousePosition.x, mousePosition.y);
+
+            // 使用 Raycast 仅检测 MoveHighlight Layer
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition2D, Vector2.zero, Mathf.Infinity, moveHighlightLayer);
+            if (hit.collider != null)
+            {
+                MoveHighlight highlight = hit.collider.GetComponent<MoveHighlight>();
+                if (highlight != null && highlight.isMove)
+                {
+                    Move(highlight.position); // 触发移动逻辑
+                }
+            }
+        }
+    }
+
     
     private void CheckForMonsterCollision()
     {

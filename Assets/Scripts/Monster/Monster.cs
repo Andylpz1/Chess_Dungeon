@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string monsterName = "default";
+    private Animator animator;
     public int health;
     public Vector2Int position;
     public Player player;
@@ -30,6 +31,13 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
+
+        // 播放受伤动画
+        if (animator != null)
+        {
+            animator.SetTrigger("TakeDamage");
+        }
+
         if (health <= 0)
         {
             Die();

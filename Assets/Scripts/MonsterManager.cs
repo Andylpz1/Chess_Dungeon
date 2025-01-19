@@ -98,6 +98,7 @@ public class MonsterManager : MonoBehaviour
         UpdateLevelCountText();
 
         // 清除所有场景对象
+        ClearAllMonsters();
         ClearAllScenes();
         ClearAllPoints();
 
@@ -143,6 +144,18 @@ public class MonsterManager : MonoBehaviour
             // 重置关卡完成标记
             isLevelCompleted = false;
         }
+    }
+    void ClearAllMonsters()
+    {
+        foreach (Monster monster in monsters)
+        {
+            if (monster != null)
+            {
+                Destroy(monster.gameObject); // Destroy the monster GameObject
+            }
+        }
+        monsters.Clear(); // Clear the list of monsters
+        Debug.Log("All monsters cleared.");
     }
 
     void ClearAllScenes()

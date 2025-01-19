@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public bool isCharged = false; // 是否处于充能状态
     public Text energyStatusText;
 
+    public int CurrentLevel;
+
     // 存储 ActivatePoint 和 DeactivatePoint 的位置信息
     public List<Vector2Int> activatePointPositions = new List<Vector2Int>();
     public List<Vector2Int> deactivatePointPositions = new List<Vector2Int>();
@@ -48,6 +50,14 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
         Debug.Log($"Current Location: {position}");
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class MonsterManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     public static Player Instance { get; private set; }
     public int boardSize = 8;
@@ -76,9 +76,8 @@ public class MonsterManager : MonoBehaviour
         levelCountText.text = "Level: " + currentLevel.ToString();
     }
 
-    public void StartLevel(int level)
+    void StartLevel(int level)
     {
-        currentLevel = level;
         // 清空之前存储的位置数据
         player.activatePointPositions.Clear();
         player.deactivatePointPositions.Clear();

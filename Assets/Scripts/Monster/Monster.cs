@@ -17,6 +17,11 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         position = startPos;
         player = FindObjectOfType<Player>();
+        if (player == null)
+        {
+            Debug.LogError("Player object not found! Make sure a Player is present in the scene.");
+            return;
+        }
         monsterManager = FindObjectOfType<MonsterManager>();
         infoManager = FindObjectOfType<MonsterInfoManager>();
 

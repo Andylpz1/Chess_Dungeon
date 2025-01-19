@@ -3,27 +3,27 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    private static string savePath = Application.persistentDataPath + "/simpleSave.json";
+    private static string saveFilePath = Application.persistentDataPath + "/savegame.json";
 
-    public static void SaveGame(GameData gameData)
+    public static bool SaveFileExists()
     {
-        string json = JsonUtility.ToJson(gameData, true);
-        File.WriteAllText(savePath, json);
-        Debug.Log("Game saved to " + savePath);
+        return File.Exists(saveFilePath);
+    }
+
+    public static void SaveGame(GameData data)
+    {
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(saveFilePath, json);
+        Debug.Log("Game saved to " + saveFilePath);
     }
 
     public static GameData LoadGame()
     {
-        if (File.Exists(savePath))
+        if (File.Exists(saveFilePath))
         {
-            string json = File.ReadAllText(savePath);
-            Debug.Log("Game loaded from " + savePath);
+            string json = File.ReadAllText(saveFilePath);
             return JsonUtility.FromJson<GameData>(json);
         }
-        else
-        {
-            Debug.LogWarning("No save file found!");
-            return null;
-        }
+        return null;
     }
 }

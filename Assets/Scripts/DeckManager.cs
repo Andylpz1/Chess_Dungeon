@@ -139,6 +139,9 @@ public class DeckManager : MonoBehaviour
         };
 
         ShuffleDeck();
+
+        player.SetDeck(deck);
+
     }
 
     void ShuffleDeck()
@@ -428,6 +431,8 @@ public class DeckManager : MonoBehaviour
             player.gold -= 20;
             player.UpdateGoldText();
             deck.Remove(cardToDelete);
+            player.SetDeck(deck);
+
             UpdateDeckCountText();
             UpdateDiscardPileCountText();
             UpdateDeckPanel();

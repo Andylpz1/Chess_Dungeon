@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
     public Vector2Int position; // 棋子在棋盘上的位置
     public int boardSize = 8;   // 棋盘大小
     public GameObject moveHighlightPrefab; // 用于显示可移动位置的预制件
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
     public int health = 3; // 玩家初始血量
-
+    private List<string> deck;
     public int damage = 1; //默认伤害
     public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
     public Text healthText; 
@@ -588,11 +589,48 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+    public void SetDeck(List<Card> deck)
+    {
+        this.deck = new List<string>();
+        foreach (Card card in deck)
+        {
+            this.deck.Add(card.Id); // Assuming each Card has a `cardName` property
+        }
+    }
 
     public void DeselectCurrentCard()
     {
         currentCard = null;
         ClearMoveHighlights();
+    }
+
+    // 示例方法：读取卡组
+    public List<string> GetDeckNames()
+    {
+        return new List<string>(deck);
+    }
+
+    // 示例方法：加载卡组
+    public void LoadDeck(List<string> deckNames)
+    {
+        deck = new List<string>(deckNames);
+    }
+
+    // 示例方法：设置玩家位置
+    public void SetPosition(Vector2Int newPosition)
+    {
+        position = newPosition;
+    }
+
+    // 示例方法：设置玩家生命值
+    public void SetHealth(int newHealth)
+    {
+        health = newHealth;
+    }
+
+    // 示例方法：设置金币
+    public void SetGold(int newGold)
+    {
+        gold = newGold;
     }
 }

@@ -17,7 +17,7 @@ public class MonsterManager : MonoBehaviour
     private List<GameObject> warnings = new List<GameObject>();
     private List<GameObject> pointObjects = new List<GameObject>();
 
-    private int currentLevel = 1;
+    private int currentLevel ;
     private int totalMonstersToSpawn;
     private int totalMonstersKilled;
 
@@ -31,6 +31,7 @@ public class MonsterManager : MonoBehaviour
 
     void Awake()
     {
+        
         // Initialize the player in Awake to ensure it is set before Start
         player = FindObjectOfType<Player>();
         rewardManager = FindObjectOfType<RewardManager>();
@@ -49,10 +50,23 @@ public class MonsterManager : MonoBehaviour
 
 
         LoadLevelConfigs();
+        
     }
 
     void Start()
     {
+        // 检查是否已经加载了存档中的关卡
+        if (SaveSystem.SaveFileExists())
+        {
+            GameData gameData = SaveSystem.LoadGame();
+            StartLevel(gameData.currentLevel);
+            Debug.Log("存档存在，等待存档加载...");
+            return; // 等待存档加载后调用 StartLevel
+        }
+        if (currentLevel <= 0)
+        {
+            currentLevel = 1;
+        }
         StartLevel(currentLevel);
     }
 
@@ -76,7 +90,7 @@ public class MonsterManager : MonoBehaviour
         levelCountText.text = "Level: " + currentLevel.ToString();
     }
 
-    public void StartLevel(int level)
+    public void StartLevel(int level = 1)
     {
         currentLevel = level;
         // 清空之前存储的位置数据

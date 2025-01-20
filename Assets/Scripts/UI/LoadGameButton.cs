@@ -11,6 +11,7 @@ public class LoadGameButton : MonoBehaviour
             GameData gameData = SaveSystem.LoadGame();
             if (gameData != null)
             {
+                
                 // Load the saved level
                 SceneManager.LoadScene("GameScene");
 

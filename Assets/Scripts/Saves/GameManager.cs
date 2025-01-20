@@ -86,20 +86,21 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Player 初始化完成，恢复玩家状态和加载关卡。");
 
+        
+        
+        while (Player.Instance.monsterManager == null)
+        {
+            Debug.LogWarning("等待 MonsterManager 初始化...");
+            yield return null;
+        }
+        // 确保 MonsterManager 存在 
         // 恢复玩家状态
         Player.Instance.SetHealth(gameData.playerHealth);
         Player.Instance.LoadDeck(gameData.playerDeck);
         //Player.Instance.deckManager.LoadHand(gameData.playerHand);
+        Player.Instance.monsterManager.StartLevel(gameData.currentLevel);
+        
 
-        // 确保 MonsterManager 存在
-        if (Player.Instance.monsterManager != null)
-        {
-            Player.Instance.monsterManager.StartLevel(gameData.currentLevel);
-        }
-        else
-        {
-            Debug.LogError("MonsterManager 实例不存在！");
-        }
     }
 
 

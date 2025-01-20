@@ -26,4 +26,16 @@ public static class SaveSystem
         }
         return null;
     }
+    public static void DeleteSaveFile()
+    {
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+            Debug.Log("存档文件已删除。");
+        }
+        else
+        {
+            Debug.LogWarning("尝试删除存档，但存档文件不存在。");
+        }
+    }
 }

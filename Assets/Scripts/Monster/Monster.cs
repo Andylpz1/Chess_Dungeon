@@ -84,7 +84,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public bool IsValidPosition(Vector2Int position)
     {
         foreach (Vector2Int pos in GetOccupiedPositions(position)) {
-            if (position.x < 0 || position.x >= player.boardSize || position.y < 0 || position.y >= player.boardSize)
+            if (position.x < 0 || position.x >= player.boardSize || position.y < 0 || position.y >= player.boardSize )
             {
                 return false;
             }

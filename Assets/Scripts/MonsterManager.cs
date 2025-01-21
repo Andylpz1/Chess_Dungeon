@@ -17,7 +17,7 @@ public class MonsterManager : MonoBehaviour
     private List<GameObject> warnings = new List<GameObject>();
     private List<GameObject> pointObjects = new List<GameObject>();
 
-    private int currentLevel ;
+    private int currentLevel = 1;
     private int totalMonstersToSpawn;
     private int totalMonstersKilled;
 
@@ -59,15 +59,15 @@ public class MonsterManager : MonoBehaviour
         if (SaveSystem.SaveFileExists())
         {
             GameData gameData = SaveSystem.LoadGame();
-            StartLevel(gameData.currentLevel);
+            currentLevel = gameData.currentLevel;
+            StartLevel(currentLevel);
             Debug.Log("存档存在，等待存档加载...");
-            return; // 等待存档加载后调用 StartLevel
+             // 等待存档加载后调用 StartLevel
         }
-        if (currentLevel <= 0)
+        else 
         {
-            currentLevel = 1;
+            StartLevel(currentLevel);
         }
-        StartLevel(currentLevel);
     }
 
     void LoadLevelConfigs()
@@ -90,7 +90,7 @@ public class MonsterManager : MonoBehaviour
         levelCountText.text = "Level: " + currentLevel.ToString();
     }
 
-    public void StartLevel(int level = 1)
+    public void StartLevel(int level)
     {
         currentLevel = level;
         // 清空之前存储的位置数据
@@ -120,10 +120,10 @@ public class MonsterManager : MonoBehaviour
         totalMonstersKilled = 0;
         SpawnMonstersForLevel(levelConfig);
 
-        if (level > 1)
-        {
-            rewardManager.OpenRewardPanel();
-        }
+        //if (level > 1)
+        //{
+          //  rewardManager.OpenRewardPanel();
+        //}
         
     }
 
@@ -159,7 +159,7 @@ public class MonsterManager : MonoBehaviour
             isLevelCompleted = false;
         }
     }
-    void ClearAllMonsters()
+    public void ClearAllMonsters()
     {
         foreach (Monster monster in monsters)
         {
@@ -335,6 +335,7 @@ public class MonsterManager : MonoBehaviour
         if (monsters.Count == 0)
         {
             isLevelCompleted = true; // 标记关卡完成
+            rewardManager.OpenRewardPanel();
             StartLevel(++currentLevel);
         }
         else if (turnCount % 1 == 0 && monsters.Count != 0)

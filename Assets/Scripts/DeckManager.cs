@@ -15,6 +15,7 @@ public class DeckManager : MonoBehaviour
     public Transform cardPanel; // 卡牌面板
     public Transform deckPanel; // 卡组面板，用于显示卡组中卡牌的图片
     public Transform discardPanel; // 弃牌堆面板，用于显示弃牌堆中的卡牌图片
+    public Transform cardEditorPanel; //卡组编辑器面板
 
     public Text deckCountText; // 显示牌库剩余牌数的文本组件
     public Text discardPileCountText; // 显示弃牌堆剩余牌数的文本组件
@@ -30,12 +31,14 @@ public class DeckManager : MonoBehaviour
 
     public Button deckDisplayButton; // DeckDisplayButton 引用
     public Button discardDisplayButton; // DiscardDisplayButton 引用
+    public List<Card> allCards = new List<Card>();
 
     void Start()
     {
         cardButtons = new List<GameObject>();
         discardPile = new List<Card>();
         InitializeDeck();
+        InitializeCardEditor();
         DrawCards(handSize);
         UpdateDeckCountText(); // 初始化时更新牌堆数量显示
         UpdateDiscardPileCountText(); // 初始化时更新弃牌堆数量显示
@@ -100,6 +103,7 @@ public class DeckManager : MonoBehaviour
         {
             Debug.LogError("DiscardPanel is not assigned in the Inspector.");
         }
+        
     }
 
     void InitializeDeck()
@@ -142,6 +146,20 @@ public class DeckManager : MonoBehaviour
 
         player.SetDeck(deck);
 
+    }
+
+    void InitializeCardEditor()
+    {
+        allCards.Add(new PawnCard());
+        allCards.Add(new KnightCard());
+        allCards.Add(new BishopCard());
+        allCards.Add(new RookCard());
+        allCards.Add(new SwordCard());
+        allCards.Add(new RitualSpear());
+        allCards.Add(new EnergyCore());
+        allCards.Add(new FloatSword());
+        allCards.Add(new Vine());
+        UpdateCardEditorPanel();
     }
 
     void ShuffleDeck()
@@ -389,6 +407,33 @@ public class DeckManager : MonoBehaviour
             cardButton.onClick.AddListener(() => OnCardClicked(card));
         }
     }
+
+    public void UpdateCardEditorPanel()
+    {
+
+    // 显示所有可用的卡牌
+        foreach (Card card in allCards)
+        {
+            GameObject cardUI = new GameObject("Card");
+            Image cardImage = cardUI.AddComponent<Image>();
+            cardImage.sprite = card.GetSprite();
+
+            RectTransform rectTransform = cardUI.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(40, 50); // 调整尺寸
+            cardUI.transform.SetParent(cardEditorPanel, false); // 保持相对布局
+
+            Button cardButton = cardUI.AddComponent<Button>();
+            cardButton.onClick.AddListener(() => OnCardSelected(card));
+        }
+    }
+
+    // 当卡牌被选中时调用的方法
+    private void OnCardSelected(Card card)
+    {
+        deck.Add(card);
+        UpdateDeckPanel(); // 更新牌组面板以显示新添加的卡牌
+    }
+
 
     void OnCardClicked(Card card)
     {

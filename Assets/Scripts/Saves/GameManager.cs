@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         Player.Instance.SetHealth(gameData.playerHealth);
         Player.Instance.LoadDeck(gameData.playerDeck);
         //Player.Instance.deckManager.LoadHand(gameData.playerHand);
-        Player.Instance.monsterManager.StartLevel(gameData.currentLevel);
+        //Player.Instance.monsterManager.StartLevel(gameData.currentLevel);
         
 
     }

@@ -78,8 +78,9 @@ public class TurnManager : MonoBehaviour
     {
         DisableAllButtons(); // 禁用所有按钮
         player.ResetEffectsAtEndOfTurn();
-        // 回合结束弃牌 (暂时废弃)
-        //deckManager.DiscardHand();
+        // 回合结束弃牌 
+        deckManager.DiscardHand();
+        yield return new WaitForSeconds(0.5f);
         player.ClearMoveHighlights();
         player.actions = 3;
         turnCount++;
@@ -90,7 +91,7 @@ public class TurnManager : MonoBehaviour
         if (monsterManager.isLevelCompleted != true)
         {
             int slimeCount = monsterManager.GetMonsterCount();
-            float delay = slimeCount * 0.5f + 1.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
+            float delay = slimeCount * 0.5f + 0.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
             yield return new WaitForSeconds(delay);
         }
 

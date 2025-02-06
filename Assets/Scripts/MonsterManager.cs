@@ -116,6 +116,7 @@ public class MonsterManager : MonoBehaviour
         ClearAllScenes();
         ClearAllPoints();
 
+        //生成怪物
         totalMonstersToSpawn = levelConfig.monsterTypes.Count;
         totalMonstersKilled = 0;
         SpawnMonstersForLevel(levelConfig);

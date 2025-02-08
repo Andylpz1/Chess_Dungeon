@@ -56,6 +56,11 @@ public class Card
     {
         // 这里可以加入每张卡牌独特的 Discard 效果
     }
+
+    public virtual void OnCardExecuted()
+    {
+        
+    }
 }
 
 public class PawnCard : Card
@@ -145,6 +150,10 @@ public class SwordCard : Card
     public override string GetDescription()
     {
         return "上下左右攻击";
+    }
+    public override void OnCardExecuted()
+    {
+        //player.deckManager.DrawCards(1); // Sword card 特殊效果：抓两张牌
     }
 }
 

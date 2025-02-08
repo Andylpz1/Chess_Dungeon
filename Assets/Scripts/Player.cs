@@ -498,6 +498,13 @@ public class Player : MonoBehaviour
         if (currentCard != null)
         {
             deckManager.UseCard(currentCard);
+            
+            // 如果是攻击卡，执行 OnAttackExecuted 方法
+            if (currentCard.cardType == CardType.Attack)
+            {
+                Debug.Log("Executing OnAttackExecuted for: ");
+                currentCard.OnCardExecuted();   // 只触发攻击卡的特殊效果
+            }
 
             if (currentCard.cardType == CardType.Move) // Assuming MovementCard is a class for movement cards
             {

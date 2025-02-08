@@ -24,6 +24,7 @@ public class sword_card : CardButtonBase
             else
             {
                 player.ShowAttackOptions(swordDirections,card);
+                
             }
         }
         else
@@ -31,6 +32,7 @@ public class sword_card : CardButtonBase
             Debug.LogError("Card is null in attack_card.OnClick");
         }
     }
+
 
 }
 

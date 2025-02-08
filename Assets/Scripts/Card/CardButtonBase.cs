@@ -92,4 +92,5 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     {
         return card;
     }
+    
 }

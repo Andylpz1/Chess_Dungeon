@@ -4116,7 +4116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1119508315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4319,7 +4319,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -4330,7 +4330,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Name: '
+  m_Text: 'Name:  '
 --- !u!222 &1148411072
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6313,7 +6313,7 @@ SpriteRenderer:
   m_SortingLayerID: 382257533
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1724822148711148119, guid: 1888cb2a43c97db408228ed32cfea88b, type: 3}
+  m_Sprite: {fileID: -641104846605737351, guid: 0a4bd4bf32f586f48a7e3d5577700cdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6429,7 +6429,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.625, y: 0.9375}
+    oldSize: {x: 0.875, y: 1}
     newSize: {x: 0.625, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6698,7 +6698,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -7049,7 +7049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1755640526
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7851,7 +7851,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2

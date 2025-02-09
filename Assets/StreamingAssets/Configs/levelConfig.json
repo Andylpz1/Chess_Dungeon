@@ -2,43 +2,43 @@
     "levels": [
         {
             "levelNumber": 1,
-            "monsterTypes": ["WhiteKing"]
+            "monsterTypes": ["WhitePawn","WhitePawn"]
         },
         {
             "levelNumber": 2,
-            "monsterTypes": ["Bat", "Bat"]
+            "monsterTypes": ["WhitePawn","WhitePawn","WhitePawn"]
         },
         {
             "levelNumber": 3,
-            "monsterTypes": ["Slime", "Slime","Slime", "Slime"]
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight"]
         },
         {
             "levelNumber": 4,
-            "monsterTypes": ["Slime", "Slime","Slime", "Bat"]
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhitePawn","WhiteBishop"]
         },
         {
             "levelNumber": 5,
-            "monsterTypes": ["Bat", "Bat","Bat", "Bat"]
+            "monsterTypes": ["WhitePawn","WhitePawn","WhiteRook"]
         },
         {
             "levelNumber": 6,
-            "monsterTypes": ["Slime", "Slime","Slime", "Slime","Hound"]
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight", "WhiteBishop"]
         },
         {
             "levelNumber": 7,
-            "monsterTypes": ["Bat", "Bat","Bat", "Bat","Hound"]
+            "monsterTypes": ["WhitePawn","WhiteQueen"]
         },
         {
             "levelNumber": 8,
-            "monsterTypes": ["Slime", "Slime","Slime", "Slime","Bat", "Bat","Bat", "Bat"]
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight", "WhiteBishop", "WhiteRook"]
         },
         {
             "levelNumber": 9,
-            "monsterTypes": ["Slime", "Slime","Slime", "Slime","Slime", "Slime","Slime", "Slime"]
+            "monsterTypes": ["WhiteQueen","WhiteQueen"]
         },
         {
             "levelNumber": 10,
-            "monsterTypes": ["SlimeKing"]
+            "monsterTypes": ["WhiteKnight", "WhiteBishop", "WhiteRook","WhiteQueen","WhiteKing"]
         }
     ]
 }

@@ -72,4 +72,31 @@ public class WhiteQueen : Monster
     {
         return Resources.Load<GameObject>("Prefabs/Monster/WhiteQueen");
     }
+
+    public override List<Vector2Int> CalculatePossibleMoves()
+    {
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        Vector2Int[] directions = new Vector2Int[]
+        {
+            // 水平和垂直方向（车的方向）
+            new Vector2Int(1, 0), new Vector2Int(-1, 0),
+            new Vector2Int(0, 1), new Vector2Int(0, -1),
+        
+            // 对角线方向（象的方向）
+            new Vector2Int(1, 1), new Vector2Int(-1, 1),
+            new Vector2Int(1, -1), new Vector2Int(-1, -1)
+        };
+
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int currentPos = position + direction;
+            while (IsValidPosition(currentPos) && !IsPositionOccupied(currentPos))
+            {
+                possibleMoves.Add(currentPos);
+                currentPos += direction;
+            }
+        }
+
+        return possibleMoves;
+    }
 }

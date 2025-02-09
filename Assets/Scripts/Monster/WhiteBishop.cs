@@ -70,4 +70,28 @@ public class WhiteBishop : Monster
     {
         return Resources.Load<GameObject>("Prefabs/Monster/WhiteBishop");
     }
+
+    public override List<Vector2Int> CalculatePossibleMoves()
+    {
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        Vector2Int[] directions = new Vector2Int[]
+        {
+            new Vector2Int(1, 1),   // 右上
+            new Vector2Int(-1, 1),  // 左上
+            new Vector2Int(1, -1),  // 右下
+            new Vector2Int(-1, -1)  // 左下
+        };
+
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int currentPos = position + direction;
+            while (IsValidPosition(currentPos) && !IsPositionOccupied(currentPos))
+            {
+                possibleMoves.Add(currentPos);
+                currentPos += direction;
+            }
+        }
+
+        return possibleMoves;
+    }
 }

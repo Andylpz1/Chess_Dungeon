@@ -104,4 +104,27 @@ public class WhiteKing : Monster
     {
         return Resources.Load<GameObject>("Prefabs/Monster/WhiteKing");
     }
+
+    public override List<Vector2Int> CalculatePossibleMoves()
+    {
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        Vector2Int[] directions = new Vector2Int[]
+        {
+            new Vector2Int(1, 0), new Vector2Int(-1, 0),  // 左右
+            new Vector2Int(0, 1), new Vector2Int(0, -1),  // 上下
+            new Vector2Int(1, 1), new Vector2Int(-1, 1),  // 对角线方向
+            new Vector2Int(1, -1), new Vector2Int(-1, -1)
+        };
+
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int potentialPosition = position + direction;
+            if (IsValidPosition(potentialPosition) && !IsPositionOccupied(potentialPosition))
+            {
+                possibleMoves.Add(potentialPosition);
+            }
+        }
+
+        return possibleMoves;
+    }
 }

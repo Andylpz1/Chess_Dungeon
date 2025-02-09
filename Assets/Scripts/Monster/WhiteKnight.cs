@@ -64,4 +64,20 @@ public class WhiteKnight : Monster
     {
         return Resources.Load<GameObject>("Prefabs/Monster/WhiteKnight");
     }
+
+    public override List<Vector2Int> CalculatePossibleMoves()
+    {
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+
+        foreach (Vector2Int move in knightMoves)
+        {
+            Vector2Int potentialPosition = position + move;
+            if (IsValidPosition(potentialPosition) && !IsPositionOccupied(potentialPosition))
+            {
+                possibleMoves.Add(potentialPosition);
+            }
+        }
+
+        return possibleMoves;
+    }
 }

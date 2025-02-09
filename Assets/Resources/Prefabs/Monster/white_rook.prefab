@@ -152,3 +152,4 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   player: {fileID: 0}
   infoManager: {fileID: 0}
+  highlightPrefab: {fileID: 3397057089140146364, guid: 58370eb99afcef943ba770fd811ddfbb, type: 3}

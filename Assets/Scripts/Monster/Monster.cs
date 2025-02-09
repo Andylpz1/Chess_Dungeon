@@ -12,7 +12,9 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private MonsterManager monsterManager;
 
     public MonsterInfoManager infoManager;
-
+    private List<GameObject> highlightInstances = new List<GameObject>();
+    public GameObject highlightPrefab;  // 在 Inspector 中拖入 Highlight Prefab
+    
     public virtual void Initialize(Vector2Int startPos)
     {
         position = startPos;
@@ -31,6 +33,22 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected void UpdatePosition()
     {
         transform.position = player.CalculateWorldPosition(position);
+    }
+
+    public virtual List<Vector2Int> CalculatePossibleMoves()
+    {
+        // 默认实现：简单地计算怪物周围的 1 格可移动位置（可以根据需要定制复杂逻辑）
+        List<Vector2Int> possibleMoves = new List<Vector2Int>
+        {
+            position + new Vector2Int(1, 0),
+            position + new Vector2Int(-1, 0),
+            position + new Vector2Int(0, 1),
+            position + new Vector2Int(0, -1)
+        };
+
+        // 过滤掉无效位置或被占据的位置
+        possibleMoves.RemoveAll(pos => !IsValidPosition(pos) || IsPositionOccupied(pos));
+        return possibleMoves;
     }
 
     public virtual void TakeDamage(int damage)
@@ -115,6 +133,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             // 调用 MonsterInfoManager 更新信息面板
             infoManager.UpdateMonsterInfo(monsterName, health, position);
         }
+        HighlightPath();
     }
 
     // 鼠标移出事件
@@ -126,6 +145,33 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             // 调用 MonsterInfoManager 隐藏信息面板
             infoManager.HideMonsterInfo();
         }
+        ClearHighlight();
+    }
+
+    public virtual void HighlightPath()
+    {
+        // 清除之前的高亮
+        ClearHighlight();
+
+        // 获取合法的移动路径
+        List<Vector2Int> possibleMoves = CalculatePossibleMoves();
+
+        // 在每个合法位置生成高亮对象
+        foreach (Vector2Int move in possibleMoves)
+        {
+            Vector3 worldPos = player.CalculateWorldPosition(move);
+            GameObject highlightInstance = Instantiate(highlightPrefab, worldPos, Quaternion.identity);
+            highlightInstances.Add(highlightInstance);
+        }
+    }
+
+    public void ClearHighlight()
+    {
+        foreach (GameObject highlight in highlightInstances)
+        {
+            Destroy(highlight);
+        }
+        highlightInstances.Clear();
     }
 
 }

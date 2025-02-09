@@ -427,6 +427,11 @@ public class Player : MonoBehaviour
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
         foreach (Vector2Int attackPosition in attackPositions)
         {
+            // 在每个攻击坐标生成攻击特效
+            Vector3 worldPosition = CalculateWorldPosition(attackPosition);
+            GameObject effectInstance = Instantiate(attackEffectPrefab, worldPosition, Quaternion.identity);
+            Destroy(effectInstance, 0.4f);  // 根据动画时长调整销毁时间
+            
             foreach (GameObject monsterObject in monsters)
             {
                 Monster monster = monsterObject.GetComponent<Monster>();

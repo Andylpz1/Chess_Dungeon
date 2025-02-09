@@ -150,7 +150,6 @@ public class DeckManager : MonoBehaviour
 
     void InitializeCardEditor()
     {
-        allCards.Add(new PawnCard());
         allCards.Add(new KnightCard());
         allCards.Add(new BishopCard());
         allCards.Add(new RookCard());
@@ -159,6 +158,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new EnergyCore());
         allCards.Add(new FloatSword());
         allCards.Add(new Vine());
+        allCards.Add(new FlailCard());
         UpdateCardEditorPanel();
     }
 

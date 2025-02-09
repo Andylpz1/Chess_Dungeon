@@ -6313,6 +6313,7 @@ GameObject:
   - component: {fileID: 1399918232}
   - component: {fileID: 1399918234}
   - component: {fileID: 1399918235}
+  - component: {fileID: 1399918236}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6442,6 +6443,7 @@ MonoBehaviour:
   moveHighlightLayer:
     serializedVersion: 2
     m_Bits: 0
+  attackEffectPrefab: {fileID: 3381790849320777569, guid: 17b42eb47516bc446aaa5e390ef6e6d6, type: 3}
 --- !u!61 &1399918235
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6488,6 +6490,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.625, y: 0.9375}
   m_EdgeRadius: 0
+--- !u!95 &1399918236
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399918231}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d55daf2f5854cd44f86f8b33c7998cf2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1417468203
 GameObject:
   m_ObjectHideFlags: 0

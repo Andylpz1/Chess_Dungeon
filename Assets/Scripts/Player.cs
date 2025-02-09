@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     public LayerMask attackHighlightLayer;
     public LayerMask moveHighlightLayer;
 
+    private Animator animator;
+    public GameObject attackEffectPrefab;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
         Debug.Log($"Current Location: {position}");
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
         monsterManager = FindObjectOfType<MonsterManager>(); // 初始化deckManager引用
+        animator = GetComponent<Animator>(); //初始化animator
         UpdatePosition();
         UpdateGoldText();
         currentCard = null;
@@ -398,6 +401,10 @@ public class Player : MonoBehaviour
 
     public void Attack(Vector2Int attackPosition)
     {
+        Vector3 worldPosition = CalculateWorldPosition(attackPosition);
+        GameObject effectInstance = Instantiate(attackEffectPrefab, worldPosition, Quaternion.identity);
+        // 播放攻击动画
+        Destroy(effectInstance, 0.4f);
         // 基于坐标检测 Monster 的存在
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
         foreach (GameObject monsterObject in monsters)

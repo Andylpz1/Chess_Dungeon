@@ -10,6 +10,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Vector2Int position;
     public Player player;
     private MonsterManager monsterManager;
+    private bool isDying = false;
 
     public MonsterInfoManager infoManager;
     private List<GameObject> highlightInstances = new List<GameObject>();
@@ -84,7 +85,8 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             Debug.Log("DIEEEEEEEEEEEEEEE");
             animator.SetTrigger("Die");  // 触发死亡动画
-        }   
+        } 
+        isDying = true;  // 设置死亡状态
         Destroy(gameObject, 0.6f);
     }
 
@@ -135,6 +137,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (isDying) return;
         Debug.Log($"Pointer entered monster: {monsterName}"); // 调试用日志
         if (infoManager != null)
         {

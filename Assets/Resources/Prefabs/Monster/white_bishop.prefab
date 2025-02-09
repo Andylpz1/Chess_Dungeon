@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6773963571949814308}
   - component: {fileID: 3569285770981315116}
   - component: {fileID: 7775819573699217770}
+  - component: {fileID: -4738041769289609407}
   m_Layer: 7
   m_Name: white_bishop
   m_TagString: Monster
@@ -153,3 +154,25 @@ MonoBehaviour:
   player: {fileID: 0}
   infoManager: {fileID: 0}
   highlightPrefab: {fileID: 3397057089140146364, guid: 58370eb99afcef943ba770fd811ddfbb, type: 3}
+--- !u!95 &-4738041769289609407
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3381790849320777569}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73a1aebdc1392c04eac45711725d6373, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

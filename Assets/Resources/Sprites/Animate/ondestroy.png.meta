@@ -1,0 +1,2439 @@
+fileFormatVersion: 2
+guid: d7f761a843897814eb3fe056887d1689
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1823600775619140353
+    second: ondestroy_0
+  - first:
+      213: 7420457574912855461
+    second: ondestroy_1
+  - first:
+      213: 3611405238676905758
+    second: ondestroy_2
+  - first:
+      213: 8315269191126519004
+    second: ondestroy_3
+  - first:
+      213: 7944866895919625132
+    second: ondestroy_4
+  - first:
+      213: 9118182177935593273
+    second: ondestroy_5
+  - first:
+      213: -3021371320298836795
+    second: ondestroy_6
+  - first:
+      213: -7319690154476797698
+    second: ondestroy_7
+  - first:
+      213: -1340719153869066144
+    second: ondestroy_8
+  - first:
+      213: -7666049890938885712
+    second: ondestroy_9
+  - first:
+      213: -3256738509175714459
+    second: ondestroy_10
+  - first:
+      213: 2037598876378940897
+    second: ondestroy_11
+  - first:
+      213: 6523163403254728482
+    second: ondestroy_12
+  - first:
+      213: -433155702574306198
+    second: ondestroy_13
+  - first:
+      213: 5183190509707823879
+    second: ondestroy_14
+  - first:
+      213: 5899311014781698661
+    second: ondestroy_15
+  - first:
+      213: -7797836288042946373
+    second: ondestroy_16
+  - first:
+      213: -5124871154466999795
+    second: ondestroy_17
+  - first:
+      213: -2785435587220066970
+    second: ondestroy_18
+  - first:
+      213: -3515238970372581233
+    second: ondestroy_19
+  - first:
+      213: -3698273776615632324
+    second: ondestroy_20
+  - first:
+      213: -8841333377206256586
+    second: ondestroy_21
+  - first:
+      213: -2710312933961820677
+    second: ondestroy_22
+  - first:
+      213: -222938555939089360
+    second: ondestroy_23
+  - first:
+      213: 283957679701188056
+    second: ondestroy_24
+  - first:
+      213: -571846655097167951
+    second: ondestroy_25
+  - first:
+      213: -7242339748135314007
+    second: ondestroy_26
+  - first:
+      213: 6121961052555641914
+    second: ondestroy_27
+  - first:
+      213: 6863103137197798026
+    second: ondestroy_28
+  - first:
+      213: 8435662705341090231
+    second: ondestroy_29
+  - first:
+      213: 8315867202733995711
+    second: ondestroy_30
+  - first:
+      213: 6279790878378594789
+    second: ondestroy_31
+  - first:
+      213: 1608610674238951053
+    second: ondestroy_32
+  - first:
+      213: -7637969672811307835
+    second: ondestroy_33
+  - first:
+      213: -2289352580175581884
+    second: ondestroy_34
+  - first:
+      213: 100588185149619286
+    second: ondestroy_35
+  - first:
+      213: 6874804934567261152
+    second: ondestroy_36
+  - first:
+      213: 4384033809271590228
+    second: ondestroy_37
+  - first:
+      213: -5332627583442981357
+    second: ondestroy_38
+  - first:
+      213: 7470390534982504028
+    second: ondestroy_39
+  - first:
+      213: 7406583047636566800
+    second: ondestroy_40
+  - first:
+      213: -3767417092573062326
+    second: ondestroy_41
+  - first:
+      213: 7084650232209245723
+    second: ondestroy_42
+  - first:
+      213: 8475805088525239682
+    second: ondestroy_43
+  - first:
+      213: -4594704898003143403
+    second: ondestroy_44
+  - first:
+      213: 2875510047576142885
+    second: ondestroy_45
+  - first:
+      213: -4249654102559421483
+    second: ondestroy_46
+  - first:
+      213: -6965641150945181016
+    second: ondestroy_47
+  - first:
+      213: 5347095271914803998
+    second: ondestroy_48
+  - first:
+      213: -3676889444901241864
+    second: ondestroy_49
+  - first:
+      213: 7157259774474422901
+    second: ondestroy_50
+  - first:
+      213: -2600639847497408815
+    second: ondestroy_51
+  - first:
+      213: 2656906671675566895
+    second: ondestroy_52
+  - first:
+      213: 5635560328120202339
+    second: ondestroy_53
+  - first:
+      213: 9097548006010673080
+    second: ondestroy_54
+  - first:
+      213: -4064920065422039655
+    second: ondestroy_55
+  - first:
+      213: -1553677444228374001
+    second: ondestroy_56
+  - first:
+      213: 5266571087739926752
+    second: ondestroy_57
+  - first:
+      213: 7148469268861057191
+    second: ondestroy_58
+  - first:
+      213: -1712683668169404919
+    second: ondestroy_59
+  - first:
+      213: 8446837569606702258
+    second: ondestroy_60
+  - first:
+      213: -3228224889211945178
+    second: ondestroy_61
+  - first:
+      213: -2915609870564960815
+    second: ondestroy_62
+  - first:
+      213: 5329573247252744332
+    second: ondestroy_63
+  - first:
+      213: -4870919094912300770
+    second: ondestroy_64
+  - first:
+      213: -1219989755190557915
+    second: ondestroy_65
+  - first:
+      213: 7547942799046330525
+    second: ondestroy_66
+  - first:
+      213: -891617318962304985
+    second: ondestroy_67
+  - first:
+      213: -1057050967717828347
+    second: ondestroy_68
+  - first:
+      213: -1818838414660806124
+    second: ondestroy_69
+  - first:
+      213: -1033858955379144154
+    second: ondestroy_70
+  - first:
+      213: -6832084151829178579
+    second: ondestroy_71
+  - first:
+      213: -671673546176734321
+    second: ondestroy_72
+  - first:
+      213: 3036845725537247064
+    second: ondestroy_73
+  - first:
+      213: -5695969417976853787
+    second: ondestroy_74
+  - first:
+      213: 3805647857286700090
+    second: ondestroy_75
+  - first:
+      213: 6397594465698372400
+    second: ondestroy_76
+  - first:
+      213: 7472431884449953756
+    second: ondestroy_77
+  - first:
+      213: 38007410915173767
+    second: ondestroy_78
+  - first:
+      213: -9078772279469388935
+    second: ondestroy_79
+  - first:
+      213: -8017913542675896848
+    second: ondestroy_80
+  - first:
+      213: 4912322965225788387
+    second: ondestroy_81
+  - first:
+      213: 7392039766604490769
+    second: ondestroy_82
+  - first:
+      213: 8844688269377137912
+    second: ondestroy_83
+  - first:
+      213: -6017389906442250623
+    second: ondestroy_84
+  - first:
+      213: -2704538219608890762
+    second: ondestroy_85
+  - first:
+      213: -6595978732913901420
+    second: ondestroy_86
+  - first:
+      213: -5875193344783554936
+    second: ondestroy_87
+  - first:
+      213: 8263550802383329995
+    second: ondestroy_88
+  - first:
+      213: -6429641709740496908
+    second: ondestroy_89
+  - first:
+      213: 6480391742530177341
+    second: ondestroy_90
+  - first:
+      213: -4493598528741840106
+    second: ondestroy_91
+  - first:
+      213: -2303572151962665801
+    second: ondestroy_92
+  - first:
+      213: -7969370868743335530
+    second: ondestroy_93
+  - first:
+      213: -7357752979096540654
+    second: ondestroy_94
+  - first:
+      213: 716757057238947005
+    second: ondestroy_95
+  - first:
+      213: 4866256023340366656
+    second: ondestroy_96
+  - first:
+      213: 1394487903756279880
+    second: ondestroy_97
+  - first:
+      213: 2991453935847644021
+    second: ondestroy_98
+  - first:
+      213: -8340998024239130926
+    second: ondestroy_99
+  - first:
+      213: 6683552949967643281
+    second: ondestroy_100
+  - first:
+      213: -5679681605045387306
+    second: ondestroy_101
+  - first:
+      213: 6737175606719237189
+    second: ondestroy_102
+  - first:
+      213: 1598326765938053721
+    second: ondestroy_103
+  - first:
+      213: -678689697910646506
+    second: ondestroy_104
+  - first:
+      213: -5838684553110837581
+    second: ondestroy_105
+  - first:
+      213: 2038095918775087544
+    second: ondestroy_106
+  - first:
+      213: 1912555810602611442
+    second: ondestroy_107
+  - first:
+      213: -7797854378216841948
+    second: ondestroy_108
+  - first:
+      213: 4366799687168586703
+    second: ondestroy_109
+  - first:
+      213: 654619491300888573
+    second: ondestroy_110
+  - first:
+      213: -6696693541293996855
+    second: ondestroy_111
+  - first:
+      213: -1473946601327734924
+    second: ondestroy_112
+  - first:
+      213: -9220986032866441772
+    second: ondestroy_113
+  - first:
+      213: -5490590265348947514
+    second: ondestroy_114
+  - first:
+      213: -5451461186392853835
+    second: ondestroy_115
+  - first:
+      213: 1647658228468964049
+    second: ondestroy_116
+  - first:
+      213: -8557476397779747253
+    second: ondestroy_117
+  - first:
+      213: -1262501206108226376
+    second: ondestroy_118
+  - first:
+      213: 1467183330199230113
+    second: ondestroy_119
+  - first:
+      213: 3973560185118535263
+    second: ondestroy_120
+  - first:
+      213: 6584372313655578235
+    second: ondestroy_121
+  - first:
+      213: 2842728186333680526
+    second: ondestroy_122
+  - first:
+      213: -6734364038144600320
+    second: ondestroy_123
+  - first:
+      213: 6036436610268221826
+    second: ondestroy_124
+  - first:
+      213: -631414597538140435
+    second: ondestroy_125
+  - first:
+      213: -8855574019568274313
+    second: ondestroy_126
+  - first:
+      213: -7154143863315708196
+    second: ondestroy_127
+  - first:
+      213: 1695960938218773357
+    second: ondestroy_128
+  - first:
+      213: 3376798305641275979
+    second: ondestroy_129
+  - first:
+      213: -8366051616987025897
+    second: ondestroy_130
+  - first:
+      213: -3759332940091677315
+    second: ondestroy_131
+  - first:
+      213: 613185770009876727
+    second: ondestroy_132
+  - first:
+      213: -857468910538805090
+    second: ondestroy_133
+  - first:
+      213: -548830354995269157
+    second: ondestroy_134
+  - first:
+      213: 8853932011724973321
+    second: ondestroy_135
+  - first:
+      213: -1693720595122835222
+    second: ondestroy_136
+  - first:
+      213: 391847930478274613
+    second: ondestroy_137
+  - first:
+      213: 7762822803927082913
+    second: ondestroy_138
+  - first:
+      213: 4236352945184132273
+    second: ondestroy_139
+  - first:
+      213: 937596471271538220
+    second: ondestroy_140
+  - first:
+      213: 7847816711165725937
+    second: ondestroy_141
+  - first:
+      213: 3694096085283389996
+    second: ondestroy_142
+  - first:
+      213: -6117187028541007450
+    second: ondestroy_143
+  - first:
+      213: -1014298924344850998
+    second: ondestroy_144
+  - first:
+      213: 7200551263271509008
+    second: ondestroy_145
+  - first:
+      213: -4013462656784804460
+    second: ondestroy_146
+  - first:
+      213: 3717883715488149937
+    second: ondestroy_147
+  - first:
+      213: -4192669236985980997
+    second: ondestroy_148
+  - first:
+      213: 4117487840434875666
+    second: ondestroy_149
+  - first:
+      213: -42944796278711606
+    second: ondestroy_150
+  - first:
+      213: 8083974045646906849
+    second: ondestroy_151
+  - first:
+      213: 3775616813681101111
+    second: ondestroy_152
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ondestroy_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ad898f59d2caf660800000000000000
+      internalID: 7420457574912855461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1f52573ee94e1230800000000000000
+      internalID: 3611405238676905758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdc88dce545c56370800000000000000
+      internalID: 8315269191126519004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca3bc0f1956d14e60800000000000000
+      internalID: 7944866895919625132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f0621716a4a8e70800000000000000
+      internalID: 9118182177935593273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cce807cacee116d0800000000000000
+      internalID: -3021371320298836795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef08c7cf59c3b6a90800000000000000
+      internalID: -7319690154476797698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0607212780fc46de0800000000000000
+      internalID: -1340719153869066144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b96a2c9d38bc9590800000000000000
+      internalID: -7666049890938885712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56d0f32b49dbdc2d0800000000000000
+      internalID: -3256738509175714459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e54d45e161074c10800000000000000
+      internalID: 2037598876378940897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22783d6dd8ee68a50800000000000000
+      internalID: 6523163403254728482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6caf97fe2f1df9f0800000000000000
+      internalID: -433155702574306198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_14
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70b8f4e8e446ee740800000000000000
+      internalID: 5183190509707823879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562cc9fac109ed150800000000000000
+      internalID: 5899311014781698661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_16
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb0bc82f53588c390800000000000000
+      internalID: -7797836288042946373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d02395676dcc0e8b0800000000000000
+      internalID: -5124871154466999795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66d240f57152859d0800000000000000
+      internalID: -2785435587220066970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f88155ee7cc573fc0800000000000000
+      internalID: -3515238970372581233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c32deae28971dacc0800000000000000
+      internalID: -3698273776615632324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63cf0d603264d4580800000000000000
+      internalID: -8841333377206256586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf51f051fb8036ad0800000000000000
+      internalID: -2710312933961820677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03413868096f7ecf0800000000000000
+      internalID: -222938555939089360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_24
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dd55d55102d0f300800000000000000
+      internalID: 283957679701188056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_25
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bf10f83f746018f0800000000000000
+      internalID: -571846655097167951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9add3b1ee5a0e7b90800000000000000
+      internalID: -7242339748135314007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a340b5a442395f450800000000000000
+      internalID: 6121961052555641914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_28
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a823b85e0f3ae3f50800000000000000
+      internalID: 6863103137197798026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b9cdd4598e711570800000000000000
+      internalID: 8435662705341090231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb6f74a5925e76370800000000000000
+      internalID: 8315867202733995711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e19e79388c462750800000000000000
+      internalID: 6279790878378594789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_32
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8e0aeba2eee25610800000000000000
+      internalID: 1608610674238951053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_33
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc10eedc0b700690800000000000000
+      internalID: -7637969672811307835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_34
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44da20535f59a30e0800000000000000
+      internalID: -2289352580175581884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_35
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65cb174eb6c556100800000000000000
+      internalID: 100588185149619286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e3fbf8e9a6386f50800000000000000
+      internalID: 6874804934567261152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_37
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d8fec958737dc30800000000000000
+      internalID: 4384033809271590228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_38
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31e6e616773bef5b0800000000000000
+      internalID: -5332627583442981357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_39
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e821b9c982ca760800000000000000
+      internalID: 7470390534982504028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_40
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 013cec14a0879c660800000000000000
+      internalID: 7406583047636566800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_41
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4b927c6d1277bbc0800000000000000
+      internalID: -3767417092573062326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_42
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1688b0a9dbb15260800000000000000
+      internalID: 7084650232209245723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_43
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 285cefe32db10a570800000000000000
+      internalID: 8475805088525239682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_44
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51576c23d345c30c0800000000000000
+      internalID: -4594704898003143403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 524b7d5372dd7e720800000000000000
+      internalID: 2875510047576142885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_46
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5db0aaefb123605c0800000000000000
+      internalID: -4249654102559421483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_47
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a2c11d5742155f90800000000000000
+      internalID: -6965641150945181016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_48
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1317a6d1d2b43a40800000000000000
+      internalID: 5347095271914803998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_49
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fb3746e78019fcc0800000000000000
+      internalID: -3676889444901241864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_50
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a8db618d1b35360800000000000000
+      internalID: 7157259774474422901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_51
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ded03566dba8ebd0800000000000000
+      internalID: -2600639847497408815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_52
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2b669e7a8a3fd420800000000000000
+      internalID: 2656906671675566895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_53
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36473eb8248853e40800000000000000
+      internalID: 5635560328120202339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b75459e5bbf04e70800000000000000
+      internalID: 9097548006010673080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_55
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9956924ccb08697c0800000000000000
+      internalID: -4064920065422039655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_56
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f022b31a89a307ae0800000000000000
+      internalID: -1553677444228374001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_57
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e8b415308e961940800000000000000
+      internalID: 5266571087739926752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_58
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a872420de6743360800000000000000
+      internalID: 7148469268861057191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_59
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90e462a27435b38e0800000000000000
+      internalID: -1712683668169404919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_60
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b4d4db2402393570800000000000000
+      internalID: 8446837569606702258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_61
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62f727f219a0333d0800000000000000
+      internalID: -3228224889211945178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_62
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d55a51354ca987d0800000000000000
+      internalID: -2915609870564960815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c88ccee81a276f940800000000000000
+      internalID: 5329573247252744332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_64
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e19c512f3e4076cb0800000000000000
+      internalID: -4870919094912300770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_65
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 523404c08c9b11fe0800000000000000
+      internalID: -1219989755190557915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d98cf1a2cfdafb860800000000000000
+      internalID: 7547942799046330525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_67
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7286aabb5c650a3f0800000000000000
+      internalID: -891617318962304985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_68
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50922bfceb99451f0800000000000000
+      internalID: -1057050967717828347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_69
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41ade46391032c6e0800000000000000
+      internalID: -1818838414660806124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_70
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62a05c8f1cef6a1f0800000000000000
+      internalID: -1033858955379144154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_71
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2755ae69af8f21a0800000000000000
+      internalID: -6832084151829178579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8bdb1be77cbda6f0800000000000000
+      internalID: -671673546176734321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_73
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f9f44f81b052a20800000000000000
+      internalID: 3036845725537247064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_74
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ea400e2ef9d3f0b0800000000000000
+      internalID: -5695969417976853787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_75
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3cdcc1209060d430800000000000000
+      internalID: 3805647857286700090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_76
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03bd4f84542d8c850800000000000000
+      internalID: 6397594465698372400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_77
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd731f0553963b760800000000000000
+      internalID: 7472431884449953756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_78
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7856e62f987078000800000000000000
+      internalID: 38007410915173767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_79
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97b409596b8b10280800000000000000
+      internalID: -9078772279469388935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_80
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f562091d16aab090800000000000000
+      internalID: -8017913542675896848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ondestroy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43579f9f585c01d468ef73b21a22edd7
+      internalID: 1212116110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 08361c85abb314f4ca04f1a1777d31df
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ondestroy_0: 1212116110
+      ondestroy_1: 7420457574912855461
+      ondestroy_10: -3256738509175714459
+      ondestroy_11: 2037598876378940897
+      ondestroy_12: 6523163403254728482
+      ondestroy_13: -433155702574306198
+      ondestroy_14: 5183190509707823879
+      ondestroy_15: 5899311014781698661
+      ondestroy_16: -7797836288042946373
+      ondestroy_17: -5124871154466999795
+      ondestroy_18: -2785435587220066970
+      ondestroy_19: -3515238970372581233
+      ondestroy_2: 3611405238676905758
+      ondestroy_20: -3698273776615632324
+      ondestroy_21: -8841333377206256586
+      ondestroy_22: -2710312933961820677
+      ondestroy_23: -222938555939089360
+      ondestroy_24: 283957679701188056
+      ondestroy_25: -571846655097167951
+      ondestroy_26: -7242339748135314007
+      ondestroy_27: 6121961052555641914
+      ondestroy_28: 6863103137197798026
+      ondestroy_29: 8435662705341090231
+      ondestroy_3: 8315269191126519004
+      ondestroy_30: 8315867202733995711
+      ondestroy_31: 6279790878378594789
+      ondestroy_32: 1608610674238951053
+      ondestroy_33: -7637969672811307835
+      ondestroy_34: -2289352580175581884
+      ondestroy_35: 100588185149619286
+      ondestroy_36: 6874804934567261152
+      ondestroy_37: 4384033809271590228
+      ondestroy_38: -5332627583442981357
+      ondestroy_39: 7470390534982504028
+      ondestroy_4: 7944866895919625132
+      ondestroy_40: 7406583047636566800
+      ondestroy_41: -3767417092573062326
+      ondestroy_42: 7084650232209245723
+      ondestroy_43: 8475805088525239682
+      ondestroy_44: -4594704898003143403
+      ondestroy_45: 2875510047576142885
+      ondestroy_46: -4249654102559421483
+      ondestroy_47: -6965641150945181016
+      ondestroy_48: 5347095271914803998
+      ondestroy_49: -3676889444901241864
+      ondestroy_5: 9118182177935593273
+      ondestroy_50: 7157259774474422901
+      ondestroy_51: -2600639847497408815
+      ondestroy_52: 2656906671675566895
+      ondestroy_53: 5635560328120202339
+      ondestroy_54: 9097548006010673080
+      ondestroy_55: -4064920065422039655
+      ondestroy_56: -1553677444228374001
+      ondestroy_57: 5266571087739926752
+      ondestroy_58: 7148469268861057191
+      ondestroy_59: -1712683668169404919
+      ondestroy_6: -3021371320298836795
+      ondestroy_60: 8446837569606702258
+      ondestroy_61: -3228224889211945178
+      ondestroy_62: -2915609870564960815
+      ondestroy_63: 5329573247252744332
+      ondestroy_64: -4870919094912300770
+      ondestroy_65: -1219989755190557915
+      ondestroy_66: 7547942799046330525
+      ondestroy_67: -891617318962304985
+      ondestroy_68: -1057050967717828347
+      ondestroy_69: -1818838414660806124
+      ondestroy_7: -7319690154476797698
+      ondestroy_70: -1033858955379144154
+      ondestroy_71: -6832084151829178579
+      ondestroy_72: -671673546176734321
+      ondestroy_73: 3036845725537247064
+      ondestroy_74: -5695969417976853787
+      ondestroy_75: 3805647857286700090
+      ondestroy_76: 6397594465698372400
+      ondestroy_77: 7472431884449953756
+      ondestroy_78: 38007410915173767
+      ondestroy_79: -9078772279469388935
+      ondestroy_8: -1340719153869066144
+      ondestroy_80: -8017913542675896848
+      ondestroy_9: -7666049890938885712
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

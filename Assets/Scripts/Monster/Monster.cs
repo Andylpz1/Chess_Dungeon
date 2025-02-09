@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public MonsterInfoManager infoManager;
     private List<GameObject> highlightInstances = new List<GameObject>();
     public GameObject highlightPrefab;  // 在 Inspector 中拖入 Highlight Prefab
+
     
     public virtual void Initialize(Vector2Int startPos)
     {
@@ -26,6 +27,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         monsterManager = FindObjectOfType<MonsterManager>();
         infoManager = FindObjectOfType<MonsterInfoManager>();
+        animator = GetComponent<Animator>(); 
 
         UpdatePosition();
     }
@@ -58,7 +60,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // 播放受伤动画
         if (animator != null)
         {
-            animator.SetTrigger("TakeDamage");
+            //animator.SetTrigger("TakeDamage");
         }
 
         if (health <= 0)
@@ -77,7 +79,13 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             monsterManager.RemoveMonster(this);
         }
-        Destroy(gameObject);
+
+        if (animator != null)
+        {
+            Debug.Log("DIEEEEEEEEEEEEEEE");
+            animator.SetTrigger("Die");  // 触发死亡动画
+        }   
+        Destroy(gameObject, 0.6f);
     }
 
     public virtual void MoveTowardsPlayer()
@@ -173,5 +181,12 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         highlightInstances.Clear();
     }
+
+    public void OnDeathAnimationComplete()
+    {
+        // 动画结束后执行的逻辑
+        Destroy(gameObject);  // 销毁怪物
+    }   
+
 
 }

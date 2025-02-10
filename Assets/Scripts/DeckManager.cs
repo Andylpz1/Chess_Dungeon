@@ -119,7 +119,7 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new SwordCard(),
             new SwordCard(),
-            new SwordCard()
+            new SwordCard(),
             
             //step build
             //new Vine(),
@@ -136,9 +136,9 @@ public class DeckManager : MonoBehaviour
             //new TwoBladeCard(),
             //new TwoBladeCard()
             //new DarkEnergy(),
-            //new FloatSword(),
-            //new FloatSword(),
-            //new FloatSword(),
+            new FloatSword(),
+            new FloatSword(),
+            new FloatSword()
             //new EnergyCore()
         };
 
@@ -428,29 +428,44 @@ public class DeckManager : MonoBehaviour
 
     public void UpdateCardEditorPanel()
     {
+        // 清除之前的内容，避免重复生成卡牌
+        foreach (Transform child in cardEditorPanel)
+        {
+            Destroy(child.gameObject);
+        }
 
-    // 显示所有可用的卡牌
+        // 显示所有可用的卡牌
         foreach (Card card in allCards)
         {
-            GameObject cardUI = new GameObject("Card");
-            Image cardImage = cardUI.AddComponent<Image>();
-            cardImage.sprite = card.GetSprite();
+            // 这里我们直接实例化一个 UI 预制体（和 RewardManager 类似）
+            GameObject cardUI = Instantiate(card.GetPrefab(), cardEditorPanel);
+        
+            // 设置卡牌的图像和描述
+            Image cardImage = cardUI.GetComponent<Image>();
+            if (cardImage != null)
+            {
+                cardImage.sprite = card.GetSprite();
+            }
 
-            RectTransform rectTransform = cardUI.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(40, 50); // 调整尺寸
-            cardUI.transform.SetParent(cardEditorPanel, false); // 保持相对布局
-
-            Button cardButton = cardUI.AddComponent<Button>();
-            cardButton.onClick.AddListener(() => OnCardSelected(card));
+            Button cardButton = cardUI.GetComponent<Button>();
+            if (cardButton != null)
+            {
+                cardButton.onClick.RemoveAllListeners(); // 清除旧的监听器
+                cardButton.onClick.AddListener(() => OnCardSelected(card)); // 绑定新的监听器
+            }
         }
     }
+
 
     // 当卡牌被选中时调用的方法
     private void OnCardSelected(Card card)
     {
-        deck.Add(card);
-        UpdateDeckPanel(); // 更新牌组面板以显示新添加的卡牌
+        Card newCardInstance = card.Clone();
+        deck.Add(newCardInstance);  // 逻辑上仍然使用同一个 card 对象
+        UpdateDeckCountText();  // 更新 UI 显示
+        UpdateDeckPanel();  // 更新手牌面板
     }
+
 
 
     void OnCardClicked(Card card)

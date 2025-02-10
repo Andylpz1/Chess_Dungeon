@@ -61,6 +61,12 @@ public class Card
     {
         
     }
+
+    public Card Clone()
+    {
+        // 简单的深拷贝，确保克隆出一个新实例
+        return (Card)this.MemberwiseClone();
+    }
 }
 
 public class PawnCard : Card

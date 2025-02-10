@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.IO;
 using System.Collections.Generic;
 
 public class LocationManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class LocationManager : MonoBehaviour
     private List<GameObject> spawnedLocations = new List<GameObject>();  // 动态生成的障碍物
 
     private Player player;
+    private List<TerrainConfig> terrainConfigs = new List<TerrainConfig>();
+
 
     void Awake()
     {
@@ -16,9 +19,67 @@ public class LocationManager : MonoBehaviour
         locationPrefabs["Forest"] = Resources.Load<GameObject>("Prefabs/Location/Forest");
         //locationPrefabs["Rock"] = Resources.Load<GameObject>("Prefabs/Locations/RockLocation");
         //locationPrefabs["River"] = Resources.Load<GameObject>("Prefabs/Locations/RiverLocation");
-
+        LoadTerrainConfigs();
         // 缓存场景中初始的不可进入位置
         CacheExistingLocations();
+    }
+
+    private void LoadTerrainConfigs()
+    {
+        string filePath = Path.Combine(Application.streamingAssetsPath, "Configs", "levelConfig.json");
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            GameConfig gameConfig = JsonUtility.FromJson<GameConfig>(json);
+            terrainConfigs = gameConfig.terrains;
+        }
+        else
+        {
+            Debug.LogError("Terrain configuration file not found: " + filePath);
+        }
+    }
+
+    public void SpawnLocationsForLevel(string terrainType)
+    {
+        TerrainConfig terrainConfig = terrainConfigs.Find(t => t.name == terrainType);
+        if (terrainConfig == null)
+        {
+            Debug.LogError($"Terrain configuration not found for terrain type: {terrainType}");
+            return;
+        }
+
+        if (terrainType == "Plain")
+        {
+
+        }
+        else if (terrainType == "Borderland")
+        {
+            GenerateEdgeTerrain(terrainConfig);
+        }
+
+    }
+
+    private void GenerateEdgeTerrain(TerrainConfig config)
+    {
+        int mapSize = config.mapSize;
+        int openAreaSize = config.openAreaSize;
+        //GameObject obstaclePrefab = locationPrefabs[config.obstacleType];
+        GameObject obstaclePrefab = locationPrefabs["Forest"];
+
+
+        for (int x = 0; x < mapSize; x++)
+        {
+            for (int y = 0; y < mapSize; y++)
+            {
+                bool isEdge = (x < (mapSize - openAreaSize) / 2 || x >= mapSize - (mapSize - openAreaSize) / 2 ||
+                               y < (mapSize - openAreaSize) / 2 || y >= mapSize - (mapSize - openAreaSize) / 2);
+
+                if (isEdge)
+                {
+                    CreateLocation(obstaclePrefab, new Vector2Int(x, y));
+                }
+            }
+        }
     }
 
     // 缓存场景中手动摆放的不可进入位置

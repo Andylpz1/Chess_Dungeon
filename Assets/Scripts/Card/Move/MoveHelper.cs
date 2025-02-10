@@ -15,7 +15,7 @@ public static class MoveHelper
         foreach (Vector2Int direction in directions)
         {
             Vector2Int newPosition = player.position + direction;
-            if (player.IsValidPosition(newPosition) && !IsBlockedByMonster(newPosition))
+            if (player.IsValidPosition(newPosition) && !IsBlockedByMonster(newPosition) && !IsBlockedByLocation(newPosition))
             {
                 validPositions.Add(newPosition);
                 
@@ -48,7 +48,7 @@ public static class MoveHelper
         foreach (Vector2Int direction in directions)
         {
             Vector2Int newPosition = player.position + direction;
-            if (player.IsValidPosition(newPosition) && !IsBlockedByMonster(newPosition))
+            if (player.IsValidPosition(newPosition) && !IsBlockedByMonster(newPosition) && !IsBlockedByLocation(newPosition))
             {
                 validPositions.Add(newPosition);
                 
@@ -93,6 +93,12 @@ public static class MoveHelper
                 if (IsBlockedByMonster(newPosition))
                 {
                     Debug.Log($"Blocked by monster at position: {newPosition}");
+                    break;
+                }
+                // 检查是否被 Location 阻挡
+                if (IsBlockedByLocation(newPosition))
+                {
+                    Debug.Log($"Blocked by location at position: {newPosition}");
                     break;
                 }
                 validPositions.Add(newPosition);
@@ -151,6 +157,12 @@ public static class MoveHelper
                     Debug.Log($"Blocked by monster at position: {newPosition}");
                     break;
                 }
+                // 检查是否被 Location 阻挡
+                if (IsBlockedByLocation(newPosition))
+                {
+                    Debug.Log($"Blocked by location at position: {newPosition}");
+                    break;
+                }
                 validPositions.Add(newPosition);
             }
         }
@@ -180,4 +192,18 @@ public static class MoveHelper
 
         return false;
     }
+
+    private static bool IsBlockedByLocation(Vector2Int position)
+    {
+        LocationManager locationManager = GameObject.FindObjectOfType<LocationManager>();
+        if (locationManager == null)
+        {
+            Debug.LogError("LocationManager not found in the scene.");
+            return false;
+        }
+
+        // 检查位置是否被不可进入的位置占据
+        return locationManager.IsNonEnterablePosition(position);
+    }
+
 }

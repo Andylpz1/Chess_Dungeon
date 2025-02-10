@@ -119,7 +119,7 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new SwordCard(),
             new SwordCard(),
-            new SwordCard(),
+            new SwordCard()
             
             //step build
             //new Vine(),
@@ -136,9 +136,9 @@ public class DeckManager : MonoBehaviour
             //new TwoBladeCard(),
             //new TwoBladeCard()
             //new DarkEnergy(),
-            new FloatSword(),
-            new FloatSword(),
-            new FloatSword()
+            //new FloatSword(),
+            //new FloatSword(),
+            //new FloatSword()
             //new EnergyCore()
         };
 

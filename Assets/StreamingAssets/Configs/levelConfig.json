@@ -2,7 +2,8 @@
     "levels": [
         {
             "levelNumber": 1,
-            "monsterTypes": ["WhitePawn","WhitePawn"]
+            "monsterTypes": ["WhitePawn","WhitePawn"],
+            "terrainType": "Borderland"
         },
         {
             "levelNumber": 2,
@@ -39,6 +40,21 @@
         {
             "levelNumber": 10,
             "monsterTypes": ["WhiteKnight", "WhiteBishop", "WhiteRook","WhiteQueen","WhiteKing"]
+        }
+    ],
+
+    "terrains": [
+        {
+            "name": "Borderland",
+            "mapSize": 8,
+            "openAreaSize": 4,
+            "borderObstacleType": "Forest"
+        },
+        {
+            "name": "Plain",
+            "mapSize": 8,
+            "openAreaSize": 8,
+            "borderObstacleType": ""
         }
     ]
 }

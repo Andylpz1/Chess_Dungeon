@@ -105,6 +105,13 @@ public class MonsterManager : MonoBehaviour
         LocationManager locationManager = FindObjectOfType<LocationManager>();
         locationManager.ClearAllLocations();
 
+        // 获取当前关卡配置并生成对应的地形
+        LevelConfig levelConfig = levelConfigs.Find(l => l.levelNumber == level);
+        if (levelConfig != null)
+        {
+            locationManager.SpawnLocationsForLevel(levelConfig.terrainType);
+        }
+
         // 清空之前存储的位置数据
         player.activatePointPositions.Clear();
         player.deactivatePointPositions.Clear();
@@ -112,8 +119,6 @@ public class MonsterManager : MonoBehaviour
         player.isCharged = false;
         player.UpdateEnergyStatus();
         
-
-        LevelConfig levelConfig = levelConfigs.Find(l => l.levelNumber == level);
         if (levelConfig == null)
         {
             Debug.LogError("Level configuration not found for level: " + level);
@@ -129,7 +134,7 @@ public class MonsterManager : MonoBehaviour
         ClearAllPoints();
 
         //生成场景
-        locationManager.GenerateLocation("Forest", 5);
+        //locationManager.GenerateLocation("Forest", 5);
 
         //生成怪物
         totalMonstersToSpawn = levelConfig.monsterTypes.Count;

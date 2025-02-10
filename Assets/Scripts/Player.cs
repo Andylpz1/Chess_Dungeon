@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     public Card currentCard;
     public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
     public MonsterManager monsterManager;
+    public LocationManager locationManager;
     public Text goldText;
 
     public event System.Action OnMoveComplete;
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
         Debug.Log($"Current Location: {position}");
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
         monsterManager = FindObjectOfType<MonsterManager>(); // 初始化deckManager引用
+        LocationManager locationManager = FindObjectOfType<LocationManager>(); // 初始化locationManager引用
         animator = GetComponent<Animator>(); //初始化animator
         UpdatePosition();
         UpdateGoldText();
@@ -349,6 +351,13 @@ public class Player : MonoBehaviour
 
         return false;
     }
+
+    private bool IsBlockedByLocation(Vector2Int position)
+    {
+        // 检查该位置是否被不可进入的位置占据
+        return locationManager.IsNonEnterablePosition(position);
+    }
+
 
     public void Move(Vector2Int newPosition)
     {

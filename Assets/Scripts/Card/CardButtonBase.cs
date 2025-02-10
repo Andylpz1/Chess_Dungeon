@@ -76,14 +76,15 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         // 将卡牌临时移动到 Canvas 顶层
         transform.SetParent(canvasRectTransform, true);
 
-        // 激活瞄准指针
-        aimPointer.SetActive(true);
-        UpdateAimPointerPosition(eventData);
+        
 
         // 如果是普通卡牌（移动卡或攻击卡），立即调用 OnClick 显示目标位置
         if (card.cardType == CardType.Move || card.cardType == CardType.Attack)
         {
             if (cardImage != null) cardImage.enabled = false;
+            // 激活瞄准指针
+            aimPointer.SetActive(true);
+            UpdateAimPointerPosition(eventData);
             OnClick();  // 显示目标位置
         }
     }
@@ -123,7 +124,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
                 player.Attack(gridPosition);
             }
 
-            deckManager.UseCard(card);  // 打出卡牌
+            //deckManager.UseCard(card);  // 打出卡牌
         }
         else
         {

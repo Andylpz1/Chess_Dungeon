@@ -16,6 +16,8 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Image healthFill;  // 引用填充的红色条
     public Player player;
     private MonsterManager monsterManager;
+    private LocationManager locationManager;
+
     private bool isDying = false;
 
     public MonsterInfoManager infoManager;
@@ -35,6 +37,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         monsterManager = FindObjectOfType<MonsterManager>();
         infoManager = FindObjectOfType<MonsterInfoManager>();
+        locationManager = FindObjectOfType<LocationManager>();
         animator = GetComponent<Animator>(); 
 
         // 实例化血量条并设置其位置
@@ -145,6 +148,13 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 return false;
             }
         }
+
+        // 检查位置是否是不可进入的区域
+        if (locationManager != null && locationManager.IsNonEnterablePosition(position))
+        {
+            return false;
+        }
+
         return true;
     }
 

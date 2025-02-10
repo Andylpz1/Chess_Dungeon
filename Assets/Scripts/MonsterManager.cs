@@ -23,6 +23,7 @@ public class MonsterManager : MonoBehaviour
 
     public Player player; // 玩家对象
     public RewardManager rewardManager;
+    private LocationManager locationManager;
     private List<LevelConfig> levelConfigs; // 关卡配置列表
     private Dictionary<string, GameObject> monsterPrefabs = new Dictionary<string, GameObject>();
     public bool isLevelCompleted = false;
@@ -35,6 +36,7 @@ public class MonsterManager : MonoBehaviour
         // Initialize the player in Awake to ensure it is set before Start
         player = FindObjectOfType<Player>();
         rewardManager = FindObjectOfType<RewardManager>();
+        locationManager = FindObjectOfType<LocationManager>();
         if (player == null)
         {
             Debug.LogError("Player object not found!");
@@ -99,6 +101,10 @@ public class MonsterManager : MonoBehaviour
     public void StartLevel(int level)
     {
         currentLevel = level;
+        // 清除上一关的动态障碍物
+        LocationManager locationManager = FindObjectOfType<LocationManager>();
+        locationManager.ClearAllLocations();
+
         // 清空之前存储的位置数据
         player.activatePointPositions.Clear();
         player.deactivatePointPositions.Clear();
@@ -122,10 +128,15 @@ public class MonsterManager : MonoBehaviour
         ClearAllScenes();
         ClearAllPoints();
 
+        //生成场景
+        locationManager.GenerateLocation("Forest", 5);
+
         //生成怪物
         totalMonstersToSpawn = levelConfig.monsterTypes.Count;
         totalMonstersKilled = 0;
         SpawnMonstersForLevel(levelConfig);
+
+        
 
         //if (level > 1)
         //{
@@ -363,6 +374,9 @@ public class MonsterManager : MonoBehaviour
             occupiedPositions.UnionWith(monster.GetOccupiedPositions(monster.position));
         }
 
+        // 从 LocationManager 获取不可进入位置
+        HashSet<Vector2Int> nonEnterablePositions = new HashSet<Vector2Int>(FindObjectOfType<LocationManager>().GetNonEnterablePositions());
+
         Vector2Int restrictedPosition = new Vector2Int(3, 3); // 永远不会生成的位置
 
         Vector2Int randomPosition;
@@ -381,7 +395,11 @@ public class MonsterManager : MonoBehaviour
                 Debug.LogWarning("Failed to find a valid spawn position after 50 attempts.");
                 return new Vector2Int(-1, -1); // Return an invalid position to indicate failure
             }
-        } while (occupiedPositions.Overlaps(monsterParts) || randomPosition == restrictedPosition || !AreAllPositionsValid(monsterParts) || monsterParts.Contains(playerPosition));
+        } while (occupiedPositions.Overlaps(monsterParts) || 
+         randomPosition == restrictedPosition || 
+         !AreAllPositionsValid(monsterParts) || 
+         monsterParts.Contains(playerPosition) || 
+         monsterParts.Exists(part => locationManager.IsNonEnterablePosition(part)));  // 确认位置是否是不可进入的
 
         return randomPosition;
     }

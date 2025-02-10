@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         Instance = this;
 
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
-        Debug.Log($"Current Location: {position}");
+        //Debug.Log($"Current Location: {position}");
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
         monsterManager = FindObjectOfType<MonsterManager>(); // 初始化deckManager引用
         LocationManager locationManager = FindObjectOfType<LocationManager>(); // 初始化locationManager引用
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
     {
         //HandleMouseMovement(); // 处理鼠标移动
         //HandleMouseClick(); // 处理鼠标点击
-        //HandleMoveHighlightClick(); 
+        HandleMoveHighlightClick(); 
         HandleAttackHighlightClick(); 
         CheckForMonsterCollision();
     }
@@ -117,25 +117,25 @@ public class Player : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePosition2D, Vector2.zero, Mathf.Infinity, moveHighlightLayer);
             if (hit.collider != null)
             {
-                Debug.Log("Raycast hit object: " + hit.collider.name);
-
                 MoveHighlight highlight = hit.collider.GetComponent<MoveHighlight>();
-                if (highlight != null && highlight.isMove)
+                if (highlight != null && highlight.isMove)  // 确保是一个移动高亮
                 {
-                    Debug.Log("Move highlight detected at: " + highlight.position);
-                    Move(highlight.position); // 触发移动逻辑
+                    Debug.Log($"[MoveClick] Moving player to {highlight.position}");
+                    Move(highlight.position);  // 调用玩家的 Move 方法
                 }
                 else
                 {
-                    Debug.LogWarning("Raycast hit object is not a valid move highlight.");
+                    Debug.LogWarning("[MoveClick] Detected highlight, but it's not a move highlight.");
                 }
             }
             else
             {
-                Debug.LogWarning("Raycast did not hit any object.");
+                Debug.LogWarning("[MoveClick] No move highlight detected at click position.");
             }
         }
     }
+
+
 
 
     
@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
         UpdateHealthText();
         if (health <= 0)
         {
-            Debug.Log("Player has died.");
+            //("Player has died.");
             // 可在此实现游戏结束逻辑
         }
     }
@@ -326,6 +326,11 @@ public class Player : MonoBehaviour
         {
             highlight.layer = LayerMask.NameToLayer("AttackHighlight"); // 设置专属 Layer
         }
+        else
+        {
+            highlight.layer = LayerMask.NameToLayer("MoveHighlight");
+        }
+        
 
         highlight.GetComponent<MoveHighlight>().Initialize(this, newPosition, isMove);
         moveHighlights.Add(highlight);
@@ -382,7 +387,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Energy status text component is not assigned.");
+            //Debug.LogError("Energy status text component is not assigned.");
         }
     }
 
@@ -393,7 +398,7 @@ public class Player : MonoBehaviour
         if (activatePointPositions.Contains(newPosition))
         {
             Charge();
-            Debug.Log("Player is now charged.");
+            //Debug.Log("Player is now charged.");
         }
 
         // 检查玩家是否移动到了DeactivatePoint
@@ -401,7 +406,7 @@ public class Player : MonoBehaviour
         {
             if (isCharged)
             {
-                Debug.Log("Player is at DeactivatePoint, triggering Exhaust.");
+                //Debug.Log("Player is at DeactivatePoint, triggering Exhaust.");
                 Decharge();
             }
         }
@@ -536,7 +541,7 @@ public class Player : MonoBehaviour
             // 如果是攻击卡，执行 OnAttackExecuted 方法
             if (currentCard.cardType == CardType.Attack)
             {
-                Debug.Log("Executing OnAttackExecuted for: ");
+                //Debug.Log("Executing OnAttackExecuted for: ");
                 currentCard.OnCardExecuted();   // 只触发攻击卡的特殊效果
             }
 
@@ -606,11 +611,11 @@ public class Player : MonoBehaviour
         if (nearestMonster != null)
         {
             nearestMonster.TakeDamage(1);
-            Debug.Log("Vine effect triggered: Dealt 1 damage to " + nearestMonster.name);
+            //Debug.Log("Vine effect triggered: Dealt 1 damage to " + nearestMonster.name);
         }
         else
         {
-            Debug.Log("No adjacent monsters to damage.");
+            //Debug.Log("No adjacent monsters to damage.");
         }
     }
 

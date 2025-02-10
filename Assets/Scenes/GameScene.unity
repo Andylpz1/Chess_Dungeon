@@ -6440,6 +6440,7 @@ MonoBehaviour:
     isPartner: 0
   deckManager: {fileID: 0}
   monsterManager: {fileID: 0}
+  locationManager: {fileID: 0}
   goldText: {fileID: 1144206850}
   vineEffectActive: 0
   attackHighlightLayer:
@@ -6447,7 +6448,7 @@ MonoBehaviour:
     m_Bits: 2048
   moveHighlightLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 6144
   attackEffectPrefab: {fileID: 3381790849320777569, guid: 17b42eb47516bc446aaa5e390ef6e6d6, type: 3}
 --- !u!61 &1399918235
 BoxCollider2D:

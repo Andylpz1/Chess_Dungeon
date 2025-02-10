@@ -14,13 +14,19 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     public MonsterManager monsterManager;
     private Vector3 originalPosition;
     private bool isDragging = false;
-
     private Transform originalParent;
+
+    private GameObject aimPointer;  // 瞄准指针
+    private static GameObject aimPointerInstance;
+    private Image cardImage; 
+    private RectTransform canvasRectTransform;
 
     protected virtual void Awake()
     {
         button = GetComponent<Button>();
         buttonText = GetComponentInChildren<Text>();
+        canvasRectTransform = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        cardImage = GetComponent<Image>();
     }
 
     protected virtual void Start()
@@ -29,6 +35,16 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         turnManager = FindObjectOfType<TurnManager>();
         monsterManager = FindObjectOfType<MonsterManager>();
         player = FindObjectOfType<Player>();
+
+        // 如果全局的 AimPointer 没有实例化，就创建一个
+        if (aimPointerInstance == null)
+        {
+            GameObject pointerPrefab = Resources.Load<GameObject>("Prefabs/UI/AimPointer");
+            aimPointerInstance = Instantiate(pointerPrefab);
+            aimPointerInstance.SetActive(false);
+        }
+
+        aimPointer = aimPointerInstance;
     }
 
     public virtual void Initialize(Card card, DeckManager deckManager)
@@ -58,11 +74,16 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         originalParent = transform.parent;
 
         // 将卡牌临时移动到 Canvas 顶层
-        transform.SetParent(GameObject.Find("Canvas").transform, true);
+        transform.SetParent(canvasRectTransform, true);
+
+        // 激活瞄准指针
+        aimPointer.SetActive(true);
+        UpdateAimPointerPosition(eventData);
 
         // 如果是普通卡牌（移动卡或攻击卡），立即调用 OnClick 显示目标位置
         if (card.cardType == CardType.Move || card.cardType == CardType.Attack)
         {
+            if (cardImage != null) cardImage.enabled = false;
             OnClick();  // 显示目标位置
         }
     }
@@ -71,13 +92,13 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     {
         if (card == null) return;
 
-        // 将屏幕坐标转换为世界坐标
-        RectTransform canvasRectTransform = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        // 更新卡牌位置
         Vector3 worldPosition;
         RectTransformUtility.ScreenPointToWorldPointInRectangle(canvasRectTransform, eventData.position, Camera.main, out worldPosition);
-
-        // 更新卡牌位置
         transform.position = worldPosition;
+
+        // 更新瞄准指针的位置
+        UpdateAimPointerPosition(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -89,19 +110,12 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         // 检查释放位置
         Vector3 releasePosition = Camera.main.ScreenToWorldPoint(eventData.position);
         Vector2Int gridPosition = player.CalculateGridPosition(releasePosition);
-        
-
-        if (card.cardType == CardType.Special)
+    
+        if (player.IsValidPosition(gridPosition) && IsOverHighlightedPosition(gridPosition))
         {
-            //OnClick();  // 特殊卡拖拽到棋盘上时触发效果
-        }
-        else if (player.IsValidPosition(gridPosition) && IsOverHighlightedPosition(gridPosition))
-        {
-            Debug.Log("haha");
             // 如果是移动卡，执行移动；如果是攻击卡，执行攻击
             if (card.cardType == CardType.Move)
             {
-                Debug.Log("haha");
                 player.Move(gridPosition);
             }
             else if (card.cardType == CardType.Attack)
@@ -114,6 +128,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         else
         {
             // 无效位置，恢复到原位置
+            if (cardImage != null) cardImage.enabled = true;
             transform.position = originalPosition;
         }
 
@@ -121,10 +136,19 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         player.ClearMoveHighlights();
         // 恢复父对象
         transform.SetParent(originalParent, true);
+
+        // 隐藏瞄准指针
+        aimPointer.SetActive(false);
     }
 
-
-
+    private void UpdateAimPointerPosition(PointerEventData eventData)
+    {
+        // 将鼠标位置更新到瞄准指针上
+        Vector3 worldPosition;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(canvasRectTransform, eventData.position, Camera.main, out worldPosition);
+        aimPointer.transform.position = worldPosition;
+        
+    }
 
     private bool IsOverHighlightedPosition(Vector2Int position)
     {

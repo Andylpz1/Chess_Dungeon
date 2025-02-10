@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Monster
+  - Chessboard
   layers:
   - Default
   - TransparentFX

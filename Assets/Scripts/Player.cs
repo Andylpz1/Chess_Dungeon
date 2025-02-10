@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     public float xshift = -1;
     public float yshift = -1;
 
-    private List<GameObject> moveHighlights = new List<GameObject>(); // 初始化 moveHighlights 列表
+    public List<GameObject> moveHighlights = new List<GameObject>(); // 初始化 moveHighlights 列表
     public Card currentCard;
     public DeckManager deckManager; // 引入DeckManager以更新卡牌状态
     public MonsterManager monsterManager;

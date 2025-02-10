@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -135,6 +136,20 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         if (player.IsValidPosition(gridPosition) && IsOverHighlightedPosition(gridPosition))
         {
             // 如果是移动卡，执行移动；如果是攻击卡，执行攻击
+            // 如果是 FlailCard，则触发多目标攻击
+            if (card is FlailCard flailCard)
+            {
+                Debug.Log($"Performing flail attack at position {gridPosition}");
+                List<Vector2Int> attackPositions = flailCard.GetAttackPositions(player.position, gridPosition, player.boardSize);
+            
+                // 打印调试信息
+                foreach (var pos in attackPositions)
+                {
+                    Debug.Log($"Flail attack target: {pos}");
+                }
+            
+                player.MultipleAttack(attackPositions.ToArray());
+            }
             if (card.cardType == CardType.Move)
             {
                 player.Move(gridPosition);

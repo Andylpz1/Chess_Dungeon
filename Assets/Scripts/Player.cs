@@ -630,20 +630,12 @@ public class Player : MonoBehaviour
                     CardButtonBase cardButtonBase = monoBehaviour as CardButtonBase;
                     if (cardButtonBase != null)
                     {
-                        Debug.Log("hausdhaudauhdusa");
                         cardButtonBase.SetDraggable(false);
                     }
                     }
             }
         }
-        foreach (Transform card in deckManager.cardPanel)
-        {
-            CardButtonBase cardButtonBase = card.GetComponent<CardButtonBase>();
-            if (cardButtonBase != null)
-            {
-                cardButtonBase.SetDraggable(false);  // 禁用拖拽
-            }
-        }
+
     }
 
     public void SetDeck(List<Card> deck)

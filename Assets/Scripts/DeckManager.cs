@@ -88,7 +88,7 @@ public class DeckManager : MonoBehaviour
         // 确保 deckPanel 初始时显示和 discardPanel 初始时隐藏
         if (deckPanel != null)
         {
-            deckPanel.gameObject.SetActive(true);
+            deckPanel.gameObject.SetActive(false);
         }
         else
         {
@@ -181,6 +181,7 @@ public class DeckManager : MonoBehaviour
 
     private IEnumerator DrawCardsCoroutine(int number)
     {
+        GridLayoutGroup gridLayout = cardPanel.GetComponent<GridLayoutGroup>();
         for (int i = 0; i < number; i++)
         {
             if (deck.Count == 0)
@@ -207,10 +208,8 @@ public class DeckManager : MonoBehaviour
                     cardButtonScript.Initialize(card, this);
                     cardButtons.Add(cardButton); // 追踪卡牌按钮
                 }
-                else
-                {
-                    Debug.LogError("CardButton script not found on instantiated CardButton.");
-                }
+                AdjustCardSpacing(gridLayout);
+
             }
             UpdateDeckCountText(); // 每次抽牌后更新牌库剩余数量显示
             UpdateDeckPanel(); // 每次抽牌后更新卡组显示
@@ -225,6 +224,25 @@ public class DeckManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f); // 每次抽牌后等待0.1秒
         }
     }
+
+    private void AdjustCardSpacing(GridLayoutGroup gridLayout)
+    {
+        int handCount = hand.Count;
+
+        // 设置一个基础间距，例如 0，并在超过 7 张时开始减少
+        float baseSpacing = 0f;
+        float overlapFactor = -10f; // 每增加一张牌减少多少像素的间距
+
+        if (handCount > 7)
+        {
+            gridLayout.spacing = new Vector2(overlapFactor * (handCount - 7), 0);
+        }
+        else
+        {
+            gridLayout.spacing = new Vector2(baseSpacing, 0);
+        }
+    }
+
 
     // 从特定位置抽卡
     public void DrawCardAt(int index)

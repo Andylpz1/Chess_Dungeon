@@ -429,6 +429,12 @@ public class MonsterManager : MonoBehaviour
             occupiedPositions.UnionWith(scene.GetOccupiedPositions(scene.position));
         }
 
+        //添加所有场景占据的位置
+        if (locationManager != null)
+        {
+            occupiedPositions.UnionWith(locationManager.GetNonEnterablePositions());
+        }
+
         Vector2Int randomPosition;
         int attempts = 0;
         const int maxAttempts = 50;

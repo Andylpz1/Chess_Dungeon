@@ -23,38 +23,34 @@ public class WhitePawn : Monster
     {
         if (player == null) return;
 
-        Vector2Int originalPosition = position;
         Vector2Int direction = player.position - position;
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
 
-        // 根据玩家的位置计算可能的移动方向（上下左右）
-        if (direction.x != 0)
-        {
-            possibleMoves.Add(new Vector2Int(position.x + (int)Mathf.Sign(direction.x), position.y)); // 左或右移动
-        }
-        if (direction.y != 0)
-        {
-            possibleMoves.Add(new Vector2Int(position.x, position.y + (int)Mathf.Sign(direction.y))); // 上或下移动
-        }
+        // 所有可能的移动方向：上下左右
+        possibleMoves.Add(new Vector2Int(position.x + 1, position.y));  // 右
+        possibleMoves.Add(new Vector2Int(position.x - 1, position.y));  // 左
+        possibleMoves.Add(new Vector2Int(position.x, position.y + 1));  // 上
+        possibleMoves.Add(new Vector2Int(position.x, position.y - 1));  // 下
 
-        // 尝试每一个可能的移动方向，直到找到一个未被占据的位置
+        // 按照接近玩家的优先级排序
+        possibleMoves.Sort((a, b) => Vector2Int.Distance(a, player.position).CompareTo(Vector2Int.Distance(b, player.position)));
+
+        // 遍历所有可能的移动方向，找到第一个有效的移动
         foreach (Vector2Int move in possibleMoves)
         {
             if (!IsPositionOccupied(move) && IsValidPosition(move))
             {
                 position = move;
+                UpdatePosition();
                 break;
             }
         }
-
-        UpdatePosition();
 
         // 检测是否接触到玩家
         if (position == player.position)
         {
             Debug.Log("Player attacked by WhitePawn.");
-            // 在此处添加攻击玩家的逻辑，比如减少玩家的生命值等
-            //player.TakeDamage(1); // 假设每次攻击造成1点伤害
+            //player.TakeDamage(1);  // 假设每次攻击造成 1 点伤害
         }
     }
 

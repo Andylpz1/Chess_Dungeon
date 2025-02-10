@@ -7,19 +7,23 @@
         },
         {
             "levelNumber": 2,
-            "monsterTypes": ["WhitePawn","WhitePawn","WhitePawn"]
+            "monsterTypes": ["WhitePawn","WhitePawn","WhitePawn"],
+            "terrainType": "Borderland"
         },
         {
             "levelNumber": 3,
-            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight"]
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight"],
+            "terrainType": "Borderland"
         },
         {
             "levelNumber": 4,
-            "monsterTypes": ["WhitePawn", "WhitePawn","WhitePawn","WhiteBishop"]
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhitePawn","WhiteBishop"],
+            "terrainType": "Borderland"
         },
         {
             "levelNumber": 5,
-            "monsterTypes": ["WhitePawn","WhitePawn","WhiteRook"]
+            "monsterTypes": ["WhitePawn","WhitePawn","WhiteRook"],
+            "terrainType": "Borderland"
         },
         {
             "levelNumber": 6,

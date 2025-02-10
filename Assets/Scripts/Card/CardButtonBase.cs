@@ -14,6 +14,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     public MonsterManager monsterManager;
     private Vector3 originalPosition;
     private bool isDragging = false;
+    protected bool canDrag = true;
     private Transform originalParent;
 
     private GameObject aimPointer;  // 瞄准指针
@@ -42,6 +43,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
             GameObject pointerPrefab = Resources.Load<GameObject>("Prefabs/UI/AimPointer");
             aimPointerInstance = Instantiate(pointerPrefab);
             aimPointerInstance.SetActive(false);
+            aimPointerInstance.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
 
         aimPointer = aimPointerInstance;
@@ -59,7 +61,8 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
 
         if (button != null)
         {
-            button.onClick.AddListener(() => OnClick());
+            //抛弃点击方法
+            //button.onClick.AddListener(() => OnClick()); 
         }
     }
 
@@ -67,11 +70,16 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (card == null) return;
-
-        isDragging = true;
         originalPosition = transform.position;
         originalParent = transform.parent;
+        if (card == null || !canDrag) 
+        {
+            transform.position = originalPosition;
+            return; 
+        }
+
+        isDragging = true;
+        
 
         // 将卡牌临时移动到 Canvas 顶层
         transform.SetParent(canvasRectTransform, true);
@@ -91,7 +99,11 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (card == null) return;
+        if (card == null || !canDrag) 
+        {
+            transform.position = originalPosition;
+            return; 
+        }
 
         // 更新卡牌位置
         Vector3 worldPosition;
@@ -104,14 +116,22 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (card == null) return;
+        if (card == null || !canDrag) 
+        {
+            transform.position = originalPosition;
+            return; 
+        }
 
         isDragging = false;
 
         // 检查释放位置
         Vector3 releasePosition = Camera.main.ScreenToWorldPoint(eventData.position);
         Vector2Int gridPosition = player.CalculateGridPosition(releasePosition);
-    
+
+        if (card.cardType == CardType.Special) 
+        {
+            OnClick();
+        }
         if (player.IsValidPosition(gridPosition) && IsOverHighlightedPosition(gridPosition))
         {
             // 如果是移动卡，执行移动；如果是攻击卡，执行攻击
@@ -124,7 +144,6 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
                 player.Attack(gridPosition);
             }
 
-            //deckManager.UseCard(card);  // 打出卡牌
         }
         else
         {
@@ -137,6 +156,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         player.ClearMoveHighlights();
         // 恢复父对象
         transform.SetParent(originalParent, true);
+        player.DeselectCurrentCard();
 
         // 隐藏瞄准指针
         aimPointer.SetActive(false);
@@ -191,5 +211,10 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     public Card GetCard()
     {
         return card;
+    }
+
+    public virtual void SetDraggable(bool draggable)
+    {
+        canDrag = draggable;
     }
 }

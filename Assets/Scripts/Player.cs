@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
     {
         //HandleMouseMovement(); // 处理鼠标移动
         //HandleMouseClick(); // 处理鼠标点击
+        //HandleMoveHighlightClick(); 
         HandleAttackHighlightClick(); 
         CheckForMonsterCollision();
     }
@@ -114,14 +115,26 @@ public class Player : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePosition2D, Vector2.zero, Mathf.Infinity, moveHighlightLayer);
             if (hit.collider != null)
             {
+                Debug.Log("Raycast hit object: " + hit.collider.name);
+
                 MoveHighlight highlight = hit.collider.GetComponent<MoveHighlight>();
                 if (highlight != null && highlight.isMove)
                 {
+                    Debug.Log("Move highlight detected at: " + highlight.position);
                     Move(highlight.position); // 触发移动逻辑
                 }
+                else
+                {
+                    Debug.LogWarning("Raycast hit object is not a valid move highlight.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Raycast did not hit any object.");
             }
         }
     }
+
 
     
     private void CheckForMonsterCollision()
@@ -613,7 +626,22 @@ public class Player : MonoBehaviour
                     {
                         button.interactable = false;
                     }
-                }
+                    // 禁用拖拽
+                    CardButtonBase cardButtonBase = monoBehaviour as CardButtonBase;
+                    if (cardButtonBase != null)
+                    {
+                        Debug.Log("hausdhaudauhdusa");
+                        cardButtonBase.SetDraggable(false);
+                    }
+                    }
+            }
+        }
+        foreach (Transform card in deckManager.cardPanel)
+        {
+            CardButtonBase cardButtonBase = card.GetComponent<CardButtonBase>();
+            if (cardButtonBase != null)
+            {
+                cardButtonBase.SetDraggable(false);  // 禁用拖拽
             }
         }
     }

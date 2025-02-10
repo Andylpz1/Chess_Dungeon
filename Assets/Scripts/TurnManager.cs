@@ -193,13 +193,20 @@ public class TurnManager : MonoBehaviour
             }
         }
 
-        // Enable buttons in the cardPanel
+        // 启用 cardPanel 中的所有按钮，并恢复拖拽
         foreach (Transform card in deckManager.cardPanel)
         {
             Button cardButton = card.GetComponent<Button>();
+            CardButtonBase cardButtonBase = card.GetComponent<CardButtonBase>();
+
             if (cardButton != null)
             {
-                cardButton.interactable = true;
+                cardButton.interactable = true;  // 恢复按钮点击
+            }
+
+            if (cardButtonBase != null)
+            {
+                cardButtonBase.SetDraggable(true);  // 恢复拖拽
             }
         }
     }

@@ -2909,7 +2909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &713584239
 Grid:
   m_ObjectHideFlags: 0
@@ -4022,7 +4022,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: default
   health: 0
+  maxHealth: 0
   position: {x: 0, y: 0}
+  healthBarPrefab: {fileID: 0}
   player: {fileID: 0}
   infoManager: {fileID: 0}
   highlightPrefab: {fileID: 3397057089140146364, guid: 18409b79bdfaa14429abafd3d62a0d2b, type: 3}

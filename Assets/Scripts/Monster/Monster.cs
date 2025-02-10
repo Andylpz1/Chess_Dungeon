@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems; 
 using System.Collections.Generic;
 
@@ -7,7 +8,12 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public string monsterName = "default";
     private Animator animator;
     public int health;
+    public int maxHealth;
+    public SpriteRenderer healthFillRenderer;  // 健康条的 SpriteRenderer
     public Vector2Int position;
+    public GameObject healthBarPrefab;  // Prefab 引用
+    private GameObject healthBarInstance;
+    private Image healthFill;  // 引用填充的红色条
     public Player player;
     private MonsterManager monsterManager;
     private bool isDying = false;
@@ -19,6 +25,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     
     public virtual void Initialize(Vector2Int startPos)
     {
+        maxHealth = health;
         position = startPos;
         player = FindObjectOfType<Player>();
         if (player == null)
@@ -29,6 +36,13 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         monsterManager = FindObjectOfType<MonsterManager>();
         infoManager = FindObjectOfType<MonsterInfoManager>();
         animator = GetComponent<Animator>(); 
+
+        // 实例化血量条并设置其位置
+        GameObject healthBarPrefab = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
+        healthBarInstance = Instantiate(healthBarPrefab, transform);
+        healthBarInstance.transform.localPosition = new Vector3(0, -0.0f, 0);  // 在底部稍微偏移
+        healthFillRenderer = healthBarInstance.transform.Find("fill").GetComponent<SpriteRenderer>();
+        UpdateHealthBar();
 
         UpdatePosition();
     }
@@ -57,6 +71,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
+        UpdateHealthBar();
 
         // 播放受伤动画
         if (animator != null)
@@ -69,6 +84,18 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             Die();
         }
     }
+
+    private void UpdateHealthBar()
+    {
+        if (healthFillRenderer != null)
+        {
+            float healthRatio = (float)health / maxHealth;
+
+            // 调整 X 轴缩放比例以更新血条长度
+            healthFillRenderer.transform.localScale = new Vector3(healthRatio, 1, 1);
+        }
+    }
+
 
     public virtual void Die()
     {
@@ -87,6 +114,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             animator.SetTrigger("Die");  // 触发死亡动画
         } 
         isDying = true;  // 设置死亡状态
+        Destroy(healthBarInstance);
         Destroy(gameObject, 0.6f);
     }
 

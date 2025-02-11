@@ -27,6 +27,15 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    void Start()
+    {
+        if (SaveSystem.SaveFileExists())
+        {
+            GameData gameData = SaveSystem.LoadGame();
+            LoadGameData(gameData);
+        }   
+    }
     public void SaveGame()
     {
         GameData gameData = new GameData();

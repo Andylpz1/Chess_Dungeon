@@ -68,6 +68,7 @@ public class MonsterManager : MonoBehaviour
         {
             GameData gameData = SaveSystem.LoadGame();
             currentLevel = gameData.currentLevel;
+            
             StartLevel(currentLevel);
             Debug.Log("存档存在，等待存档加载...");
              // 等待存档加载后调用 StartLevel

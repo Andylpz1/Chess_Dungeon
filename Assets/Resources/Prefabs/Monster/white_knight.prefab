@@ -150,10 +150,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: default
   health: 1
+  maxHealth: 0
+  healthFillRenderer: {fileID: 0}
   position: {x: 0, y: 0}
+  healthBarPrefab: {fileID: 0}
   player: {fileID: 0}
   infoManager: {fileID: 0}
-  highlightPrefab: {fileID: 3397057089140146364, guid: 58370eb99afcef943ba770fd811ddfbb, type: 3}
+  highlightPrefab: {fileID: 3397057089140146364, guid: a79931983b2a1d340a63fa6ae8d622b1, type: 3}
 --- !u!95 &-8045185180452634741
 Animator:
   serializedVersion: 7

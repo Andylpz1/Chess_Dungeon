@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (SaveSystem.SaveFileExists())
+        if (SaveSystem.GameSaveExists())
         {
             GameData gameData = SaveSystem.LoadGame();
             LoadGameData(gameData);
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         List<Card> restoredDeck = new List<Card>();
         foreach (string cardId in gameData.playerDeckIds)
         {
-            Card restoredCard = CardDatabase.Instance.GetCardById(cardId);
+            Card restoredCard = CardDatabase.Instance.GetCardById(cardId)?.Clone();
             if (restoredCard != null)
             {
                 restoredDeck.Add(restoredCard);

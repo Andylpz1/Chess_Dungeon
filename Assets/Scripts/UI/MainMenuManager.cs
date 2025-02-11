@@ -20,7 +20,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void ClearSaveData()
     {
-        if (SaveSystem.SaveFileExists())
+        if (SaveSystem.GameSaveExists())
         {
             Debug.Log("清除存档...");
             SaveSystem.DeleteSaveFile(); // 调用 SaveSystem 的删除方法

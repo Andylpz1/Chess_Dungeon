@@ -6,7 +6,7 @@ public class LoadGameButton : MonoBehaviour
     public void LoadGame()
     {
         // Check if a save file exists
-        if (SaveSystem.SaveFileExists())
+        if (SaveSystem.GameSaveExists())
         {
             GameData gameData = SaveSystem.LoadGame();
             if (gameData != null)

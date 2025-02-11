@@ -38,7 +38,7 @@ public class DeckManager : MonoBehaviour
         cardButtons = new List<GameObject>();
         discardPile = new List<Card>();
         // **只有在没有存档时才初始化 Deck**
-        if (!SaveSystem.SaveFileExists())
+        if (!SaveSystem.GameSaveExists())
         {
             InitializeDeck();
             DrawCards(handSize);

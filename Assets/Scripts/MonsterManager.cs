@@ -64,7 +64,7 @@ public class MonsterManager : MonoBehaviour
     void Start()
     {
         // 检查是否已经加载了存档中的关卡
-        if (SaveSystem.SaveFileExists())
+        if (SaveSystem.GameSaveExists())
         {
             GameData gameData = SaveSystem.LoadGame();
             currentLevel = gameData.currentLevel;

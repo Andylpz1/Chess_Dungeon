@@ -150,7 +150,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
             
                 player.MultipleAttack(attackPositions.ToArray());
             }
-            if (card.cardType == CardType.Move)
+            else if (card.cardType == CardType.Move)
             {
                 player.Move(gridPosition);
             }

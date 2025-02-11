@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnergyCore : Card
 {
-    public EnergyCore() : base(CardType.Special)
+    public EnergyCore() : base(CardType.Special, "S02")
     {
         isEnergy= true;
     }
@@ -23,7 +23,7 @@ public class EnergyCore : Card
 
 public class DarkEnergy : Card
 {
-    public DarkEnergy() : base(CardType.Special)
+    public DarkEnergy() : base(CardType.Special, "S03")
     {
         isQuick = true;
         isEnergy = true;
@@ -58,7 +58,7 @@ public class DarkEnergy : Card
 
 public class MadnessEcho : Card
 {
-    public MadnessEcho() : base(CardType.Special)
+    public MadnessEcho() : base(CardType.Special,"S04")
     {
         isQuick= true;
     }
@@ -79,7 +79,7 @@ public class MadnessEcho : Card
 
 public class Vine : Card
 {
-    public Vine() : base(CardType.Special)
+    public Vine() : base(CardType.Special,"S05")
     {
         
     }

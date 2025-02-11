@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Assassin : Card
 {
-    public Assassin() : base(CardType.Move)
+    public Assassin() : base(CardType.Move, "M01_1")
     {
         isQuick = false;
         isPartner = true;

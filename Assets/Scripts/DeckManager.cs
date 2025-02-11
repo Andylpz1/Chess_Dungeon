@@ -39,7 +39,7 @@ public class DeckManager : MonoBehaviour
         discardPile = new List<Card>();
         InitializeDeck();
         InitializeCardEditor();
-        DrawCards(handSize);
+        DrawCards(handSize - hand.Count);
         UpdateDeckCountText(); // 初始化时更新牌堆数量显示
         UpdateDiscardPileCountText(); // 初始化时更新弃牌堆数量显示
         UpdateDeckPanel(); // 初始化时更新卡组显示
@@ -458,6 +458,43 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    public void UpdateHandUI()
+    {
+        // **1️⃣ 清除旧手牌 UI**
+        foreach (Transform child in cardPanel)
+        {
+            Destroy(child.gameObject);
+        }
+
+        GridLayoutGroup gridLayout = cardPanel.GetComponent<GridLayoutGroup>();
+
+        // **2️⃣ 重新生成手牌 UI**
+        foreach (Card card in hand)
+        {
+            GameObject cardButton = Instantiate(card.GetPrefab(), cardPanel);
+
+            CardButton cardButtonScript = cardButton.GetComponent<CardButton>();
+            if (cardButtonScript != null)
+            {
+                cardButtonScript.Initialize(card, this);
+                cardButtons.Add(cardButton); // 追踪卡牌按钮
+            }
+            else
+            {
+                Debug.LogError("CardButton script not found on instantiated CardButton.");
+            }
+        }
+
+    // **3️⃣ 调整卡牌间距，防止手牌过多溢出**
+    AdjustCardSpacing(gridLayout);
+
+    // **4️⃣ 确保行动点数为 0 时禁用非快速卡**
+    if (player.actions == 0) 
+    {
+        player.DisableNonQuickCardButtons();
+    }
+}
+
 
     // 当卡牌被选中时调用的方法
     private void OnCardSelected(Card card)
@@ -634,6 +671,20 @@ public class DeckManager : MonoBehaviour
 
         // 将 isCharged 设置为 false
         player.isCharged = false;
+    }
+
+    public void LoadDeck(List<Card> newDeck)
+    {
+        deck = new List<Card>(newDeck);
+        UpdateDeckPanel(); // 更新 UI
+    }
+
+    //未完成
+    public void LoadHand(List<Card> newHand)
+    {
+        hand.Clear();
+        hand.AddRange(newHand);
+        UpdateHandUI(); // 更新手牌 UI
     }
 
 

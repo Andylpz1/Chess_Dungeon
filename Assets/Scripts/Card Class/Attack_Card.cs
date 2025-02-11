@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SickleCard : Card
 {
-    public SickleCard() : base(CardType.Attack, "A05", 10) { 
+    public SickleCard() : base(CardType.Attack, "A06", 10) { 
         isEnergy = true;
     }
 
@@ -23,7 +23,7 @@ public class SickleCard : Card
 public class FloatSword : Card
 {
 
-    public FloatSword() : base(CardType.Attack) 
+    public FloatSword() : base(CardType.Attack,"A07") 
     { 
         isEnergy = true;
     }
@@ -70,7 +70,7 @@ public class FloatSword : Card
 public class RitualSpear : Card
 {
 
-    public RitualSpear() : base(CardType.Attack) 
+    public RitualSpear() : base(CardType.Attack, "A08") 
     { 
         
     }

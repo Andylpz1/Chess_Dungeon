@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
     public int health = 3; // 玩家初始血量
-    private List<string> deck;
+    public List<string> deck;
     public int damage = 1; //默认伤害
     public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
     public Text healthText; 
@@ -674,9 +674,10 @@ public class Player : MonoBehaviour
     }
 
     // 示例方法：加载卡组
-    public void LoadDeck(List<string> deckNames)
+    public void LoadDeck(List<string> newDeck)
     {
-        deck = new List<string>(deckNames);
+        deck = new List<string>(newDeck);
+        deckManager.UpdateDeckPanel(); 
     }
 
     // 示例方法：设置玩家位置
@@ -689,6 +690,7 @@ public class Player : MonoBehaviour
     public void SetHealth(int newHealth)
     {
         health = newHealth;
+        UpdateHealthText();
     }
 
     // 示例方法：设置金币

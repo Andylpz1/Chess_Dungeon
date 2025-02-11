@@ -333,10 +333,10 @@ public class MonsterManager : MonoBehaviour
             if (monster != null)
             {
                 monster.MoveTowardsPlayer();
-                yield return new WaitForSeconds(0.5f); // 延迟0.5秒
+                yield return new WaitForSeconds(0.3f); // 延迟0.5秒
             }
         }
-        yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
+        //yield return new WaitForSeconds(0.5f); // 在所有怪物移动后延迟0.5秒
         //生成新的怪物
         
     }

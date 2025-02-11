@@ -80,7 +80,7 @@ public class TurnManager : MonoBehaviour
         player.ResetEffectsAtEndOfTurn();
         // 回合结束弃牌 
         deckManager.DiscardHand();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         player.ClearMoveHighlights();
         player.actions = 3;
         turnCount++;
@@ -90,8 +90,8 @@ public class TurnManager : MonoBehaviour
         // 等待所有史莱姆移动完成
         if (monsterManager.isLevelCompleted != true)
         {
-            int slimeCount = monsterManager.GetMonsterCount();
-            float delay = slimeCount * 0.5f + 0.5f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
+            int monsterCount = monsterManager.GetMonsterCount();
+            float delay = monsterCount * 0.3f + 0.1f; // 每个史莱姆移动0.5秒，再额外等待1. (每回合生成两只)
             yield return new WaitForSeconds(delay);
         }
 

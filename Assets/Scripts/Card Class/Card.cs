@@ -11,6 +11,7 @@ public class Card
     
     public CardType cardType;
     public string Id;
+    public string cardName;
     public int cost; // 添加花费属性
     public bool isQuick; // 新增 quick 变量
     public bool isEnergy; // 新增 energy 变量
@@ -67,6 +68,12 @@ public class Card
         // 简单的深拷贝，确保克隆出一个新实例
         return (Card)this.MemberwiseClone();
     }
+
+    public string GetName()
+    {
+        return cardName;  // 假设每张卡牌有一个唯一名称
+    }
+
 }
 
 public class PawnCard : Card
@@ -85,6 +92,7 @@ public class PawnCard : Card
     {
         return "P移动";
     }
+
 }
 
 public class KnightCard : Card
@@ -103,6 +111,7 @@ public class KnightCard : Card
     {
         return "K移动";
     }
+
 }
 
 public class BishopCard : Card

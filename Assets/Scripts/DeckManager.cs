@@ -117,6 +117,8 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new PawnCard(),
+            new KnightCard(),
+            new SwordCard(),
             new SwordCard(),
             new SwordCard(),
             new SwordCard()

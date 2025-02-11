@@ -2291,7 +2291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusicSource: {fileID: 510947987}
   sfxSource: {fileID: 510947986}
-  mainMenuMusic: {fileID: 8300000, guid: 43ccec9a6c63dbd43b75815ceb8bac0d, type: 3}
+  mainMenuMusic: {fileID: 8300000, guid: cbc9593d0974e8d439247ec23ecf055f, type: 3}
   battleMusic: {fileID: 8300000, guid: cbc9593d0974e8d439247ec23ecf055f, type: 3}
   victoryMusic: {fileID: 0}
 --- !u!4 &510947989

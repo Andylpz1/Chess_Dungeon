@@ -37,13 +37,14 @@ public class RewardManager : MonoBehaviour
         {
             //new PawnCard(),
             new KnightCard(),
+            new BishopCard(),
             new SwordCard(),
-            new BladeCard(),
+            new BladeCard()
         };
 
         rarityPools["Uncommon"] = new List<Card>
         {
-            new BishopCard(),
+            
             new RookCard(),
             new SpearCard(),
             new BowCard(),
@@ -51,9 +52,9 @@ public class RewardManager : MonoBehaviour
             new EnergyCore(),
             new SickleCard(),
             new RitualSpear(),
-            new Vine(),
             new Assassin(),
-            new TwoBladeCard()
+            new TwoBladeCard(),
+            new FloatSword(),
             // Add more uncommon cards here
         };
 
@@ -62,13 +63,14 @@ public class RewardManager : MonoBehaviour
             new FlailCard(),
             new FloatSword(),
             new DarkEnergy(),
-            new MadnessEcho()
+            new MadnessEcho(),
+            new Vine()
             // Add more epic cards here
         };
 
         rarityPools["Legendary"] = new List<Card>
         {
-            new FlailCard()
+            //new FlailCard()
         };
     }
 
@@ -111,33 +113,41 @@ public class RewardManager : MonoBehaviour
     // Method to generate three random cards (customize as needed)
     private List<Card> GenerateRewardCards()
     {
-        InitializeRarityPools(); // Make sure rarity pools are initialized
+        InitializeRarityPools(); // 确保稀有度池已初始化
 
-        List<Card> rewardCards = new List<Card>();
+        List<Card> rewardCards = new List<Card>(); // 最终生成的三张奖励卡牌
+        HashSet<Card> selectedCards = new HashSet<Card>(); // 用于快速查重
 
-        for (int i = 0; i < 3; i++)
+        while (rewardCards.Count < 3)
         {
-            string rarity = GetRandomRarity();
-
-            // Get the list of cards for the chosen rarity
+            string rarity = GetRandomRarity(); // 获取随机稀有度
             List<Card> cardPool = rarityPools[rarity];
 
             if (cardPool.Count > 0)
             {
-                // Select a random card from the chosen rarity pool
                 int randomIndex = Random.Range(0, cardPool.Count);
                 Card selectedCard = cardPool[randomIndex];
 
+                // 如果 HashSet 中已经存在该卡牌，跳过
+                if (selectedCards.Contains(selectedCard))
+                {
+                    continue;
+                }
+
+                // 如果没有重复，将其添加到列表和 HashSet 中
                 rewardCards.Add(selectedCard);
+                selectedCards.Add(selectedCard);
             }
             else
             {
                 Debug.LogWarning($"No cards available in the {rarity} rarity pool.");
-            }   
+            }
         }
 
         return rewardCards;
     }
+
+
 
 
     // Method to set the card image and description

@@ -431,7 +431,7 @@ public class Player : MonoBehaviour
         Vector3 worldPosition = CalculateWorldPosition(attackPosition);
         GameObject effectInstance = Instantiate(attackEffectPrefab, worldPosition, Quaternion.identity);
         // 播放攻击动画
-        Destroy(effectInstance, 0.4f);
+        Destroy(effectInstance, 0.1f);
         // 基于坐标检测 Monster 的存在
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
         foreach (GameObject monsterObject in monsters)
@@ -457,7 +457,7 @@ public class Player : MonoBehaviour
             // 在每个攻击坐标生成攻击特效
             Vector3 worldPosition = CalculateWorldPosition(attackPosition);
             GameObject effectInstance = Instantiate(attackEffectPrefab, worldPosition, Quaternion.identity);
-            Destroy(effectInstance, 0.4f);  // 根据动画时长调整销毁时间
+            Destroy(effectInstance, 0.1f);  // 根据动画时长调整销毁时间
             
             foreach (GameObject monsterObject in monsters)
             {

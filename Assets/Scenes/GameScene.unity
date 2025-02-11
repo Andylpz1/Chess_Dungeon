@@ -6660,7 +6660,7 @@ MonoBehaviour:
   cellSize: {x: 1, y: 1, z: 0}
   cellGap: {x: 0.5, y: 0.5, z: 0}
   gold: 1000
-  actions: 3
+  actions: 5
   health: 3
   deck: []
   damage: 1

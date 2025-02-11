@@ -37,9 +37,13 @@ public class DeckManager : MonoBehaviour
     {
         cardButtons = new List<GameObject>();
         discardPile = new List<Card>();
-        InitializeDeck();
+        // **只有在没有存档时才初始化 Deck**
+        if (!SaveSystem.SaveFileExists())
+        {
+            InitializeDeck();
+            DrawCards(handSize);
+        }
         InitializeCardEditor();
-        DrawCards(handSize - hand.Count);
         UpdateDeckCountText(); // 初始化时更新牌堆数量显示
         UpdateDiscardPileCountText(); // 初始化时更新弃牌堆数量显示
         UpdateDeckPanel(); // 初始化时更新卡组显示
@@ -108,6 +112,7 @@ public class DeckManager : MonoBehaviour
 
     void InitializeDeck()
     {
+
         // 初始化牌库
         deck = new List<Card>
         {
@@ -344,24 +349,24 @@ public class DeckManager : MonoBehaviour
 
     public void RestartHand()
     {
-        // Combine discard pile and hand into the deck
-        deck.AddRange(discardPile);
-        deck.AddRange(hand);
+        List<Card> allCards = new List<Card>(discardPile);
+        allCards.AddRange(hand);
+    
+        deck.AddRange(allCards);
 
-        // Clear the hand and discard pile
-        hand.Clear();
+        Debug.Log($"After adding: deck={deck.Count}, hand={hand.Count}, discard={discardPile.Count}");
+
         discardPile.Clear();
+        hand.Clear();
+
+        Debug.Log($"After clearing: deck={deck.Count}, hand={hand.Count}, discard={discardPile.Count}");
 
         UpdateHandDisplay();
-        // Shuffle the deck
         ShuffleDeck();
-
-        // Draw cards into hand
-        //DrawCards(handSize);
-
-        // Update the deck and discard pile UI (if you have any)
         UpdateDeckCountText();
         UpdateDiscardPileCountText();
+
+        Debug.Log($"Final: deck={deck.Count}, hand={hand.Count}, discard={discardPile.Count}");
     }
 
     public void UpdateDeckCountText()
@@ -675,8 +680,10 @@ public class DeckManager : MonoBehaviour
 
     public void LoadDeck(List<Card> newDeck)
     {
+        hand.Clear();
         deck = new List<Card>(newDeck);
         UpdateDeckPanel(); // 更新 UI
+        DrawCards(handSize);
     }
 
     //未完成

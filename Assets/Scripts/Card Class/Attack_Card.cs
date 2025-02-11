@@ -72,7 +72,7 @@ public class RitualSpear : Card
 
     public RitualSpear() : base(CardType.Attack, "A08") 
     { 
-        
+        isMadness = true;
     }
 
     public override GameObject GetPrefab()

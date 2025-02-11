@@ -98,3 +98,25 @@ public class Vine : Card
     }
 
 }
+
+public class Coffin : Card
+{
+    public Coffin() : base(CardType.Special,"S06")
+    {
+        
+    }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Special/coffin_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Special/coffin_card");
+    }
+    public override string GetDescription()
+    {
+        return "抽两张疯狂牌";
+    }
+
+}

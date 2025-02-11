@@ -1251,6 +1251,7 @@ MonoBehaviour:
   deckPanel: {fileID: 385267122}
   discardPanel: {fileID: 1957117313}
   cardEditorPanel: {fileID: 1755640526}
+  cardPrefab: {fileID: 7865966843562598253, guid: d613bbc289f6e2c4581f0616fdd7bf1a, type: 3}
   deckCountText: {fileID: 972152938}
   discardPileCountText: {fileID: 1281658820}
   turnManager: {fileID: 0}
@@ -6683,6 +6684,7 @@ MonoBehaviour:
     cost: 0
     isQuick: 0
     isEnergy: 0
+    isMadness: 0
     upgradeFrom: 
     hoardingValue: 0
     isPartner: 0

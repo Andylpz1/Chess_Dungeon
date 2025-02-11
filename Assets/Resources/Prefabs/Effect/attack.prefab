@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6773963571949814308}
   - component: {fileID: 3437905771612601260}
   m_Layer: 7
-  m_Name: slime
+  m_Name: attack
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

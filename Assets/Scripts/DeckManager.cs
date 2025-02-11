@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System;
 
 public class DeckManager : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class DeckManager : MonoBehaviour
     public Transform discardPanel; // 弃牌堆面板，用于显示弃牌堆中的卡牌图片
     public Transform cardEditorPanel; //卡组编辑器面板
 
+    public GameObject cardPrefab;
     public Text deckCountText; // 显示牌库剩余牌数的文本组件
     public Text discardPileCountText; // 显示弃牌堆剩余牌数的文本组件
     public TurnManager turnManager; // 回合管理器
@@ -166,6 +167,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new FloatSword());
         allCards.Add(new Vine());
         allCards.Add(new FlailCard());
+        allCards.Add(new Coffin());
         UpdateCardEditorPanel();
     }
 
@@ -175,7 +177,7 @@ public class DeckManager : MonoBehaviour
         for (int i = 0; i < deck.Count; i++)
         {
             Card temp = deck[i];
-            int randomIndex = Random.Range(i, deck.Count);
+            int randomIndex = UnityEngine.Random.Range(i, deck.Count);
             deck[i] = deck[randomIndex];
             deck[randomIndex] = temp;
         }
@@ -215,6 +217,7 @@ public class DeckManager : MonoBehaviour
                     cardButtonScript.Initialize(card, this);
                     cardButtons.Add(cardButton); // 追踪卡牌按钮
                 }
+                //CreateCardUI(card);
                 AdjustCardSpacing(gridLayout);
 
             }
@@ -230,6 +233,81 @@ public class DeckManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f); // 每次抽牌后等待0.1秒
         }
+    }
+
+    public void DrawSpecificCard(Card specificCard)
+    {
+        StartCoroutine(DrawSpecificCardCoroutine(specificCard));
+    }
+
+    private IEnumerator DrawSpecificCardCoroutine(Card specificCard)
+    {
+        GridLayoutGroup gridLayout = cardPanel.GetComponent<GridLayoutGroup>();
+
+        if (!deck.Contains(specificCard))
+        {
+            Debug.Log("Specific card not found in deck.");
+            yield break;
+        }
+
+        deck.Remove(specificCard);
+        hand.Add(specificCard);
+
+        // 创建卡牌按钮并添加到 CardPanel 中
+        GameObject cardButton = Instantiate(specificCard.GetPrefab(), cardPanel);
+        CardButton cardButtonScript = cardButton.GetComponent<CardButton>();
+
+        if (cardButtonScript != null)
+        {
+            cardButtonScript.Initialize(specificCard, this);
+            cardButtons.Add(cardButton); // 追踪卡牌按钮
+        }
+
+        AdjustCardSpacing(gridLayout);
+        UpdateDeckCountText();
+        UpdateDeckPanel();
+        UpdateDiscardPanel();
+
+        if (player.actions == 0)
+        {
+            player.DisableNonQuickCardButtons();
+        }
+
+        yield return new WaitForSeconds(0.1f); // 等待 0.1 秒，模拟抽牌节奏
+    }
+
+
+    public void CreateCardUI(Card cardData)
+    {
+        GameObject cardUI = Instantiate(cardPrefab, cardPanel); // **使用通用模板**
+
+        // **动态添加正确的脚本**
+        Type scriptType = cardData.GetScriptType();
+        if (scriptType != null)
+        {
+            Component cardComponent = cardUI.AddComponent(scriptType); 
+            if (cardComponent is CardButtonBase cardButton)
+            {
+                cardButton.Initialize(cardData, this);
+            }
+        }
+
+        // **动态更新 UI**
+        UpdateCardUI(cardUI, cardData);
+    }
+
+
+    private void UpdateCardUI(GameObject cardUI, Card cardData)
+    {
+        // **获取 UI 组件**
+        Image cardImage = cardUI.transform.Find("CardImage").GetComponent<Image>();
+        //Text cardName = cardUI.transform.Find("CardName").GetComponent<Text>();
+        //Text cardDescription = cardUI.transform.Find("CardDescription").GetComponent<Text>();
+
+        // **填充数据**
+        cardImage.sprite = cardData.GetSprite();
+        //cardName.text = cardData.GetName();
+        //cardDescription.text = cardData.GetDescription();
     }
 
     private void AdjustCardSpacing(GridLayoutGroup gridLayout)

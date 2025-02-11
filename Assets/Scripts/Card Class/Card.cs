@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public enum CardType { Move, Attack, Special}
@@ -15,17 +16,20 @@ public class Card
     public int cost; // 添加花费属性
     public bool isQuick; // 新增 quick 变量
     public bool isEnergy; // 新增 energy 变量
+    public bool isMadness;
     public string upgradeFrom; // 升级来源
     public int hoardingValue; // 囤积值
     public bool isPartner;
 
-    public Card(CardType type, string Id = "tbd", int cost = 10, string upgradeFrom = null, bool isQuick = false, int hoardingValue = 0, bool isPartner = false, bool isEnergy = false)
+    public Card(CardType type, string Id = "tbd", int cost = 10, string upgradeFrom = null, bool isQuick = false, int hoardingValue = 0, bool isPartner = false, bool isEnergy = false,
+    bool isMadness = false)
     {
         cardType = type;
         this.Id = Id;
         this.cost = cost;
         this.upgradeFrom = upgradeFrom;
         this.isQuick = isQuick;
+        this.isMadness = isMadness;
         this.isEnergy = isEnergy;
         this.hoardingValue = hoardingValue;
         this.isPartner = isPartner;
@@ -46,6 +50,11 @@ public class Card
     public virtual string GetDescription()
     {
         return null;
+    }
+
+    public virtual Type GetScriptType()
+    {
+        return typeof(CardButtonBase); // 默认返回基础类型
     }
 
     public virtual void ExhaustEffect()
@@ -93,6 +102,11 @@ public class PawnCard : Card
         return "P移动";
     }
 
+    public override Type GetScriptType()
+    {
+        return typeof(pawn_card); // 这里返回的是 pawn_card 这个 UI 组件
+    }
+
 }
 
 public class KnightCard : Card
@@ -110,6 +124,11 @@ public class KnightCard : Card
     public override string GetDescription()
     {
         return "K移动";
+    }
+
+    public override Type GetScriptType()
+    {
+        return typeof(knight_card);
     }
 
 }

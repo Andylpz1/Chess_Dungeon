@@ -469,7 +469,34 @@ public class Player : MonoBehaviour
             }
         }
         ClearMoveHighlights();
-        ExecuteCurrentCard();
+        if (currentCard.cardType == CardType.Attack)
+        {
+            ExecuteCurrentCard();
+        }
+    }
+
+    // 对于bookofpawn等等牌
+    public void MultipleSpecial(Vector2Int[] attackPositions)
+    {
+        // 基于坐标检测 Monster 的存在
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        foreach (Vector2Int attackPosition in attackPositions)
+        {
+            // 在每个攻击坐标生成攻击特效
+            Vector3 worldPosition = CalculateWorldPosition(attackPosition);
+            GameObject effectInstance = Instantiate(attackEffectPrefab, worldPosition, Quaternion.identity);
+            Destroy(effectInstance, 0.1f);  // 根据动画时长调整销毁时间
+            
+            foreach (GameObject monsterObject in monsters)
+            {
+                Monster monster = monsterObject.GetComponent<Monster>();
+                if (monster != null && monster.IsPartOfMonster(attackPosition))
+                {
+                    monster.TakeDamage(1);
+                }
+            }
+        }
+        ClearMoveHighlights();
     }
 
 

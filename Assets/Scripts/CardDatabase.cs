@@ -43,6 +43,13 @@ public class CardDatabase : MonoBehaviour
         AddCard(new DarkEnergy());
         AddCard(new MadnessEcho());
         AddCard(new Vine());
+        AddCard(new Coffin());
+        AddCard(new Belt());
+        AddCard(new BookOfPawn());
+        AddCard(new BookOfKnight());
+        AddCard(new BookOfBishop());
+        AddCard(new BookOfRook());
+        AddCard(new BookOfQueen());
     }
 
     private void AddCard(Card card)

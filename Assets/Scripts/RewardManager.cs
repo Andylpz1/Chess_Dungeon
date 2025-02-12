@@ -55,6 +55,7 @@ public class RewardManager : MonoBehaviour
             new Assassin(),
             new TwoBladeCard(),
             new FloatSword(),
+            new Book()
             // Add more uncommon cards here
         };
 
@@ -64,13 +65,18 @@ public class RewardManager : MonoBehaviour
             new FloatSword(),
             new DarkEnergy(),
             new MadnessEcho(),
-            new Vine()
+            new Vine(),
+            new BookOfPawn()
             // Add more epic cards here
         };
 
         rarityPools["Legendary"] = new List<Card>
         {
             //new FlailCard()
+            new BookOfKnight(),
+            new BookOfBishop(),
+            new BookOfRook(),
+            new BookOfQueen()
         };
     }
 

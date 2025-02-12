@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 088a1e1c3b892db4d82ae3c0e46be3c9
+guid: 0143745cad0f05d408fde88262fa050c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8303216309546154633
-    second: book_of_madness_0
+      213: -6771482941915710753
+    second: belt_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: book_of_madness_0
+      name: belt_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 98a7abfbd33fa3370800000000000000
-      internalID: 8303216309546154633
+      spriteID: fda3f74242cd602a0800000000000000
+      internalID: -6771482941915710753
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      book_of_madness_0: 8303216309546154633
+      belt_0: -6771482941915710753
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -91,9 +91,9 @@ GameObject:
   - component: {fileID: 5280022575110587628}
   - component: {fileID: 6513719207245129944}
   - component: {fileID: 4531463353146810934}
-  - component: {fileID: -1511185690355344880}
+  - component: {fileID: 1818619139565011695}
   m_Layer: 5
-  m_Name: book_of_madness_card
+  m_Name: belt_card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8303216309546154633, guid: 088a1e1c3b892db4d82ae3c0e46be3c9, type: 3}
+  m_Sprite: {fileID: -6771482941915710753, guid: 0143745cad0f05d408fde88262fa050c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-1511185690355344880
+--- !u!114 &1818619139565011695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7865966843562598253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9bef891fccbc2d42bf453909093ca8e, type: 3}
+  m_Script: {fileID: 11500000, guid: c06854d6bb33bf84ea2fe40cb49205ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterManager: {fileID: 0}

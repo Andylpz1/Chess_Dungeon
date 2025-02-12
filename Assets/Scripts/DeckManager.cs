@@ -159,15 +159,18 @@ public class DeckManager : MonoBehaviour
     void InitializeCardEditor()
     {
         allCards.Add(new KnightCard());
-        allCards.Add(new BishopCard());
-        allCards.Add(new RookCard());
-        allCards.Add(new SwordCard());
+        //allCards.Add(new BishopCard());
+        //allCards.Add(new RookCard());
+        //allCards.Add(new SwordCard());
         allCards.Add(new RitualSpear());
         allCards.Add(new EnergyCore());
         allCards.Add(new FloatSword());
         allCards.Add(new Vine());
         allCards.Add(new FlailCard());
         allCards.Add(new Coffin());
+        allCards.Add(new Book());
+        allCards.Add(new Belt());
+        allCards.Add(new BookOfMadness());
         UpdateCardEditorPanel();
     }
 

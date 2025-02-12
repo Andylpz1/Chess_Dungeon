@@ -63,7 +63,8 @@ public class WhiteKing : Monster
             Debug.Log("Player attacked by WhiteKing.");
             //player.TakeDamage(1); // 假设每次攻击造成1点伤害
         }
-        SummonPawn();
+        //召唤目前有bug
+        //SummonPawn();
     }
 
     private void SummonPawn()

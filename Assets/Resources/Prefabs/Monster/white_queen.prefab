@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterName: default
-  health: 3
+  health: 4
   maxHealth: 0
   healthFillRenderer: {fileID: 0}
   position: {x: 0, y: 0}

@@ -44,6 +44,7 @@ public class CardDatabase : MonoBehaviour
         AddCard(new MadnessEcho());
         AddCard(new Vine());
         AddCard(new Coffin());
+        AddCard(new Book());
         AddCard(new Belt());
         AddCard(new BookOfPawn());
         AddCard(new BookOfKnight());

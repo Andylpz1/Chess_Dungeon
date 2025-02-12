@@ -22,28 +22,33 @@
         },
         {
             "levelNumber": 5,
-            "monsterTypes": ["WhitePawn","WhitePawn","WhiteRook"],
-            "terrainType": "Borderland"
+            "monsterTypes": ["WhiteRook", "WhiteRook", "WhitePawn", "WhitePawn"],
+            "terrainType": "DenseForest"
         },
         {
             "levelNumber": 6,
-            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight", "WhiteBishop"]
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight", "WhiteBishop"],
+            "terrainType": "FortifiedBorderland"
         },
         {
             "levelNumber": 7,
-            "monsterTypes": ["WhitePawn","WhiteQueen"]
+            "monsterTypes": ["WhitePawn","WhiteQueen"],
+            "terrainType": "FortifiedBorderland"
         },
         {
             "levelNumber": 8,
-            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight", "WhiteBishop", "WhiteRook"]
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight", "WhiteBishop", "WhiteRook"],
+            "terrainType": "FortifiedBorderland"
         },
         {
             "levelNumber": 9,
-            "monsterTypes": ["WhiteQueen","WhiteQueen"]
+            "monsterTypes": ["WhiteQueen","WhiteQueen"],
+            "terrainType": "FortifiedBorderland"
         },
         {
             "levelNumber": 10,
-            "monsterTypes": ["WhiteKnight", "WhiteBishop", "WhiteRook","WhiteQueen","WhiteKing"]
+            "monsterTypes": ["WhiteKnight", "WhiteBishop", "WhiteRook","WhiteQueen","WhiteKing"],
+            "terrainType": "FortifiedBorderland"
         }
     ],
 
@@ -59,6 +64,18 @@
             "mapSize": 8,
             "openAreaSize": 8,
             "borderObstacleType": ""
+        },
+        {
+            "name": "FortifiedBorderland",
+            "mapSize": 8,
+            "openAreaSize": 6,
+            "borderObstacleType": "Wall"
+        },
+        {
+            "name": "DenseForest",
+            "mapSize": 8,
+            "openAreaSize": 6,
+            "borderObstacleType": "Forest"
         }
     ]
 }

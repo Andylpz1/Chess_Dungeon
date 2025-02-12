@@ -60,11 +60,10 @@ public class Player : MonoBehaviour
         }
 
         Instance = this;
-
+        monsterManager = FindObjectOfType<MonsterManager>(); // 初始化deckManager引用
         position = new Vector2Int(boardSize / 2, boardSize / 2); // 初始化棋子位置到棋盘中央
         //Debug.Log($"Current Location: {position}");
         deckManager = FindObjectOfType<DeckManager>(); // 初始化deckManager引用
-        monsterManager = FindObjectOfType<MonsterManager>(); // 初始化deckManager引用
         LocationManager locationManager = FindObjectOfType<LocationManager>(); // 初始化locationManager引用
         animator = GetComponent<Animator>(); //初始化animator
         UpdatePosition();
@@ -75,6 +74,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         UpdateHealthText();
+        //position = monsterManager.GetEmptyPosition();
+        //UpdatePosition();
     }
 
     void Update()

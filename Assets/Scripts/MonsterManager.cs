@@ -35,6 +35,7 @@ public class MonsterManager : MonoBehaviour
         
         // Initialize the player in Awake to ensure it is set before Start
         player = FindObjectOfType<Player>();
+
         rewardManager = FindObjectOfType<RewardManager>();
         locationManager = FindObjectOfType<LocationManager>();
         if (player == null)

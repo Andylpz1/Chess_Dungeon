@@ -84,7 +84,7 @@ public class MonsterManager : MonoBehaviour
         // 如果没有存档，就使用默认值
         else
         {
-            currentLevel = selectedLevel;
+            currentLevel = 1;
             Debug.Log($"🔵 没有存档，默认加载关卡 {currentLevel}");
         }
 

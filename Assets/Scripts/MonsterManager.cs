@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class MonsterManager : MonoBehaviour
 {
@@ -64,20 +65,32 @@ public class MonsterManager : MonoBehaviour
 
     void Start()
     {
-        // 检查是否已经加载了存档中的关卡
-        if (SaveSystem.GameSaveExists())
+        // 读取 `LevelNode` 存储的关卡索引
+        int selectedLevel = PlayerPrefs.GetInt("SelectedLevel", 1);
+        bool isLevelNode = PlayerPrefs.GetInt("IsLevelNode", 0) == 1;
+        // 如果是从 LevelNode 进入，则使用 `selectedLevel`
+        if (isLevelNode)
+        {
+            currentLevel = selectedLevel;
+            Debug.Log($"🟢 从 LevelNode 进入游戏，加载关卡 {currentLevel}");
+        }
+        // 否则，尝试加载存档
+        else if (SaveSystem.GameSaveExists())
         {
             GameData gameData = SaveSystem.LoadGame();
             currentLevel = gameData.currentLevel;
-            
-            StartLevel(currentLevel);
-            Debug.Log("存档存在，等待存档加载...");
-             // 等待存档加载后调用 StartLevel
+            Debug.Log($"📀 从存档继续游戏，加载关卡 {currentLevel}");
         }
-        else 
+        // 如果没有存档，就使用默认值
+        else
         {
-            StartLevel(currentLevel);
+            currentLevel = selectedLevel;
+            Debug.Log($"🔵 没有存档，默认加载关卡 {currentLevel}");
         }
+
+        // 开始游戏
+        StartLevel(currentLevel);
+
     }
 
     void LoadLevelConfigs()
@@ -361,7 +374,7 @@ public class MonsterManager : MonoBehaviour
         {
             isLevelCompleted = true; // 标记关卡完成
             rewardManager.OpenRewardPanel();
-            StartLevel(++currentLevel);
+            //StartLevel(++currentLevel);
         }
         else if (turnCount % 1 == 0 && monsters.Count != 0)
         {

@@ -7,8 +7,9 @@ public class MainMenuManager : MonoBehaviour
     {
         ClearSaveData();
         // 加载游戏主场景，确保场景名称正确
+        //SceneManager.LoadScene("LevelSelectionScene");
         SceneManager.LoadScene("GameScene");
-        MusicManager.Instance.PlayBackgroundMusic(MusicManager.Instance.battleMusic);
+        //MusicManager.Instance.PlayBackgroundMusic(MusicManager.Instance.battleMusic);
     }
 
     public void ExitGame()

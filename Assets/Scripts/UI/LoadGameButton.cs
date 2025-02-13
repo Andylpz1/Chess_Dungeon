@@ -11,7 +11,8 @@ public class LoadGameButton : MonoBehaviour
             GameData gameData = SaveSystem.LoadGame();
             if (gameData != null)
             {
-                
+                PlayerPrefs.SetInt("IsLevelNode", 0);
+                PlayerPrefs.Save();
                 // Load the saved level
                 SceneManager.LoadScene("GameScene");
 

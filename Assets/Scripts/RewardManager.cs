@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 public class RewardManager : MonoBehaviour
 {
@@ -17,11 +19,19 @@ public class RewardManager : MonoBehaviour
     public Button skipButton;
 
     private DeckManager deckManager; // Reference to the DeckManager
+    public GameManager gameManager;
     public bool isRewardPanelOpen = false;
     private List<Card> rewardCards; // List of cards to choose from
     private Dictionary<string, List<Card>> rarityPools = new Dictionary<string, List<Card>>();
 
     public event System.Action OnRewardSelectionComplete;
+
+    private void Awake()
+    {
+        // Automatically find GameManager in the scene
+        gameManager = FindObjectOfType<GameManager>();
+
+    }
 
     void Start()
     {
@@ -174,6 +184,8 @@ public class RewardManager : MonoBehaviour
 
         CloseRewardPanel();
         OnRewardSelectionComplete?.Invoke();
+        gameManager.SaveGame();
+        SceneManager.LoadScene("LevelSelectionScene");
     }
 
     private void OnRefreshButtonClicked()
@@ -191,6 +203,8 @@ public class RewardManager : MonoBehaviour
     {
         CloseRewardPanel();
         OnRewardSelectionComplete?.Invoke();
+        gameManager.SaveGame();
+        SceneManager.LoadScene("LevelSelectionScene");
     }
 
     // Method to close the reward panel

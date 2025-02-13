@@ -72,20 +72,23 @@ public class MonsterManager : MonoBehaviour
         if (isLevelNode)
         {
             currentLevel = selectedLevel;
-            Debug.Log($"🟢 从 LevelNode 进入游戏，加载关卡 {currentLevel}");
+
         }
         // 否则，尝试加载存档
         else if (SaveSystem.GameSaveExists())
         {
             GameData gameData = SaveSystem.LoadGame();
             currentLevel = gameData.currentLevel;
-            Debug.Log($"📀 从存档继续游戏，加载关卡 {currentLevel}");
+
         }
         // 如果没有存档，就使用默认值
         else
         {
             currentLevel = 1;
-            Debug.Log($"🔵 没有存档，默认加载关卡 {currentLevel}");
+
+            // **新游戏时，重置 HasEnergyCard**
+            PlayerPrefs.SetInt("HasEnergyCard", 0);
+            PlayerPrefs.Save();
         }
 
         // 开始游戏
@@ -147,7 +150,13 @@ public class MonsterManager : MonoBehaviour
         ClearAllMonsters();
         ClearAllScenes();
         ClearAllPoints();
-
+        
+        bool hasEnergyCard = PlayerPrefs.GetInt("HasEnergyCard", 0) == 1;
+        if (hasEnergyCard)
+        {
+            Debug.Log("⚡ 从存档加载：检测到能量卡，生成 ActivatePoints...");
+            SpawnActivatepointsForLevel();
+        }
         //生成场景
         //locationManager.GenerateLocation("Forest", 5);
 
@@ -179,16 +188,18 @@ public class MonsterManager : MonoBehaviour
         player.deckManager.RestartHand();
         bool hasEnergyCard = player.deckManager.deck.Exists(card => card.isEnergy);
 
+        PlayerPrefs.SetInt("HasEnergyCard", hasEnergyCard ? 1 : 0);
+        PlayerPrefs.Save();
         // If there are energy cards, spawn ActivatePoints
         if (isLevelCompleted)
         {
             // 如果关卡完成，则重置手牌
             player.deckManager.RestartHand();
             // 如果有能量卡，则生成激活点
-            if (hasEnergyCard)
-            {
-                SpawnActivatepointsForLevel();
-            }
+            //if (hasEnergyCard)
+            //{
+                //SpawnActivatepointsForLevel();
+            //}
 
             // 抓新手牌
             //player.deckManager.DrawCards(player.deckManager.handSize);

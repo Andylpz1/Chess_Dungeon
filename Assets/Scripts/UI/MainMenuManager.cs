@@ -6,6 +6,9 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         ClearSaveData();
+        PlayerPrefs.SetInt("SelectedLevel", 1); // **新游戏默认从第一关开始**
+        PlayerPrefs.SetInt("IsLevelNode", 0); // **确保不是从 LevelNode 进入**
+        PlayerPrefs.Save(); // 保存修改
         // 加载游戏主场景，确保场景名称正确
         //SceneManager.LoadScene("LevelSelectionScene");
         SceneManager.LoadScene("GameScene");

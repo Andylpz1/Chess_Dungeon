@@ -51,6 +51,7 @@ public class CardDatabase : MonoBehaviour
         AddCard(new BookOfBishop());
         AddCard(new BookOfRook());
         AddCard(new BookOfQueen());
+        AddCard(new Fan());
     }
 
     private void AddCard(Card card)

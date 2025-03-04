@@ -367,6 +367,29 @@ public class MonsterManager : MonoBehaviour
         
     }
 
+    // Moves the given monster to the target grid position.
+    public void MoveMonster(Monster monster, Vector2Int targetPosition)
+    {
+        if (monster == null)
+        {
+            Debug.LogError("MoveMonster called with a null monster.");
+            return;
+        }
+
+        if (!monster.IsValidPosition(targetPosition))
+        {
+            Debug.Log("Target position " + targetPosition + " is invalid. Monster not moved.");
+            return;
+        }
+
+        Vector2Int oldPosition = monster.position;
+        monster.position = targetPosition;
+        // Update the monster's world position using its own UpdatePosition() method
+        monster.UpdatePosition();
+
+        Debug.Log("Monster moved from " + oldPosition + " to " + targetPosition);
+    }
+
     public void OnMonsterKilled()
     {
         totalMonstersKilled++;
@@ -541,4 +564,42 @@ public class MonsterManager : MonoBehaviour
             monsters.Remove(monster);
         }
     }
+
+    public bool IsTileValid(Vector2Int tilePosition)
+    {
+        // Check board boundaries (assuming boardSize is an integer representing board width/height)
+        if (tilePosition.x < 0 || tilePosition.x >= boardSize ||
+            tilePosition.y < 0 || tilePosition.y >= boardSize)
+        {
+            return false;
+        }
+
+        // Build the set of occupied positions:
+        HashSet<Vector2Int> occupiedPositions = new HashSet<Vector2Int>
+        {
+            player.position  // Player occupies its position
+        };
+
+        // Add all monster-occupied positions
+        foreach (Monster monster in monsters)
+        {
+            occupiedPositions.UnionWith(monster.GetOccupiedPositions(monster.position));
+        }
+
+        // Add all scene object occupied positions
+        foreach (Scene scene in scenes)
+        {
+            occupiedPositions.UnionWith(scene.GetOccupiedPositions(scene.position));
+        }
+
+        // Add additional non-enterable positions from the location manager
+        if (locationManager != null)
+        {
+            occupiedPositions.UnionWith(locationManager.GetNonEnterablePositions());
+        }
+
+        // The tile is valid if it is not in the set of occupied positions.
+        return !occupiedPositions.Contains(tilePosition);
+    }
+
 }

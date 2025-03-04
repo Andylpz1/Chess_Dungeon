@@ -175,6 +175,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new BookOfRook());
         allCards.Add(new BookOfBishop());
         allCards.Add(new BookOfQueen());
+        allCards.Add(new Fan());
         UpdateCardEditorPanel();
     }
 

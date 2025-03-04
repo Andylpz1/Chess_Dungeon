@@ -65,7 +65,8 @@ public class RewardManager : MonoBehaviour
             new Assassin(),
             new TwoBladeCard(),
             new FloatSword(),
-            new Book()
+            new Book(),
+            new Fan()
             // Add more uncommon cards here
         };
 

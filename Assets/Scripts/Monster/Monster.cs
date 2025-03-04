@@ -50,7 +50,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         UpdatePosition();
     }
 
-    protected void UpdatePosition()
+    public void UpdatePosition()
     {
         transform.position = player.CalculateWorldPosition(position);
     }

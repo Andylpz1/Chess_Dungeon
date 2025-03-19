@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DeckManager : MonoBehaviour
 {
@@ -29,11 +30,18 @@ public class DeckManager : MonoBehaviour
     private List<GameObject> cardButtons; // 用于追踪卡牌按钮
     private Card cardToDelete; // 要删除的卡牌
     public Player player; // 玩家对象
-
+    public MonsterManager monsterManager; 
     public Button deckDisplayButton; // DeckDisplayButton 引用
     public Button discardDisplayButton; // DiscardDisplayButton 引用
     public List<Card> allCards = new List<Card>();
-
+    void Awake()
+    {
+        player = FindObjectOfType<Player>();
+        monsterManager = FindObjectOfType<MonsterManager>();
+        
+        
+    }
+    
     void Start()
     {
         cardButtons = new List<GameObject>();
@@ -48,7 +56,7 @@ public class DeckManager : MonoBehaviour
         UpdateDeckCountText(); // 初始化时更新牌堆数量显示
         UpdateDiscardPileCountText(); // 初始化时更新弃牌堆数量显示
         UpdateDeckPanel(); // 初始化时更新卡组显示
-
+        
         if (deletePopup != null)
         {
             deletePopup.SetActive(false); // 初始时隐藏删除弹窗
@@ -108,7 +116,7 @@ public class DeckManager : MonoBehaviour
         {
             Debug.LogError("DiscardPanel is not assigned in the Inspector.");
         }
-        
+
     }
 
     void InitializeDeck()
@@ -780,6 +788,21 @@ public class DeckManager : MonoBehaviour
         UpdateHandUI(); // 更新手牌 UI
     }
 
+    public void RefreshCardReferences(Player player, MonsterManager monsterManager)
+    {
+        Debug.Log($"开始刷新引用 - player: {(player == null ? "未找到" : player.name)}, monsterManager: {(monsterManager == null ? "未找到" : monsterManager.name)}");
 
+        if (player == null || monsterManager == null)
+        {
+            Debug.LogError("⚠️ 刷新失败！player 或 monsterManager 为空，无法赋值卡牌引用！");
+            return;
+        }
 
+        foreach (var card in deck)
+        {
+            card.player = player;
+            card.monsterManager = monsterManager;
+            Debug.Log($"✅ 已刷新卡牌 {card.Id} 的引用");
+        }
+    }
 }

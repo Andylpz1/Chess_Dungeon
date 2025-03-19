@@ -49,7 +49,7 @@ public class FloatSword : Card
         if (monsterManager != null && player != null)
         {
             // Find and damage the nearest monster
-            Monster nearestMonster = monsterManager.FindNearestMonster(player.position);
+            Monster nearestMonster = player.monsterManager.FindNearestMonster(player.position);
             if (nearestMonster != null)
             {
                 nearestMonster.TakeDamage(1);

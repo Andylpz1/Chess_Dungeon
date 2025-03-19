@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
     
         // **恢复 `DeckManager` 的 `deck`**
         Player.Instance.deckManager.LoadDeck(restoredDeck);
+        Player.Instance.deckManager.RefreshCardReferences(Player.Instance, Player.Instance.monsterManager);
     }
 
 

@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public int actions = 3; //行动点
     public int health = 3; // 玩家初始血量
     public List<string> deck;
+    public List<Relic> relics;
     public int damage = 1; //默认伤害
     public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
     public Text healthText; 
@@ -42,8 +43,9 @@ public class Player : MonoBehaviour
 
     private GameObject currentHighlight; // 用于存储当前的高亮对象
 
-    public delegate void CardPlayed();
+    public delegate void CardPlayed(Card card);
     public event CardPlayed OnCardPlayed;
+
 
     public bool vineEffectActive = false; 
     public LayerMask attackHighlightLayer;
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour
 
     private Animator animator;
     public GameObject attackEffectPrefab;
+    
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -76,6 +79,11 @@ public class Player : MonoBehaviour
         UpdateHealthText();
         //position = monsterManager.GetEmptyPosition();
         //UpdatePosition();
+
+        if (RelicManager.Instance != null)
+        {
+            RelicManager.Instance.OnGameStart(this);
+        }
     }
 
     void Update()
@@ -605,10 +613,8 @@ public class Player : MonoBehaviour
             }
 
             // Notify listeners that a card has been played
-            OnCardPlayed?.Invoke();
-
-            currentCard = null;
             OnCardUsed(currentCard);
+            currentCard = null;
             // 推进回合
             if (actions == 0) 
             {
@@ -626,10 +632,10 @@ public class Player : MonoBehaviour
         cardsUsedThisTurn = 0;
     }
 
-    public void OnCardUsed(Card playedCard)
+    public void OnCardUsed(Card currentCard)
     {
         cardsUsedThisTurn++;
-        OnCardPlayed?.Invoke(); // Trigger the global event when a card is used
+        OnCardPlayed?.Invoke(currentCard); // Trigger the global event when a card is used
     }
 
     private void TriggerVineEffect()
@@ -706,6 +712,7 @@ public class Player : MonoBehaviour
     {
         deck = new List<string>(newDeck);
         deckManager.UpdateDeckPanel(); 
+        deckManager.RefreshCardReferences(this, monsterManager);
     }
 
     // 示例方法：设置玩家位置

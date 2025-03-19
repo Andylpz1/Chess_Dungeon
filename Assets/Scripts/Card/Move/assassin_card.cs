@@ -17,7 +17,7 @@ public class assassin_card : CardButtonBase
                 return; // Exit if player is not found
             }
         }
-        player.OnCardPlayed += CheckComboStatus;
+        //player.OnCardPlayed += CheckComboStatus;
     }
 
     private void CheckComboStatus()

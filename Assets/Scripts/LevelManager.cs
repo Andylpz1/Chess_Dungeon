@@ -28,11 +28,14 @@ public class LevelManager : MonoBehaviour
     public bool isLevelCompleted = false;
 
     public Text levelCountText;
-
+    public DeckManager deckManager; // 拖入赋值
+    public MonsterManager monsterManager; // 同样，可能也需要这个
     void Awake()
     {
         // Initialize the player in Awake to ensure it is set before Start
         player = FindObjectOfType<Player>();
+        deckManager = FindObjectOfType<DeckManager>();
+        monsterManager = FindObjectOfType<MonsterManager>();
         rewardManager = FindObjectOfType<RewardManager>();
         if (player == null)
         {
@@ -99,11 +102,13 @@ public class LevelManager : MonoBehaviour
         // 清除所有场景对象
         ClearAllScenes();
         ClearAllPoints();
-
+        
         totalMonstersToSpawn = levelConfig.monsterTypes.Count;
         totalMonstersKilled = 0;
         SpawnMonstersForLevel(levelConfig);
+        deckManager.RefreshCardReferences(player, monsterManager);
 
+        
         if (level > 1)
         {
             rewardManager.OpenRewardPanel();

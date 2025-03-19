@@ -34,8 +34,8 @@ public class Card
         this.hoardingValue = hoardingValue;
         this.isPartner = isPartner;
 
-        player = GameObject.FindObjectOfType<Player>();
-        monsterManager = GameObject.FindObjectOfType<MonsterManager>();
+        this.player = GameObject.FindObjectOfType<Player>();
+        this.monsterManager = GameObject.FindObjectOfType<MonsterManager>();
     }
 
     public virtual GameObject GetPrefab()

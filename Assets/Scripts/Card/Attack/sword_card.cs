@@ -13,6 +13,19 @@ public class sword_card : CardButtonBase
         base.Initialize(card, deckManager);
     }
 
+    protected override void Start()
+    {
+        base.Start();
+
+        if (card != null && card.IsUpgraded())
+        {
+            Transform glow = transform.Find("UpgradeEffect");
+            if (glow != null)
+                glow.gameObject.SetActive(true);
+        }
+    }
+
+
     protected override void OnClick()
     {
         if (card != null)
@@ -23,6 +36,8 @@ public class sword_card : CardButtonBase
             }
             else
             {
+                int damage = card.GetDamageAmount(); 
+                player.damage = damage;
                 player.ShowAttackOptions(swordDirections,card);
                 
             }
@@ -36,3 +51,59 @@ public class sword_card : CardButtonBase
 
 }
 
+public class SwordCard : Card
+{
+    public SwordCard() : base(CardType.Attack, "A01", 10) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/sword_card");
+    }
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Attack/sword_card");
+    }
+    public override string GetDescription()
+    {
+        return "上下左右攻击";
+    }
+    public override void OnCardExecuted()
+    {
+        //player.deckManager.DrawCards(1); // Sword card 特殊效果：抓两张牌
+    }
+}
+
+public class UpgradedSwordCard : Card
+{
+    public UpgradedSwordCard() : base(CardType.Attack, "A01+", 10) { }
+
+    public override GameObject GetPrefab()
+    {
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/sword_card");
+    }
+
+    public override Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Card/Attack/sword_card");
+    }
+
+    public override string GetDescription()
+    {
+        return "上下左右攻击,造成2点伤害";
+    }
+
+    public override void OnCardExecuted()
+    {
+        // 升级剑卡可能也有额外效果（比如抽卡）
+    }
+
+    public override int GetDamageAmount()
+    {
+        return 2; // 与普通剑卡区分
+    }
+
+    public override bool IsUpgraded()
+    {
+        return true;
+    }
+}

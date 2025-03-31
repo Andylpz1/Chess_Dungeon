@@ -22,6 +22,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     private static GameObject aimPointerInstance;
     private Image cardImage; 
     private RectTransform canvasRectTransform;
+    private Transform upgradeEffectTransform;
 
     protected virtual void Awake()
     {
@@ -54,6 +55,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     {
         this.card = card;
         this.deckManager = deckManager;
+        upgradeEffectTransform = transform.Find("UpgradeEffect");
 
         if (buttonText != null)
         {
@@ -92,6 +94,10 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         {
             if (cardImage != null) cardImage.enabled = false;
             // 激活瞄准指针
+             if (upgradeEffectTransform != null)
+        {
+            upgradeEffectTransform.gameObject.SetActive(false);
+        }
             aimPointer.SetActive(true);
             UpdateAimPointerPosition(eventData);
             OnClick();  // 显示目标位置
@@ -131,7 +137,15 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
 
         if (card.cardType == CardType.Special) 
         {
-            OnClick();
+            if (1==0)
+            {
+                // 没拖到合法位置 → 不执行任何操作，相当于取消释放
+                transform.position = originalPosition;
+            }
+            else
+            {
+                OnClick(); // 如果拖到合法位置才释放
+            }
         }
         if (player.IsValidPosition(gridPosition) && IsOverHighlightedPosition(gridPosition))
         {
@@ -171,6 +185,15 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         player.ClearMoveHighlights();
         // 恢复父对象
         transform.SetParent(originalParent, true);
+        // 恢复升级特效显示
+        if (card.cardType == CardType.Move || card.cardType == CardType.Attack)
+        {
+            if (upgradeEffectTransform != null && card.IsUpgraded())
+            {
+                upgradeEffectTransform.gameObject.SetActive(true);
+            }
+        }
+
         player.DeselectCurrentCard();
 
         // 隐藏瞄准指针

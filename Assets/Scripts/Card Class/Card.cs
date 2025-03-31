@@ -72,6 +72,17 @@ public class Card
         
     }
 
+    public virtual int GetDamageAmount()
+    {
+        return 1;
+    }
+
+    public virtual bool IsUpgraded()
+    {
+        return false;
+    }
+
+
     public Card Clone()
     {
         // 简单的深拷贝，确保克隆出一个新实例
@@ -169,27 +180,7 @@ public class RookCard : Card
     }
 }
 
-public class SwordCard : Card
-{
-    public SwordCard() : base(CardType.Attack, "A01", 10) { }
 
-    public override GameObject GetPrefab()
-    {
-        return Resources.Load<GameObject>("Prefabs/Card/Attack/sword_card");
-    }
-    public override Sprite GetSprite()
-    {
-        return Resources.Load<Sprite>("Sprites/Card/Attack/sword_card");
-    }
-    public override string GetDescription()
-    {
-        return "上下左右攻击";
-    }
-    public override void OnCardExecuted()
-    {
-        //player.deckManager.DrawCards(1); // Sword card 特殊效果：抓两张牌
-    }
-}
 
 public class BladeCard : Card
 {

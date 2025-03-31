@@ -29,6 +29,7 @@ public class CardDatabase : MonoBehaviour
         AddCard(new BishopCard());
         AddCard(new RookCard());
         AddCard(new SwordCard());
+        AddCard(new UpgradedSwordCard());
         AddCard(new BladeCard());
         AddCard(new SpearCard());
         AddCard(new BowCard());

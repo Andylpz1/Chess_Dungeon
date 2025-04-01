@@ -118,6 +118,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         } 
         isDying = true;  // 设置死亡状态
         Destroy(healthBarInstance);
+        //棋子打出不显示可移动位置死亡时间延迟bug
         Destroy(gameObject, 0.6f);
     }
 

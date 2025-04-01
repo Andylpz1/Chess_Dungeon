@@ -84,7 +84,7 @@ public class UpgradedSwordCard : Card
 
     public override Sprite GetSprite()
     {
-        return Resources.Load<Sprite>("Sprites/Card/Attack/sword_card");
+        return Resources.Load<Sprite>("Sprites/Card/Attack/sword_card_upgraded");
     }
 
     public override string GetDescription()

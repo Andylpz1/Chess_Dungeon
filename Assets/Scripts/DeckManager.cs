@@ -34,6 +34,7 @@ public class DeckManager : MonoBehaviour
     public MonsterManager monsterManager; 
     public Button deckDisplayButton; // DeckDisplayButton 引用
     public Button discardDisplayButton; // DiscardDisplayButton 引用
+    public Button cardEditorButton;
     public List<Card> allCards = new List<Card>();
     void Awake()
     {
@@ -64,10 +65,6 @@ public class DeckManager : MonoBehaviour
             confirmDeleteButton.onClick.AddListener(ConfirmDeleteCard);
             cancelDeleteButton.onClick.AddListener(CancelDeleteCard);
         }
-        else
-        {
-            Debug.LogError("Delete popup is not assigned in the Inspector.");
-        }
 
         // Ensure player is assigned
         if (player == null)
@@ -75,47 +72,28 @@ public class DeckManager : MonoBehaviour
             player = FindObjectOfType<Player>();
         }
 
-        if (player == null)
-        {
-            Debug.LogError("Player is not assigned and could not be found in the scene.");
-        }
-
         //读取deckdisplayButton
         if (deckDisplayButton != null)
         {
             deckDisplayButton.onClick.AddListener(ToggleDeckDisplay);
         }
-        else
-        {
-            Debug.LogError("DeckDisplayButton is not assigned in the Inspector.");
-        }
+
         //读取discarddisplayButton
         if (discardDisplayButton != null)
         {
             discardDisplayButton.onClick.AddListener(ToggleDiscardDisplay);
         }
-        else
-        {
-            Debug.LogError("DiscardDisplayButton is not assigned in the Inspector.");
-        }
 
+        cardEditorButton.onClick.AddListener(ToggleCardEditorDisplay);
         // 确保 deckPanel 初始时显示和 discardPanel 初始时隐藏
         if (deckPanel != null)
         {
             deckPanel.gameObject.SetActive(false);
         }
-        else
-        {
-            Debug.LogError("DeckPanel is not assigned in the Inspector.");
-        }
 
         if (discardPanel != null)
         {
             discardPanel.gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("DiscardPanel is not assigned in the Inspector.");
         }
 
     }
@@ -780,6 +758,17 @@ public class DeckManager : MonoBehaviour
             }
         }
     }
+
+    public void ToggleCardEditorDisplay()
+    {
+        if (cardEditorPanel != null)
+        {
+            bool isActive = cardEditorPanel.gameObject.activeSelf;
+            cardEditorPanel.gameObject.SetActive(!isActive);
+        }
+    }   
+
+    
     //这个是能量
     public void Exhaust()
     {

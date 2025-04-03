@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 public class SaveAndExitButton : MonoBehaviour
 {
     public GameManager gameManager; // Reference to GameManager
+    public DeckManager deckManager;
 
     private void Awake()
     {
         // Automatically find GameManager in the scene
         gameManager = FindObjectOfType<GameManager>();
+        deckManager = FindObjectOfType<DeckManager>();
         if (gameManager == null)
         {
             Debug.LogError("GameManager not found in the scene!");
@@ -19,6 +21,7 @@ public class SaveAndExitButton : MonoBehaviour
         // Save the game data
         if (gameManager != null)
         {
+            deckManager.RestoreExhaustedCards();
             gameManager.SaveGame();
             Debug.Log("Game data saved.");
         }

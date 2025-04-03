@@ -408,6 +408,7 @@ public class MonsterManager : MonoBehaviour
         {
             isLevelCompleted = true; // 标记关卡完成
             rewardManager.OpenRewardPanel();
+            player.deckManager.RestoreExhaustedCards();
             //StartLevel(++currentLevel);
         }
         else if (turnCount % 1 == 0 && monsters.Count != 0)

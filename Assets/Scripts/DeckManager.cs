@@ -8,9 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class DeckManager : MonoBehaviour
 {
-    public List<Card> deck; // 牌库
-    public List<Card> hand; // 手牌
-    public List<Card> discardPile; // 弃牌堆
+    public List<Card> hand = new List<Card>();
+    public List<Card> deck = new List<Card>();
+    public List<Card> discardPile = new List<Card>();
+    public List<Card> exhaustPile = new List<Card>(); 
     public int handSize = 5; // 手牌大小
 
     public Transform cardPanel; // 卡牌面板
@@ -187,6 +188,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new Fan());
         allCards.Add(new Horn());
         allCards.Add(new WarFire());
+        allCards.Add(new MadnessEcho());
         UpdateCardEditorPanel();
     }
 
@@ -425,7 +427,18 @@ public class DeckManager : MonoBehaviour
         AdjustCardSpacing(gridLayout);
     }
 
-
+    public void ExhaustCard(Card card)
+    {
+        if (hand.Contains(card))
+        {
+            hand.Remove(card);
+        }
+        if (discardPile.Contains(card))
+        {
+            discardPile.Remove(card);
+        }
+        exhaustPile.Add(card);
+    }
 
     public void DiscardHand()
     {
@@ -445,6 +458,12 @@ public class DeckManager : MonoBehaviour
             UpdateDeckCountText(); // 更新牌库数量显示
             UpdateDiscardPileCountText(); // 更新弃牌堆数量显示
         }
+    }
+    public void RestoreExhaustedCards()
+    {
+        deck.AddRange(exhaustPile);
+        exhaustPile.Clear(); 
+
     }
 
     public void RestartHand()
@@ -761,7 +780,7 @@ public class DeckManager : MonoBehaviour
             }
         }
     }
-
+    //这个是能量
     public void Exhaust()
     {
         Debug.Log("Exhaust triggered. All cards with exhaust effects will be triggered.");

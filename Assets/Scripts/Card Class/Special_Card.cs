@@ -55,28 +55,6 @@ public class DarkEnergy : Card
     }
 
 }
-
-public class MadnessEcho : Card
-{
-    public MadnessEcho() : base(CardType.Special,"S04")
-    {
-        isQuick= true;
-    }
-
-    public override GameObject GetPrefab()
-    {
-        return Resources.Load<GameObject>("Prefabs/Card/Special/madness_echo_card");
-    }
-    public override Sprite GetSprite()
-    {
-        return Resources.Load<Sprite>("Sprites/Card/Special/madness_echo_card");
-    }
-    public override string GetDescription()
-    {
-        return "快速，弃除所有手牌，抓等量的手牌";
-    }
-}
-
 public class Vine : Card
 {
     public Vine() : base(CardType.Special,"S05")

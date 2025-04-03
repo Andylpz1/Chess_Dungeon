@@ -137,7 +137,6 @@ public class DeckManager : MonoBehaviour
             new SwordCard(),
             new SwordCard(),
             new UpgradedSwordCard()
-            
             //step build
             //new Vine(),
             //new Vine(),
@@ -167,7 +166,7 @@ public class DeckManager : MonoBehaviour
 
     void InitializeCardEditor()
     {
-        allCards.Add(new KnightCard());
+        //allCards.Add(new KnightCard());
         //allCards.Add(new BishopCard());
         //allCards.Add(new RookCard());
         //allCards.Add(new SwordCard());
@@ -185,6 +184,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new BookOfBishop());
         allCards.Add(new BookOfQueen());
         allCards.Add(new Fan());
+        allCards.Add(new Horn());
         UpdateCardEditorPanel();
     }
 
@@ -200,12 +200,12 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    public void DrawCards(int number)
+    public void DrawCards(int number, System.Action onComplete = null)
     {
-        StartCoroutine(DrawCardsCoroutine(number));
+        StartCoroutine(DrawCardsCoroutine(number, onComplete));
     }
 
-    private IEnumerator DrawCardsCoroutine(int number)
+    private IEnumerator DrawCardsCoroutine(int number, System.Action onComplete)
     {
         GridLayoutGroup gridLayout = cardPanel.GetComponent<GridLayoutGroup>();
         for (int i = 0; i < number; i++)
@@ -250,6 +250,7 @@ public class DeckManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f); // 每次抽牌后等待0.1秒
         }
+        onComplete?.Invoke();
     }
 
     public void DrawSpecificCard(Card specificCard)
@@ -386,6 +387,7 @@ public class DeckManager : MonoBehaviour
 
     public void DiscardCard(int i)
     {
+        GridLayoutGroup gridLayout = cardPanel.GetComponent<GridLayoutGroup>();
         // Ensure the index is valid before proceeding
         if (i < 0 || i >= hand.Count)
         {
@@ -418,6 +420,7 @@ public class DeckManager : MonoBehaviour
                 break;
             }
         }
+        AdjustCardSpacing(gridLayout);
     }
 
 

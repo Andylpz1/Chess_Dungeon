@@ -40,13 +40,13 @@ public class GameManager : MonoBehaviour
     {
         GameData gameData = new GameData();
 
-        //洗回手牌
+        //shuffle hand back
         Player.Instance.deckManager.RestartHand();
 
-        // Save player health
+        // Save player health and armor
         gameData.playerHealth = Player.Instance.health;
-
-        // **存储当前卡组**
+        gameData.playerArmor = Player.Instance.armor;
+        // Save current deck
         gameData.playerDeckIds = new List<string>();
         foreach (var card in Player.Instance.deckManager.deck)
         {
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         // 确保 MonsterManager 存在 
         // 恢复玩家状态
         Player.Instance.SetHealth(gameData.playerHealth);
-
+        Player.Instance.SetArmor(gameData.playerArmor);
         // **从 `Id` 重新创建 `Card` 并恢复 `deckManager.deck`**
         List<Card> restoredDeck = new List<Card>();
         foreach (string cardId in gameData.playerDeckIds)

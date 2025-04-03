@@ -655,6 +655,7 @@ RectTransform:
   - {fileID: 84296092}
   - {fileID: 1144206849}
   - {fileID: 937926148}
+  - {fileID: 2140048934}
   - {fileID: 1119508315}
   - {fileID: 1355986257}
   - {fileID: 513411014}
@@ -6470,8 +6471,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.48, y: 454.7}
-  m_SizeDelta: {x: 325.39, y: 82.11}
+  m_AnchoredPosition: {x: 225.25, y: 454.71}
+  m_SizeDelta: {x: 250.5, y: 82.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1355986258
 MonoBehaviour:
@@ -6682,6 +6683,7 @@ MonoBehaviour:
   gold: 1000
   actions: 3
   health: 3
+  armor: 3
   deck: []
   relics:
   - {fileID: 0}
@@ -6689,6 +6691,7 @@ MonoBehaviour:
   damageModifierThisTurn: 0
   cardsUsedThisTurn: 0
   healthText: {fileID: 937926149}
+  armorText: {fileID: 2140048935}
   isCharged: 0
   energyStatusText: {fileID: 142634559}
   CurrentLevel: 0
@@ -8855,6 +8858,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130236444}
+  m_CullTransparentMesh: 1
+--- !u!1 &2140048933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2140048934}
+  - component: {fileID: 2140048936}
+  - component: {fileID: 2140048935}
+  m_Layer: 5
+  m_Name: ArmorText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2140048934
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140048933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 98812311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -43.880035, y: 445.75}
+  m_SizeDelta: {x: 270.75, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2140048935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140048933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 60
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 60
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Armor:'
+--- !u!222 &2140048936
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140048933}
   m_CullTransparentMesh: 1
 --- !u!1001 &2140529991
 PrefabInstance:

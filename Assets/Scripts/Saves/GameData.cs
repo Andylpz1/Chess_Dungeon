@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class GameData
 {
     public int playerHealth;
+    public int playerArmor;
     public List<string> playerHand;
     public List<string> playerDeckIds;
     public List<string> playerHandIds;

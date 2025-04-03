@@ -14,12 +14,14 @@ public class Player : MonoBehaviour
     public int gold = 1000; // 金币数量
     public int actions = 3; //行动点
     public int health = 3; // 玩家初始血量
+    public int armor = 3;
     public List<string> deck;
     public List<Relic> relics;
     public int damage = 1; //默认伤害
     public int damageModifierThisTurn = 0;
     public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
     public Text healthText; 
+    public Text armorText; 
     public bool isCharged = false; // 是否处于充能状态
     public Text energyStatusText;
 
@@ -78,6 +80,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         UpdateHealthText();
+        UpdateArmorText();
         //position = monsterManager.GetEmptyPosition();
         //UpdatePosition();
 
@@ -171,8 +174,32 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        int remainingDamage = damage;
+
+        // 如果有护甲，先用护甲抵消一部分伤害
+        if (armor > 0)
+        {
+            // 若当前护甲大于等于伤害，伤害全部被护甲吸收
+            if (armor >= damage)
+            {
+                armor -= damage;
+                remainingDamage = 0;
+            }
+            // 否则，护甲被打空，剩余伤害继续扣血
+            else
+            {
+                remainingDamage = damage - armor;
+                armor = 0;
+            }
+        }
+
+        // 护甲吸收完后，若仍有剩余伤害，则扣血
+        if (remainingDamage > 0)
+        {
+            health -= remainingDamage;
+        }
         UpdateHealthText();
+        UpdateArmorText();
         if (health <= 0)
         {
             //("Player has died.");
@@ -185,6 +212,14 @@ public class Player : MonoBehaviour
         if (healthText != null)
         {
             healthText.text = "Health: " + health.ToString();
+        }
+    }
+
+    public void UpdateArmorText()
+    {
+        if (armorText != null)
+        {
+            armorText.text = "Armor: " + armor.ToString();
         }
     }
 
@@ -729,6 +764,12 @@ public class Player : MonoBehaviour
     {
         health = newHealth;
         UpdateHealthText();
+    }
+
+    public void SetArmor(int newArmor)
+    {
+        armor = newArmor;
+        UpdateArmorText();
     }
 
     // 示例方法：设置金币

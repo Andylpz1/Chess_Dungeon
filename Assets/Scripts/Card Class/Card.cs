@@ -96,30 +96,6 @@ public class Card
 
 }
 
-public class PawnCard : Card
-{
-    public PawnCard() : base(CardType.Move, "M01", 5) { }
-
-    public override GameObject GetPrefab()
-    {
-        return Resources.Load<GameObject>("Prefabs/Card/Move/pawn_card");
-    }
-    public override Sprite GetSprite()
-    {
-        return Resources.Load<Sprite>("Sprites/Card/Move/pawn_card");
-    }
-    public override string GetDescription()
-    {
-        return "P移动";
-    }
-
-    public override Type GetScriptType()
-    {
-        return typeof(pawn_card); // 这里返回的是 pawn_card 这个 UI 组件
-    }
-
-}
-
 public class KnightCard : Card
 {
     public KnightCard() : base(CardType.Move, "M02", 20) { }

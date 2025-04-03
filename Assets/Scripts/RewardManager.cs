@@ -45,7 +45,7 @@ public class RewardManager : MonoBehaviour
     {
         rarityPools["Common"] = new List<Card>
         {
-            //new PawnCard(),
+            new UpgradedPawnCard(),
             new KnightCard(),
             new BishopCard(),
             new SwordCard(),
@@ -54,7 +54,7 @@ public class RewardManager : MonoBehaviour
 
         rarityPools["Uncommon"] = new List<Card>
         {
-            
+            new UpgradedSwordCard(),
             new RookCard(),
             new SpearCard(),
             new BowCard(),

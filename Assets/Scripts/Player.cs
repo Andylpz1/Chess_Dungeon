@@ -584,6 +584,7 @@ public class Player : MonoBehaviour
 
             if (currentCard.cardType == CardType.Move) // Assuming MovementCard is a class for movement cards
             {
+                currentCard.OnCardExecuted();
                 if (vineEffectActive)
                 {
                     TriggerVineEffect();

@@ -55,6 +55,7 @@ public class CardDatabase : MonoBehaviour
         AddCard(new Fan());
         AddCard(new Horn());
         AddCard(new WarFire());
+        AddCard(new UpgradedPawnCard());
     }
 
     private void AddCard(Card card)

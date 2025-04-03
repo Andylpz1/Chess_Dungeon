@@ -255,4 +255,19 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
     {
         canDrag = draggable;
     }
+
+    private static bool IsBlockedByMonster(Vector2Int position)
+    {
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        foreach (GameObject monsterObject in monsters)
+        {
+            Monster monster = monsterObject.GetComponent<Monster>();
+            if (monster != null && monster.IsPartOfMonster(position))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

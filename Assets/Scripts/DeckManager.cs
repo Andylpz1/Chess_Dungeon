@@ -137,6 +137,7 @@ public class DeckManager : MonoBehaviour
             new SwordCard(),
             new SwordCard()
             //new UpgradedSwordCard()
+            //new UpgradedPawnCard(),
             //step build
             //new Vine(),
             //new Vine(),

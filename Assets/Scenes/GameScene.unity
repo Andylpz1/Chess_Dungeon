@@ -3289,8 +3289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 28}
-  m_SizeDelta: {x: 100, y: 137.6}
+  m_AnchoredPosition: {x: 0, y: 150}
+  m_SizeDelta: {x: 200, y: 275.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &748949124
 MonoBehaviour:
@@ -6682,6 +6682,7 @@ MonoBehaviour:
   relics:
   - {fileID: 0}
   damage: 1
+  damageModifierThisTurn: 0
   cardsUsedThisTurn: 0
   healthText: {fileID: 937926149}
   isCharged: 0
@@ -7100,8 +7101,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -132.1}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -0.0000085831, y: -279}
+  m_SizeDelta: {x: 350.59, y: 212.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1518449046
 MonoBehaviour:
@@ -7125,7 +7126,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -7136,7 +7137,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 232323
+  m_Text: "\u5BF9\u4E00\u540D\u654C\u4EBA\u9020\u6210\u4E00\u70B9\u4F24\u5BB3"
 --- !u!222 &1518449047
 CanvasRenderer:
   m_ObjectHideFlags: 0

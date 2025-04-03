@@ -135,8 +135,8 @@ public class DeckManager : MonoBehaviour
             new SwordCard(),
             new SwordCard(),
             new SwordCard(),
-            new SwordCard(),
-            new UpgradedSwordCard()
+            new SwordCard()
+            //new UpgradedSwordCard()
             //step build
             //new Vine(),
             //new Vine(),
@@ -185,6 +185,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new BookOfQueen());
         allCards.Add(new Fan());
         allCards.Add(new Horn());
+        allCards.Add(new WarFire());
         UpdateCardEditorPanel();
     }
 

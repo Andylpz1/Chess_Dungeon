@@ -77,9 +77,9 @@ public class TurnManager : MonoBehaviour
     private IEnumerator HandleTurnEnd()
     {
         DisableAllButtons(); // 禁用所有按钮
-        player.ResetEffectsAtEndOfTurn();
         // 回合结束弃牌 
         deckManager.DiscardHand();
+        player.ResetEffectsAtEndOfTurn();
         yield return new WaitForSeconds(0.3f);
         player.ClearMoveHighlights();
         player.actions = 3;
@@ -100,7 +100,6 @@ public class TurnManager : MonoBehaviour
         {
             yield return null; // 每帧检查一次，直到RewardPanel关闭
         }
-
         if (monsterManager.nextlevel == true)  {
             // 处理卡牌的回合结束效果
             deckManager.HandleEndOfTurnEffects();

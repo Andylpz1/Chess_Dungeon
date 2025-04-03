@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public List<string> deck;
     public List<Relic> relics;
     public int damage = 1; //默认伤害
+    public int damageModifierThisTurn = 0;
     public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
     public Text healthText; 
     public bool isCharged = false; // 是否处于充能状态
@@ -448,7 +449,7 @@ public class Player : MonoBehaviour
             Monster monster = monsterObject.GetComponent<Monster>();
             if (monster != null && monster.IsPartOfMonster(attackPosition))
             {
-                monster.TakeDamage(damage);
+                monster.TakeDamage(damage + damageModifierThisTurn);
             }
         }
         damage = 1;
@@ -473,7 +474,7 @@ public class Player : MonoBehaviour
                 Monster monster = monsterObject.GetComponent<Monster>();
                 if (monster != null && monster.IsPartOfMonster(attackPosition))
                 {
-                    monster.TakeDamage(1);
+                    monster.TakeDamage(damage + damageModifierThisTurn);
                 }
             }
         }
@@ -501,7 +502,7 @@ public class Player : MonoBehaviour
                 Monster monster = monsterObject.GetComponent<Monster>();
                 if (monster != null && monster.IsPartOfMonster(attackPosition))
                 {
-                    monster.TakeDamage(1);
+                    monster.TakeDamage(damage + damageModifierThisTurn);
                 }
             }
         }
@@ -630,6 +631,7 @@ public class Player : MonoBehaviour
     {
         vineEffectActive = false; // Reset the vine effect after the turn
         cardsUsedThisTurn = 0;
+        damageModifierThisTurn = 0;
     }
 
     public void OnCardUsed(Card currentCard)
@@ -644,7 +646,7 @@ public class Player : MonoBehaviour
 
         if (nearestMonster != null)
         {
-            nearestMonster.TakeDamage(1);
+            nearestMonster.TakeDamage(damage + damageModifierThisTurn);
             //Debug.Log("Vine effect triggered: Dealt 1 damage to " + nearestMonster.name);
         }
         else

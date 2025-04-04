@@ -2,7 +2,7 @@
     "levels": [
         {
             "levelNumber": 1,
-            "monsterTypes": ["WhitePawn, WhitePawn"],
+            "monsterTypes": ["WhitePawn", "WhitePawn"],
             "terrainType": "Borderland"
         },
         {

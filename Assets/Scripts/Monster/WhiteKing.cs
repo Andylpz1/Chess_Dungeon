@@ -37,7 +37,7 @@ public class WhiteKing : Monster
 
         Vector2Int bestMove = position;
         float closestDistance = Vector2Int.Distance(position, player.position);
-
+        Vector2Int chosenDirection = Vector2Int.zero; 
         // 遍历所有可能的国王移动方向（每次只能移动一格）
         foreach (Vector2Int direction in kingDirections)
         {
@@ -50,6 +50,7 @@ public class WhiteKing : Monster
                 {
                     bestMove = potentialPosition;
                     closestDistance = distanceToPlayer;
+                    hosenDirection = direction; 
                 }
             }
         }
@@ -60,8 +61,7 @@ public class WhiteKing : Monster
         // 检测是否接触到玩家
         if (position == player.position)
         {
-            Debug.Log("Player attacked by WhiteKing.");
-            //player.TakeDamage(1); // 假设每次攻击造成1点伤害
+            lastRelativePosition = -chosenDirection;
         }
         //召唤目前有bug
         //SummonPawn();

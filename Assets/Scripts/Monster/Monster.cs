@@ -19,6 +19,7 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private LocationManager locationManager;
 
     private bool isDying = false;
+    public Vector2Int lastRelativePosition;
 
     public MonsterInfoManager infoManager;
     private List<GameObject> highlightInstances = new List<GameObject>();

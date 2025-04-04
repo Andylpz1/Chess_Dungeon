@@ -22,7 +22,7 @@ public class WhitePawn : Monster
     public override void MoveTowardsPlayer()
     {
         if (player == null) return;
-
+        lastRelativePosition = position - player.position;
         Vector2Int direction = player.position - position;
         List<Vector2Int> possibleMoves = new List<Vector2Int>();
 

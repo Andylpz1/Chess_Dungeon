@@ -4294,6 +4294,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   healthBarPrefab: {fileID: 0}
   player: {fileID: 0}
+  lastRelativePosition: {x: 0, y: 0}
   infoManager: {fileID: 0}
   highlightPrefab: {fileID: 3397057089140146364, guid: a79931983b2a1d340a63fa6ae8d622b1, type: 3}
 --- !u!1 &1058265631
@@ -6715,7 +6716,7 @@ MonoBehaviour:
     isPartner: 0
   deckManager: {fileID: 0}
   monsterManager: {fileID: 0}
-  locationManager: {fileID: 0}
+  locationManager: {fileID: 1980775606}
   goldText: {fileID: 1144206850}
   vineEffectActive: 0
   attackHighlightLayer:

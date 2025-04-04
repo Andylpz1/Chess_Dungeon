@@ -34,7 +34,7 @@ public class WhiteQueen : Monster
 
         Vector2Int bestMove = position;
         float closestDistance = Vector2Int.Distance(position, player.position);
-
+        Vector2Int chosenDirection = Vector2Int.zero;
         // 遍历所有可能的皇后移动方向
         foreach (Vector2Int direction in queenDirections)
         {
@@ -53,6 +53,7 @@ public class WhiteQueen : Monster
                 {
                     bestMove = potentialPosition;
                     closestDistance = distanceToPlayer;
+                    chosenDirection = direction; 
                 }
             }
         }
@@ -63,8 +64,7 @@ public class WhiteQueen : Monster
         // 检测是否接触到玩家
         if (position == player.position)
         {
-            Debug.Log("Player attacked by WhiteQueen.");
-            //player.TakeDamage(1); // 假设每次攻击造成1点伤害
+            lastRelativePosition = -chosenDirection;
         }
     }
 

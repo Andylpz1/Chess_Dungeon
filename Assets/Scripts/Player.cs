@@ -161,11 +161,17 @@ public class Player : MonoBehaviour
             if (monster != null && monster.IsPartOfMonster(position))
             {
                 TakeDamage(1); // 玩家受到伤害
-                Vector2Int newPosition = monsterManager.GetEmptyPosition(); // 获取新位置
-                if (newPosition != new Vector2Int(-1, -1))
+                Vector2Int knockbackDirection = -monster.lastRelativePosition;
+                //Vector2Int newPosition = monsterManager.GetEmptyPosition(); // 获取新位置
+                Vector2Int newPosition = position + knockbackDirection;
+                if (IsValidPosition(newPosition) && !IsBlockedBySomething(newPosition))
                 {
                     position = newPosition;
-                    UpdatePosition(); // 更新玩家位置
+                    UpdatePosition(); 
+                }
+                else if (IsValidPosition(newPosition)){
+                    position = monsterManager.GetEmptyPosition(); 
+                    UpdatePosition();
                 }
                 break;
             }
@@ -406,6 +412,10 @@ public class Player : MonoBehaviour
     {
         // 检查该位置是否被不可进入的位置占据
         return locationManager.IsNonEnterablePosition(position);
+    }
+    private bool IsBlockedBySomething(Vector2Int position)
+    {
+        return IsBlockedByMonster(position) || IsBlockedByLocation(position);
     }
 
 

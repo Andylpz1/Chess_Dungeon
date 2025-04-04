@@ -32,7 +32,7 @@ public class WhiteRook : Monster
 
         Vector2Int bestMove = position;
         float closestDistance = Vector2Int.Distance(position, player.position);
-
+        Vector2Int chosenDirection = Vector2Int.zero;
         // 遍历所有可能的直线方向
         foreach (Vector2Int direction in rookDirections)
         {
@@ -51,6 +51,7 @@ public class WhiteRook : Monster
                 {
                     bestMove = potentialPosition;
                     closestDistance = distanceToPlayer;
+                    chosenDirection = direction;
                 }
             }
         }
@@ -61,8 +62,7 @@ public class WhiteRook : Monster
         // 检测是否接触到玩家
         if (position == player.position)
         {
-            Debug.Log("Player attacked by WhiteRook.");
-            //player.TakeDamage(1); // 假设每次攻击造成1点伤害
+            lastRelativePosition = -chosenDirection;
         }
     }
 

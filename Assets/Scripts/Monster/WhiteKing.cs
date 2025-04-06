@@ -50,7 +50,7 @@ public class WhiteKing : Monster
                 {
                     bestMove = potentialPosition;
                     closestDistance = distanceToPlayer;
-                    hosenDirection = direction; 
+                    chosenDirection = direction; 
                 }
             }
         }

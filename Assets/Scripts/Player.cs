@@ -328,6 +328,12 @@ public class Player : MonoBehaviour
         UpdateGoldText();
     }
 
+    public void AddArmor(int amount)
+    {
+        armor += amount;
+        UpdateArmorText();
+    }
+
     public void UpdateGoldText()
     {
         if (goldText != null)

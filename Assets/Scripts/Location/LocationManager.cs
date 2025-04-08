@@ -354,6 +354,7 @@ public class LocationManager : MonoBehaviour
                         // 确保闭合
                         if (polygonPoints.Count > 0 && polygonPoints[0] != polygonPoints[polygonPoints.Count - 1])
                             polygonPoints.Add(polygonPoints[0]);
+                        
                     }
                     
                     if (polygonPoints.Count >= 2)
@@ -416,17 +417,21 @@ public class LocationManager : MonoBehaviour
                 pivot = p;
         }
         // 按角度排序
+        float Dist2(Vector2 v) => (v.x - pivot.x) * (v.x - pivot.x) + (v.y - pivot.y) * (v.y - pivot.y);
         points.Sort((a, b) =>
         {
             float angleA = Mathf.Atan2(a.y - pivot.y, a.x - pivot.x);
             float angleB = Mathf.Atan2(b.y - pivot.y, b.x - pivot.x);
-            return angleA.CompareTo(angleB);
+            if (!Mathf.Approximately(angleA, angleB))
+                return angleA.CompareTo(angleB);          // 角度不同，按角度排
+            else
+                return Dist2(a).CompareTo(Dist2(b));      // 角度相同，按距离排，近的在前，远的在后
         });
         
         List<Vector2> hull = new List<Vector2>();
         foreach (Vector2 p in points)
         {
-            while (hull.Count >= 2 && Cross(hull[hull.Count - 2], hull[hull.Count - 1], p) <= 0)
+            while (hull.Count >= 2 && Cross(hull[hull.Count - 2], hull[hull.Count - 1], p) <0)
             {
                 hull.RemoveAt(hull.Count - 1);
             }

@@ -66,7 +66,8 @@ public class RewardManager : MonoBehaviour
             new TwoBladeCard(),
             new FloatSword(),
             new Book(),
-            new Fan()
+            new Fan(),
+            new FlameSword()
             // Add more uncommon cards here
         };
 
@@ -74,11 +75,11 @@ public class RewardManager : MonoBehaviour
         {
             new FlailCard(),
             new FloatSword(),
-            new FlameSword(),
             new DarkEnergy(),
             new MadnessEcho(),
             new Vine(),
-            new BookOfPawn()
+            new BookOfPawn(),
+            new FlameBow()
             // Add more epic cards here
         };
 

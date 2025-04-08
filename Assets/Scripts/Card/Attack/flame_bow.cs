@@ -2,9 +2,17 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class flame_sword_card : CardButtonBase
+public class flame_bow_card : CardButtonBase
 {
-    Vector2Int[] flameSwordDirections = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+    Vector2Int[] flameBowDirections = new Vector2Int[]
+    {
+        new Vector2Int(-2, -2), new Vector2Int(-2, -1), new Vector2Int(-2, 0), new Vector2Int(-2, 1), new Vector2Int(-2, 2),
+        new Vector2Int(-1, -2), new Vector2Int(-1, -1), new Vector2Int(-1, 0), new Vector2Int(-1, 1), new Vector2Int(-1, 2),
+        new Vector2Int(0, -2),  new Vector2Int(0, -1),  new Vector2Int(0, 0),  new Vector2Int(0, 1),  new Vector2Int(0, 2),
+        new Vector2Int(1, -2),  new Vector2Int(1, -1),  new Vector2Int(1, 0),  new Vector2Int(1, 1),  new Vector2Int(1, 2),
+        new Vector2Int(2, -2),  new Vector2Int(2, -1),  new Vector2Int(2, 0),  new Vector2Int(2, 1),  new Vector2Int(2, 2)
+    };
+
 
     public override void Initialize(Card card, DeckManager deckManager)
     {
@@ -30,38 +38,32 @@ public class flame_sword_card : CardButtonBase
             if (player.currentCard == card)
             {
                 player.DeselectCurrentCard();
-                Debug.Log("FlameSwordCard deselected.");
             }
             else
             {
                 int damage = card.GetDamageAmount();
                 player.damage = damage;
-                player.ShowAttackOptions(flameSwordDirections, card);
-                Debug.Log("FlameSwordCard: Showing attack options with flame effect.");
+                player.ShowAttackOptions(flameBowDirections, card);
             }
-        }
-        else
-        {
-            Debug.LogError("Card is null in flame_sword_card.OnClick");
         }
     }
 }
 
-public class FlameSword : Card
+public class FlameBow : Card
 {
     // 构造函数中设置卡牌类型、编号和费用
-    public FlameSword() : base(CardType.Attack, "A09", 1)
+    public FlameBow() : base(CardType.Attack, "A10", 1)
     {
     }
     
     public override GameObject GetPrefab()
     {
-        return Resources.Load<GameObject>("Prefabs/Card/Attack/flame_sword");
+        return Resources.Load<GameObject>("Prefabs/Card/Attack/flame_bow");
     }
     
     public override Sprite GetSprite()
     {
-        return Resources.Load<Sprite>("Sprites/Card/Attack/flame_sword");
+        return Resources.Load<Sprite>("Sprites/Card/Attack/flame_bow");
     }
     
     public override string GetDescription()

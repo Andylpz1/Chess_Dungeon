@@ -409,14 +409,35 @@ public class MonsterManager : MonoBehaviour
             isLevelCompleted = true; // 标记关卡完成
             rewardManager.OpenRewardPanel();
             player.deckManager.RestoreExhaustedCards();
+            foreach (FireZone zone in locationManager.activeFireZones)
+            {
+                if (zone != null)
+                {
+                    zone.DestroySelf();
+                }
+            }
             //StartLevel(++currentLevel);
         }
         else if (turnCount % 1 == 0 && monsters.Count != 0)
         {
-            MoveMonsters();
+            OnMonsterTurnStart();
+            //MoveMonsters();
             Debug.Log("Monsters move.");
         }
     }
+
+    public void OnMonsterTurnStart()
+    {
+        foreach (FireZone zone in locationManager.activeFireZones)
+        {
+            if (zone != null)
+            {
+                zone.OnEnemyTurnStart();
+            }
+        }
+        MoveMonsters();
+    }
+
 
     public Vector2Int GetRandomPosition(Monster monsterType)
     {

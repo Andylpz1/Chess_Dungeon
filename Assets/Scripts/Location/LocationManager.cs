@@ -5,9 +5,12 @@ using System.Collections.Generic;
 public class LocationManager : MonoBehaviour
 {
     private List<Vector2Int> nonEnterablePositions = new List<Vector2Int>();
+    private List<Vector2Int> EnterablePositions = new List<Vector2Int>();
     private Dictionary<string, GameObject> locationPrefabs = new Dictionary<string, GameObject>();
     private List<GameObject> spawnedLocations = new List<GameObject>();  // 动态生成的障碍物
 
+    public List<FirePoint> activeFirePoints = new List<FirePoint>();
+    public List<FireZone> activeFireZones = new List<FireZone>(); // 火域列表
     private Player player;
     private List<TerrainConfig> terrainConfigs = new List<TerrainConfig>();
 
@@ -15,6 +18,7 @@ public class LocationManager : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<Player>(); 
+        activeFireZones = new List<FireZone>();
         // 动态加载所有地点的 Prefab
         locationPrefabs["Forest"] = Resources.Load<GameObject>("Prefabs/Location/Forest");
         locationPrefabs["Wall_Horizontal"] = Resources.Load<GameObject>("Prefabs/Location/Wall_Horizontal");
@@ -213,7 +217,7 @@ public class LocationManager : MonoBehaviour
         }
     }
 
-    private void CreateLocation(GameObject prefab, Vector2Int position, float rotation = 0f)
+    public void CreateLocation(GameObject prefab, Vector2Int position, float rotation = 0f)
     {
         GameObject locationObject = Instantiate(prefab);
         locationObject.transform.position = player.CalculateWorldPosition(position);
@@ -228,6 +232,27 @@ public class LocationManager : MonoBehaviour
             Debug.Log($"Location created at {position} using {prefab.name} with rotation {rotation}");
         }
     }
+
+    public void CreateFirePoint(GameObject prefab, Vector2Int position, float rotation = 0f)
+    {
+        GameObject firePointObject = Instantiate(prefab);
+        firePointObject.transform.position = player.CalculateWorldPosition(position);
+        firePointObject.transform.rotation = Quaternion.Euler(0, 0, rotation); // 设置旋转
+
+        FirePoint firePoint = firePointObject.GetComponent<FirePoint>();
+        if (firePoint != null)
+        {
+            firePoint.Initialize(position, "fire point", true);
+            spawnedLocations.Add(firePointObject); // 动态生成的对象加入列表
+            OnFirePointAdded(firePoint);
+            Debug.Log($"FirePoint created at {position} using {prefab.name} with rotation {rotation}");
+        }
+        else
+        {
+        Debug.LogWarning($"Prefab {prefab.name} does not contain a FirePoint component.");
+        }
+    }
+
 
 
     private Vector2Int GetRandomPosition()
@@ -262,5 +287,193 @@ public class LocationManager : MonoBehaviour
         return nonEnterablePositions.Contains(position);
     }
 
+    public void OnFirePointAdded(FirePoint newFirePoint)
+    {
+        if (!activeFirePoints.Contains(newFirePoint))
+        {
+            activeFirePoints.Add(newFirePoint);
+            CheckAndFormFireZone();
+        }
+    }
+    
+    public void RemoveFirePoint(FirePoint firePoint)
+    {
+        if (activeFirePoints.Contains(firePoint))
+        {
+            activeFirePoints.Remove(firePoint);
+        }
+    }
+    
+    /// <summary>
+    /// 清除所有当前存在的火域视觉
+    /// </summary>
+    private void ClearFireZones()
+    {
+        foreach (FireZone zone in activeFireZones)
+        {
+            if (zone != null)
+                Destroy(zone.gameObject);
+        }
+        activeFireZones.Clear();
+    }
 
+    /// <summary>
+    /// 检查所有燃点，寻找连通区域，并生成火域；火域不会消除燃点（按照新要求）。
+    /// 当有新的燃点时，先清除已有火域，再重新连接所有燃点。
+    /// </summary>
+    public void CheckAndFormFireZone()
+    {
+        // 先清除现有火域
+        ClearFireZones();
+        
+        List<FirePoint> processed = new List<FirePoint>();
+        foreach (FirePoint fp in new List<FirePoint>(activeFirePoints))
+        {
+            if (!processed.Contains(fp))
+            {
+                List<FirePoint> cluster = GetConnectedFirePoints(fp);
+                processed.AddRange(cluster);
+                if (cluster.Count >= 2)
+                {
+                    // 根据 cluster 计算连接图形
+                    List<Vector3> polygonPoints = new List<Vector3>();
+                    if (cluster.Count == 2)
+                    {
+                        // 只有两个点，直接连线
+                        Vector3 p1 = player.CalculateWorldPosition(cluster[0].gridPosition);
+                        Vector3 p2 = player.CalculateWorldPosition(cluster[1].gridPosition);
+                        polygonPoints.Add(p1);
+                        polygonPoints.Add(p2);
+                        // 为闭合方便，重复第一个点
+                        polygonPoints.Add(p1);
+                    }
+                    else
+                    {
+                        // 三个或以上，计算凸包
+                        polygonPoints = ComputeConvexHull(cluster);
+                        // 确保闭合
+                        if (polygonPoints.Count > 0 && polygonPoints[0] != polygonPoints[polygonPoints.Count - 1])
+                            polygonPoints.Add(polygonPoints[0]);
+                    }
+                    
+                    if (polygonPoints.Count >= 2)
+                    {
+                        CreateFireZoneUsingPoints(polygonPoints);
+                    }
+                }
+            }
+        }
+    }
+    
+    private List<FirePoint> GetConnectedFirePoints(FirePoint start)
+    {
+        List<FirePoint> cluster = new List<FirePoint>();
+        Queue<FirePoint> queue = new Queue<FirePoint>();
+        queue.Enqueue(start);
+        cluster.Add(start);
+
+        while (queue.Count > 0)
+        {
+            FirePoint current = queue.Dequeue();
+            foreach (FirePoint fp in activeFirePoints)
+            {
+                //if (!cluster.Contains(fp) && IsAdjacent(current.gridPosition, fp.gridPosition))
+                if (!cluster.Contains(fp))
+                {
+                    cluster.Add(fp);
+                    queue.Enqueue(fp);
+                }
+            }
+        }
+        return cluster;
+    }
+    
+    private bool IsAdjacent(Vector2Int a, Vector2Int b)
+    {
+        return Mathf.Abs(a.x - b.x) <= 1 && Mathf.Abs(a.y - b.y) <= 1;
+    }
+
+    /// <summary>
+    /// 使用 Graham scan 算法计算凸包（返回世界坐标点）
+    /// </summary>
+    private List<Vector3> ComputeConvexHull(List<FirePoint> cluster)
+    {
+        List<Vector2> points = new List<Vector2>();
+        foreach (FirePoint fp in cluster)
+        {
+            // 将 gridPosition 转为 Vector2，假设 CalculateWorldPosition 直接对应每格 1 单位
+            points.Add(new Vector2(fp.gridPosition.x, fp.gridPosition.y));
+        }
+        
+        if (points.Count <= 1)
+            return new List<Vector3>();
+
+        // 找到最下方（如果相同，则最左）的点作为 pivot
+        Vector2 pivot = points[0];
+        foreach (Vector2 p in points)
+        {
+            if (p.y < pivot.y || (p.y == pivot.y && p.x < pivot.x))
+                pivot = p;
+        }
+        // 按角度排序
+        points.Sort((a, b) =>
+        {
+            float angleA = Mathf.Atan2(a.y - pivot.y, a.x - pivot.x);
+            float angleB = Mathf.Atan2(b.y - pivot.y, b.x - pivot.x);
+            return angleA.CompareTo(angleB);
+        });
+        
+        List<Vector2> hull = new List<Vector2>();
+        foreach (Vector2 p in points)
+        {
+            while (hull.Count >= 2 && Cross(hull[hull.Count - 2], hull[hull.Count - 1], p) <= 0)
+            {
+                hull.RemoveAt(hull.Count - 1);
+            }
+            hull.Add(p);
+        }
+        
+        // 转换为世界坐标（这里假设不需要额外偏移）
+        List<Vector3> worldHull = new List<Vector3>();
+        foreach (Vector2 p in hull)
+        {
+            // 使用 player.CalculateWorldPosition 对 grid 坐标转换为世界坐标
+            Vector2Int gridPos = new Vector2Int(Mathf.RoundToInt(p.x), Mathf.RoundToInt(p.y));
+            worldHull.Add(player.CalculateWorldPosition(gridPos));
+        }
+        return worldHull;
+    }
+    
+    private float Cross(Vector2 o, Vector2 a, Vector2 b)
+    {
+        return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
+    }
+
+    /// <summary>
+    /// 根据计算得到的多边形顶点创建火域视觉
+    /// </summary>
+    private void CreateFireZoneUsingPoints(List<Vector3> points)
+    {
+        GameObject zoneObj = new GameObject("FireZone");
+        zoneObj.transform.SetParent(transform);
+        zoneObj.transform.position = Vector3.zero; // 使用世界坐标
+
+        // 添加 LineRenderer 组件
+        LineRenderer lr = zoneObj.AddComponent<LineRenderer>();
+        lr.positionCount = points.Count;
+        lr.SetPositions(points.ToArray());
+        lr.startColor = Color.red;
+        lr.endColor = Color.red;
+        lr.widthMultiplier = 0.1f;
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.useWorldSpace = true;
+
+        // 添加 FireZone 组件，用于管理持续时间与后续效果
+        FireZone fireZone = zoneObj.AddComponent<FireZone>();
+        // 使用重载的 Initialize 方法接收多边形顶点，设置持续时间，比如 2 个敌方回合
+        fireZone.Initialize(points, 2);
+        activeFireZones.Add(fireZone);
+
+        Debug.Log($"Created FireZone with {points.Count} vertices.");
+    }
 }

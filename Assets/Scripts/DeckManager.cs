@@ -111,10 +111,10 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new KnightCard(),
-            new SwordCard(),
-            new SwordCard(),
-            new SwordCard(),
-            new SwordCard()
+            new FlameSword(),
+            new FlameSword(),
+            new FlameSword(),
+            new FlameSword()
             //new UpgradedSwordCard()
             //new UpgradedPawnCard(),
             //step build
@@ -167,6 +167,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new Horn());
         allCards.Add(new WarFire());
         allCards.Add(new MadnessEcho());
+        allCards.Add(new FlameSword());
         UpdateCardEditorPanel();
     }
 

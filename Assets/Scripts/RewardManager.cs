@@ -74,6 +74,7 @@ public class RewardManager : MonoBehaviour
         {
             new FlailCard(),
             new FloatSword(),
+            new FlameSword(),
             new DarkEnergy(),
             new MadnessEcho(),
             new Vine(),

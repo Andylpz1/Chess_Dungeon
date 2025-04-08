@@ -18,14 +18,14 @@ public abstract class Location : MonoBehaviour, IPointerEnterHandler, IPointerEx
     // 鼠标悬停时显示描述
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log($"Pointer entered location at {position}: {description}");
+        //Debug.Log($"Pointer entered location at {position}: {description}");
         ShowDescription();
     }
 
     // 鼠标离开时隐藏描述
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log($"Pointer exited location at {position}");
+        //Debug.Log($"Pointer exited location at {position}");
         HideDescription();
     }
 

@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
 
     private Animator animator;
     public GameObject attackEffectPrefab;
+    public Vector2Int targetPosition { get; set; }
+
     
     void Awake()
     {
@@ -489,6 +491,7 @@ public class Player : MonoBehaviour
 
     public void Attack(Vector2Int attackPosition)
     {
+        targetPosition = attackPosition;
         Vector3 worldPosition = CalculateWorldPosition(attackPosition);
         GameObject effectInstance = Instantiate(attackEffectPrefab, worldPosition, Quaternion.identity);
         // 播放攻击动画
@@ -631,6 +634,7 @@ public class Player : MonoBehaviour
             {
                 //Debug.Log("Executing OnAttackExecuted for: ");
                 currentCard.OnCardExecuted();   // 只触发攻击卡的特殊效果
+                targetPosition = new Vector2Int(-1, -1); ;
             }
 
             if (currentCard.cardType == CardType.Move) // Assuming MovementCard is a class for movement cards

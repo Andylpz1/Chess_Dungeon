@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public MonsterManager monsterManager; 
+    public List<Card> playerDeck = new List<Card>();
+
     private void Awake()
     {
         if (monsterManager == null)
@@ -55,7 +57,7 @@ public class GameManager : MonoBehaviour
                 gameData.playerDeckIds.Add(card.Id);  // 存储卡牌 ID
             }
         }
-
+        playerDeck = new List<Card>(Player.Instance.deckManager.deck);
         // Check MonsterManager.Instance
         if (Player.Instance.monsterManager == null)
         {

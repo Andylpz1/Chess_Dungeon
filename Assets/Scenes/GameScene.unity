@@ -3842,6 +3842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterManager: {fileID: 0}
+  playerDeck: []
 --- !u!4 &885674036
 Transform:
   m_ObjectHideFlags: 0
@@ -8210,6 +8211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f82fe2b16dbd04e8c7315aef5c07e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeFirePoints: []
+  activeFireZones: []
 --- !u!1 &2035745221
 GameObject:
   m_ObjectHideFlags: 0

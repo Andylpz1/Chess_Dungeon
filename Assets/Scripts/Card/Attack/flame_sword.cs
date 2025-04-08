@@ -90,7 +90,7 @@ public class FlameSword : Card
     /// </summary>
     private Vector2Int GetAttackTargetPosition()
     {
-        return player.targetPosition;
+        return player.targetAttackPosition;
     }
 
 

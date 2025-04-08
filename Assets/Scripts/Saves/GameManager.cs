@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
             monsterManager = FindObjectOfType<MonsterManager>();
             if (monsterManager == null)
             {
-                Debug.LogError("MonsterManager not found in the scene!");
             }
         }
         if (Instance != null && Instance != this)

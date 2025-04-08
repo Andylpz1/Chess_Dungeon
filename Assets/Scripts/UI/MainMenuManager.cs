@@ -11,7 +11,7 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.Save(); // 保存修改
         // 加载游戏主场景，确保场景名称正确
         //SceneManager.LoadScene("LevelSelectionScene");
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("LevelSelectionScene");
         //MusicManager.Instance.PlayBackgroundMusic(MusicManager.Instance.battleMusic);
     }
 

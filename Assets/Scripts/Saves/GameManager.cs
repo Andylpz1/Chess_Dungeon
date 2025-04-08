@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public MonsterManager monsterManager; 
     public List<Card> playerDeck = new List<Card>();
-
+    public GameData currentGameData;
     private void Awake()
     {
         if (monsterManager == null)
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         if (SaveSystem.GameSaveExists())
         {
             GameData gameData = SaveSystem.LoadGame();
+            currentGameData = gameData;
             LoadGameData(gameData);
         }   
     }
@@ -72,6 +73,28 @@ public class GameManager : MonoBehaviour
         SaveSystem.SaveGame(gameData);
 
         Debug.Log("Game saved successfully.");
+    }
+    public void SaveDeck()
+    {
+        if (currentGameData == null)
+        {
+            Debug.LogError("当前存档数据为空，无法保存牌组！");
+            return;
+        }
+
+        List<string> deckIds = new List<string>();
+        foreach (Card card in playerDeck)
+        {
+            if (card != null)
+            {
+                deckIds.Add(card.Id);
+            }
+        }
+        currentGameData.playerDeckIds = deckIds;
+
+        // 调用存档系统保存当前存档数据
+        SaveSystem.SaveGame(currentGameData);
+        Debug.Log("Deck saved successfully.");
     }
 
 

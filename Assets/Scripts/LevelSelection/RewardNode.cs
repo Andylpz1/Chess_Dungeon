@@ -103,7 +103,7 @@ public class RewardNode : MonoBehaviour
     {
         Debug.Log("完成修改，保存卡组并关闭 deckPanel");
         // 如果需要在此处调用额外的存档保存逻辑，可以在这里调用 GameManager 的保存函数
-        //GameManager.Instance.SaveGame();
+        GameManager.Instance.SaveDeck();
         // 关闭 deckPanel
         if (deckPanel != null && deckPanel.gameObject != null)
         {

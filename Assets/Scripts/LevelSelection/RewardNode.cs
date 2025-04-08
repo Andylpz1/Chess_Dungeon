@@ -10,7 +10,7 @@ public class RewardNode : MonoBehaviour
     public Vector2 cardSize = new Vector2(40, 50);
     // 完成按钮，点击后保存修改并关闭 deckPanel
     public Button completeButton;
-
+    public GameObject nodeCanvas;
     private void Start()
     {
         // 如果完成按钮存在，则添加点击监听器
@@ -27,7 +27,7 @@ public class RewardNode : MonoBehaviour
     // 当玩家点击奖励节点时触发
     private void OnMouseDown()
     {
-        Debug.Log("点击奖励节点，更新 deckPanel 显示");
+        nodeCanvas.SetActive(false);
         // 激活 deckPanel 的 GameObject（如果其处于隐藏状态）
         if (deckPanel != null && deckPanel.gameObject != null)
         {
@@ -108,6 +108,7 @@ public class RewardNode : MonoBehaviour
         if (deckPanel != null && deckPanel.gameObject != null)
         {
             deckPanel.gameObject.SetActive(false);
+            nodeCanvas.SetActive(true);
         }
     }
 }

@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
         {
             if (card != null)
             {
+                Debug.Log($"SaveDeck 写入 Id = {card.Id}");
                 deckIds.Add(card.Id);
             }
         }

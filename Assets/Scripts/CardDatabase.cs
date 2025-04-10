@@ -68,12 +68,29 @@ public class CardDatabase : MonoBehaviour
         }
     }
 
-    public Card GetCardById(string cardId)
+    public Card GetCardById(string id)
     {
-        if (cardLibrary.TryGetValue(cardId, out Card card))
+        Debug.Log($"你iiii好");
+        // ① 拆分 Id：M01+Quick+Draw1 → ["M01","Quick","Draw1"]
+        string[] parts  = id.Split('+');
+        string   baseId = parts[0];
+
+        // ② 先拿到“基础卡牌”原型
+        if (!cardLibrary.TryGetValue(baseId, out Card proto))
+            return null;
+
+        // ③ 克隆一份（确保互不干扰）
+        Card card = proto.Clone();
+
+        // ④ 把后缀解析回升级
+        for (int i = 1; i < parts.Length; i++)
         {
-            return card;
+            Debug.Log($"你iiii好");
+            if (System.Enum.TryParse(parts[i], out CardUpgrade up))
+            
+                card.AddUpgrade(up);
         }
-        return null;
+        return card;
     }
+
 }

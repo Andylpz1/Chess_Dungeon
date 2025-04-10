@@ -14,6 +14,8 @@ public class Card
     public string Id;
     public string cardName;
     public int cost; // 添加花费属性
+    public virtual List<CardUpgrade> UpgradeOptions { get; protected set; } = new List<CardUpgrade>();
+
     public bool isQuick; // 新增 quick 变量
     public bool isEnergy; // 新增 energy 变量
     public bool isMadness;
@@ -82,12 +84,33 @@ public class Card
         return false;
     }
 
-
-    public Card Clone()
+    public virtual List<CardUpgrade> GetUpgradeOptions()
     {
-        // 简单的深拷贝，确保克隆出一个新实例
-        return (Card)this.MemberwiseClone();
+        return UpgradeOptions;
     }
+
+    public virtual void AddUpgrade(CardUpgrade upgrade)
+    {
+
+    }
+
+
+    public virtual Card Clone()
+    {
+        Card copy = (Card)MemberwiseClone();          // ① 先做浅拷贝
+
+        // ② 如果是 PawnCard（或含 upgrades 的其它子类），把列表深拷贝
+        if (copy is PawnCard pawn)
+        {
+            // 新建一个 List，把原来的元素复制进去，避免引用同一 List
+            pawn.upgrades = new List<CardUpgrade>(pawn.upgrades);
+        }
+
+        // 如有其它引用字段也需要深拷，可在这里补充
+
+        return copy;
+    }
+
 
     public string GetName()
     {

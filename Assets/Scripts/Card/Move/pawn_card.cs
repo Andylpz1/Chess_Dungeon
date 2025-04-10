@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 
-public enum PawnUpgradeType
+public enum CardUpgrade
 {
     Quick,      // 卡牌变为快速
     Draw1,      // 使用后抓1张牌
@@ -57,8 +57,19 @@ public class pawn_card : CardButtonBase
 
 public class PawnCard : Card
 {
-    public List<PawnUpgradeType> upgrades = new List<PawnUpgradeType>();
-    public PawnCard() : base(CardType.Move, "M01", 5) { }
+    public List<CardUpgrade> upgrades = new List<CardUpgrade>();
+    public override List<CardUpgrade> UpgradeOptions { get; protected set; } = new List<CardUpgrade>();
+    public PawnCard() : base(CardType.Move, "M01", 5) 
+    {
+        // 为移动牌配置个性化的升级选项
+        UpgradeOptions = new List<CardUpgrade>
+        {
+            CardUpgrade.Quick,
+            CardUpgrade.Draw1,
+            CardUpgrade.Draw2,
+            CardUpgrade.GainArmor
+        };
+    }
 
     public override GameObject GetPrefab()
     {
@@ -72,35 +83,44 @@ public class PawnCard : Card
     {
         string desc = "P移动";
         // 如果有升级，则显示所有升级效果
-        foreach (PawnUpgradeType upgrade in upgrades)
+        if (upgrades.Count > 0)
         {
-            switch (upgrade)
+            desc += "\n升级效果：";
+            foreach (CardUpgrade upgrade in upgrades)
             {
-                case PawnUpgradeType.Quick:
-                    desc += "\n快速";
-                    break;
-                case PawnUpgradeType.Draw1:
-                    desc += "\n使用后抓1张牌";
-                    break;
-                case PawnUpgradeType.Draw2:
-                    desc += "\n使用后抓2张牌";
-                    break;
-                case PawnUpgradeType.GainArmor:
-                    desc += "\n额外获得1点护甲";
-                    break;
+                switch (upgrade)
+                {
+                    case CardUpgrade.Quick:
+                        desc += "\n快速";
+                        break;
+                    case CardUpgrade.Draw1:
+                        desc += "\n使用后抓1张牌";
+                        break;
+                    case CardUpgrade.Draw2:
+                        desc += "\n使用后抓2张牌";
+                        break;
+                    case CardUpgrade.GainArmor:
+                        desc += "\n额外获得1点护甲";
+                        break;
+                }
             }
         }
         return desc;
     }
     /// 外部调用该方法给这张 Pawn 卡添加一个升级（升级效果可以任意组合和重复）
-    public void AddUpgrade(PawnUpgradeType upgrade)
+    public override void AddUpgrade(CardUpgrade upgrade)
     {
         upgrades.Add(upgrade);
         // 如果选择了快速升级，则设为快速
-        if (upgrade == PawnUpgradeType.Quick)
+        if (upgrade == CardUpgrade.Quick)
         {
             isQuick = true;
         }
+        string suffix = "+" + upgrade;           // 例如 “+Draw1”
+        if (!Id.Contains(suffix))
+            Id += suffix;                   // M01 → M01+Draw1(+Quick …)
+
+        Debug.Log($"AddUpgrade → 新 Id = {Id}");
     }
 
     public override bool IsUpgraded()
@@ -115,11 +135,11 @@ public class PawnCard : Card
 
         // 统计抽牌效果
         int totalDraw = 0;
-        foreach (PawnUpgradeType upgrade in upgrades)
+        foreach (CardUpgrade upgrade in upgrades)
         {
-            if (upgrade == PawnUpgradeType.Draw1)
+            if (upgrade == CardUpgrade.Draw1)
                 totalDraw += 1;
-            else if (upgrade == PawnUpgradeType.Draw2)
+            else if (upgrade == CardUpgrade.Draw2)
                 totalDraw += 2;
         }
         if (player != null && player.deckManager != null && totalDraw > 0)
@@ -130,9 +150,9 @@ public class PawnCard : Card
 
         // 统计额外获得护甲的效果
         int armorGained = 0;
-        foreach (PawnUpgradeType upgrade in upgrades)
+        foreach (CardUpgrade upgrade in upgrades)
         {
-            if (upgrade == PawnUpgradeType.GainArmor)
+            if (upgrade == CardUpgrade.GainArmor)
                 armorGained++;
         }
         if (armorGained > 0 && player != null)

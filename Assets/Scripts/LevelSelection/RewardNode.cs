@@ -78,7 +78,8 @@ public class RewardNode : MonoBehaviour
             Button cardButton = cardUI.AddComponent<Button>();
             // 指定 targetGraphic 为刚添加的 Image，确保点击事件正确响应
             cardButton.targetGraphic = cardImage;
-            cardButton.onClick.AddListener(() => OnCardClicked(card));
+            var cardCopy = card;    
+            cardButton.onClick.AddListener(() => OnCardClicked(cardCopy));
         }
     }
 

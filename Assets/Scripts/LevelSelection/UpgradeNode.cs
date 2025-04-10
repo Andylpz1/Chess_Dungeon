@@ -120,8 +120,12 @@ public class UpgradeNode : MonoBehaviour
         upgradePanel.gameObject.SetActive(true);
 
         // 遍历 CardUpgrade 枚举，生成按钮
-        foreach (CardUpgrade upgrade in System.Enum.GetValues(typeof(CardUpgrade)))
+        foreach (CardUpgrade upgrade in selectedCard.UpgradeOptions)
         {
+            // 已经拥有的升级就不再生成按钮（可选）
+             if (selectedCard.HasUpgrade(upgrade))
+                continue;
+
             GameObject upgradeBtnObj = Instantiate(upgradeButtonPrefab, upgradePanel);
             upgradeBtnObj.name = "Upgrade_" + upgrade.ToString();
 

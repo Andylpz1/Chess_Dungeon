@@ -83,6 +83,8 @@ public class Card
     {
         return false;
     }
+    public virtual bool HasUpgrade(CardUpgrade upgrade) => false;
+
 
     public virtual List<CardUpgrade> GetUpgradeOptions()
     {

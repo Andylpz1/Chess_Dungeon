@@ -127,6 +127,11 @@ public class PawnCard : Card
     {
         return upgrades.Count > 0;
     }
+    public override bool HasUpgrade(CardUpgrade upgrade)
+    {
+        return upgrades.Contains(upgrade);
+    }
+
 
     /// 当卡牌真正使用后，根据升级列表累计执行各项效果。
     public override void OnCardExecuted()

@@ -75,6 +75,9 @@ public class GameManager : MonoBehaviour
     }
     public void SaveDeck()
     {
+        GameData currentGameData = SaveSystem.GameSaveExists()
+                   ? SaveSystem.LoadGame()
+                   : new GameData();
         if (currentGameData == null)
         {
             Debug.LogError("当前存档数据为空，无法保存牌组！");

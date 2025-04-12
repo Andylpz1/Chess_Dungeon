@@ -165,18 +165,55 @@ public class Player : MonoBehaviour
                 TakeDamage(1); // 玩家受到伤害
                 Vector2Int knockbackDirection = -monster.lastRelativePosition;
                 //Vector2Int newPosition = monsterManager.GetEmptyPosition(); // 获取新位置
-                Vector2Int newPosition = position + knockbackDirection;
-                if (IsValidPosition(newPosition) && !IsBlockedBySomething(newPosition))
-                {
-                    position = newPosition;
-                    UpdatePosition(); 
-                }
-                else if (IsValidPosition(newPosition)){
-                    position = monsterManager.GetEmptyPosition(); 
-                    UpdatePosition();
-                }
+                Vector2Int desiredPos = position + knockbackDirection;
+                Vector2Int newPosition = FindKnockbackPosition(desiredPos);
+                // 更新玩家位置
+                position = newPosition;
+                UpdatePosition();
                 break;
             }
+        }
+    }
+
+    private Vector2Int FindKnockbackPosition(Vector2Int basePosition)
+    {
+        // 如果理想位置有效，则直接返回
+        if (IsValidPosition(basePosition) && !IsBlockedBySomething(basePosition))
+        {
+            return basePosition;
+        }
+
+        // 从搜索半径 1 开始，检查以 basePosition 为中心的所有位置（排除中心位置）
+        int radius = 1;
+        while (true)
+        {
+            List<Vector2Int> candidatePositions = new List<Vector2Int>();
+
+            for (int dx = -radius; dx <= radius; dx++)
+            {
+                for (int dy = -radius; dy <= radius; dy++)
+                {
+                    // 当 radius 为 1 时，将检查 3×3 区域中的 8 个位置（不包含中心）
+                    if (dx == 0 && dy == 0)
+                        continue;
+
+                    Vector2Int pos = new Vector2Int(basePosition.x + dx, basePosition.y + dy);
+                    if (IsValidPosition(pos) && !IsBlockedBySomething(pos))
+                    {
+                        candidatePositions.Add(pos);
+                    }
+                }
+            }
+
+            // 如果在当前半径内找到了一个有效位置，则随机选一个返回
+            if (candidatePositions.Count > 0)
+            {
+                int index = UnityEngine.Random.Range(0, candidatePositions.Count);
+                return candidatePositions[index];
+            }
+
+            // 如果当前半径没有找到可用位置，则扩展搜索半径
+            radius++;
         }
     }
 

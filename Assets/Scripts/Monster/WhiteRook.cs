@@ -14,6 +14,7 @@ public class WhiteRook : Monster
     {
         base.Initialize(startPos);
         monsterName = "WhiteRook";
+        type = MonsterType.Rook;
     }
 
     public override void TakeDamage(int damage)

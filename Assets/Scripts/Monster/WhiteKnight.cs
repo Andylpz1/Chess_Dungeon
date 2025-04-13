@@ -15,6 +15,7 @@ public class WhiteKnight : Monster
     {
         base.Initialize(startPos);
         monsterName = "WhiteKnight";
+        type = MonsterType.Knight;
     }
 
     public override void TakeDamage(int damage)

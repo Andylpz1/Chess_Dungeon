@@ -2,6 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; 
 using System.Collections.Generic;
+public enum MonsterType
+{
+    Pawn,
+    Knight,
+    Rook,
+    Bishop,
+    Queen,
+    King,
+    // 根据需要继续添加其他类型
+}
 
 public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -9,6 +19,8 @@ public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Animator animator;
     public int health;
     public int maxHealth;
+    public float pieceValue;
+    public MonsterType type;
     public SpriteRenderer healthFillRenderer;  // 健康条的 SpriteRenderer
     public Vector2Int position;
     public GameObject healthBarPrefab;  // Prefab 引用

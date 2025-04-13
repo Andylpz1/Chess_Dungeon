@@ -6,6 +6,7 @@ public class WhitePawn : Monster
     public override void Initialize(Vector2Int startPos)
     {
         base.Initialize(startPos);
+        type = MonsterType.Pawn;
         monsterName = "WhitePawn";
     }
 

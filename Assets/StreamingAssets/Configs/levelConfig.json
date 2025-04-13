@@ -22,7 +22,7 @@
         },
         {
             "levelNumber": 5,
-            "monsterTypes": ["WhiteRook", "WhiteRook", "WhitePawn", "WhitePawn"],
+            "monsterTypes": ["GoldPawn", "GoldPawn", "WhiteRook", "WhiteRook"],
             "terrainType": "DenseForest"
         },
         {

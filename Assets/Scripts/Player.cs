@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
     public Text healthText; 
     public Text armorText; 
+    public bool isShieldActive = false;
     public bool isCharged = false; // 是否处于充能状态
     public Text energyStatusText;
 
@@ -162,39 +163,48 @@ public class Player : MonoBehaviour
             Monster monster = monsterObject.GetComponent<Monster>();
             if (monster != null && monster.IsPartOfMonster(position))
             {
-                TakeDamage(1); // 玩家受到伤害
-                Vector2Int knockbackDirection = -monster.lastRelativePosition;
-                //Vector2Int newPosition = monsterManager.GetEmptyPosition(); // 获取新位置
-                Vector2Int desiredPos = position + knockbackDirection;
-                Vector2Int newPosition = FindKnockbackPosition(desiredPos);
-                // 更新玩家位置
-                position = newPosition;
-                UpdatePosition();
+                if (isShieldActive)
+                {
+                    // 架盾状态下：玩家受到伤害，不改变玩家位置，而是将攻击的敌人重定位到玩家周围
+                    TakeDamage(1); // 玩家受到伤害
+                    Vector2Int newEnemyPos = FindSurroundingPosition(position, true); // skipCenter 为 true，不允许返回玩家所在的位置
+                    monster.position = newEnemyPos;
+                    monster.UpdatePosition();
+                }   
+                else
+                {
+                    // 非架盾状态：玩家受到伤害，并被击退
+                    TakeDamage(1); // 玩家受到伤害
+                    Vector2Int knockbackDirection = -monster.lastRelativePosition;
+                    Vector2Int desiredPos = position + knockbackDirection;
+                    // 使用 FindSurroundingPosition 方法，skipCenter 为 false 表示允许返回理想击退位置
+                    Vector2Int newPosition = FindSurroundingPosition(desiredPos, false);
+                    position = newPosition;
+                    UpdatePosition();
+                }
                 break;
             }
         }
     }
 
-    private Vector2Int FindKnockbackPosition(Vector2Int basePosition)
+    private Vector2Int FindSurroundingPosition(Vector2Int basePosition, bool skipCenter = false)
     {
-        // 如果理想位置有效，则直接返回
-        if (IsValidPosition(basePosition) && !IsBlockedBySomething(basePosition))
+        // 当允许使用中心位置时，先检测 basePosition 本身
+        if (!skipCenter && IsValidPosition(basePosition) && !IsBlockedBySomething(basePosition))
         {
             return basePosition;
         }
 
-        // 从搜索半径 1 开始，检查以 basePosition 为中心的所有位置（排除中心位置）
         int radius = 1;
         while (true)
         {
             List<Vector2Int> candidatePositions = new List<Vector2Int>();
-
             for (int dx = -radius; dx <= radius; dx++)
             {
                 for (int dy = -radius; dy <= radius; dy++)
                 {
-                    // 当 radius 为 1 时，将检查 3×3 区域中的 8 个位置（不包含中心）
-                    if (dx == 0 && dy == 0)
+                    // 如果需要跳过中心点，则忽略 dx == 0 且 dy == 0 的情况
+                    if (skipCenter && dx == 0 && dy == 0)
                         continue;
 
                     Vector2Int pos = new Vector2Int(basePosition.x + dx, basePosition.y + dy);
@@ -205,14 +215,11 @@ public class Player : MonoBehaviour
                 }
             }
 
-            // 如果在当前半径内找到了一个有效位置，则随机选一个返回
             if (candidatePositions.Count > 0)
             {
                 int index = UnityEngine.Random.Range(0, candidatePositions.Count);
                 return candidatePositions[index];
             }
-
-            // 如果当前半径没有找到可用位置，则扩展搜索半径
             radius++;
         }
     }

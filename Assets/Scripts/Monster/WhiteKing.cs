@@ -19,6 +19,7 @@ public class WhiteKing : Monster
         base.Initialize(startPos);
         monsterName = "WhiteKing";
         monsterManager = FindObjectOfType<MonsterManager>();  
+        type = MonsterType.King;
     }
 
     public override void TakeDamage(int damage)

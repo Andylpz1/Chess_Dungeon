@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7604700823451542480}
   - component: {fileID: 6773963571949814308}
   - component: {fileID: 3569285770981315116}
-  - component: {fileID: -164842385124035506}
-  - component: {fileID: -8230166375022390925}
+  - component: {fileID: 3377515208225334516}
+  - component: {fileID: -499183268676631222}
   m_Layer: 7
-  m_Name: white_queen
+  m_Name: gold_rook
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 158606717
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4800816533219163491, guid: 335214c0620d3c54c8b012c6d9203a2a, type: 3}
+  m_Sprite: {fileID: 2448465869244135183, guid: 47b23cf5af51cc044909b97529b3060c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,31 +136,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.9375}
   m_EdgeRadius: 0
---- !u!114 &-164842385124035506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3381790849320777569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec1e1bcbb7d15b4da8bf11dacab77dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterName: default
-  health: 4
-  maxHealth: 0
-  pieceValue: 0
-  type: 4
-  healthFillRenderer: {fileID: 0}
-  position: {x: 0, y: 0}
-  healthBarPrefab: {fileID: 0}
-  player: {fileID: 0}
-  lastRelativePosition: {x: 0, y: 0}
-  infoManager: {fileID: 0}
-  highlightPrefab: {fileID: 3397057089140146364, guid: a79931983b2a1d340a63fa6ae8d622b1, type: 3}
---- !u!95 &-8230166375022390925
+--- !u!95 &3377515208225334516
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -182,3 +158,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-499183268676631222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3381790849320777569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ef38f86bd300c4baf68a3ae19e1156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterName: default
+  health: 3
+  maxHealth: 0
+  pieceValue: 0
+  type: 2
+  healthFillRenderer: {fileID: 0}
+  position: {x: 0, y: 0}
+  healthBarPrefab: {fileID: 0}
+  player: {fileID: 0}
+  lastRelativePosition: {x: 0, y: 0}
+  infoManager: {fileID: 0}
+  highlightPrefab: {fileID: 3397057089140146364, guid: a79931983b2a1d340a63fa6ae8d622b1, type: 3}

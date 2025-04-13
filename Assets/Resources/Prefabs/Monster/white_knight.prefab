@@ -151,10 +151,13 @@ MonoBehaviour:
   monsterName: default
   health: 2
   maxHealth: 0
+  pieceValue: 0
+  type: 1
   healthFillRenderer: {fileID: 0}
   position: {x: 0, y: 0}
   healthBarPrefab: {fileID: 0}
   player: {fileID: 0}
+  lastRelativePosition: {x: 0, y: 0}
   infoManager: {fileID: 0}
   highlightPrefab: {fileID: 3397057089140146364, guid: a79931983b2a1d340a63fa6ae8d622b1, type: 3}
 --- !u!95 &-8045185180452634741

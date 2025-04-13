@@ -134,7 +134,7 @@ public class GoldPawn : Monster
             if (m == this)
                 continue;
             // 只检查类型为车或象的怪物
-            if (m.type == MonsterType.Rook || m.type == MonsterType.Bishop)
+            if (m.type == MonsterType.Rook || m.type == MonsterType.Bishop || m.type == MonsterType.Queen)
             {
                 Vector2Int friendlyPos = m.position;
                 Vector2Int targetPos = player.position; // 假定这些怪物的攻击目标为玩家

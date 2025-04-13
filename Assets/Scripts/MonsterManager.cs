@@ -56,6 +56,7 @@ public class MonsterManager : MonoBehaviour
         monsterPrefabs["WhiteQueen"] = Resources.Load<GameObject>("Prefabs/Monster/white_queen");
         monsterPrefabs["WhiteKing"] = Resources.Load<GameObject>("Prefabs/Monster/white_king");
         monsterPrefabs["GoldPawn"] = Resources.Load<GameObject>("Prefabs/Monster/gold_pawn");
+        monsterPrefabs["GoldRook"] = Resources.Load<GameObject>("Prefabs/Monster/gold_rook");
 
         rewardManager.OnRewardSelectionComplete += OnRewardSelectionComplete;
 

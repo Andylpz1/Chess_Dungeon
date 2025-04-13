@@ -111,11 +111,15 @@ public class DeckManager : MonoBehaviour
             new PawnCard(),
             new PawnCard(),
             new KnightCard(),
-            new FlameSword(),
-            new FlameSword(),
-            new FlameSword(),
-            new FlameSword(),
-            new FlameBow()
+            new SwordCard(),
+            new SwordCard(),
+            new SwordCard(),
+            new SwordCard()
+            //new FlameSword(),
+            //new FlameSword(),
+            //new FlameSword(),
+            //new FlameSword(),
+            //new FlameBow()
             //new UpgradedSwordCard()
             //new UpgradedPawnCard(),
             //step build

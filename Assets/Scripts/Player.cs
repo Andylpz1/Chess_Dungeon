@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public List<Relic> relics;
     public int damage = 1; //默认伤害
     public int damageModifierThisTurn = 0;
+    public Vector2Int lastAttackDirection { get; set; }
+
     public int cardsUsedThisTurn = 0; //本回合使用的卡牌数量
     public Text healthText; 
     public Text armorText; 
@@ -465,7 +467,7 @@ public class Player : MonoBehaviour
         // 检查该位置是否被不可进入的位置占据
         return locationManager.IsNonEnterablePosition(position);
     }
-    private bool IsBlockedBySomething(Vector2Int position)
+    public bool IsBlockedBySomething(Vector2Int position)
     {
         return IsBlockedByMonster(position) || IsBlockedByLocation(position);
     }
@@ -535,6 +537,8 @@ public class Player : MonoBehaviour
 
     public void Attack(Vector2Int attackPosition)
     {
+        // 记录攻击方向：玩家当前坐标到目标格的向量（假设棋盘坐标以 Vector2Int 表示）
+        lastAttackDirection = attackPosition - position;
         targetAttackPosition = attackPosition;
         Vector3 worldPosition = CalculateWorldPosition(attackPosition);
         GameObject effectInstance = Instantiate(attackEffectPrefab, worldPosition, Quaternion.identity);

@@ -681,6 +681,7 @@ public class Player : MonoBehaviour
             if (currentCard.cardType == CardType.Attack)
             {
                 //Debug.Log("Executing OnAttackExecuted for: ");
+                Vector2Int snapshot = targetAttackPosition;
                 currentCard.OnCardExecuted();   // 只触发攻击卡的特殊效果
                 targetAttackPosition = new Vector2Int(-1, -1); ;
             }

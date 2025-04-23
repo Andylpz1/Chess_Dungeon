@@ -74,6 +74,10 @@ public class LocationManager : MonoBehaviour
         {
             GenerateDenseForest(terrainConfig);
         }
+        else if (terrainType == "ForestMaze")
+        {
+            GenerateForestMaze();
+        }
 
     }
 
@@ -160,6 +164,53 @@ public class LocationManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// “林中密道”示例：墙壁位置放 Forest，所有 F 和 . 都留空，跳过 (4,4)。
+    /// ASCII map:
+    /// ########
+    /// #F..F..#
+    /// #.##.#.#
+    /// #...F..#
+    /// #.##.#.#
+    /// #..F..F#
+    /// #F....F#
+    /// ########
+    /// </summary>
+    private void GenerateForestMaze()
+    {
+
+        // ASCII 关卡布局
+        string[] rows = new string[]
+        {
+            "########",
+            "#F..F..#",
+            "#.##.#.#",
+            "#...F..#",
+            "#.##.#.#",
+            "#..F..F#",
+            "#F....F#",
+            "########"
+        };
+
+        GameObject forestPrefab = locationPrefabs["Forest"];
+        int size = rows.Length;  // 应当为 8
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < rows[y].Length; x++)
+            {
+                char c = rows[y][x];
+                // 只在 '#' 生成 Forest 障碍
+                if (c == '#' && !(x == 4 && y == 4))
+                {
+                    Vector2Int pos = new Vector2Int(x, y);
+                    CreateLocation(forestPrefab, pos);
+                }
+            }
+        }
+
+        Debug.Log("Generated ForestMaze layout with ASCII map.");
+    }
 
 
 

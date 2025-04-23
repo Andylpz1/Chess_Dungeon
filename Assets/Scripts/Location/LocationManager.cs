@@ -197,10 +197,13 @@ public class LocationManager : MonoBehaviour
 
         for (int y = 0; y < size; y++)
         {
-            for (int x = 0; x < rows[y].Length; x++)
+            // 把 y 翻转，0->7, 1->6, …, 7->0
+            int rowIndex = size - 1 - y;
+            string row = rows[rowIndex];
+
+            for (int x = 0; x < row.Length; x++)
             {
-                char c = rows[y][x];
-                // 只在 '#' 生成 Forest 障碍
+                char c = row[x];
                 if (c == '#' && !(x == 4 && y == 4))
                 {
                     Vector2Int pos = new Vector2Int(x, y);
@@ -208,6 +211,7 @@ public class LocationManager : MonoBehaviour
                 }
             }
         }
+
 
         Debug.Log("Generated ForestMaze layout with ASCII map.");
     }

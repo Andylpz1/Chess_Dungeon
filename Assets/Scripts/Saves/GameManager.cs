@@ -52,7 +52,8 @@ public class GameManager : MonoBehaviour
         gameData.playerDeckIds = new List<string>();
         foreach (var card in Player.Instance.deckManager.deck)
         {
-            if (card != null) 
+            //不储存临时卡
+            if (card != null && !card.isTemporary) 
             {
                 gameData.playerDeckIds.Add(card.Id);  // 存储卡牌 ID
             }

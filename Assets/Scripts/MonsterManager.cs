@@ -412,6 +412,7 @@ public class MonsterManager : MonoBehaviour
         // 移除已被销毁的Monster对象
         monsters.RemoveAll(monster => monster == null);
         nextlevel = true;
+        //如果关卡完成
         if (monsters.Count == 0)
         {
             isLevelCompleted = true; // 标记关卡完成
@@ -424,6 +425,7 @@ public class MonsterManager : MonoBehaviour
                     zone.DestroySelf();
                 }
             }
+            Effects.KeywordEffects.StopBasicRitual();
             //StartLevel(++currentLevel);
         }
         else if (turnCount % 1 == 0 && monsters.Count != 0)

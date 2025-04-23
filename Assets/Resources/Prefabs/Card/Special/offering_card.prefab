@@ -91,9 +91,9 @@ GameObject:
   - component: {fileID: 5280022575110587628}
   - component: {fileID: 6513719207245129944}
   - component: {fileID: 4531463353146810934}
-  - component: {fileID: 2493141292474033715}
+  - component: {fileID: 8436499023737615397}
   m_Layer: 5
-  m_Name: ritual_dagger_card
+  m_Name: offering_card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3516531378820962112, guid: 985ed1fcd8d58b340b083834bdc0696d, type: 3}
+  m_Sprite: {fileID: -724545197418682350, guid: 222ddd20711ede64294d488461815a61, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2493141292474033715
+--- !u!114 &8436499023737615397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7865966843562598253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8e449e2220591409341e379db70c07, type: 3}
+  m_Script: {fileID: 11500000, guid: b12c0f3f62d50004fa15dc085a6332b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterManager: {fileID: 0}

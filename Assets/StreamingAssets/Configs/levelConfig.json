@@ -3,7 +3,7 @@
     "levels": [
         {
             "levelNumber": 1,
-            "monsterTypes": ["DarkRook", "DarkRook", "DarkKnight", "DarkBishop", "DarkPawn", "DarkQueen", "DarkKing"],
+            "monsterTypes": ["WhitePawn","WhitePawn"],
             "terrainType": "Plain"
         },
         {
@@ -48,7 +48,7 @@
         },
         {
             "levelNumber": 10,
-            "monsterTypes": ["WhiteKnight", "WhiteBishop", "DarkRook","WhiteQueen","WhiteKing"],
+            "monsterTypes": ["WhiteKnight", "WhiteBishop", "GoldRook","WhiteQueen","WhiteKing"],
             "terrainType": "FortifiedBorderland"
         }
     ],

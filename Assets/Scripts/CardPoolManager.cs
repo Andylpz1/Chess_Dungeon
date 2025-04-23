@@ -20,7 +20,8 @@ public static class CardPoolManager
             new KnightCard(),
             new BishopCard(),
             new SwordCard(),
-            new BladeCard()
+            new RitualDagger(),
+            new FlameSword()
         };
 
         // Uncommon 卡池
@@ -38,8 +39,7 @@ public static class CardPoolManager
             new TwoBladeCard(),
             new FloatSword(),
             new Book(),
-            new Fan(),
-            new FlameSword()
+            new Fan()
         };
 
         // Epic 卡池

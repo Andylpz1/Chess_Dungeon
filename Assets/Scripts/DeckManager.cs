@@ -173,6 +173,8 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new WarFire());
         allCards.Add(new MadnessEcho());
         allCards.Add(new FlameSword());
+        allCards.Add(new Offering());
+        allCards.Add(new RitualDagger());
         UpdateCardEditorPanel();
     }
 
@@ -448,6 +450,11 @@ public class DeckManager : MonoBehaviour
         deck.AddRange(exhaustPile);
         exhaustPile.Clear(); 
 
+    }
+    public void AddCardToHand(Card card)
+    {
+        hand.Add(card);
+        UpdateHandUI();
     }
 
     public void RestartHand()

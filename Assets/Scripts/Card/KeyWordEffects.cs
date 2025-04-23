@@ -92,5 +92,55 @@ namespace Effects
                 ApplyKnockback(targetMonster, cardinalDirection, player);
             }
         }
+
+        // -------------------------------------
+        // Basic Ritual Logic (基础仪式计数)
+        // -------------------------------------
+
+        private static bool ritualActive = false;
+        private static int ritualCount = 0;
+        private const int RitualTarget = 2;
+
+        /// <summary>
+        /// 启动基础仪式：仅在首次调用时激活。
+        /// </summary>
+        public static void StartBasicRitual()
+        {
+            if (ritualActive) return;
+            ritualActive = true;
+            ritualCount = 0;
+            Debug.Log("Basic ritual started.");
+        }
+
+        /// <summary>
+        /// 累计一次仪式进度，达到目标后自动完成仪式。
+        /// </summary>
+        public static void IncrementBasicRitual()
+        {
+            if (!ritualActive) return;
+            ritualCount++;
+            Debug.Log($"Basic ritual progress: {ritualCount}/{RitualTarget}");
+            if (ritualCount >= RitualTarget)
+                CompleteRitual();
+        }
+
+        /// <summary>
+        /// 完成仪式：对所有敌人造成 1 点伤害，并重置状态。
+        /// </summary>
+        private static void CompleteRitual()
+        {
+            ritualActive = false;
+            ritualCount = 0;
+            Debug.Log("Basic ritual completed! Dealing 1 damage to all monsters.");
+            foreach (var monster in GameObject.FindObjectsOfType<Monster>())
+                monster.TakeDamage(1);
+        }
+        public static void StopBasicRitual()
+        {
+            // 关闭仪式并清零计数
+            ritualActive = false;
+            ritualCount  = 0;
+            Debug.Log("Basic ritual stopped and reset.");
+        }
     }
 }

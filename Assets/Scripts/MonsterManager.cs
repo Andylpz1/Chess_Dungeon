@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.SceneManagement;
 
+
+
 public class MonsterManager : MonoBehaviour
 {
     public static Player Instance { get; private set; }
@@ -117,6 +119,7 @@ public class MonsterManager : MonoBehaviour
         {
             Debug.LogError("Level configuration file not found: " + filePath);
         }
+        
     }
 
     private void UpdateLevelCountText()
@@ -254,12 +257,36 @@ public class MonsterManager : MonoBehaviour
 
     void SpawnMonstersForLevel(LevelConfig levelConfig)
     {
-        foreach (string monsterType in levelConfig.monsterTypes)
+        Debug.Log($"[Spawn] Level {levelConfig.levelNumber}: monsterTemplates count = {levelConfig.monsterTemplates.Count}, fallback monsterTypes count = {levelConfig.monsterTypes.Count}");
+        // 如果有多套模板，随机选一套
+        if (levelConfig.monsterTemplates != null 
+            && levelConfig.monsterTemplates.Count > 0)
         {
-            Monster monster = CreateMonsterByType(monsterType);
-            if (monster != null)
+            // 随机挑一个 MonsterTemplate
+            int tplIndex = Random.Range(0, levelConfig.monsterTemplates.Count);
+            MonsterTemplate chosenTpl = levelConfig.monsterTemplates[tplIndex];
+            Debug.Log($"[Spawn] Using template #{tplIndex} for Level {levelConfig.levelNumber} with {chosenTpl.monsterTypes.Count} entries");
+            // 从 chosenTpl.monsterTypes 里拿到真正的 List<string>
+            foreach (string monsterType in chosenTpl.monsterTypes)
             {
-                SpawnMonster(monster);
+                Debug.Log($"[Spawn] -> Template spawning: {monsterType}");
+                Monster monster = CreateMonsterByType(monsterType);
+                if (monster != null)
+                    SpawnMonster(monster);
+                else 
+                    Debug.LogWarning($"[Spawn] !! CreateMonsterByType returned null for '{monsterType}'");
+            }
+
+            return;
+        }
+        else
+        {
+            // 回落：老逻辑，直接遍历 monsterTypes
+            foreach (string monsterType in levelConfig.monsterTypes)
+            {
+                Monster monster = CreateMonsterByType(monsterType);
+                if (monster != null)
+                    SpawnMonster(monster);
             }
         }
     }

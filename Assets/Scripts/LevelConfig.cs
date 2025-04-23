@@ -1,14 +1,23 @@
+using System;
 using System.Collections.Generic;
 
-[System.Serializable]
+[Serializable]
 public class LevelConfig
 {
     public int levelNumber;
     public List<string> monsterTypes; // 怪物类型名称的列表，例如 "Slime", "Bat"
+    public List<MonsterTemplate> monsterTemplates = new List<MonsterTemplate>();
     public string terrainType = "Plain";
 }
 
-[System.Serializable]
+[Serializable]
+public class MonsterTemplate
+{
+    // the list of monster type IDs for this particular template
+    public List<string> monsterTypes = new List<string>();
+}
+
+[Serializable]
 public class TerrainConfig
 {
     public string name;
@@ -19,7 +28,7 @@ public class TerrainConfig
 }
 
 
-[System.Serializable]
+[Serializable]
 public class GameConfig
 {
     public List<LevelConfig> levels;

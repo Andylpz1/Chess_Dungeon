@@ -3,8 +3,12 @@
     "levels": [
         {
             "levelNumber": 1,
-            "monsterTypes": ["WhitePawn","WhitePawn"],
-            "terrainType": "Plain"
+            "terrainType": "Borderland",
+            "monsterTemplates": [
+                { "monsterTypes": ["WhitePawn","WhitePawn"] },
+                { "monsterTypes": ["WhitePawn","WhiteKnight"] }
+            ],
+            "monsterTypes": ["WhitePawn","WhitePawn"]
         },
         {
             "levelNumber": 2,

@@ -173,6 +173,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new WarFire());
         allCards.Add(new MadnessEcho());
         allCards.Add(new FlameSword());
+        allCards.Add(new FlameBow());
         allCards.Add(new Offering());
         allCards.Add(new RitualDagger());
         UpdateCardEditorPanel();

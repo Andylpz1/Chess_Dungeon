@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     private Animator animator;
     public GameObject attackEffectPrefab;
     public Vector2Int targetAttackPosition { get; set; }
+    public Vector2Int lastAttackSnapshot;
+
 
     
     void Awake()
@@ -539,6 +541,7 @@ public class Player : MonoBehaviour
     {
         // 记录攻击方向：玩家当前坐标到目标格的向量（假设棋盘坐标以 Vector2Int 表示）
         lastAttackDirection = attackPosition - position;
+        lastAttackSnapshot = attackPosition;
         targetAttackPosition = attackPosition;
         Vector3 worldPosition = CalculateWorldPosition(attackPosition);
         GameObject effectInstance = Instantiate(attackEffectPrefab, worldPosition, Quaternion.identity);
@@ -682,7 +685,7 @@ public class Player : MonoBehaviour
             {
                 //Debug.Log("Executing OnAttackExecuted for: ");
                 Vector2Int snapshot = targetAttackPosition;
-                currentCard.OnCardExecuted();   // 只触发攻击卡的特殊效果
+                currentCard.OnCardExecuted(lastAttackSnapshot);   // 只触发攻击卡的特殊效果
                 targetAttackPosition = new Vector2Int(-1, -1); ;
             }
 

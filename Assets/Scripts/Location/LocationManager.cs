@@ -183,12 +183,12 @@ public class LocationManager : MonoBehaviour
         string[] rows = new string[]
         {
             "########",
-            "#F..F..#",
+            "#F.....#",
             "#.##.#.#",
             "#...F..#",
             "#.##.#.#",
-            "#..F..F#",
-            "#F....F#",
+            "#.#F.#F#",
+            "#F...#F#",
             "########"
         };
 

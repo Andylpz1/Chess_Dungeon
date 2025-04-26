@@ -69,7 +69,7 @@ public class FlameSword : Card
         return "攻击目标并在其处铺设燃点地形";
     }
     
-    public override void OnCardExecuted()
+    public override void OnCardExecuted(Vector2Int gridPosition)
     {
         base.OnCardExecuted();
         
@@ -77,7 +77,7 @@ public class FlameSword : Card
         // 此处我们在攻击目标处铺设燃点
         
         Vector2Int targetPos = GetAttackTargetPosition();
-        PlaceFirePointAt(targetPos);
+        PlaceFirePointAt(gridPosition);
     }
     
     /// <summary>
@@ -86,7 +86,7 @@ public class FlameSword : Card
     /// </summary>
     private Vector2Int GetAttackTargetPosition()
     {
-        return player.targetAttackPosition;
+        return player.lastAttackSnapshot;
     }
 
     private void PlaceFirePointAt(Vector2Int gridPosition)

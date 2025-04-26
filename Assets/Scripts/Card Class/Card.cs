@@ -76,6 +76,11 @@ public class Card
         
     }
 
+    public virtual void OnCardExecuted(Vector2Int gridPosition)
+    {
+        OnCardExecuted();
+    }
+
     public virtual int GetDamageAmount()
     {
         return 1;

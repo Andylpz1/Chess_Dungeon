@@ -17,7 +17,7 @@
         },
         {
             "levelNumber": 3,
-            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight"],
+            "monsterTypes": ["WhitePawn", "WhitePawn","WhiteKnight","WhiteKnight","WhiteKnight"],
             "terrainType": "ForestMaze"
         },
         {

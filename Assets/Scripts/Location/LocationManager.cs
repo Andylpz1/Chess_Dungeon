@@ -476,7 +476,11 @@ public class LocationManager : MonoBehaviour
         points.Sort((a, b) =>
         {
             float angleA = Mathf.Atan2(a.y - pivot.y, a.x - pivot.x);
+            if(angleA>180)
+                angleA -= 180;
             float angleB = Mathf.Atan2(b.y - pivot.y, b.x - pivot.x);
+            if (angleB > 180)
+                angleB -= 180;
             if (!Mathf.Approximately(angleA, angleB))
                 return angleA.CompareTo(angleB);          // 角度不同，按角度排
             else

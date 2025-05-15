@@ -71,9 +71,9 @@ public class SwordCard : Card
         return "上下左右攻击，并对目标格内的敌人进行击退";
     }
 
-    public override void OnCardExecuted()
+    public override void OnCardExecuted(Vector2Int attackPos)
     {
-        KeywordEffects.AttackWithKnockback(player);
+        KeywordEffects.AttackWithKnockback(player, attackPos);
         
     }
 
@@ -99,9 +99,10 @@ public class UpgradedSwordCard : Card
         return "上下左右攻击,造成2点伤害";
     }
 
-    public override void OnCardExecuted()
+    public override void OnCardExecuted(Vector2Int attackPos)
     {
         // 升级剑卡可能也有额外效果（比如抽卡）
+        KeywordEffects.AttackWithKnockback(player, attackPos);
     }
 
     public override int GetDamageAmount()

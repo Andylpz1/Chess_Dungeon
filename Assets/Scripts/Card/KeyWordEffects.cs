@@ -78,10 +78,10 @@ namespace Effects
         /// 3. 应用击退效果
         /// </summary>
         /// <param name="player">玩家对象，必须包含 targetAttackPosition、IsValidPosition、IsBlockedBySomething 等方法</param>
-        public static void AttackWithKnockback(Player player)
+        public static void AttackWithKnockback(Player player, Vector2Int attackPos)
         {
             // 根据玩家的攻击目标位置判断是否存在怪物
-            Monster targetMonster = GetMonsterAtPosition(player.targetAttackPosition);
+            Monster targetMonster = GetMonsterAtPosition(attackPos);
             if (targetMonster != null)
             {
                 // 计算方向：从玩家到目标怪物

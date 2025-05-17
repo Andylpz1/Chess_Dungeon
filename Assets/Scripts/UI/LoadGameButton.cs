@@ -5,31 +5,39 @@ public class LoadGameButton : MonoBehaviour
 {
     public void LoadGame()
     {
-        // Check if a save file exists
-        if (SaveSystem.GameSaveExists())
+        if (!SaveSystem.GameSaveExists())
         {
-            GameData gameData = SaveSystem.LoadGame();
-            if (gameData != null)
-            {
-                PlayerPrefs.SetInt("IsLevelNode", 0);
-                PlayerPrefs.Save();
-                // Load the saved level
-                SceneManager.LoadScene("GameScene");
+            Debug.LogWarning("No save file found.");
+            return;
+        }
 
-                // Optionally, pass saved data to the game manager or player
-                GameManager.Instance.LoadGameData(gameData);
+        GameData gameData = SaveSystem.LoadGame();
+        if (gameData == null)
+        {
+            Debug.LogError("Failed to load game data.");
+            return;
+        }
 
+        // 清除 IsLevelNode，确保不当作关卡节点入口
+        PlayerPrefs.SetInt("IsLevelNode", 0);
 
-                Debug.Log("Loaded saved game successfully.");
-            }
-            else
-            {
-                Debug.LogError("Failed to load game data.");
-            }
+        // 读取并清除“回到选关”标记
+        int returnToLS = PlayerPrefs.GetInt("ReturnToLevelSelection", 0);
+        PlayerPrefs.SetInt("ReturnToLevelSelection", 0);
+        PlayerPrefs.Save();
+
+        if (returnToLS == 1)
+        {
+            // 回到选关界面
+            SceneManager.LoadScene("LevelSelectionScene");
+            Debug.Log("🔙 Returning to Level Selection");
         }
         else
         {
-            Debug.LogWarning("No save file found.");
+            // 正常恢复到游戏场景
+            SceneManager.LoadScene("GameScene");
+            GameManager.Instance.LoadGameData(gameData);
+            Debug.Log("▶️ Loaded saved game successfully.");
         }
     }
 }

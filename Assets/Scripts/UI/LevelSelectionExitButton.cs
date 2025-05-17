@@ -12,6 +12,8 @@ public class LevelSelectionExitButton : MonoBehaviour
 
     public void OnExitButtonClicked()
     {
+        PlayerPrefs.SetInt("ReturnToLevelSelection", 1);
+        PlayerPrefs.Save();
         // 跳回主菜单
         SceneManager.LoadScene("MainMenu");
     }

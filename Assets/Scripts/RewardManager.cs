@@ -5,83 +5,105 @@ using UnityEngine.SceneManagement;
 
 public class RewardManager : MonoBehaviour
 {
-    public GameObject rewardPanel;         // 奖励面板对象
-    public Image card1;                    // 卡牌1对应的 Image
-    public Image card2;                    // 卡牌2对应的 Image
-    public Image card3;                    // 卡牌3对应的 Image
-    public Text text1;                     // 卡牌1描述文本
-    public Text text2;                     // 卡牌2描述文本
-    public Text text3;                     // 卡牌3描述文本
-    public Button refreshButton;           // 刷新卡牌按钮
-    public Button skipButton;              // 跳过奖励按钮
+    [Header("卡牌奖励")]
+    public GameObject rewardPanel;
+    public Image card1, card2, card3;
+    public Text text1, text2, text3;
+    public Button refreshButton, skipButton;
 
-    private DeckManager deckManager;       // 对场景内 DeckManager 的引用
-    public GameManager gameManager;        // 对 GameManager 的引用
-    public bool isRewardPanelOpen = false; // 标记奖励面板是否打开
-    private List<Card> rewardCards;        // 当前奖励卡牌列表
+    [Header("遗物奖励")]
+    public GameObject relicPanel;
+    public Image relicImage1, relicImage2, relicImage3;
+    public Text relicText1, relicText2, relicText3;
+    public Button relicRefreshButton, relicSkipButton;
+
+    private DeckManager deckManager;
+    public GameManager gameManager;
+    public bool isRewardPanelOpen = false;
+
+    private List<Card> rewardCards;
+    private List<Relic> rewardRelics;
+    private bool hasCards;
+    private bool hasRelics;
 
     public event System.Action OnRewardSelectionComplete;
 
     private void Awake()
     {
-        // 自动寻找 GameManager
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    void Start()
+    private void Start()
     {
-        rewardPanel.SetActive(false); // 开始时隐藏奖励面板
+        rewardPanel.SetActive(false);
+        relicPanel.SetActive(false);
         deckManager = FindObjectOfType<DeckManager>();
+
         refreshButton.onClick.AddListener(OnRefreshButtonClicked);
         skipButton.onClick.AddListener(OnSkipButtonClicked);
+        relicRefreshButton.onClick.AddListener(OnRelicRefreshButtonClicked);
+        relicSkipButton.onClick.AddListener(OnRelicSkipButtonClicked);
     }
 
     /// <summary>
-    /// 打开奖励面板，显示三张奖励卡牌
+    /// 启动整个奖励流程：先卡牌后遗物
     /// </summary>
+    public void StartRewardProcess()
+    {
+        // 生成并判断卡牌奖励
+        rewardCards = CardPoolManager.GenerateRewardCards();
+        hasCards = rewardCards != null && rewardCards.Count > 0;
+
+        // 生成并判断遗物奖励
+        rewardRelics = GenerateRelicChoices();
+        //hasRelics = rewardRelics != null && rewardRelics.Count > 0;
+        hasRelics = false;
+
+        if (hasCards)
+            OpenRewardPanel();
+        else if (hasRelics)
+            OpenRelicPanel();
+        else
+            EndReward();
+    }
+
+    #region 卡牌阶段
     public void OpenRewardPanel()
     {
         isRewardPanelOpen = true;
+        // 隐藏遗物面板
+        relicPanel.SetActive(false);
         rewardPanel.SetActive(true);
-        // 直接调用 CardPoolManager 生成奖励卡牌
-        rewardCards = CardPoolManager.GenerateRewardCards();
 
-        // 将奖励卡牌绑定到对应 UI 上
+        // 绑定卡牌
         SetCard(card1, text1, rewardCards[0]);
         SetCard(card2, text2, rewardCards[1]);
         SetCard(card3, text3, rewardCards[2]);
     }
 
-    /// <summary>
-    /// 设置卡牌的图像和描述，并绑定点击事件
-    /// </summary>
-    private void SetCard(Image cardImage, Text cardText, Card card)
+    private void SetCard(Image img, Text txt, Card card)
     {
-        cardImage.sprite = card.GetSprite();
-        cardText.text = card.GetDescription();
-        // 移除之前的监听事件，绑定当前卡牌的选择事件
-        cardImage.GetComponent<Button>().onClick.RemoveAllListeners();
-        cardImage.GetComponent<Button>().onClick.AddListener(() => OnCardSelected(card));
+        img.sprite = card.GetSprite();
+        txt.text = card.GetDescription();
+        Button btn = img.GetComponent<Button>();
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(() => OnCardSelected(card));
     }
 
-    /// <summary>
-    /// 当玩家选择一张卡牌时调用
-    /// </summary>
     private void OnCardSelected(Card selectedCard)
     {
-        deckManager.deck.Add(selectedCard); // 将选择的卡牌添加到玩家牌组中
+        deckManager.deck.Add(selectedCard);
         deckManager.UpdateDeckCountText();
         deckManager.UpdateDeckPanel();
 
         CloseRewardPanel();
-        OnRewardSelectionComplete?.Invoke();
-        gameManager.SaveGame();
-        SceneManager.LoadScene("LevelSelectionScene");
+
+        if (hasRelics)
+            OpenRelicPanel();
+        else
+            EndReward();
     }
 
-    /// <summary>
-    /// 刷新按钮点击事件：生成新的奖励卡牌
-    /// </summary>
     private void OnRefreshButtonClicked()
     {
         rewardCards = CardPoolManager.GenerateRewardCards();
@@ -90,22 +112,109 @@ public class RewardManager : MonoBehaviour
         SetCard(card3, text3, rewardCards[2]);
     }
 
-    /// <summary>
-    /// 跳过奖励：关闭面板并继续游戏
-    /// </summary>
     private void OnSkipButtonClicked()
     {
         CloseRewardPanel();
+
+        if (hasRelics)
+            OpenRelicPanel();
+        else
+            EndReward();
+    }
+
+    private void CloseRewardPanel()
+    {
+        rewardPanel.SetActive(false);
+    }
+    #endregion
+
+    #region 遗物阶段
+    public void OpenRelicPanel()
+    {
+        isRewardPanelOpen = true;
+        // 隐藏卡牌面板
+        rewardPanel.SetActive(false);
+        relicPanel.SetActive(true);
+
+        SetRelic(relicImage1, relicText1, rewardRelics[0]);
+        SetRelic(relicImage2, relicText2, rewardRelics[1]);
+        SetRelic(relicImage3, relicText3, rewardRelics[2]);
+    }
+
+    private void SetRelic(Image img, Text txt, Relic relic)
+    {
+        img.sprite = relic.icon;
+        txt.text = relic.description;
+        Button btn = img.GetComponent<Button>();
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(() => OnRelicSelected(relic));
+    }
+
+    private void OnRelicSelected(Relic selectedRelic)
+    {
+        Player player = FindObjectOfType<Player>();
+        RelicManager.Instance.AcquireRelic(selectedRelic, player);
+
+        CloseRelicPanel();
+        EndReward();
+    }
+
+    private void OnRelicRefreshButtonClicked()
+    {
+        rewardRelics = GenerateRelicChoices();
+        SetRelic(relicImage1, relicText1, rewardRelics[0]);
+        SetRelic(relicImage2, relicText2, rewardRelics[1]);
+        SetRelic(relicImage3, relicText3, rewardRelics[2]);
+    }
+
+    private void OnRelicSkipButtonClicked()
+    {
+        CloseRelicPanel();
+        EndReward();
+    }
+
+    private void CloseRelicPanel()
+    {
+        relicPanel.SetActive(false);
+    }
+    #endregion
+
+    /// <summary>
+    /// 结束奖励流程：触发回调、存档、切场景
+    /// </summary>
+    private void EndReward()
+    {
         OnRewardSelectionComplete?.Invoke();
         gameManager.SaveGame();
         SceneManager.LoadScene("LevelSelectionScene");
     }
 
     /// <summary>
-    /// 关闭奖励面板
+    /// 随机挑选 3 个遗物
     /// </summary>
-    private void CloseRewardPanel()
+    private List<Relic> GenerateRelicChoices()
     {
-        rewardPanel.SetActive(false);
+        var all = RelicManager.Instance.availableRelics;
+        var candidates = all.FindAll(r => !RelicManager.Instance.relics.Contains(r));
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            int j = Random.Range(i, candidates.Count);
+            var tmp = candidates[i];
+            candidates[i] = candidates[j];
+            candidates[j] = tmp;
+        }
+        // 保证至少 3 项
+        if (candidates.Count < 3)
+        {
+            var padded = new List<Relic>(candidates);
+            int idx = 0;
+            while (padded.Count < 3 && candidates.Count > 0)
+            {
+                padded.Add(candidates[idx % candidates.Count]);
+                idx++;
+            }
+            candidates = padded;
+        }
+        return candidates.GetRange(0, Mathf.Min(3, candidates.Count));
     }
 }

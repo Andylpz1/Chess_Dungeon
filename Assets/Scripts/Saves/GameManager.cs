@@ -2,6 +2,7 @@ using System.IO;
 using UnityEngine;
 using System.Collections; // Required for IEnumerator
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;  
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public MonsterManager monsterManager; 
     public List<Card> playerDeck = new List<Card>();
     public GameData currentGameData;
+    public Player player;
     private void Awake()
     {
         if (monsterManager == null)
@@ -28,6 +30,21 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    // 订阅／退订事件就写在类里
+    void OnEnable() {
+    SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable() {
+    SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // ↓ 这一定要是 private (或 public) void，接收两个参数，顺序和类型都要对
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene,
+                           UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        player = FindObjectOfType<Player>();
+    }
+
 
     void Start()
     {
@@ -38,6 +55,7 @@ public class GameManager : MonoBehaviour
             LoadGameData(gameData);
         }   
     }
+    
     public void SaveGame()
     {
         GameData gameData = new GameData();

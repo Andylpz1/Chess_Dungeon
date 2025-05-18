@@ -443,7 +443,11 @@ public class MonsterManager : MonoBehaviour
         if (monsters.Count == 0)
         {
             isLevelCompleted = true; // 标记关卡完成
-            rewardManager.OpenRewardPanel();
+            // 订阅奖励完成事件
+            //rewardManager.OnRewardSelectionComplete += HandleRewardFlowComplete;
+            // 一次性启动卡牌→遗物奖励流程
+            rewardManager.StartRewardProcess();
+
             player.deckManager.RestoreExhaustedCards();
             foreach (FireZone zone in locationManager.activeFireZones)
             {

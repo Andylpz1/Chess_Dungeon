@@ -4,7 +4,7 @@ using UnityEngine;
 public class RelicManager : MonoBehaviour
 {
     public static RelicManager Instance;
-
+    public List<Relic> availableRelics = new List<Relic>();
     public List<Relic> relics = new List<Relic>();
     public Relic moveCardDrawRelic; 
     public Relic HandSizeRelic; 

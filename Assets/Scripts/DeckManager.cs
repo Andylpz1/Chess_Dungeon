@@ -176,6 +176,7 @@ public class DeckManager : MonoBehaviour
         allCards.Add(new FlameBow());
         allCards.Add(new Offering());
         allCards.Add(new RitualDagger());
+        allCards.Add(new Book());
         UpdateCardEditorPanel();
     }
 

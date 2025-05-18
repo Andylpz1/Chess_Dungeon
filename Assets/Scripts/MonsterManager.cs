@@ -446,6 +446,8 @@ public class MonsterManager : MonoBehaviour
             // 订阅奖励完成事件
             //rewardManager.OnRewardSelectionComplete += HandleRewardFlowComplete;
             // 一次性启动卡牌→遗物奖励流程
+            
+            //视觉问题：可以等待一秒等所有卡牌洗回后再继续
             rewardManager.StartRewardProcess();
 
             player.deckManager.RestoreExhaustedCards();

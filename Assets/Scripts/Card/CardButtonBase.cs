@@ -65,7 +65,7 @@ public abstract class CardButtonBase : MonoBehaviour, CardButton, IPointerClickH
         if (button != null)
         {
             //抛弃点击方法
-            //button.onClick.AddListener(() => OnClick()); 
+            button.onClick.AddListener(() => OnClick()); 
         }
     }
 

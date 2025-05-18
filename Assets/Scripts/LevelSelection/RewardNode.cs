@@ -17,6 +17,7 @@ public class RewardNode : MonoBehaviour
         if (completeButton != null)
         {
             completeButton.onClick.AddListener(OnComplete);
+            completeButton.gameObject.SetActive(false);
         }
         else
         {
@@ -37,6 +38,8 @@ public class RewardNode : MonoBehaviour
         {
             Debug.LogError("deckPanel 未赋值，请在 Inspector 中指定！");
         }
+        if (completeButton != null)
+            completeButton.gameObject.SetActive(true);
         UpdateDeckPanel();
     }
 
@@ -111,5 +114,7 @@ public class RewardNode : MonoBehaviour
             deckPanel.gameObject.SetActive(false);
             nodeCanvas.SetActive(true);
         }
+        if (completeButton != null)
+            completeButton.gameObject.SetActive(true);
     }
 }

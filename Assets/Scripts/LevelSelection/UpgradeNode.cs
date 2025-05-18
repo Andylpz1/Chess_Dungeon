@@ -30,6 +30,7 @@ public class UpgradeNode : MonoBehaviour
         if (completeButton != null)
         {
             completeButton.onClick.AddListener(OnComplete);
+            completeButton.gameObject.SetActive(false);
         }
         else
         {
@@ -58,6 +59,8 @@ public class UpgradeNode : MonoBehaviour
             deckPanel.gameObject.SetActive(true);
         else
             Debug.LogError("deckPanel 未指定，请在 Inspector 中设置！");
+        if (completeButton != null)
+            completeButton.gameObject.SetActive(true);
         UpdateDeckPanel();
     }
 
@@ -184,5 +187,7 @@ public class UpgradeNode : MonoBehaviour
         // 恢复关卡节点
         if (nodeCanvas != null)
             nodeCanvas.SetActive(true);
+        if (completeButton != null)
+            completeButton.gameObject.SetActive(false);
     }
 }
